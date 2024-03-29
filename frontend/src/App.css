@@ -1,49 +1,17 @@
-.navbar {
-  background-color: #b0d59c;
-  padding: 10px 20px;
+/* App.css or index.css */
+/* .App {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center; 
 }
 
-.navbar-logo {
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr auto; 
+  gap: 20px; 
+}
+
+.campaign-card-container {
   display: flex;
-  align-items: center;
-  margin-right: 40px; /* Increased margin on the right */
-}
-
-.logo {
-  width: 100px; /* Adjust size as needed */
-  height: auto;
-  margin-left: 60px;
-}
-
-.logo-text {
-  color: white;
-  font-size: 1.2rem; /* Adjust font size as needed */
-  margin: 0;
-}
-
-.navbar-menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-menu li {
-  display: inline-block;
-  margin-right: 20px; /* Adjust spacing between menu items */
-}
-
-.navbar-menu li a {
-  color: black; /* Text color is black by default */
-  text-decoration: none;
-  font-size: 1rem; /* Adjust font size as needed */
-  padding: 10px 20px; /* Add padding to menu items */
-  transition: background-color 0.3s, color 0.3s; /* Smooth transition for background color and text color */
-}
-
-.navbar-menu li a:hover {
-  color: white; /* Text color changes to white on hover */
-  background-color: rgba(0, 0, 0, 0.1); /* Background color becomes slightly darker on hover */
-}
+  justify-content: center;
+  align-items: center; 
+} */
