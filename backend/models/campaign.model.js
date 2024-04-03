@@ -7,21 +7,21 @@ const CampaignSchema = mongoose.Schema(
       required: [true, "Please enter product name"],
     },
     image: {
-      type: Number,
+      type: String,
       required: true,
       default: 0,
     },
     location: {
-      type: Number,
+      type: String,
       required: true,
       default: 0,
     },
     start_date: {
-      type: String,
+      type: Date,
       required: false,
     },
     end_date: {
-        type: String,
+        type: Date,
         required: false,
     },
     target_donation:{

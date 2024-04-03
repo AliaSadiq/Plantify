@@ -1,5 +1,5 @@
-import React from 'react';
-import CampaignCard from '../components/campaign-card';
+import React, { useState, useEffect } from 'react';
+//import CampaignCard from '../components/campaign-card';
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { Link } from 'react-router-dom';
 import CamapignCardSh from '../components/campaign-card-sh';
@@ -25,15 +25,11 @@ export default function CampaignListPage(){
           </div>
           <div className="mt-20 mx-auto">
             <div className="flex flex-wrap justify-left gap-4 p-8 ml-12">
-              <Link to="/campaign-detail">
-                <CamapignCardSh />
+            {campaigns.map(campaign => (
+              <Link key={campaign._id} to={`/campaigns/${campaign._id}`}>
+                <CamapignCardSh campaign={campaign} />
               </Link>
-              <CamapignCardSh />
-              <CamapignCardSh />
-              <CamapignCardSh />
-              <CamapignCardSh />
-              <CamapignCardSh />
-              {/* Add more CampaignCard components as needed */}
+            ))}
             </div>
           </div>
         </div>
