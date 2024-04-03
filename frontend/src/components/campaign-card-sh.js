@@ -1,13 +1,13 @@
 import React from "react";
-import campaign from "../assets/campaign.jpg";
+//import campaign from "../assets/campaign.jpg";
 import { UserGroupIcon } from "@heroicons/react/24/solid";
 
-const CamapignCardSh = () => {
+const CamapignCardSh = ({campaign}) => {
     return (
       <div className="w-[380px] rounded-xl bg-palegoldenrod-100 box-border overflow-hidden shrink-0 flex flex-col items-start justify-start pt-7 px-[15px] pb-[15px] gap-[25px] max-w-full text-left text-5xl text-black font-josefin-sans border-[1px] border-solid border-yellowgreen-200">
         <div className="flex flex-row items-start justify-start py-0 px-[5px]">
           <h2 className="m-0 relative text-inherit font-bold font-inherit mq450:text-lgi">
-            Sindh Urban Campaign
+            {campaign.name}
           </h2>
         </div>
         <div className="w-[336px] flex flex-row items-end justify-start gap-[13px] max-w-full text-mini text-gray-100 mq450:flex-wrap">
@@ -18,7 +18,7 @@ const CamapignCardSh = () => {
               className="h-[146px] w-[147px] relative rounded-tl-xl rounded-tr-none rounded-br-none rounded-bl-xl object-cover z-[2] mq450:flex-1"
               loading="lazy"
               alt=""
-              src={campaign}
+              src={`../assets/,${campaign.image}`}
             />
           </div>
           <div className="flex-1 flex flex-col items-start justify-end pt-0 px-0 pb-3.5 box-border min-w-[114px]">
@@ -28,11 +28,11 @@ const CamapignCardSh = () => {
                   <span className="font-semibold font-josefin-sans">
                     Location
                   </span>
-                  <span className="font-light">: Jinnah Park, Rwp</span>
+                  <span className="font-light">: {campaign.location}</span>
                 </p>
                 <p className="m-0">
                   <span className="font-semibold font-josefin-sans">Date</span>
-                  <span className="font-light">: 30-9-24</span>
+                  <span className="font-light">: {campaign.start_date}</span>
                 </p>
               </div>
               <div className="self-stretch flex flex-row items-start justify-start py-0 pr-[18px] pl-[21px] text-sm">
@@ -58,7 +58,7 @@ const CamapignCardSh = () => {
                       </div>
                     </div>
                     <div className="self-stretch relative font-light z-[2]">
-                      900$ raised of 1000$
+                      {campaign.collected_donation}$ raised of {campaign.target_donation}$
                     </div>
                   </div>
                 </div>

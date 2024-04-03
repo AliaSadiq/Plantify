@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 // const Product = require("./models/product.model.js");
 const campaignRoute = require("./routes/campaign.route.js");
 const app = express();
@@ -7,6 +8,7 @@ const app = express();
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use(cors());
 
 
 // routes
@@ -26,8 +28,8 @@ mongoose
   )
   .then(() => {
     console.log("Connected to database!");
-    app.listen(3000, () => {
-      console.log("Server is running on port 3000");
+    app.listen(5000, () => {
+      console.log("Server is running on port 5000");
     });
   })
   .catch(() => {
