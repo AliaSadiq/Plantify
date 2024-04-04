@@ -18,7 +18,7 @@ const CamapignCardSh = ({campaign}) => {
               className="h-[146px] w-[147px] relative rounded-tl-xl rounded-tr-none rounded-br-none rounded-bl-xl object-cover z-[2] mq450:flex-1"
               loading="lazy"
               alt=""
-              src={`../assets/,${campaign.image}`}
+              src={`../assets/${campaign.image}`}
             />
           </div>
           <div className="flex-1 flex flex-col items-start justify-end pt-0 px-0 pb-3.5 box-border min-w-[114px]">

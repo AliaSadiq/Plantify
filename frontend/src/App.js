@@ -5,6 +5,7 @@ import NavBar from './components/nav-bar';
 import HomePage from './pages/home-page';
 import CampaignListPage from './pages/campaign-list-page';
 import CampaignDetailPage from './pages/campaign-detail-page'; // Import CampaignDetailPage component
+//import CampaignCard from './components/campaign-card';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {

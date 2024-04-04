@@ -18,13 +18,13 @@ const CampaignCard = () => {
             <p className="text-xs font-josefins font-medium">Location: <span className="text-xs font-josefins font-light">California</span></p>
             <p className="text-xs font-josefins font-medium">Date: <span className="text-xs font-josefins font-light">30-10-24</span></p>
             <div className="flex items-center mt-2">
-                <UserGroupIcon className="w-4 h-4 mr-2 text-light-black" />  {/*Use the UserCircleIcon */}
+                <UserGroupIcon className="w-4 h-4 mr-2 text-light-black" />
                 <p className="text-xs font-josefins">17 volunteers</p>
             </div>
             <div className="flex items-center justify-between">
                 <div>
                 <div className="bg-sage-100 h-2 rounded-full overflow-hidden border-2 border-sage-200">
-                    <div className="bg-nav-green h-full" style={{ width: '80%' }}></div> {/* Adjust width dynamically based on progress */}
+                    <div className="bg-nav-green h-full" style={{ width: '80%' }}></div>
                 </div>
                 <p className="text-xs font-josefins mt-1">800$ raised of 1000$</p>
                 </div>
