@@ -2,7 +2,7 @@ import './App.css';
 import './index.css';
 import Footer from './components/footer';
 import NavBar from './components/nav-bar';
-import HomePage from './pages/home-page';
+import LandingPage from './pages/landing-page';
 import CampaignListPage from './pages/campaign-list-page';
 import CampaignDetailPage from './pages/campaign-detail-page'; // Import CampaignDetailPage component
 //import CampaignCard from './components/campaign-card';
@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <NavBar/>
       <Routes>
-          <Route index element={<HomePage/>}/>
+          <Route index element={<LandingPage/>}/>
           <Route path="campaign-detail" element={<CampaignDetailPage/>} />
           <Route path="campaign" element={<CampaignListPage/>} />
       </Routes>

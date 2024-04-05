@@ -23,13 +23,11 @@ app.get("/", (req, res) => {
 
 
 mongoose
-  .connect(
-    "mongodb+srv://farwa:006OyU1ZCZhowFSt@backenddb.uhcz40u.mongodb.net/Plantify?retryWrites=true&w=majority&appName=BackendDB"
-  )
+  .connect('mongodb+srv://farwa:006OyU1ZCZhowFSt@backenddb.uhcz40u.mongodb.net/Plantify?retryWrites=true&w=majority&appName=BackendDB')
   .then(() => {
     console.log("Connected to database!");
     app.listen(5000, () => {
-      console.log("Server is running on port 5000");
+      console.log(`Server is running on port 5000`);
     });
   })
   .catch(() => {

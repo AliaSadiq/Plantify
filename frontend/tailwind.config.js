@@ -5,19 +5,19 @@ module.exports = {
     extend: {
       colors: {
         white: "#fff",
-        palegoldenrod: {
-          "100": "#e7fbbb",
-          "200": "#e6fbbb",
+        palegreen: {
+          "100": "#F9F9EB",
+          "200": "#E4E4D0",
           "300": "#dcf4a9",
         },
         gray: {
           "100": "#222",
           "200": "rgba(34, 34, 34, 0.6)",
         },
-        yellowgreen: {
+        navygreen: {
           "100": "#c9f470",
           "200": "#b3dd5c",
-          "300": "#b0db57",
+          "300": "#AEC3AE",
         },
         ivory: "#fafef2",
         lightgray: "#d0d7c3",
@@ -36,12 +36,10 @@ module.exports = {
     },
     fontSize: {
       sm: "14px",
-      mini: "15px",
-      "5xl": "24px",
-      lgi: "19px",
-      "mid-5": "17.5px",
-      "9xl-8": "28.8px",
-      "4xl": "23px",
+      mini: "18px",
+      lg: "25px",
+      xl: "28px",
+      "2xl": "40px",
       inherit: "inherit",
     },
   },
