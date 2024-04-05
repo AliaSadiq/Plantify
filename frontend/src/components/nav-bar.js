@@ -21,25 +21,25 @@ const NavBar = () => {
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                     <ul class="flex flex-col p-4 md:p-0 mt-4 font-josefin-sans text-sm md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 ">
                         <li>
-                            <Link to="/" class="block py-2 px-3 text-light-black hover:text-white" aria-current="page">Home</Link>
+                            <Link to="/" class="block py-2 px-3 text-gray-100 hover:text-white" aria-current="page">Home</Link>
                         </li>
                         <li>
-                            <Link to="/shop" class="block py-2 px-3 text-light-black hover:text-white">Shop</Link>
+                            <Link to="/shop" class="block py-2 px-3 text-gray-100 hover:text-white">Shop</Link>
                         </li>
                         <li>
-                            <Link to="/campaign" class="block py-2 px-3 text-light-black hover:text-white">Campaigns</Link>
+                            <Link to="/campaign" class="block py-2 px-3 text-gray-100 hover:text-white">Campaigns</Link>
                         </li>
                         <li>
-                            <Link to="../App.js" class="block py-2 px-3 text-light-black hover:text-white">Plantify Network</Link>
+                            <Link to="../App.js" class="block py-2 px-3 text-gray-100 hover:text-white">Plantify Network</Link>
                         </li>
                         <li>
-                            <Link to="../App.js" class="block py-2 px-3 text-light-black hover:text-white">Personal Growth</Link>
+                            <Link to="../App.js" class="block py-2 px-3 text-gray-100 hover:text-white">Personal Growth</Link>
                         </li>
                         <li>
-                            <Link to="../App.js" class="block py-2 px-3 text-light-black hover:text-white">About us</Link>
+                            <Link to="../App.js" class="block py-2 px-3 text-gray-100 hover:text-white">About us</Link>
                         </li>
                         <li>
-                            <Link to="../App.js" class="block py-2 px-3 text-light-black hover:text-white">Contact us</Link>
+                            <Link to="../App.js" class="block py-2 px-3 text-gray-100 hover:text-white">Contact us</Link>
                         </li>
                     </ul>
                 </div>
