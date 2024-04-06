@@ -53,7 +53,7 @@ const LandingPage = () => {
         <div mt-0>
             <div className="flex flex-row justify-between items-center pl-[40px] py-0 bg-palegreen-100">
                 <div className="w-1/2 font-josefin-sans text-gary-100 mt-10">
-                    <h1 className="text-2xl font-bold">Join us to make the world a better greener place</h1>
+                    <h1 className="text-2xl font-bold">Let's reforest the world and create a habitat where nature thrives.</h1>
                     <p className="mt-8 text-lg">the simplest way for citizens and companies to plant trees around the world and offset their CO2 emissions</p>
                     <div className="flex justify-left mt-10">
                         <button type="button" class="font-josefin-sans bg-navygreen-300 text-sm font-semibold text-gray-100 p-4 rounded-full mr-4">Start Donating</button>
