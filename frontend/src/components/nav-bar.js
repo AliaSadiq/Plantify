@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import logo from '../assets/logo-1.png';
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            if (scrollPosition > 0) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
     return(
-        <nav class="bg-palegreen-200 fixed w-full z-20 top-0 start-0">
+        <nav className={`fixed w-full z-20 top-0 start-0 ${isScrolled ? 'bg-palegreen-200' : 'bg-transparent'} transition-colors duration-500 ease-in-out`}>
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="../App.js" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src={logo} class="h-8" alt="Flowbite Logo"></img>
@@ -21,25 +39,25 @@ const NavBar = () => {
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                     <ul class="flex flex-col p-4 md:p-0 mt-4 font-josefin-sans text-sm md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 ">
                         <li>
-                            <Link to="/" class="block py-2 px-3 text-gray-100 hover:text-white" aria-current="page">Home</Link>
+                            <Link to="/" class="navbar-link py-2 px-3 text-gray-100 hover:text-white" aria-current="page">Home</Link>
                         </li>
                         <li>
-                            <Link to="/shop" class="block py-2 px-3 text-gray-100 hover:text-white">Shop</Link>
+                            <Link to="/shop" class="navbar-link py-2 px-3 text-gray-100 hover:text-white">Shop</Link>
                         </li>
                         <li>
-                            <Link to="/campaign" class="block py-2 px-3 text-gray-100 hover:text-white">Campaigns</Link>
+                            <Link to="/campaign" class="navbar-link py-2 px-3 text-gray-100 hover:text-white">Campaigns</Link>
                         </li>
                         <li>
-                            <Link to="../App.js" class="block py-2 px-3 text-gray-100 hover:text-white">Plantify Network</Link>
+                            <Link to="../App.js" class="navbar-link py-2 px-3 text-gray-100 hover:text-white">Plantify Network</Link>
                         </li>
                         <li>
-                            <Link to="../App.js" class="block py-2 px-3 text-gray-100 hover:text-white">Personal Growth</Link>
+                            <Link to="../App.js" class="navbar-link py-2 px-3 text-gray-100 hover:text-white">Personal Growth</Link>
                         </li>
                         <li>
-                            <Link to="../App.js" class="block py-2 px-3 text-gray-100 hover:text-white">About us</Link>
+                            <Link to="../App.js" class="navbar-link py-2 px-3 text-gray-100 hover:text-white">About us</Link>
                         </li>
                         <li>
-                            <Link to="../App.js" class="block py-2 px-3 text-gray-100 hover:text-white">Contact us</Link>
+                            <Link to="../App.js" class="navbar-link py-2 px-3 text-gray-100 hover:text-white">Contact us</Link>
                         </li>
                     </ul>
                 </div>
