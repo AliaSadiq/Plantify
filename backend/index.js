@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-// const Product = require("./models/product.model.js");
+const socialgroupRouter = require("./routes/socialgroup.route.js");
 const campaignRoute = require("./routes/campaign.route.js");
 const app = express();
 
@@ -13,13 +13,12 @@ app.use(cors());
 
 // routes
 app.use("/api/campaigns", campaignRoute);
+app.use("/api/socialgroup",socialgroupRouter);
 
 
 
 
-app.get("/", (req, res) => {
-  res.send("Hello from Node API Server Updated");
-});
+
 
 
 mongoose

@@ -40,10 +40,30 @@ const createCampaign = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+const socialgroupCampaigns = async (req, res) => {
+  try {
+    const social_Id = req.params.social_Id;
+    console.log('Received social_Id:', social_Id); // Add this line for debugging
+    const socialIdAsInt = parseInt(social_Id, 10);
+
+    if (isNaN(socialIdAsInt)) {
+      return res.status(400).json({ message: 'Invalid social_Id provided' });
+    }
+
+    const userCampaigns = await Campaign.find({ socialId: socialIdAsInt });
+    res.status(200).json(userCampaigns);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+
 
 
 module.exports = {
     getCampaign,
     getCampaigns,
-    createCampaign
+    createCampaign,
+    socialgroupCampaigns 
 };
