@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         white: "#fff",
         palegreen: {
+          "50": "#FFFFFC",
           "100": "#F9F9EB",
           "200": "#E4E4D0",
           "300": "#dcf4a9",
@@ -16,8 +17,9 @@ module.exports = {
         },
         navygreen: {
           "100": "#c9f470",
-          "200": "#b3dd5c",
+          "200": "#BACCBA",
           "300": "#AEC3AE",
+          "400": "#9EB79E"
         },
         ivory: "#fafef2",
         lightgray: "#d0d7c3",

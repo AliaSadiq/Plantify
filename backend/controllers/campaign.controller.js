@@ -6,6 +6,7 @@ const getCampaigns = async (req, res) => {
         {
             $project: {
             name: 1,
+            description: 1,
             image: 1,
             location: 1,
             start_date: { $dateToString: { format: "%d-%m-%Y", date: "$start_date" } },

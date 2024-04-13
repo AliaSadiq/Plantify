@@ -6,8 +6,13 @@ const CampaignSchema = mongoose.Schema(
       type: String,
       required: [true, "Please enter product name"],
     },
+<<<<<<< Updated upstream
     socialId:{
       type: Number,
+=======
+    description: {
+      type: String,
+>>>>>>> Stashed changes
       required: true
     },
     image: {
