@@ -6,6 +6,10 @@ const CampaignSchema = mongoose.Schema(
       type: String,
       required: [true, "Please enter product name"],
     },
+    socialId:{
+      type: Number,
+      required: true
+    },
     image: {
       type: String,
       required: true,
