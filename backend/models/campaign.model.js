@@ -1,18 +1,17 @@
-const mongoose = require("mongoose");
+const {mongoose, Schema} = require("mongoose");
 
 const CampaignSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "Please enter product name"],
+      required: [true, "Please enter campaign name"],
     },
-<<<<<<< Updated upstream
-    socialId:{
-      type: Number,
-=======
+    socialGroup:{
+      type: Schema.Types.ObjectId,
+      ref: 'SocialGroup',
+    },
     description: {
       type: String,
->>>>>>> Stashed changes
       required: true
     },
     image: {

@@ -8,7 +8,7 @@ module.exports = {
         palegreen: {
           "50": "#FFFFFC",
           "100": "#F9F9EB",
-          "200": "#E4E4D0",
+          "200": "#D4E7C5",
           "300": "#dcf4a9",
         },
         gray: {
@@ -16,9 +16,11 @@ module.exports = {
           "200": "rgba(34, 34, 34, 0.6)",
         },
         navygreen: {
-          "100": "#c9f470",
-          "200": "#BACCBA",
-          "300": "#AEC3AE",
+          "25": '#f8fcf6',
+          "50": '#EDF6E9',
+          "100": "#E1F0DA",
+          "200": "#BFD8AF",
+          "300": "#99BC85",
           "400": "#9EB79E"
         },
         ivory: "#fafef2",

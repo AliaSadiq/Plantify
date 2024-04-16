@@ -1,5 +1,4 @@
 const express = require("express");
-//import Campaign from "../models/campaign.model.js";
 const router = express.Router();
 const {getCampaign, getCampaigns, createCampaign,socialgroupCampaigns} = require( '../controllers/campaign.controller.js');
 

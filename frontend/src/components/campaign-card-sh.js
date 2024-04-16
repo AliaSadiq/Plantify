@@ -6,11 +6,12 @@ const CamapignCardSh = ({ campaign, onClick }) => {
   const progress = (campaign.collected_donation/campaign.target_donation)*100;
 
   const handleClick = () => {
-    onClick(campaign.id);
+    console.log("Card clicked:", campaign._id);
+    onClick(campaign._id);
   };
 
   return (
-    <div className="flex items-center gap-4 py-4 px-4 bg-palegreen-100 rounded-lg shadow-md mt-2" onClick={handleClick}>
+    <div className="flex items-center gap-4 py-4 px-4 rounded-md shadow hover:shadow-lg mb-2 border-2 border-navygreen-200" onClick={handleClick}>
       <img
           className="flex-shrink-0 w-24 h-auto rounded-lg object-cover"
           src={campaignPic}

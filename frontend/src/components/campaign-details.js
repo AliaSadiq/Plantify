@@ -1,19 +1,20 @@
 import React from 'react';
 import campaignPic from '../assets/campaign.jpg';
-import {UserGroupIcon} from '@heroicons/react/24/solid';
+import { UserGroupIcon } from '@heroicons/react/24/solid';
+import { Link } from 'react-router-dom';
 
 const CampaignDetails = ({ campaign }) => {
-    //const progress = (campaign.collected_donation/campaign.target_donation)*100;
+    console.log("Campaign details:", campaign);
     return (
-        <div className="bg-palegreen-50 mt-2 flex flex-col">
-            {campaign && (
+        <div className="bg-palegreen-50 mb-2 flex flex-col">
+            {campaign && campaign.socialGroup && (
                 <div className="flex-1">
                     <div className="relative w-full h-[200px] mb-4">
                         <img src={campaignPic} alt={campaign.name} className="absolute w-full h-full object-cover" />
                     </div>
                     <div className='text-center text-gray-100 font-josefin-sans mt-10'>
-                        <h2 className="text-xl font-bold">{campaign.name}</h2>
-                        <p className="text-mini">A campaign by Riphah Green Club</p>
+                        <h2 className="text-xl font-bold mb-2">{campaign.name}</h2>
+                        <p className="text-mini">A campaign by <span className='font-semibold hover:text-navygreen-300'><Link to='/'>{campaign.socialGroup.name}</Link></span></p>
                     </div>
                     <div className="flex justify-between mt-20 gap-[100px]">
                         <div className="w-1/2 pr-2">

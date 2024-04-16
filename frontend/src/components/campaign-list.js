@@ -4,12 +4,12 @@ import CampaignCardSh from "./campaign-card-sh"; // Assuming you have a Campaign
 const CampaignList = ({ campaigns, onSelectCampaign }) => {
     return (
         <div className="flex">
-            <div className="mt-40 ml-[20px]">
+            <div className="ml-[50px]">
                 {campaigns.map(campaign => (
                     <CampaignCardSh
-                        key={campaign.id}
+                        key={campaign._id}
                         campaign={campaign}
-                        onClick={() => onSelectCampaign(campaign.id)}
+                        onClick={onSelectCampaign} // Pass the onSelectCampaign function directly
                     />
                 ))}
             </div>

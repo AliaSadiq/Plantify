@@ -2,26 +2,25 @@ const Campaign = require("../models/campaign.model");
 
 const getCampaigns = async (req, res) => {
   try {
-    const campaigns = await Campaign.aggregate([
-        {
-            $project: {
-            name: 1,
-            description: 1,
-            image: 1,
-            location: 1,
-            start_date: { $dateToString: { format: "%d-%m-%Y", date: "$start_date" } },
-            end_date: { $dateToString: { format: "%d-%m-%Y", date: "$end_date" } },
-            target_donation: 1,
-            collected_donation: 1,
-            status: 1
-            }
-        }
-    ]);
+    const campaigns = await Campaign.find()
+      .populate('socialGroup') // Populate the socialGroup field
+      .select({
+        name: 1,
+        description: 1,
+        image: 1,
+        location: 1,
+        start_date: { $dateToString: { format: "%d-%m-%Y", date: "$start_date" } },
+        end_date: { $dateToString: { format: "%d-%m-%Y", date: "$end_date" } },
+        target_donation: 1,
+        collected_donation: 1,
+        status: 1
+      });
     res.status(200).json(campaigns);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 const getCampaign = async (req, res) => {
   try {
@@ -35,12 +34,22 @@ const getCampaign = async (req, res) => {
 
 const createCampaign = async (req, res) => {
   try {
+    // Create the campaign with the request body
     const campaign = await Campaign.create(req.body);
-    res.status(200).json(campaign);
+
+    // Retrieve the campaign with populated socialGroup field
+    const populatedCampaign = await Campaign.findById(campaign._id).populate('socialGroup');
+
+    // Return the populated campaign in the response
+    res.status(200).json(populatedCampaign);
   } catch (error) {
+    // Handle errors
     res.status(500).json({ message: error.message });
   }
 };
+
+
+
 const socialgroupCampaigns = async (req, res) => {
   try {
     const social_Id = req.params.social_Id;
