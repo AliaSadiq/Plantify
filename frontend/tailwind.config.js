@@ -23,9 +23,12 @@ module.exports = {
           "300": "#99BC85",
           "400": "#9EB79E"
         },
-        ivory: "#fafef2",
+        ivory: "#F6F6F6",
         lightgray: "#d0d7c3",
         black: "#000",
+        darkgreen: "#0B473F",
+        yolk: "#FEC467",
+        pinky: "#DEADBB"
       },
       spacing: {},
       fontFamily: {
@@ -41,9 +44,12 @@ module.exports = {
     fontSize: {
       sm: "14px",
       mini: "18px",
+      md: "20px",
       lg: "25px",
       xl: "28px",
       "2xl": "40px",
+      "3xl": "60px",
+      "4xl": "80px",
       inherit: "inherit",
     },
   },

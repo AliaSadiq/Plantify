@@ -1,41 +1,33 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import campaignPic from "../assets/campaign.jpg";
+import camp from "../assets/campaign-card.jpeg";
 import { UserGroupIcon, HeartIcon } from "@heroicons/react/24/solid";
 
-const CamapignCardSh = ({ campaign, onClick }) => {
-  const progress = (campaign.collected_donation/campaign.target_donation)*100;
-
-  const handleClick = () => {
-    console.log("Card clicked:", campaign._id);
-    onClick(campaign._id);
+const CamapignCardSh = ({ campaign, openPopup }) => {
+  const handleCardClick = () => {
+    openPopup(campaign);
   };
 
   return (
-    <div className="flex items-center gap-4 py-4 px-4 rounded-md shadow hover:shadow-lg mb-2 border-2 border-navygreen-200" onClick={handleClick}>
-      <img
-          className="flex-shrink-0 w-24 h-auto rounded-lg object-cover"
-          src={campaignPic}
-          loading="lazy"
-          alt=""
-      />
-      <div className="flex flex-col flex-grow font-josefin-sans text-gray-100">
-        <div className="flex items-center justify-between">
-            <p className="text-mini font-bold">{campaign.name}</p>
-            <HeartIcon className="w-[20px] h-[20px] relative hover:text-pink-500" />
+    <div className="relative w-80 h-52  overflow-hidden" onClick={handleCardClick}>
+      <img src={camp} alt="Campaign Background" className="w-full h-full object-cover" />
+      <div className="absolute top-2 left-2 flex items-center font-josefin-sans mx-2">
+        <h2 className="text-white text-lg font-semibold mr-2">{campaign.name}</h2>
+        <button className="text-white bg-gray-100 border border-gray-100 px-[7px] py-[7px]  mr-2">Donate</button>
+        <HeartIcon className="h-[20px] w-[20px] text-white stroke-current mr-2 hover:text-pinky" />
+      </div>
+      <div className="absolute bottom-0 left-0 w-full flex justify-between p-2 bg-white bg-opacity-50 font-josefin-sans py-6">
+        <div className="text-gray-100">
+          <p className="text-xs font-medium">Location: <span className="font-light">{campaign.location}</span></p>
+          <p className="text-xs font-medium mt-2">Date: <span className="font-light">{campaign.start_date}</span></p>
         </div>
-        <p className="text-sm mt-1">{campaign.location}</p>
-        <p className="text-sm">{campaign.start_date}</p>
-        <div className="flex items-center mt-2">
-            <UserGroupIcon className="w-5 h-5" />
-            <p className="text-sm ml-1">17 volunteers</p>
-        </div>
-        <div className="flex items-center justify-between mt-4">
-          {/* <button className="text-sm text-white bg-blue-500 px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Donate Now</button> */}
-          <div className="flex-1 ml-20">
-              <div className="bg-palegreen-50 border-[0.5px] border-navygreen-300 h-3 rounded-full">
-                  <div className="bg-navygreen-300 h-full rounded-full " style={{ width: progress }}></div>
-              </div>
-              <p className="text-xs text-gray-600 mt-1">{campaign.collected_donation}Rs raised of {campaign.target_donation}Rs</p>
+        <div className="text-white font-josefin-sans">
+          <div className="text-gray-100 flex items-center">
+            <UserGroupIcon className="h-4 w-4 text-gray-100 mr-1" />
+            <p className="text-xs font-light">10 Volunteers</p>
+          </div>
+          <div className="bg-sage-100 h-2 rounded-full overflow-hidden border-2 border-white mt-[8px]">
+            <div className="bg-navygreen-300 h-full" style={{ width: '80%' }}></div>
           </div>
         </div>
       </div>
@@ -44,4 +36,3 @@ const CamapignCardSh = ({ campaign, onClick }) => {
 }
 
 export default CamapignCardSh;
-    

@@ -15,7 +15,7 @@ function App() {
           <Route index element={<LandingPage/>}/>
           <Route path="campaign" element={<CampaignListPage/>} />
       </Routes>
-      {/* <Footer/> */}
+      <Footer/>
     </BrowserRouter>
   );
 }
