@@ -3,8 +3,8 @@ import './index.css';
 import Footer from './components/footer';
 import NavBar from './components/nav-bar';
 import LandingPage from './pages/landing-page';
-import CampaignListPage from './pages/campaign-page';
-//import CampaignCard from './components/campaign-card';
+import CampaignPage from './pages/campaign-page';
+import SocialProfilePage from './pages/social-profile-page';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
@@ -13,7 +13,8 @@ function App() {
       <NavBar/>
       <Routes>
           <Route index element={<LandingPage/>}/>
-          <Route path="campaign" element={<CampaignListPage/>} />
+          <Route path="campaign" element={<CampaignPage/>} />
+          <Route path="campaign/socialGroup/:id" element={<SocialProfilePage/>} />
       </Routes>
       <Footer/>
     </BrowserRouter>

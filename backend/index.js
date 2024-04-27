@@ -16,11 +16,7 @@ app.use("/api/campaigns", campaignRoute);
 app.use("/api/socialgroup",socialgroupRouter);
 
 
-
-
-
-
-
+//connection
 mongoose
   .connect('mongodb+srv://farwa:006OyU1ZCZhowFSt@backenddb.uhcz40u.mongodb.net/Plantify?retryWrites=true&w=majority&appName=BackendDB')
   .then(() => {

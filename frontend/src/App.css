@@ -53,27 +53,6 @@
   mask-image: radial-gradient(circle at center, transparent 0%, black 70%);
 }
 
-.bg-custom-bg {
-  background-image: url('./assets/dark.jpeg');
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.bg-custom-bg::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%; /* Adjust the width to cover only half of the container */
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* Black color with 40% opacity */
-}
-
-.bg-custom-bg img {
-  z-index: -1; /* Ensure the image stays behind the overlay */
-}
-
 .text-content {
   position: relative;
   z-index: 1; /* Ensure the text stays in front of the overlay */

@@ -8,6 +8,4 @@ router.get("/:id", getCampaign);
 router.get("/social/:social_Id", socialgroupCampaigns);
 router.post("/", createCampaign);
 
-
-
 module.exports = router;

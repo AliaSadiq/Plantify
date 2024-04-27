@@ -23,12 +23,25 @@ module.exports = {
           "300": "#99BC85",
           "400": "#9EB79E"
         },
-        ivory: "#F6F6F6",
+        tadpol: {
+          "500": "#7F7F43",
+          "400": "#A5A55B",
+          "300": "#C0C073",
+          "200": "#E3E394",
+          "100": "#F9F9C5"
+        },
+        pale: {
+          "100": "#FAFAEF",
+          "200": "#ECEED3",
+          "300": "#D0D2A8",
+        },
+        ivory: "#F2F3E6",
         lightgray: "#d0d7c3",
         black: "#000",
-        darkgreen: "#0B473F",
+        darkgreen: "#968218",
         yolk: "#FEC467",
-        pinky: "#DEADBB"
+        pinky: "#DEADBB",
+        darkbrown: '#2C0000',
       },
       spacing: {},
       fontFamily: {
