@@ -1,4 +1,6 @@
 import React from "react";
+import logo from '../assets/leaf.png';
+
 import {
   Input,
   Ripple,
@@ -9,384 +11,89 @@ initTWE({ Input, Ripple });
 
 export default function Footer() {
   return (
-    // <footer className="relative bg-navygreen-300 pt-8 pb-6">
-    //   <div
-    //     className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
-    //     style={{ transform: "translateZ(0)" }}
-    //   >
-    //     <svg
-    //       className="absolute bottom-0 overflow-hidden"
-    //       xmlns="http://www.w3.org/2000/svg"
-    //       preserveAspectRatio="none"
-    //       version="1.1"
-    //       viewBox="0 0 2560 100"
-    //       x="0"
-    //       y="0"
-    //     >
-    //     </svg>
-    //   </div>
-    //   <div className="container mx-auto px-4">
-    //     <div className="flex flex-wrap text-center lg:text-left">
-    //       <div className="w-full lg:w-6/12 px-4">
-    //         <h4 className="text-3xl font-semibold">Let's keep in touch!</h4>
-    //         <h5 className="text-lg mt-0 mb-2 text-blueGray-600">
-    //           Find us on any of these platforms, we respond 1-2 business days.
-    //         </h5>
-    //         <div className="mt-6 lg:mb-0 mb-6">
-    //           <button
-    //             className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-    //             type="button"
-    //           >
-    //             <i className="fab fa-twitter"></i>
-    //           </button>
-    //           <button
-    //             className="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-    //             type="button"
-    //           >
-    //             <i className="fab fa-facebook-square"></i>
-    //           </button>
-    //           <button
-    //             className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-    //             type="button"
-    //           >
-    //             <i className="fab fa-dribbble"></i>
-    //           </button>
-    //           <button
-    //             className="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-    //             type="button"
-    //           >
-    //             <i className="fab fa-github"></i>
-    //           </button>
-    //         </div>
-    //       </div>
-    //       <div className="w-full lg:w-6/12 px-4">
-    //         <div className="flex flex-wrap items-top mb-6">
-    //           <div className="w-full lg:w-4/12 px-4 ml-auto">
-    //             <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-    //               Useful Links
-    //             </span>
-    //             <ul className="list-unstyled">
-    //               <li>
-    //                 <a
-    //                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-    //                   href="https://www.creative-tim.com/presentation?ref=nr-footer"
-    //                 >
-    //                   About Us
-    //                 </a>
-    //               </li>
-    //               <li>
-    //                 <a
-    //                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-    //                   href="https://blog.creative-tim.com?ref=nr-footer"
-    //                 >
-    //                   Blog
-    //                 </a>
-    //               </li>
-    //               <li>
-    //                 <a
-    //                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-    //                   href="https://www.github.com/creativetimofficial?ref=nr-footer"
-    //                 >
-    //                   Github
-    //                 </a>
-    //               </li>
-    //               <li>
-    //                 <a
-    //                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-    //                   href="https://www.creative-tim.com/bootstrap-themes/free?ref=nr-footer"
-    //                 >
-    //                   Free Products
-    //                 </a>
-    //               </li>
-    //             </ul>
-    //           </div>
-    //           <div className="w-full lg:w-4/12 px-4">
-    //             <span className="block uppercase text-blueGray-500 text-sm font-semibold mb-2">
-    //               Other Resources
-    //             </span>
-    //             <ul className="list-unstyled">
-    //               <li>
-    //                 <a
-    //                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-    //                   href="https://github.com/creativetimofficial/notus-react/blob/main/LICENSE.md?ref=nr-footer"
-    //                 >
-    //                   MIT License
-    //                 </a>
-    //               </li>
-    //               <li>
-    //                 <a
-    //                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-    //                   href="https://creative-tim.com/terms?ref=nr-footer"
-    //                 >
-    //                   Terms & Conditions
-    //                 </a>
-    //               </li>
-    //               <li>
-    //                 <a
-    //                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-    //                   href="https://creative-tim.com/privacy?ref=nr-footer"
-    //                 >
-    //                   Privacy Policy
-    //                 </a>
-    //               </li>
-    //               <li>
-    //                 <a
-    //                   className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-    //                   href="https://creative-tim.com/contact-us?ref=nr-footer"
-    //                 >
-    //                   Contact Us
-    //                 </a>
-    //               </li>
-    //             </ul>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <hr className="my-6 border-blueGray-300" />
-    //     <div className="flex flex-wrap items-center md:justify-between justify-center">
-    //       <div className="w-full md:w-4/12 px-4 mx-auto text-center">
-    //       </div>
-    //     </div>
-    //   </div>
-    // </footer>
-<footer
-  class="flex flex-col items-center bg-zinc-50 text-center text-surface dark:bg-neutral-700 dark:text-white">
-  <div class="container px-6 pt-6">
-    <div class="mb-6 flex justify-center space-x-2">
-      <a
-        href="#!"
-        type="button"
-        class="rounded-full bg-white p-3 uppercase leading-normal text-surface shadow-dark-3 shadow-black/30 transition duration-150 ease-in-out hover:shadow-dark-1 focus:shadow-dark-1 focus:outline-none focus:ring-0 active:shadow-1 dark:bg-neutral-700 dark:text-white"
-        data-twe-ripple-init
-        data-twe-ripple-color="light">
-        <span class="[&>svg]:h-5 [&>svg]:w-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 320 512">
-            <path
-              d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
-          </svg>
-        </span>
-      </a>
-
-      <a
-        href="#!"
-        type="button"
-        class="rounded-full bg-white p-3 uppercase leading-normal text-surface shadow-dark-3 shadow-black/30 transition duration-150 ease-in-out hover:shadow-dark-1 focus:shadow-dark-1 focus:outline-none focus:ring-0 active:shadow-1 dark:bg-neutral-700 dark:text-white"
-        data-twe-ripple-init
-        data-twe-ripple-color="light">
-        <span class="mx-auto [&>svg]:h-5 [&>svg]:w-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 512 512">
-            <path
-              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
-          </svg>
-        </span>
-      </a>
-
-      <a
-        href="#!"
-        type="button"
-        class="rounded-full bg-white p-3 uppercase leading-normal text-surface shadow-dark-3 shadow-black/30 transition duration-150 ease-in-out hover:shadow-dark-1 focus:shadow-dark-1 focus:outline-none focus:ring-0 active:shadow-1 dark:bg-neutral-700 dark:text-white"
-        data-twe-ripple-init
-        data-twe-ripple-color="light">
-        <span class="mx-auto [&>svg]:h-5 [&>svg]:w-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 488 512">\
-            <path
-              d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
-          </svg>
-        </span>
-      </a>
-
-      <a
-        href="#!"
-        type="button"
-        class="rounded-full bg-white p-3 uppercase leading-normal text-surface shadow-dark-3 shadow-black/30 transition duration-150 ease-in-out hover:shadow-dark-1 focus:shadow-dark-1 focus:outline-none focus:ring-0 active:shadow-1 dark:bg-neutral-700 dark:text-white"
-        data-twe-ripple-init
-        data-twe-ripple-color="light">
-        <span class="mx-auto [&>svg]:h-5 [&>svg]:w-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 448 512">
-            <path
-              d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
-          </svg>
-        </span>
-      </a>
-
-      <a
-        href="#!"
-        type="button"
-        class="rounded-full bg-white p-3 uppercase leading-normal text-surface shadow-dark-3 shadow-black/30 transition duration-150 ease-in-out hover:shadow-dark-1 focus:shadow-dark-1 focus:outline-none focus:ring-0 active:shadow-1 dark:bg-neutral-700 dark:text-white"
-        data-twe-ripple-init
-        data-twe-ripple-color="light">
-        <span class="mx-auto [&>svg]:h-5 [&>svg]:w-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 448 512">
-            <path
-              d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
-          </svg>
-        </span>
-      </a>
-
-      <a
-        href="#!"
-        type="button"
-        class="rounded-full bg-white p-3 uppercase leading-normal text-surface shadow-dark-3 shadow-black/30 transition duration-150 ease-in-out hover:shadow-dark-1 focus:shadow-dark-1 focus:outline-none focus:ring-0 active:shadow-1 dark:bg-neutral-700 dark:text-white"
-        data-twe-ripple-init
-        data-twe-ripple-color="light">
-        <span class="mx-auto [&>svg]:h-5 [&>svg]:w-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 496 512">
-            <path
-              d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
-          </svg>
-        </span>
-      </a>
-    </div>
-    <div>
-      <form action="">
-        <div
-          class="gird-cols-1 grid items-center justify-center gap-4 md:grid-cols-3">
-          <div class="md:mb-6 md:ms-auto">
-            <p>
-              <strong>Sign up for our newsletter</strong>
-            </p>
+    <footer class="bg-white dark:bg-gray-100">
+        <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+            <div class="md:flex md:justify-between">
+              <div class="mb-6 md:mb-0">
+                  <a href="https://flowbite.com/" class="flex items-center">
+                      <img src={logo} class="h-8 me-3" alt="FlowBite Logo" />
+                      <span class="font-josefin-sans self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Plantify</span>
+                  </a>
+              </div>
+              <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                  <div>
+                      <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
+                      <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                          <li class="mb-4">
+                              <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
+                          </li>
+                          <li>
+                              <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
+                          </li>
+                      </ul>
+                  </div>
+                  <div>
+                      <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us</h2>
+                      <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                          <li class="mb-4">
+                              <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                          </li>
+                          <li>
+                              <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
+                          </li>
+                      </ul>
+                  </div>
+                  <div>
+                      <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                      <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                          <li class="mb-4">
+                              <a href="#" class="hover:underline">Privacy Policy</a>
+                          </li>
+                          <li>
+                              <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
           </div>
-          <div class="relative md:mb-6" data-twe-input-wrapper-init>
-            <input
-              type="email"
-              class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-              id="exampleFormControlInputEmail"
-              placeholder="Email address" />
-            <label
-              for="exampleFormControlInputEmail"
-              class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
-              >Email address
-            </label>
-          </div>
-
-          
-          <div class="mb-6 md:me-auto">
-            <button
-              type="submit"
-              class="inline-block rounded px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-surface shadow-dark-3 shadow-black/30 transition duration-150 ease-in-out hover:shadow-dark-1 focus:shadow-dark-1 focus:outline-none focus:ring-0 active:shadow-1 dark:bg-neutral-700 dark:text-white"
-              data-twe-ripple-init
-              data-twe-ripple-color="light">
-              Subscribe
-            </button>
+          <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+          <div class="sm:flex sm:items-center sm:justify-between">
+              <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.
+              </span>
+              <div class="flex mt-4 sm:justify-center sm:mt-0">
+                  <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                      <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
+                            <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
+                        </svg>
+                      <span class="sr-only">Facebook page</span>
+                  </a>
+                  <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                      <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 21 16">
+                            <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"/>
+                        </svg>
+                      <span class="sr-only">Discord community</span>
+                  </a>
+                  <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                      <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
+                        <path fill-rule="evenodd" d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z" clip-rule="evenodd"/>
+                    </svg>
+                      <span class="sr-only">Twitter page</span>
+                  </a>
+                  <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                      <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z" clip-rule="evenodd"/>
+                      </svg>
+                      <span class="sr-only">GitHub account</span>
+                  </a>
+                  <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5">
+                      <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 0a10 10 0 1 0 10 10A10.009 10.009 0 0 0 10 0Zm6.613 4.614a8.523 8.523 0 0 1 1.93 5.32 20.094 20.094 0 0 0-5.949-.274c-.059-.149-.122-.292-.184-.441a23.879 23.879 0 0 0-.566-1.239 11.41 11.41 0 0 0 4.769-3.366ZM8 1.707a8.821 8.821 0 0 1 2-.238 8.5 8.5 0 0 1 5.664 2.152 9.608 9.608 0 0 1-4.476 3.087A45.758 45.758 0 0 0 8 1.707ZM1.642 8.262a8.57 8.57 0 0 1 4.73-5.981A53.998 53.998 0 0 1 9.54 7.222a32.078 32.078 0 0 1-7.9 1.04h.002Zm2.01 7.46a8.51 8.51 0 0 1-2.2-5.707v-.262a31.64 31.64 0 0 0 8.777-1.219c.243.477.477.964.692 1.449-.114.032-.227.067-.336.1a13.569 13.569 0 0 0-6.942 5.636l.009.003ZM10 18.556a8.508 8.508 0 0 1-5.243-1.8 11.717 11.717 0 0 1 6.7-5.332.509.509 0 0 1 .055-.02 35.65 35.65 0 0 1 1.819 6.476 8.476 8.476 0 0 1-3.331.676Zm4.772-1.462A37.232 37.232 0 0 0 13.113 11a12.513 12.513 0 0 1 5.321.364 8.56 8.56 0 0 1-3.66 5.73h-.002Z" clip-rule="evenodd"/>
+                    </svg>
+                      <span class="sr-only">Dribbble account</span>
+                  </a>
+              </div>
           </div>
         </div>
-      </form>
-    </div>
-
-    
-    <div class="mb-6">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-        distinctio earum repellat quaerat voluptatibus placeat nam,
-        commodi optio pariatur est quia magnam eum harum corrupti dicta,
-        aliquam sequi voluptate quas.
-      </p>
-    </div>
-
-    
-    <div class="grid md:grid-cols-2 lg:grid-cols-4">
-      <div class="mb-6">
-        <h5 class="mb-2.5 font-bold uppercase">Links</h5>
-
-        <ul class="mb-0 list-none">
-          <li>
-            <a href="#!">Link 1</a>
-          </li>
-          <li>
-            <a href="#!">Link 2</a>
-          </li>
-          <li>
-            <a href="#!">Link 3</a>
-          </li>
-          <li>
-            <a href="#!">Link 4</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="mb-6">
-        <h5 class="mb-2.5 font-bold uppercase">Links</h5>
-
-        <ul class="mb-0 list-none">
-          <li>
-            <a href="#!">Link 1</a>
-          </li>
-          <li>
-            <a href="#!">Link 2</a>
-          </li>
-          <li>
-            <a href="#!">Link 3</a>
-          </li>
-          <li>
-            <a href="#!">Link 4</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="mb-6">
-        <h5 class="mb-2.5 font-bold uppercase">Links</h5>
-
-        <ul class="mb-0 list-none">
-          <li>
-            <a href="#!">Link 1</a>
-          </li>
-          <li>
-            <a href="#!">Link 2</a>
-          </li>
-          <li>
-            <a href="#!">Link 3</a>
-          </li>
-          <li>
-            <a href="#!">Link 4</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="mb-6">
-        <h5 class="mb-2.5 font-bold uppercase">Links</h5>
-
-        <ul class="mb-0 list-none">
-          <li>
-            <a href="#!">Link 1</a>
-          </li>
-          <li>
-            <a href="#!">Link 2</a>
-          </li>
-          <li>
-            <a href="#!">Link 3</a>
-          </li>
-          <li>
-            <a href="#!">Link 4</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="w-full bg-black/5 p-4 text-center">
-    © 2023 Copyright:
-    <a class="font-semibold" href="https://tw-elements.com/"
-      >TW Elements</a
-    >
-  </div>
-</footer>
+    </footer>
   );
 }

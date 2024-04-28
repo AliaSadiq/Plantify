@@ -42,9 +42,9 @@ const NavBar = () => {
     return(
         <nav className={`fixed w-full z-20 top-0 start-0  ${isScrolled ? 'bg-gray-100' : 'bg-transparent'} transition-colors duration-1000 ease-in-out`}>
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a href="../App.js" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <Link to="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src={logo} class="h-8" alt="Plantify Logo"></img> <span className='font-josefin-sans text-lg font-semibold text-navygreen-300 '>Plantify</span>
-                </a>
+                </Link>
                 <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <button type="button" onClick={openModal} class={`font-josefin-sans text-sm font-semibold text-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100 ${isScrolled ? 'border-white text-white' : 'border-gray-100 text-gray-100'} transition-colors duration-1000 ease-in-out`}>Start Donating</button>
                     <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
@@ -57,7 +57,7 @@ const NavBar = () => {
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                     <ul class={`flex flex-col p-4 md:p-0 mt-4 font-josefin-sans text-sm md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 ${isScrolled ? 'text-white' : 'text-gray-100'} transition-colors duration-1000 ease-in-out`}>
                         <li>
-                            <Link to="/"  class="navbar-link py-2 px-3 hover:font-semibold" aria-current="page">Home</Link>
+                            <Link to="/home"  class="navbar-link py-2 px-3 hover:font-semibold" aria-current="page">Home</Link>
                         </li>
                         <li>
                             <Link to="/shop" class="navbar-link py-2 px-3 hover:font-semibold">Shop</Link>
