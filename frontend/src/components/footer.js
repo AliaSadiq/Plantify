@@ -1,13 +1,6 @@
 import React from "react";
 import logo from '../assets/leaf.png';
 
-import {
-  Input,
-  Ripple,
-  initTWE,
-} from "tw-elements";
-
-initTWE({ Input, Ripple });
 
 export default function Footer() {
   return (

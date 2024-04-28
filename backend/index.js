@@ -9,7 +9,7 @@ const rateLimit = require('express-rate-limit');
 
 //rate-limiting (checking)
 const limiter = rateLimit({
-  max: 2,
+  max: 100,
   windowMs: 60 * 60 * 1000,
   message: "too many requests from this IP has been recieved, please try again in an hour."
 }) 
