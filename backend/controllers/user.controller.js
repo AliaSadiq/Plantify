@@ -55,6 +55,7 @@ const loginUser = async (req, res) => {
           return res.status(401).json({ message: "Invalid email or password" });
       }
       // If email and password are correct, return the user data
+    
       res.status(200).json(user);
   } catch (error) {
       res.status(500).json({ message: error.message });

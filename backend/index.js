@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
+const cors = require('cors');
 const socialgroupRouter = require("./routes/socialgroup.route.js");
 const campaignRoute = require("./routes/campaign.route.js");
 const userRoute = require("./routes/user.route.js");
