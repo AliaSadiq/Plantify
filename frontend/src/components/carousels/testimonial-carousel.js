@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
+import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import testimonial1 from '../../assets/testimonial-1.jpeg';
@@ -40,28 +41,14 @@ export default function TestimonialCarousel() {
     prevArrow: <SamplePrevArrow />
   };
 
-  const testimonials = [
-    {
-        image: testimonial1,
-        name: 'Farwa',
-        testimony: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.',
-    },
-    {
-        image: testimonial2,
-        name: 'Alia',
-        testimony: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.',
-    },
-    {
-        image: testimonial3,
-        name: 'Shabeeh',
-        testimony: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.',
-    },
-    {
-        image: testimonial1,
-        name: 'Talha Anjum',
-        testimony: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.',
-    },
-  ];
+  const [testimonials, setTestimonials] = useState([]);
+  useEffect(()=>{
+    axios.get('http://localhost:5000/api/testimonial')
+    .then((response) => {
+      console.log(response);
+      setTestimonials(response.data);
+    })
+  }, [])
 
   return (
     <Slider {...settings}>
@@ -71,12 +58,12 @@ export default function TestimonialCarousel() {
                 className="h-64 w-64 rounded-full object-cover mr-10"
                 loading="lazy"
                 alt=""
-                src={testimonial.image}
+                src={testimonial1}
                 />
                 <div className="bg-pale-100 rounded-lg p-4 z-10 relative ml-[180px] mr-10 mt-[-100px]">
                     <div className="absolute top-0 right-0 bottom-0 left-0 rounded-lg bg-oldlace" />
-                    <div className="text-left">{`TO BHAILOG BHT MAST APP HAI AAP WI USE KRO FULL MASTI`}</div>
-                    <div className="text-right mt-4">{`~ John Doe`}</div>
+                    <div className="text-left">{testimonial.testimony}</div>
+                    <div className="text-right mt-4">{testimonial.name}</div>
                 </div>
             </div>
         ))}

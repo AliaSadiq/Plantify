@@ -8,7 +8,6 @@ import SocialProfilePage from './pages/social-profile-page';
 import HomePage from './pages/home-page';
 import LoginPage from './pages/login-page';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
-
 function App() {
   return (
     <BrowserRouter>

@@ -21,7 +21,7 @@ const getTestimonial = async (req, res) => {
 
 const getTestimonials = async (req, res) => {
     try {
-        const testimonials = await Testimonial.find(id);
+        const testimonials = await Testimonial.find();
         res.status(200).json(testimonials);
     } catch (error) {
         res.status(500).json({ message: error.message });

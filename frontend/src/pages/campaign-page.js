@@ -33,9 +33,9 @@ const CampaignPage = () => {
   //jsx
   return (
     <div>
-      <div className="flex flex-col items-center mt-40 ml-[50px]">
-        <h1 className="text-3xl font-bold my-4">Campaigns</h1>
-        <p className="text-gray-600 mb-4">List of all campaigns on Plantify</p>
+      <div className="flex flex-col items-center mt-40 bg-navygreen-100 p-20">
+        <h1 className="text-3xl font-bold">Campaigns</h1>
+        <p className="text-gray-600 mt-4">List of all campaigns on Plantify</p>
         <SearchBar />
       </div>
 

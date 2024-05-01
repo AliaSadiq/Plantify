@@ -14,7 +14,7 @@ const TestimonialSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    role:{
+    designation:{
         type: String,
         required: true,
     }

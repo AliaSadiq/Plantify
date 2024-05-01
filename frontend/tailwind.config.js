@@ -3,6 +3,10 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        'testimonial-texture': "url('/src/assets/landing.jpeg')",
+        'newsletter': "url('/src/assets/newsletter.jpeg')"
+      },
       colors: {
         white: "#fff",
         palegreen: {
@@ -18,8 +22,8 @@ module.exports = {
         navygreen: {
           "25": '#f8fcf6',
           "50": '#EDF6E9',
-          "100": "#E1F0DA",
-          "200": "#BFD8AF",
+          "100": "#DDE6D6",
+          "200": "#8E9688",
           "300": "#99BC85",
           "400": "#9EB79E"
         },
@@ -36,6 +40,7 @@ module.exports = {
           "300": "#D0D2A8",
         },
         ivory: "#F2F3E6",
+        neutral: "#F5F5F5",
         lightgray: "#d0d7c3",
         black: "#000",
         darkgreen: "#968218",
@@ -46,6 +51,7 @@ module.exports = {
       spacing: {},
       fontFamily: {
         "josefin-sans": "'Josefin Sans'",
+        "noto-sans-display": "'Noto Sans Display'",
       },
       borderRadius: {
         xl: "20px",
@@ -61,6 +67,7 @@ module.exports = {
       lg: "25px",
       xl: "28px",
       "2xl": "40px",
+      "lilxl": "50px",
       "3xl": "60px",
       "4xl": "80px",
       inherit: "inherit",

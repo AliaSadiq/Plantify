@@ -2,9 +2,10 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import product1 from '../../assets/product-1.jpeg';
-import product2 from '../../assets/product-2.jpeg';
-import product3 from '../../assets/product-3.jpeg';
+import prod1 from '../../assets/product-4.png';
+import prod2 from '../../assets/product-5.png';
+import prod3 from '../../assets/product-6.png';
+import prod4 from '../../assets/product-7.png';
 
 // Custom arrow components
 function SampleNextArrow(props) {
@@ -12,7 +13,7 @@ function SampleNextArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "#FEC467", borderRadius: "25px" }}
+      style={{ ...style, display: "block", background: "#8E9688", borderRadius: "25px" }}
       onClick={onClick}
     />
   );
@@ -23,7 +24,7 @@ function SamplePrevArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "#FEC467", borderRadius: "25px" }}
+      style={{ ...style, display: "block", background: "#8E9688", borderRadius: "25px" }}
       onClick={onClick}
     />
   );
@@ -31,7 +32,7 @@ function SamplePrevArrow(props) {
 
 export default function ProductCarousel() {
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -42,24 +43,25 @@ export default function ProductCarousel() {
 
   const products = [
     {
-        image: {product1}
+        image: prod1,
     },
     {
-        image: {product2}
+        image: prod2,
     },
     {
-        image: {product3}
+        image: prod3,
+    },
+    {
+        image: prod4,
     },
   ];
 
   return (
     <Slider {...settings}>
         {products.map((product) => (
-            <div className="">
-                <img className="w-1/4 rounded-md" loading="lazy" alt=""
-                src={product.image}
-                />
-            </div>
+            <div className='bg-navygreen-100 p-8 w-60 rounded-lg hover:shadow-lg'>
+            <img src={product.image} alt="Product 1" className="w-full h-full object-cover rounded-lg" />
+        </div>
         ))}
     </Slider>
   );

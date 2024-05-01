@@ -4,6 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
   @apply leading-[normal] m-0;
@@ -12,5 +13,9 @@ body {
 ::before,
 ::after {
   border-width: 0;
+}
+
+.slick-slide > div {
+  margin: 0 10px;
 }
 
