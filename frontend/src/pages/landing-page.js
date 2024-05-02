@@ -20,11 +20,11 @@ const LandingPage = () => {
         <div mt-0 >
             <div className="relative">
                 {/* Background image with blurred overlay */}
-                <div className="absolute inset-0 bg-cover bg-center z-0 pb-60" style={{ backgroundImage: `url(${landing})` }}>
+                <div className="absolute inset-0 bg-cover bg-center z-0 pb-40" style={{ backgroundImage: `url(${landing})` }}>
                     <div className="absolute inset-0 backdrop-blur-lg backdrop-filter bg-ivory bg-opacity-50"></div>
                 </div>
                 {/* Content */}
-                <div className="flex flex-row gap-[50px] justify-between items-center pt-60 pb-20 px-[100px] py-0 relative z-20">
+                <div className="flex flex-row gap-[50px] justify-between items-center pt-40 pb-20 px-[100px] py-0 relative z-20">
                     <div className="w-1/2 font-josefin-sans text-gray-100 mt-10">
                         <p className="text-lg font-semibold">Welcome to</p>
                         <h1 className="text-4xl font-bold">Plantify,</h1>

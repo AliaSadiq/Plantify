@@ -59,9 +59,9 @@ export default function ProductCarousel() {
   return (
     <Slider {...settings}>
         {products.map((product) => (
-            <div className='bg-navygreen-100 p-8 w-60 rounded-lg hover:shadow-lg'>
-            <img src={product.image} alt="Product 1" className="w-full h-full object-cover rounded-lg" />
-        </div>
+          <div className='bg-navygreen-100 p-8 w-60 rounded-lg hover:shadow-lg'>
+              <img src={product.image} alt="Product 1" className="w-full h-full object-cover rounded-lg" />
+          </div>
         ))}
     </Slider>
   );

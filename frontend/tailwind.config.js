@@ -5,7 +5,8 @@ module.exports = {
     extend: {
       backgroundImage: {
         'testimonial-texture': "url('/src/assets/landing.jpeg')",
-        'newsletter': "url('/src/assets/newsletter.jpeg')"
+        'newsletter': "url('/src/assets/newsletter.jpeg')",
+        'popup': "url('/src/assets/campaign-card.jpeg')"
       },
       colors: {
         white: "#fff",
@@ -21,7 +22,7 @@ module.exports = {
         },
         navygreen: {
           "25": '#f8fcf6',
-          "50": '#EDF6E9',
+          "50": '#F0F4ED',
           "100": "#DDE6D6",
           "200": "#8E9688",
           "300": "#99BC85",
