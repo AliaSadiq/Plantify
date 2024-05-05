@@ -6,7 +6,12 @@ import avatar from '../assets/testimonial-3.jpeg';
 
 const NavBar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [user, setUser] = useState(null);
+    // const [user, setUser] = useState(null);
+    const user = JSON.parse(localStorage.getItem("user"));
+    if(!user){
+        user = "no users";
+    }
+    console.log(user);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -57,7 +62,7 @@ const NavBar = () => {
                 </Link>
                 <div className="flex gap-4 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <button type="button" onClick={openModal} className={`font-josefin-sans text-sm font-semibold text-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100 ${isScrolled ? 'border-white text-white' : 'border-gray-100 text-gray-100'} transition-colors duration-1000 ease-in-out`}>Start Donating</button>
-                    <p className='self-center'>Alia</p>
+                    <p className='self-center'>{user && user.email}</p>
                     <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                         <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                             <span class="sr-only">Open user menu</span>

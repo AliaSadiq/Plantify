@@ -1,8 +1,5 @@
-import React from 'react';
+import {React, useS} from 'react';
 import { Link } from 'react-router-dom';
-// import camp from '../assets/campaign.jpg';
-// import camp1 from '../assets/campaign-card.jpeg';
-// import camp2 from '../assets/about-1.jpeg';
 import prod1 from '../assets/product-4.png';
 import prod2 from '../assets/product-5.png';
 

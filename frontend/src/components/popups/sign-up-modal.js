@@ -70,7 +70,7 @@ const SignUpModal = ({ showModal, closeModal }) => {
                                     <label htmlFor="confirmPassword" className="block text-sm font-medium">Confirm Password</label>
                                     <input type="password" id="confirmPassword" name="confirmPassword" value={user.confirmPassword} onChange={handleInput} className="px-2 py-[2px] mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-full" />
                                 </div>
-                                <p>Already a member? <span><Link to="/login"><u className='hover:text-navygreen-400'>sign in</u></Link></span></p>
+                                <p>Already a member? <span><Link to="/login"><u className='hover:text-navygreen-400' onClick={closeModal}>sign in</u></Link></span></p>
                                 <button type="submit" className="bg-navygreen-300 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-navygreen-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign Up</button>
                             </form>
                         </div>

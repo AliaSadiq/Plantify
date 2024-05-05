@@ -87,7 +87,7 @@ import header from '../../assets/campaign.jpg';
 import ProfilePart from './profile-card';
 import CampaignCardSh from '../campaign-card-sh';
 
-const FrameComponent1 = () => {
+const SocialProfilePage = () => {
   // Initialize state for campaigns and active tab
   const [campaigns, setCampaigns] = useState([]); // To store fetched campaigns
   const [selectedCampaign, setSelectedCampaign] = useState(null);
@@ -190,5 +190,5 @@ const FrameComponent1 = () => {
   );
 };
 
-export default FrameComponent1;
+export default SocialProfilePage;
 
