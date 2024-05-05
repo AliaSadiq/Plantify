@@ -1,19 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
-import about1 from '../assets/about-1.jpeg';
-import about2 from '../assets/about-2.jpeg';
 import landing from '../assets/landing.jpeg';
-import plantIcon from '../assets/plant-icon.png';
-import prod1 from '../assets/product-4.png';
-import prod2 from '../assets/product-5.png';
-import prod3 from '../assets/product-6.png';
-import prod4 from '../assets/product-7.png';
 import TestimonialCarousel from '../components/carousels/testimonial-carousel';
 import ProductCarousel from '../components/carousels/product-carousel';
 import { SunIcon} from '@heroicons/react/24/solid';
 import goal from '../assets/goal.jpeg';
+import CampaignCarousel from '../components/campaign-carousel';
 
 const LandingPage = () => {
     return (
@@ -69,23 +62,23 @@ const LandingPage = () => {
                     <div className='grid grid-rows-2 grid-cols-2 gap-x-4 gap-y-0 mt-40 mr-10'>
                     <div className=' p-8'>
                         <SunIcon className='w-10 bg-navygreen-200 bg-opacity-40 rounded-sm p-2'/>
-                        <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>take me to the moon</h1>
-                        <p className='text-sm'>if i could i had get you the moon and, give to you. And if death was coming for you, i had give my life for you</p>
+                        <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>Environmental Advocacy</h1>
+                        <p className='text-sm'>Join us in advocating for a greener planet. Raise awareness, inspire action, and make a difference in the fight against climate change and environmental degradation.</p>
                     </div>
                     <div className=' p-8'>
                         <SunIcon className='w-10 bg-navygreen-200 bg-opacity-40 rounded-sm p-2'/>
-                        <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>take me to the moon</h1>
-                        <p className='text-sm'>if i could i had get you the moon and, give to you. And if death was coming for you, i had give my life for you</p>
+                        <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>Community Engagement</h1>
+                        <p className='text-sm'>Connect with like-minded individuals and organizations dedicated to sustainability. Engage in discussions, share ideas, and collaborate on projects that promote eco-friendly living and environmental conservation.</p>
                     </div>
                     <div className=' p-8'>
                         <SunIcon className='w-10 bg-navygreen-200 bg-opacity-40 rounded-sm p-2'/>
-                        <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>take me to the moon</h1>
-                        <p className='text-sm'>if i could i had get you the moon and, give to you. And if death was coming for you, i had give my life for you</p>
+                        <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>Sustainable Practices</h1>
+                        <p className='text-sm'>Discover practical tips and resources for living a more sustainable lifestyle. From reducing waste to supporting green businesses, learn how small changes can have a big impact on the health of our planet.</p>
                     </div>
                     <div className=' p-8'>
                         <SunIcon className='w-10 bg-navygreen-200 bg-opacity-40 rounded-sm p-2'/>
-                        <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>take me to the moon</h1>
-                        <p className='text-sm'>if i could i had get you the moon and, give to you. And if death was coming for you, i had give my life for you</p>
+                        <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>Collective Impact</h1>
+                        <p className='text-sm'>Together, we can create positive change. By working collaboratively, we amplify our voices and efforts to protect the environment and build a more sustainable future for generations to come.</p>
                     </div>
                     </div>
                 </div>
@@ -160,7 +153,7 @@ const LandingPage = () => {
                     </div> */}
                 </div>
                 <div className='w-96'>
-                    <ProductCarousel className='w-80'/>
+                    <CampaignCarousel className='w-80'/>
                 </div>
             </div>
             {/* Newsletter */}

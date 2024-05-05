@@ -1,5 +1,5 @@
 import { React, useState} from 'react';
-import { Link, redirect } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import {XMarkIcon} from "@heroicons/react/24/solid";
 
@@ -10,6 +10,8 @@ const SignUpModal = ({ showModal, closeModal }) => {
         password: '',
         confirmPassword: ''
     });
+
+    const navigate = useNavigate();
 
     const handleInput = (event) => {
         setUser({ ...user, [event.target.name]: event.target.value });
@@ -27,7 +29,14 @@ const SignUpModal = ({ showModal, closeModal }) => {
             const response = await axios.post('http://localhost:5000/api/user', requestData);
             console.log(response.data); // Handle success or error
             alert('Acoount created!');
-            redirect("/home");
+            navigate("/home");
+            closeModal();
+            setUser({ // Reset the user state
+                email: '',
+                username: '',
+                password: '',
+                confirmPassword: ''
+            });
         } catch (error) {
             console.error('Error:', error);
         }
@@ -38,7 +47,7 @@ const SignUpModal = ({ showModal, closeModal }) => {
             {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center">
                     <div className="absolute inset-0 flex items-center justify-center bg-opacity-40">
-                        <div className="backdrop-blur-sm backdrop-filter relative bg-navygreen-200 rounded-lg p-8 max-w-md z-10 bg-opacity-60">
+                        <div className="backdrop-blur-sm backdrop-filter relative bg-navygreen-100 rounded-lg p-8 max-w-md z-10 bg-opacity-60">
                             <button className="absolute top-2 right-2 text-gray-100" onClick={closeModal}>
                                 <XMarkIcon className="h-6 w-6" />
                             </button>

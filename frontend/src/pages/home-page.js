@@ -5,10 +5,6 @@ import { Link } from 'react-router-dom';
 // import camp2 from '../assets/about-1.jpeg';
 import prod1 from '../assets/product-4.png';
 import prod2 from '../assets/product-5.png';
-// import prod3 from '../assets/product-6.png';
-// import prod4 from '../assets/product-7.png';
-import Crousel from '../components/crousel'
-// import HomePageCarousel from '../components/carousels/home-page-carousel';
 
 
 const HomePage = () => {

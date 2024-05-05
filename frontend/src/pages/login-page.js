@@ -1,34 +1,3 @@
-// import { React, useState } from 'react';
-// import { Redirect } from 'react-router-dom';
-// import axios from 'axios';
-// import { redirect } from 'react-router-dom';
-
-// const LoginPage = () => {
-//     const [user, setUser] = useState({
-//         email: '',
-//         password: '',
-//     });
-
-//     const handleInput = (e) => {
-//         const { name, value } = e.target;
-//         setUser({ ...user, [name]: value });
-//     };
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         try {
-//             const response = await axios.post('http://localhost:5000/api/user/login', user);
-//             if (response.status === 200) {
-//                 // Redirect to homepage upon successful login
-//                 redirect('/home');
-//             } else {
-//                 alert('Login failed. Please check your credentials.');
-//             }
-//         } catch (error) {
-//             console.error('Error logging in:', error);
-//             alert('An error occurred. Please try again later.');
-//         }
-//     };
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -51,6 +20,8 @@ const LoginPage = () => {
         try {
             const response = await axios.post('http://localhost:5000/api/user/login', user);
             if (response.status === 200) {
+                //storing the user in local storage.
+                localStorage.setItem('user', JSON.stringify(response.data.user));
                 navigate('/home'); // Navigate to homepage on successful login
             } else {
                 alert('Login failed. Please check your credentials.');
