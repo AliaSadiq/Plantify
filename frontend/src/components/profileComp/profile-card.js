@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import profileImage from '../../assets/campaign.jpg';
 import { MapPinIcon } from "@heroicons/react/24/solid";
+<<<<<<< HEAD
 import backgroundImage from '../../assets/testimonial-2.jpeg';
+=======
+import backgroundImage from '../../assets/campaign.jpg';
+>>>>>>> 2d3ee352dfd8560625b714a1e48e0fb8d569ee94
 
 // Popup form component with a frosted glass effect
 const RequestCampaignForm = ({ onClose }) => {

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';
 import { HeartIcon, UserGroupIcon } from '@heroicons/react/24/solid';
 import camp from '../assets/campaign-card.jpeg';
+
 
 const campaigns = [
   {
@@ -40,83 +41,80 @@ const campaigns = [
   }
 ];
 
+
 function Slide({ campaign, currentIndex, index, onClick }) {
-  const slideWidth = 40; // width of each slide
-  const containerWidth = 2 * slideWidth; // width of container for 3 slides
+  const totalSlides = campaigns.length;
+  const distanceFromCurrent = (index - currentIndex + totalSlides) % totalSlides/2; // Looping calculation
 
-  // Calculate the left position relative to the center of the container
-  const distanceFromCurrent = index - currentIndex;
-  const leftPosition = (distanceFromCurrent * slideWidth + containerWidth / 2 - slideWidth / 4);
+  const slideWidth = 30; // Width of each slide
+  const leftPosition = (distanceFromCurrent - 1) * slideWidth * 2; // Adjusted position to center the slides
 
-  const distance = Math.abs(distanceFromCurrent);
-  const opacity = 1 / (distance + 1);
-  const transform = `scale(${1 - distance * 0.1})`;
+  const opacity = 1 / (Math.abs(distanceFromCurrent - 1) + 1); // Adjust opacity based on distance
+  const scale = `scale(${1 - (Math.abs(distanceFromCurrent - 1) * 0.1)})`; // Scale for 3D effect
 
   return (
-    // <div
-    //   className="slide absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-80 rounded-lg shadow-lg transition-transform duration-500"
-    //   style={{
-    //     left: `calc(50% + ${leftPosition}px)`,
-    //     zIndex: currentIndex === index ? 10 : 5,
-    //     opacity: opacity,
-    //     transform: `translateX(-50%) ${transform}`
-    //   }}
-    //   onClick={() => onClick(index)}
-    // >
-    //   <div className="relative w-full h-full">
-    //     <div className="bg-cover bg-center w-full h-full rounded-lg" style={{ backgroundImage: `url('${slide.image}')` }}></div>
-    //     <div className="absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50 rounded-b-lg">
-    //       <h2 className="text-white text-lg font-semibold">{slide.title}</h2>
-    //       <p className="text-white text-sm">{slide.subtitle}</p>
-    //     </div>
-    //   </div>
-      <div className="slide absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  rounded-lg shadow-lg transition-transform duration-500 w-80 h-52  overflow-hidden" 
+    <div
+      className="absolute top-1/4 transform -translate-y-1/2 rounded-lg shadow-lg transition-transform duration-300 w-80 h-52 overflow-hidden"
       style={{
-            left: `calc(50% + ${leftPosition}px)`,
-            zIndex: currentIndex === index ? 10 : 5,
-            opacity: opacity,
-            transform: `translateX(-50%) ${transform}`
-          }}
-       onClick={() => onClick(index)}>
-        <img src={camp} alt="Campaign Background" className="w-full h-full object-cover" />
-        <div className="absolute top-2 left-2 flex items-center font-josefin-sans mx-2">
-          <h2 className="text-white text-lg font-semibold mr-2">{campaign.title}</h2>
-          <button className="text-white bg-gray-100 border border-gray-100 px-[7px] py-[7px]  mr-2">Donate</button>
-          <HeartIcon className="h-[20px] w-[20px] text-white stroke-current mr-2 hover:text-pinky" />
+        left: `calc(50% + ${leftPosition}px)`,
+        zIndex: distanceFromCurrent === 1 ? 10 : 5, // The centered slide should have the highest z-index
+        opacity: opacity,
+        transform: `translateX(-50%) ${scale}`,
+      }}
+      onClick={() => onClick(index)}
+    >
+      <img src={camp} alt={campaign.title} className="w-full h-full object-cover" />
+      <div className="absolute top-2 left-2 flex items-center mx-2">
+        <h2 className="text-white text-lg font-semibold mr-2">{campaign.title}</h2>
+        <button className="text-white bg-gray-100 border border-gray-100 px-[7px] py-[7px] mr-2">Donate</button>
+        <HeartIcon className="h-[20px] w-[20px] text-white stroke-current hover=text-pink-500" />
+      </div>
+      <div className="absolute bottom-0 left-0 w-full flex justify-between p-2 bg-white bg-opacity-50 py-6">
+        <div className="text-gray-100">
+          <p className="text-xs font-medium">Location: <span className="font-light">{campaign.location}</span></p>
+          <p className="text-xs font-medium mt-2">Date: <span class="font-light">{campaign.start_date}</span></p>
         </div>
-        <div className="absolute bottom-0 left-0 w-full flex justify-between p-2 bg-white bg-opacity-50 font-josefin-sans py-6">
-          <div className="text-gray-100">
-            <p className="text-xs font-medium">Location: <span className="font-light">{campaign.location}</span></p>
-            <p className="text-xs font-medium mt-2">Date: <span className="font-light">{campaign.start_date}</span></p>
+        <div>
+          <div className="flex items-center text-gray-700">
+            <UserGroupIcon className="h-4 w-4 text-gray-500 mr-1" />
+            <p className="text-xs font-light">10 Volunteers</p>
           </div>
-          <div className="text-white font-josefin-sans">
-            <div className="text-gray-100 flex items-center">
-              <UserGroupIcon className="h-4 w-4 text-gray-100 mr-1" />
-              <p className="text-xs font-light">10 Volunteers</p>
-            </div>
-            <div className="bg-sage-100 h-2 rounded-full overflow-hidden border-2 border-white mt-[8px]">
-              <div className="bg-navygreen-300 h-full" style={{ width: '80%' }}></div>
-            </div>
+          <div className="bg-gray-200 h-2 rounded-full overflow-hidden border-2 border-white mt-2">
+            <div className="bg-green-500 h-full" style={{ width: '80%' }}></div>
           </div>
         </div>
       </div>
-    // </div>
+    </div>
   );
 }
 
 function CampaignCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(2); // Start with the middle slide
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev < campaigns.length - 1 ? prev + 1 : 0)); // Auto-transition every 5 seconds
+    }, 5000);
+
+    return () => clearInterval(interval); // Cleanup to prevent memory leaks
+  }, []);
+
   return (
-    <div className="relative flex justify-center items-center h-screen">
-      <div className="w-full max-w-3xl px-4 overflow-hidden perspective" style={{ marginLeft: '50px', marginTop: '0' }}>
-        <div className="flex justify-center items-center h-96">
+    <div className="relative flex justify-center items-center h-96 overflow-visible"> 
+      <div className="w-full max-w-3xl px-4 overflow-visible perspective"> 
+        <div className="relative h-96"> 
           {campaigns.map((campaign, index) => (
-            <Slide key={index} campaign={campaign} currentIndex={currentIndex} index={index} onClick={goToSlide} />
+            <Slide
+              key={index}
+              campaign={campaign}
+              currentIndex={currentIndex}
+              index={index}
+              onClick={goToSlide}
+            />
           ))}
         </div>
       </div>

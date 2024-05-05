@@ -86,6 +86,7 @@ import axios from 'axios'; // Import axios for making HTTP requests
 import header from '../../assets/campaign.jpg';
 import ProfilePart from './profile-card';
 import CampaignCardSh from '../campaign-card-sh';
+import TeamComponent from "./my-team";
 
 const SocialProfilePage = () => {
   // Initialize state for campaigns and active tab
@@ -124,7 +125,7 @@ const SocialProfilePage = () => {
     <section className="self-stretch flex flex-col items-end justify-start max-w-full text-left gap-[50px] text-darkslateblue-100">
       <div className="self-stretch flex flex-row items-start justify-start relative max-w-full">
         {/* Header Section */}
-        <div className="flex-1 relative top-0 overflow-hidden">
+        <div className="flex-1 relative top-[-50px] overflow-hidden">
           <img
             className="w-full h-[300px] mt-0 object-cover"
             alt="Header Image"
@@ -171,9 +172,9 @@ const SocialProfilePage = () => {
         {/* Campaign and Impact Lists */}
         <div className="flex flex-col justify-start gap-[50px]">
           {activeTab === 'campaigns' && (
-            <div className="box-border max-w-full py-2 gap-2 pr-0 pl-8">
-             {campaigns.map(campaign => (
-    <CampaignCardSh key={campaign._id} campaign={campaign} openPopup={openPopup} />
+            <div className="box-border max-w-full h-[70px] py-2 gap-2 pr-0 pl-8">
+             {campaigns.slice(0, 6).map(campaign => (
+    <CampaignCardSh key={campaign._id} campaign={campaign} openPopup={openPopup} shape="rectangle" />
   ))}
             </div>
           )}
@@ -184,9 +185,11 @@ const SocialProfilePage = () => {
             </div>
           )}
         </div>
+
       </div>
-    
+      <div className="h-[50px] "> <TeamComponent/></div>
     </section>
+
   );
 };
 
