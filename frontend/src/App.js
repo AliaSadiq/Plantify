@@ -8,19 +8,14 @@ import SocialProfilePage from './pages/social-profile-page';
 import HomePage from './pages/home-page';
 import LoginPage from './pages/login-page';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
+import Header from './components/profileComp/profile-full';
 function App() {
   return (
-    <BrowserRouter>
-      <NavBar/>
-      <Routes>
-          <Route index element={<LandingPage/>}/>
-          <Route path="campaign" element={<CampaignPage/>} />
-          <Route path="campaign/socialGroup/:id" element={<SocialProfilePage/>} />
-          <Route path="home" element={<HomePage/>} />
-          <Route path="login" element={<LoginPage/>} />
-      </Routes>
-      <Footer/>
-    </BrowserRouter>
+    <div className="App">
+    
+    <Header/> 
+ 
+    </div>
   );
 }
 
