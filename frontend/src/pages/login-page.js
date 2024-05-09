@@ -23,6 +23,8 @@ const LoginPage = () => {
                 //storing the user in local storage.
                 localStorage.setItem('user', JSON.stringify(user));
                 navigate('/home'); // Navigate to homepage on successful login
+                // Reload the window to ensure the changes take effect immediately
+                window.location.reload();
             } else {
                 alert('Login failed. Please check your credentials.');
             }

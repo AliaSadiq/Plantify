@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState} from 'react';
 import { Link } from 'react-router-dom';
 
 import landing from '../assets/landing.jpeg';
@@ -7,8 +7,20 @@ import ProductCarousel from '../components/carousels/product-carousel';
 import { SunIcon} from '@heroicons/react/24/solid';
 import goal from '../assets/goal.jpeg';
 import CampaignCarousel from '../components/campaign-carousel';
+import Button from '../components/button';
+import SignUpModal from '../components/popups/sign-up-modal';
 
 const LandingPage = () => {
+    //for the popup
+    const [showModal, setShowModal] = useState(false);
+
+    const openModal = () => {
+        setShowModal(true);
+    }
+
+    const closeModal = () => {
+        setShowModal(false);
+    }
     return (
         <div mt-0 >
             <div className="relative">
@@ -17,14 +29,14 @@ const LandingPage = () => {
                     <div className="absolute inset-0 backdrop-blur-lg backdrop-filter bg-ivory bg-opacity-50"></div>
                 </div>
                 {/* Content */}
-                <div className="flex flex-row gap-[50px] justify-between items-center pt-40 pb-20 px-[100px] py-0 relative z-20">
+                <div className="flex flex-row gap-[50px] justify-between items-center pt-40 pb-20 px-[100px] py-0 relative">
                     <div className="w-1/2 font-josefin-sans text-gray-100 mt-10">
                         <p className="text-lg font-semibold">Welcome to</p>
                         <h1 className="text-4xl font-bold">Plantify,</h1>
                         <p className="mt-8 text-md">where green dreams take root and flourish. Discover a world of sustainable solutions and join us in nurturing a greener tomorrow.</p>
                         <div className="flex justify-left mt-10">
-                            <button type="button" className="font-josefin-sans text-sm font-semibold text-white bg-darkbrown p-4 rounded hover:rounded-full border-2 border-darkbrown mr-4">Start Donating</button>
-                            <button type="button" className="font-josefin-sans text-sm font-semibold text-darkbrown p-4 rounded hover:rounded-full border-2 border-darkbrown">Initiate Campaign</button>
+                            <button onClick={openModal} type="button" className="font-josefin-sans text-sm font-semibold text-white bg-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100 mr-4">Start Donating</button>
+                            <Link to='/social-signUp'><button type="button" className="font-josefin-sans text-sm font-semibold text-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100">Initiate Campaign</button></Link>
                         </div>
                         <p className="font-josefin-sans mt-20 text-2xl font-bold">50,000,867</p>
                         <p className="mt-2 text-mini font-semibold">trees planted and counting...</p>
@@ -53,7 +65,7 @@ const LandingPage = () => {
             </div>
             {/* About div */}
             <div className='bg-neutral'>
-                <div className='font-noto-sans-display text-lilxl font-semibold px-10'>
+                <div className='font-noto-sans-display text-lilxl font-semibold px-[100px] pt-[20px]'>
                     <span className='text-navygreen-200'>Together</span><span className=''>, we <span className='text-navygreen-200'>can</span> make </span><h1 >a difference.</h1>
                     {/* <p className='mt-4 font-light'>Join us in our mission to create a sustainable future for our planet. Together, we can make a positive impact on the environment by promoting eco-friendly practices, conserving natural resources, and advocating for environmental conservation. Let's work hand in hand towards building a greener and healthier world for generations to come.</p> */}
                 </div>
@@ -99,14 +111,15 @@ const LandingPage = () => {
                 </div>
             </div>
             {/* Shop showcase */}
-            <div className="flex flex-row gap-10 justify-between bg-neutral to-white items-center pt-20 pb-10 px-40">
+            <div className="flex flex-row gap-20 justify-between bg-neutral to-white items-center pt-20 pb-10 pl-40">
                 <div className='w-96'>
                     <ProductCarousel className='w-80'/>
                 </div>
-                <div className="mr-40">
+                <div className="mr-40 font-josefin-sans">
                     <h1 className="text-3xl font-bold">Get your Plant today</h1>
-                    <p className="mt-8 text-md ">Enhance your space with our diverse selection of plants. Choose your favorite from our wide variety and bring nature into your home today.</p>
-                    <button type="button" className='mt-8 font-josefin-sans text-sm font-semibold text-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100'>Shop Now</button>
+                    <p className="mt-2 text-mini text-justify">Enhance your space with our diverse selection of plants. Choose your favorite from our wide variety and bring nature into your home today.</p>
+                    <div className='mt-10 text-mini'><Link to='/shop'><Button text="Shop now!"/></Link></div>
+                    
                     {/* <div className="flex flex-col items-center justify-center mt-20 mb-10">
                         <h1 className='text-xl font-bold font-josefin-sans'>Best of our Products for you</h1>
                         <div className='flex flex-row gap-[20px] items-center justify-center mt-10'>
@@ -129,10 +142,10 @@ const LandingPage = () => {
             </div>
             {/* Campaigns showcase */}
             <div className="flex flex-row gap-10 justify-between bg-neutral to-white items-center pt-20 pb-10 px-40">
-                <div className="mr-40">
+                <div className="mr-40 font-josefin-sans">
                     <h1 className="text-3xl font-bold">Become part of the Initiatives</h1>
-                    <p className="mt-8 text-md ">Enhance your space with our diverse selection of plants. Choose your favorite from our wide variety and bring nature into your home today.</p>
-                    <button type="button" className='mt-8 font-josefin-sans text-sm font-semibold text-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100'>Shop Now</button>
+                    <p className="mt-2 text-mini test-justify">Join the initiatives and play your part in preserving the greenery.</p>
+                    <div className='mt-10 text-mini'><Link to='/campaign'><Button text="See all Campaigns"/></Link></div>
                 </div>
                 <div className='w-96'>
                     <CampaignCarousel className='w-80'/>
@@ -160,6 +173,7 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
+            <SignUpModal className='z-30' showModal={showModal} closeModal={closeModal} />
         </div>
     );
 }

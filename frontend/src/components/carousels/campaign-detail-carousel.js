@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import avatar from '../../assets/testimonial-2.jpeg';
+import Button from "../button";
 
 // Custom arrow components
 function SampleNextArrow(props) {
@@ -72,7 +73,7 @@ export default function CampaignDetailsCarousel({campaign}) {
                 </div>
             </div>
             <div className="mt-8 flex flex-row gap-2 items-center justify-center">
-                <button type="button" className="font-josefin-sans text-sm font-semibold text-white bg-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100">Donate</button>
+                <Button text="Donate" color="fill" />
             </div>
             <h1 className="mt-4 font-semibold text-lg font-josefin-sans text-center mx-8">About the Campaign</h1>
             <p className="mt-2 text-sm font-josefin-sans text-center mx-10">{campaign.description}</p>
@@ -82,7 +83,7 @@ export default function CampaignDetailsCarousel({campaign}) {
             <h1 className="mt-4 font-semibold text-lg font-josefin-sans text-center mx-8">Volunteer in the Campaign</h1>
             <p className="mt-2 text-sm font-josefin-sans text-center mx-10">Become an integral part of the campaign by volunteering your time and efforts. When you volunteer, you'll be actively contributing to the campaign's success and helping to make a positive impact. Your willingness to volunteer demonstrates your commitment to the cause and your desire to effect change. Keep in mind that social groups associated with the campaign will review and consider your volunteer requests, ensuring that your contributions align with their goals and objectives. Together, we can make a difference!</p>
             <div className="mt-8 flex flex-row gap-2 items-center justify-center">
-                <button type="button" className="font-josefin-sans text-sm font-semibold text-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100">I want to Volunteer!</button>
+                <Button text="I want to volunteer!"/>
             </div>
         </div>
         {/* Slide 3: Leaderboard */}

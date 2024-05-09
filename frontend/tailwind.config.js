@@ -6,7 +6,8 @@ module.exports = {
       backgroundImage: {
         'testimonial-texture': "url('/src/assets/landing.jpeg')",
         'newsletter': "url('/src/assets/newsletter.jpeg')",
-        'popup': "url('/src/assets/campaign-card.jpeg')"
+        'popup': "url('/src/assets/campaign-card.jpeg')",
+        'profile': "url('/src/assets/profile.jpeg')"
       },
       colors: {
         white: "#fff",

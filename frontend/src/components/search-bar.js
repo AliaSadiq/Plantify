@@ -3,11 +3,11 @@ import React from 'react';
 const SearchBar = ({ onSearch }) => {
     const handleInputChange = (event) => {
         const query = event.target.value;
-        onSearch(query);
+        //onSearch(query);
     };
 
     return (
-        <div className="w-full max-w-lg mx-auto p-4">
+        <div className="w-full max-w-lg mx-auto">
             <input
                 type="text"
                 placeholder="Search Campaigns"

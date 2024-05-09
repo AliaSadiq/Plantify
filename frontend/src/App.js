@@ -7,6 +7,11 @@ import CampaignPage from './pages/campaign-page';
 import SocialProfilePage from './pages/profile-page';
 import HomePage from './pages/home-page';
 import LoginPage from './pages/login-page';
+import Shop from './pages/shop';
+import Logout from './pages/logout';
+import PlantifyNetwork from './pages/network';
+import ContactUsPage from './pages/contact-us-page';
+import SocialSignUpPage from './pages/social-signup-page';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import React from 'react';
 
@@ -20,6 +25,12 @@ function App() {
           <Route path="campaign/socialGroup/:id" element={<SocialProfilePage/>} />
           <Route path="home" element={<HomePage/>} />
           <Route path="login" element={<LoginPage/>} />
+          <Route path="logout" element={<Logout/>} />
+          <Route path="shop" element={<Shop/>} />
+          <Route path="plantify-network" element={<PlantifyNetwork/>} />
+          <Route path="contact-us" element={<ContactUsPage/>} />
+          <Route path="about-us" element={<PlantifyNetwork/>} />
+          <Route path="social-signUp" element={<SocialSignUpPage/>} />
       </Routes>
       <Footer/>
     </BrowserRouter>
