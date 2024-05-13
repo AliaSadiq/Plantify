@@ -10,9 +10,9 @@ const Calendar = () => {
     const numDays = new Date(year, month + 1, 0).getDate();
     return Array.from({ length: numDays }, (_, i) => i + 1);
   };
-
+  // p-4 bg-white rounded-md md:h-60 md:w-72//
   return (
-    <div className="p-4 bg-white rounded-md md:h-60 md:w-72">
+    <div className=" right-2 top-72 p-2 bg-white rounded-md h-auto w-72 shadow-md">
       <div className="flex flex-col md:flex-row justify-between items-center mb-4">
         <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))}>
           Prev

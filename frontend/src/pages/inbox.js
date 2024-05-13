@@ -1,17 +1,46 @@
 import React from "react";
-
+import Calendar from "../components/Calendar";
+import FilterableCampaigns from "../components/Campaignfilters.js";
+import FilterComponent from "../components/Campaignfilters.js"
+import Team from "../components/team.js";
 const Inbox = () => {
   return (
-    <div className="h-screen flex h-full">
-      <div className="font-josefin-sans text-gray-100 ">
-        <h1 className="text-2xl font-bold py-10 px-40 ">Inbox</h1>
-        <div className="relative bg-gray-900 rounded-lg top-30 left-20 px-96 py-20">
-          <h1 className="absolute text-lg left-10 top-10 font-bold text-black">
-            Welcome, Alia!
-          </h1>
-        </div>
+    <div className="flex h-full">
+    <div className="font-josefin-sans text-gary-100 ">
+      <h1 className="text-2xl font-bold pt-10 pl-14 ">Campaigns</h1>
+      <div>
+        <FilterComponent/>
       </div>
-    </div>
+      <div className="absolute bg-white text-black top-0 right-0 px-40 py-80">
+       <div className="fixed right-0.5 top-2 shadow-md rounded-l-full h-16 w-48 bg-gg"> 
+          <div className="absolute top-2 right-2 flex items-center">
+             <div className=" flex flex-col right-2">
+              <span className="text-sm font-medium">The Alia Sadiq</span>
+              <span className="text-xs text-gray-500 text-center">
+                Rawalpindi
+              </span>
+            </div>
+            <img
+              className="w-12 h-10 rounded-full object-cover ml-2 mr-5 "
+              src="https://picsum.photos/id/237/100"
+              alt="Profile Picture"
+            />
+           </div> 
+        </div> 
+        {/* <div> */}
+        <div className="absolute right-3 h-48 top-20 flex items-center  ">
+          <Calendar />
+        </div>
+        <div>
+        <div className="absolute right-1 top-1 flex items-center ">
+        <Team/>
+        </div>
+      
+</div> 
+
+ </div> 
+      </div>
+      </div>
   );
 };
 

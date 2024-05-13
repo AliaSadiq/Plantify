@@ -1,49 +1,59 @@
-.navbar {
-  background-color: #b0d59c;
-  padding: 10px 20px;
+/* App.css or index.css */
+/* .App {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center; 
 }
 
-.navbar-logo {
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr auto; 
+  gap: 20px; 
+}
+
+.campaign-card-container {
   display: flex;
-  align-items: center;
-  margin-right: 40px; /* Increased margin on the right */
-}
+  justify-content: center;
+  align-items: center; 
+} */
 
-.logo {
-  width: 100px; /* Adjust size as needed */
-  height: auto;
-  margin-left: 60px;
-}
-
-.logo-text {
-  color: white;
-  font-size: 1.2rem; /* Adjust font size as needed */
-  margin: 0;
-}
-
-.navbar-menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-menu li {
+.navbar-link {
+  position: relative;
   display: inline-block;
-  margin-right: 20px; /* Adjust spacing between menu items */
+  padding-bottom: 3px; /* Adjust as needed */
 }
 
-.navbar-menu li a {
-  color: black; /* Text color is black by default */
-  text-decoration: none;
-  font-size: 1rem; /* Adjust font size as needed */
-  padding: 10px 20px; /* Add padding to menu items */
-  transition: background-color 0.3s, color 0.3s; /* Smooth transition for background color and text color */
+.navbar-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px; /* Height of the line */
+  background-color: #222; /* Color of the line */
+  transition: width 0.3s ease;
 }
 
-.navbar-menu li a:hover {
-  color: white; /* Text color changes to white on hover */
-  background-color: rgba(0, 0, 0, 0.1); /* Background color becomes slightly darker on hover */
+.navbar-link:hover::after {
+  width: 100%;
+}
+
+.vector-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.vector-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom right, rgba(249, 249, 235, 1) 20%, rgba(249, 249, 235, 1) 20px, rgba(249, 249, 235, 1) 100%);
+  mask-image: radial-gradient(circle at center, transparent 0%, black 70%);
+}
+
+.text-content {
+  position: relative;
+  z-index: 1; /* Ensure the text stays in front of the overlay */
 }
