@@ -70,10 +70,10 @@
 import React, { useState, useEffect } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
-import carousel1 from '../../assets/carousel-1.jpeg';
-import carousel2 from '../../assets/carousel-2.jpeg';
-import carousel3 from '../../assets/carousel-3.jpeg';
-import SearchBar from '../search-bar';
+import carousel1 from '../assets/carousel-1.jpeg';
+import carousel2 from '../assets/carousel-2.jpeg';
+import carousel3 from '../assets/carousel-3.jpeg';
+import SearchBar from '../components/search-bar';
 
 function CampaignHeaderCarousel() {
   const slides = [

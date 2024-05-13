@@ -1,16 +1,27 @@
 import {React, useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import landing from '../assets/landing.jpeg';
-import TestimonialCarousel from '../components/carousels/testimonial-carousel';
-import ProductCarousel from '../components/carousels/product-carousel';
-import { SunIcon} from '@heroicons/react/24/solid';
+import TestimonialCarousel from '../carousels/testimonial-carousel';
+import ProductCarousel from '../carousels/product-carousel';
+import {SunIcon} from '@heroicons/react/24/solid';
 import goal from '../assets/goal.jpeg';
 import CampaignCarousel from '../components/campaign-carousel';
 import Button from '../components/button';
-import SignUpModal from '../components/popups/sign-up-modal';
+import SignUpModal from '../popups/signup-modal';
 
 const LandingPage = () => {
+
+    const navigate = useNavigate();
+
+    const handleInitiateCampaign = () => {
+        const userLoggedIn = localStorage.getItem('user') !== null;
+        if (userLoggedIn) {
+            navigate('/social-signUp');
+        } else {
+            navigate('/auth-check');
+        }
+    };
     //for the popup
     const [showModal, setShowModal] = useState(false);
 
@@ -33,10 +44,10 @@ const LandingPage = () => {
                     <div className="w-1/2 font-josefin-sans text-gray-100 mt-10">
                         <p className="text-lg font-semibold">Welcome to</p>
                         <h1 className="text-4xl font-bold">Plantify,</h1>
-                        <p className="mt-8 text-md">where green dreams take root and flourish. Discover a world of sustainable solutions and join us in nurturing a greener tomorrow.</p>
+                        <p className="mt-8 text-md">Where green dreams take root and flourish. Discover a world of sustainable solutions and join us in nurturing a greener tomorrow.</p>
                         <div className="flex justify-left mt-10">
                             <button onClick={openModal} type="button" className="font-josefin-sans text-sm font-semibold text-white bg-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100 mr-4">Start Donating</button>
-                            <Link to='/social-signUp'><button type="button" className="font-josefin-sans text-sm font-semibold text-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100">Initiate Campaign</button></Link>
+                            <button onClick={handleInitiateCampaign} type="button" className="font-josefin-sans text-sm font-semibold text-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100">Initiate Campaign</button>
                         </div>
                         <p className="font-josefin-sans mt-20 text-2xl font-bold">50,000,867</p>
                         <p className="mt-2 text-mini font-semibold">trees planted and counting...</p>
@@ -70,7 +81,7 @@ const LandingPage = () => {
                     {/* <p className='mt-4 font-light'>Join us in our mission to create a sustainable future for our planet. Together, we can make a positive impact on the environment by promoting eco-friendly practices, conserving natural resources, and advocating for environmental conservation. Let's work hand in hand towards building a greener and healthier world for generations to come.</p> */}
                 </div>
                 <div className='flex flex-row gap-4'>
-                    <img src={goal} className='rounded-xl w-96 h-auto mx-10'/>
+                    <img src={goal} alt='leaf image' className='rounded-xl w-96 h-auto mx-10'/>
                     <div className='grid grid-rows-2 grid-cols-2 gap-x-4 gap-y-0 mt-40 mr-10'>
                     <div className=' p-8'>
                         <SunIcon className='w-10 bg-navygreen-200 bg-opacity-40 rounded-sm p-2'/>

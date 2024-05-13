@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SearchBar from '../components/search-bar';
 import CampaignCardSh from '../components/campaign-card-sh';
-import CampaignDetailsPopup from '../components/popups/campaign-details-popup';
-import widget from '../assets/campaign.jpg';
-import CampaignHeaderCarousel from '../components/carousels/campaign-header-carousel';
-import FilterDropdown from '../components/dropdowns/filter-dropdown';
+import CampaignDetailsPopup from '../popups/campaign-details-popup';
+import CampaignHeaderCarousel from '../carousels/campaign-header-carousel';
+import FilterDropdown from '../dropdowns/filter-dropdown';
+import Widget from '../components/widget';
 
 const CampaignPage = () => {
   //api
@@ -46,38 +46,15 @@ const CampaignPage = () => {
           <SearchBar/>
         </div>
       </div>
-      <div className='flex flex-row gap-4'>
+      <div className='flex'>
         <div className='ml-20 grid grid-cols-3 gap-4 mb-10'>
           {/* Render CampaignCardSh components for each campaign */}
           {campaigns.map(campaign => (
             <CampaignCardSh key={campaign._id} campaign={campaign} openPopup={openPopup}/>
           ))}
         </div>
-        <div className='max-w-96 h-full drop-shadow-sm px-8 mr-10'>
-          <p className='text-bold text-lg text-gray-100 font-josefin-sans mb-10'>RECENT CAMPAIGNS</p>
-          <div className='grid grid-cols-1 gap-y-4'>
-            <div className='flex flex-row gap-6'>
-              <img src={widget} className='w-20 h-20'></img>
-              <div className='self-center flex flex-col'>
-                <h3 className='text-sm font-semibold'>Sindh Campaign by Riphah Green Club</h3>
-                <p className='text-sm font-josefin-sans text-gray-500'>20-4-2024</p>
-              </div>
-            </div>
-            <div className='flex flex-row gap-6'>
-              <img src={widget} className='w-20 h-20'></img>
-              <div className='self-center flex flex-col'>
-                <h3 className='text-sm font-semibold'>Sindh Campaign by Riphah Green Club</h3>
-                <p className='text-sm font-josefin-sans text-gray-500'>20-4-2024</p>
-              </div>
-            </div>
-            <div className='flex flex-row gap-6'>
-              <img src={widget} className='w-20 h-20'></img>
-              <div className='self-center flex flex-col'>
-                <h3 className='text-sm font-semibold'>Sindh Campaign by Riphah Green Club</h3>
-                <p className='text-sm font-josefin-sans text-gray-500'>20-4-2024</p>
-              </div>
-            </div>
-          </div>
+        <div className="mr-10">
+          <Widget />
         </div>
       </div>
       

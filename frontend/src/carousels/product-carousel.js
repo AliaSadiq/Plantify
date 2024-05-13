@@ -2,10 +2,10 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import prod1 from '../../assets/product-4.png';
-import prod2 from '../../assets/product-5.png';
-import prod3 from '../../assets/product-6.png';
-import prod4 from '../../assets/product-7.png';
+import prod1 from '../assets/product-4.png';
+import prod2 from '../assets/product-5.png';
+import prod3 from '../assets/product-6.png';
+import prod4 from '../assets/product-7.png';
 
 // Custom arrow components
 function SampleNextArrow(props) {

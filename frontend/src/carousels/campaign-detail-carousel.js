@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import avatar from '../../assets/testimonial-2.jpeg';
-import Button from "../button";
+import avatar from '../assets/testimonial-2.jpeg';
+import Button from "../components/button";
+import DonationModal from "../popups/donation-modal";
 
 // Custom arrow components
 function SampleNextArrow(props) {
@@ -62,7 +63,19 @@ export default function CampaignDetailsCarousel({campaign}) {
     },
   ];
 
+  //for the popup
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+      setShowModal(true);
+  }
+
+  const closeModal = () => {
+      setShowModal(false);
+  }
+
   return (
+    <>
     <Slider {...settings}>
         {/* Slide 1: About */}
         <div className="h-auto w-80 p-6 bg-neutral max-h-lg">
@@ -73,7 +86,7 @@ export default function CampaignDetailsCarousel({campaign}) {
                 </div>
             </div>
             <div className="mt-8 flex flex-row gap-2 items-center justify-center">
-                <Button text="Donate" color="fill" />
+                <Button onClick={openModal} text="Donate" color="fill" />
             </div>
             <h1 className="mt-4 font-semibold text-lg font-josefin-sans text-center mx-8">About the Campaign</h1>
             <p className="mt-2 text-sm font-josefin-sans text-center mx-10">{campaign.description}</p>
@@ -124,5 +137,7 @@ export default function CampaignDetailsCarousel({campaign}) {
             </div>
         </div>
     </Slider>
+    <DonationModal showModal={showModal} closeModal={closeModal} />
+    </>
   );
 }

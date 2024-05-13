@@ -6,23 +6,42 @@ const SocialGroupSchema = mongoose.Schema(
       type: String,
       required: [true, "Please enter group name"],
     },
-    description: {
+    initiative: {
       type: String,
       required: true,
     },
-    members: {
-      type: Number,
+    image: {
+      type: String,
       required: true,
-      default: 0,
+    },
+    banner: {
+      type: String,
+      required: true,
     },
     location: {
       type: String,
       required: true,
     },
-    category: {
-      type: String,
-      enum: ['Environmental', 'Social Welfare', 'Community Development'],
+    cnic: {
+      type: Number,
       required: true,
+    },
+    faceImage: {
+      type: String,
+      required: true,
+    },
+    contact: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    isVerified: {
+      type: Boolean,
+      required: true,
+      default: false,
     }
   },
   {

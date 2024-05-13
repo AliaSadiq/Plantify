@@ -1,11 +1,22 @@
-import React from 'react';
+import React,{useState}  from 'react';
 import { Link } from 'react-router-dom';
-import camp from '../../assets/campaign-card.jpeg';
-import { XMarkIcon, UserGroupIcon, ShareIcon, ExclamationCircleIcon, HeartIcon} from '@heroicons/react/24/solid';
+import { XMarkIcon, ShareIcon, ExclamationCircleIcon, HeartIcon} from '@heroicons/react/24/solid';
 import CampaignDetailsCarousel from '../carousels/campaign-detail-carousel';
+import ReportModal from './report-modal';
 
 const CampaignDetailsPopup = ({ campaign, closePopup }) => {
-  if (!campaign) return null;
+  //for the popup
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+      setShowModal(true);
+  }
+
+  const closeModal = () => {
+      setShowModal(false);
+  }
+
+  if (!campaign) return null;  
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
@@ -31,6 +42,7 @@ const CampaignDetailsPopup = ({ campaign, closePopup }) => {
           </button>
           {/* Report Icon */}
           <button 
+            onClick={openModal}
             className="text-gray-100 hover:text-gray-800 focus:outline-none" 
           >
             <ExclamationCircleIcon className="h-6 w-6" />
@@ -45,6 +57,7 @@ const CampaignDetailsPopup = ({ campaign, closePopup }) => {
           <CampaignDetailsCarousel campaign={campaign}/>
         </div>
       </div>
+      <ReportModal showModal={showModal} closeModal={closeModal} />
     </div>
 
   );

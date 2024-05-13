@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../assets/leaf.png';
 import { Link } from "react-router-dom";
-import SignUpModal from './popups/sign-up-modal';
+import SignUpModal from '../popups/signup-modal';
 import avatar from '../assets/testimonial-3.jpeg';
-import ProfileDropdown from './dropdowns/profile-dropdown';
+import ProfileDropdown from '../dropdowns/profile-dropdown';
 
 const NavBar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -61,12 +61,9 @@ const NavBar = () => {
                         <>
                             <p className='self-center'>{user.email}</p>
                             <ProfileDropdown/>
-                            <Link to="/campaign">
-                                <button type="button" className={`font-josefin-sans text-sm font-semibold text-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100 ${isScrolled ? 'border-white text-white' : 'border-gray-100 text-gray-100'} transition-colors duration-1000 ease-in-out`}>Start Donating</button>
-                            </Link>
                         </>
                     ) : (
-                        <button type="button" onClick={openModal} className={`font-josefin-sans text-sm font-semibold text-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100 ${isScrolled ? 'border-white text-white' : 'border-gray-100 text-gray-100'} transition-colors duration-1000 ease-in-out`}>Start Donating</button>
+                        <button type="button" onClick={openModal} className={`font-josefin-sans text-sm font-semibold text-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100 ${isScrolled ? 'border-white text-white' : 'border-gray-100 text-gray-100'} transition-colors duration-1000 ease-in-out`}>Become a member</button>
                     )}
                     <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
                         <span className="sr-only">Open main menu</span>
