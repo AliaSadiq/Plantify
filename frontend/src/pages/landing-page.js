@@ -1,11 +1,11 @@
 import {React, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import landing from '../assets/landing.jpeg';
+import landing from '../images/landing.jpeg';
 import TestimonialCarousel from '../carousels/testimonial-carousel';
 import ProductCarousel from '../carousels/product-carousel';
 import {SunIcon} from '@heroicons/react/24/solid';
-import goal from '../assets/goal.jpeg';
+import goal from '../images/goal.jpeg';
 import CampaignCarousel from '../components/campaign-carousel';
 import Button from '../components/button';
 import SignUpModal from '../popups/signup-modal';
@@ -107,7 +107,7 @@ const LandingPage = () => {
                 </div>
             </div>
             {/* Testimonials */}
-            <div className="relative flex flex-col gap-[40px] lg:flex-row items-center justify-between py-16 lg:py-24 bg-testimonial-texture bg-no-repeat bg-cover">
+            <div className="relative flex flex-col gap-[40px] lg:flex-row items-center justify-between py-16 lg:py-24 bg-no-repeat bg-cover" style={{ backgroundImage: `url(/assets/landing.jpeg)` }}>
                 <div className="absolute inset-0 backdrop-blur-lg backdrop-filter bg-ivory bg-opacity-50"></div>
                 <div className="w-[40px] lg:w-1/3 text-center lg:text-left mb-16 lg:mb-0 p-20">
                     <h2 className=" absolute text-3xl lg:text-4xl font-heading font-semibold mb-4 font-josefin-sans">
@@ -163,10 +163,10 @@ const LandingPage = () => {
                 </div>
             </div>
             {/* Newsletter */}
-            <div className='relative flex flex-col items-center justify-center bg-ivory px-8 pt-40 pb-10 bg-newsletter bg-cover bg-no-repeat'>
-            <div className="absolute inset-0 backdrop-blur-sm backdrop-filter bg-ivory bg-opacity-50"></div>
+            <div className='relative flex flex-col items-center justify-center bg-ivory px-8 pt-40 pb-10 bg-cover bg-no-repeat' style={{ backgroundImage: `url(/assets/newsletter.jpeg)` }}>
+            <div className="absolute inset-0 backdrop-blur-sm backdrop-filter bg-navygreen-200 bg-opacity-50"></div>
                 <div className='relative text-2xl font-josefin-sans font-bold mx-80 text-center '>
-                    Join the plantify community to get offers and more!
+                    <p>Join the plantify community to get offers and more!</p>
                 </div>
                 <div className=" pt-10 flex items-center">
                     <div className="relative">

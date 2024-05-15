@@ -20,7 +20,7 @@ const CampaignDetailsPopup = ({ campaign, closePopup }) => {
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
-      <div className="absolute backdrop-blur-sm backdrop-filter relative bg-popup bg-no-repeat bg-cover p-8 max-w-4xl z-10 bg-opacity-60 flex flex-col items-center">
+      <div className="absolute backdrop-blur-sm backdrop-filter relative bg-no-repeat bg-cover p-8 max-w-4xl z-10 bg-opacity-60 flex flex-col items-center" style={{ backgroundImage: `url(/assets/${campaign.image})` }}>
         <div className="absolute inset-0 backdrop-blur-sm backdrop-filter bg-navygreen-100 bg-opacity-40 "></div>
         <button 
           className="absolute top-2 right-2 text-gray-100 hover:text-gray-800 focus:outline-none" 

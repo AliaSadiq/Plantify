@@ -21,16 +21,16 @@ const LoginPage = () => {
             const response = await axios.post('http://localhost:5000/api/user/login', user);
             if (response.status === 200) {
                 //storing the user in local storage.
-                localStorage.setItem('user', JSON.stringify(user));
+                localStorage.setItem('user', JSON.stringify(response.data));
                 navigate('/home'); // Navigate to homepage on successful login
                 // Reload the window to ensure the changes take effect immediately
-                window.location.reload();
+                window.location.reload()
             } else {
                 alert('Login failed. Please check your credentials.');
             }
         } catch (error) {
             console.error('Error logging in:', error);
-            alert('An error occurred. Please try again later.');
+            alert('Login failed. Please check your credentials.');
         }
     };
     return(

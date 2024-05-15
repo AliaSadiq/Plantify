@@ -4,11 +4,6 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'testimonial-texture': "url('/src/assets/landing.jpeg')",
-        'newsletter': "url('/src/assets/newsletter.jpeg')",
-        'popup': "url('/src/assets/campaign-card.jpeg')",
-        'profile': "url('/src/assets/profile.jpeg')",
-        'login': "url('/src/assets/login.jpeg')"
       },
       colors: {
         white: "#fff",

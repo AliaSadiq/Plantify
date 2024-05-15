@@ -17,6 +17,7 @@ const CampaignPage = () => {
       try {
         const response = await axios.get('http://localhost:5000/api/campaigns');
         setCampaigns(response.data);
+        console.log('campaigns: ' + response.data);
       } catch (error) {
         console.error('Error fetching campaigns:', error);
       }

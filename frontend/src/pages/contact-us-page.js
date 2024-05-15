@@ -1,5 +1,5 @@
 import React from 'react';
-import backgroundImage from '../assets/contact-us.jpeg';
+import backgroundImage from '../images/contact-us.jpeg';
 import Button from '../components/button';
 
 const ContactUsPage = () => {

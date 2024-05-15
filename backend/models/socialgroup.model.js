@@ -1,7 +1,11 @@
-const mongoose = require("mongoose");
+const {mongoose, Schema} = require("mongoose");
 
 const SocialGroupSchema = mongoose.Schema(
   {
+    user:{
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
     name: {
       type: String,
       required: [true, "Please enter group name"],
@@ -23,7 +27,7 @@ const SocialGroupSchema = mongoose.Schema(
       required: true,
     },
     cnic: {
-      type: Number,
+      type: String,
       required: true,
     },
     faceImage: {
@@ -37,11 +41,6 @@ const SocialGroupSchema = mongoose.Schema(
     address: {
       type: String,
       required: true,
-    },
-    isVerified: {
-      type: Boolean,
-      required: true,
-      default: false,
     }
   },
   {

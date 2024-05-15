@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import avatar from '../assets/testimonial-2.jpeg';
+import avatar from '../images/testimonial-2.jpeg';
 import Button from "../components/button";
 import DonationModal from "../popups/donation-modal";
 

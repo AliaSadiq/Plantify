@@ -54,13 +54,33 @@ const loginUser = async (req, res) => {
       if (!isPasswordMatch) {
         return res.status(401).json({ message: "Invalid email or password" });
       }
-
+      console.log("Outgoing data:", user);
       // If email and password are correct, return the user data
       res.status(200).json(user);
   } catch (error) {
       res.status(500).json({ message: error.message });
   }
 };
+
+// const loginUser = async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+//     const user = await User.findOne({ email });
+//     if (!user) {
+//       return res.status(401).json({ message: "Invalid email or password" });
+//     }
+//     const isPasswordMatch = await bcrypt.compare(password, user.password);
+//     if (!isPasswordMatch) {
+//       return res.status(401).json({ message: "Invalid email or password" });
+//     }
+//     const { _id, username, email: userEmail, isSocial } = user;
+//     res.status(200).json({ _id, username, email: userEmail, isSocial });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
+
 
 module.exports = {
   createUser,

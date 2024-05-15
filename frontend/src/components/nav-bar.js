@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../assets/leaf.png';
+import logo from '../images/leaf.png';
 import { Link } from "react-router-dom";
 import SignUpModal from '../popups/signup-modal';
-import avatar from '../assets/testimonial-3.jpeg';
+import avatar from '../images/testimonial-3.jpeg';
 import ProfileDropdown from '../dropdowns/profile-dropdown';
 
 const NavBar = () => {
@@ -21,18 +21,37 @@ const NavBar = () => {
 
         window.addEventListener('scroll', handleScroll);
 
-        // Retrieve user information from local storage
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            const parsedUser = JSON.parse(storedUser);
-            setUser(parsedUser);
-        }
+        // // Retrieve user information from local storage
+        // const storedUser = localStorage.getItem('user');
+        // if (storedUser) {
+        //     const parsedUser = JSON.parse(storedUser);
+        //     setUser(parsedUser);
+        // }
 
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    useEffect(() => {
+        // Retrieve user information from local storage
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            const parsedUser = JSON.parse(storedUser);
+            setUser(parsedUser);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (user) {
+            console.log('user: ' + user._id)
+            console.log('user: ' + user.username);
+            console.log('user: ' + user.password);  // Be cautious about logging sensitive information
+            console.log('user: ' + user.email);
+            console.log('user: ' + user.isSocial);
+        }
+    }, [user]);
 
     const listItemStyle = {
         transition: 'color 1s ease-in-out',
@@ -59,7 +78,7 @@ const NavBar = () => {
                 <div className="flex gap-4 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     {user ? (
                         <>
-                            <p className='self-center'>{user.email}</p>
+                            <p className='self-center'>{user.username}</p>
                             <ProfileDropdown/>
                         </>
                     ) : (
@@ -89,6 +108,11 @@ const NavBar = () => {
                         {user && (
                             <li>
                                 <Link to="/personal-growth" className="navbar-link py-2 px-3 hover:font-semibold">Personal Growth</Link>
+                            </li>
+                        )}
+                        {user && (
+                            <li>
+                                <Link to="/dashboard" className="navbar-link py-2 px-3 hover:font-semibold">Dashboard</Link>
                             </li>
                         )}
                         <li>

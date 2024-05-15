@@ -28,8 +28,12 @@ const SignUpModal = ({ showModal, closeModal }) => {
             const { confirmPassword, ...requestData } = user;
             const response = await axios.post('http://localhost:5000/api/user', requestData);
             console.log(response.data); // Handle success or error
-            alert('Acoount created!');
-            navigate("/home");
+            alert('Account created!');
+            //storing the user in local storage.
+            localStorage.setItem('user', JSON.stringify(user));
+            navigate('/home'); // Navigate to homepage on successful login
+            // Reload the window to ensure the changes take effect immediately
+            window.location.reload();
             closeModal();
             setUser({ // Reset the user state
                 email: '',

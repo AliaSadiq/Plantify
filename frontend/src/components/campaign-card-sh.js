@@ -1,6 +1,4 @@
 import {React, useState, useEffect} from "react";
-import campaignPic from "../assets/campaign.jpg";
-import camp from "../assets/campaign-card.jpeg";
 import { UserGroupIcon, HeartIcon } from "@heroicons/react/24/solid";
 
 const CamapignCardSh = ({ campaign, openPopup,shape }) => {
@@ -13,7 +11,11 @@ const CamapignCardSh = ({ campaign, openPopup,shape }) => {
       className={`relative overflow-hidden ${cardSizeClass}`} // Use the calculated size
       onClick={handleCardClick}
     >
-      <img src={camp} alt="Campaign Background" className="w-full h-full object-cover" />
+      <img 
+        src={`/assets/${campaign.image}` }
+        alt="Campaign Background" 
+        className="w-full h-full object-cover" 
+      />
       <div className="absolute top-2 left-2 flex items-center font-josefin-sans mx-2">
         <h2 className="text-white text-lg font-semibold mr-2">{campaign.name}</h2>
         <button className="text-white bg-gray-100 border border-gray-100 px-[7px] py-[7px]  mr-2">Donate</button>

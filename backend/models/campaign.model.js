@@ -44,6 +44,10 @@ const CampaignSchema = mongoose.Schema(
         type: Number,
         required: false,
     },
+    likes: {
+      type: Number,
+      require: false,
+    },
     status:{
         type: String,
         required: false,

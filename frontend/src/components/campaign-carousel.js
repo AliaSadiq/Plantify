@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';
 import { HeartIcon, UserGroupIcon } from '@heroicons/react/24/solid';
-import camp from '../assets/campaign-card.jpeg';
 
 
 const campaigns = [
@@ -52,6 +51,7 @@ function Slide({ campaign, currentIndex, index, onClick }) {
   const opacity = 1 / (Math.abs(distanceFromCurrent - 1) + 1); // Adjust opacity based on distance
   const scale = `scale(${1 - (Math.abs(distanceFromCurrent - 1) * 0.1)})`; // Scale for 3D effect
 
+
   return (
     <div
       className="absolute top-1/4 transform -translate-y-1/2 rounded-lg shadow-lg transition-transform duration-300 w-80 h-52 overflow-hidden"
@@ -63,7 +63,11 @@ function Slide({ campaign, currentIndex, index, onClick }) {
       }}
       onClick={() => onClick(index)}
     >
-      <img src={camp} alt={campaign.title} className="w-full h-full object-cover" />
+      <img 
+        src={'/assets/campaign-4.jpeg'} 
+        alt={campaign.title} 
+        className="w-full h-full object-cover" 
+      />
       <div className="absolute top-2 left-2 flex items-center mx-2">
         <h2 className="text-white text-lg font-semibold mr-2">{campaign.title}</h2>
         <button className="text-white bg-gray-100 border border-gray-100 px-[7px] py-[7px] mr-2">Donate</button>
