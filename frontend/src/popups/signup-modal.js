@@ -30,10 +30,8 @@ const SignUpModal = ({ showModal, closeModal }) => {
             console.log(response.data); // Handle success or error
             alert('Account created!');
             //storing the user in local storage.
-            localStorage.setItem('user', JSON.stringify(user));
-            navigate('/home'); // Navigate to homepage on successful login
-            // Reload the window to ensure the changes take effect immediately
-            window.location.reload();
+            navigate('/login'); // Navigate to homepage on successful login
+            alert('Log in with your new Account')
             closeModal();
             setUser({ // Reset the user state
                 email: '',

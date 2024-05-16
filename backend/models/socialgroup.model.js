@@ -41,6 +41,11 @@ const SocialGroupSchema = mongoose.Schema(
     address: {
       type: String,
       required: true,
+    },
+    status: {
+      type: String,
+      required: false,
+      default: 'on wait',
     }
   },
   {

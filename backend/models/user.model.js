@@ -19,6 +19,7 @@ const UserSchema = mongoose.Schema(
     isSocial: {
       type: Boolean,
       required: false,
+      default: false,
     },
   },
   {
