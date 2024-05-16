@@ -194,12 +194,12 @@
 // };
 
 // export default SocialProfilePage;
-import banner from '../../assets/campaign.jpg';
+
 import Profile from './profile-card';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import axios for making HTTP requests
 import TeamCarousel from './my-team';
-import CampaignCard from '../../components/campaign-card-sh';
+import CampaignCard from '../components/campaign-card-sh';
 
 function SocialProfilePage() {
   // Initialize state for campaigns and active tab
@@ -234,20 +234,16 @@ function SocialProfilePage() {
     setActiveTab(tab);
   };
   return (
-    <div className='w-full mt-0'>
-      <div className='max-w-full mt-0'>
-        <img src={banner} className='mt-0 w-full h-[300px] object-cover' />
-      </div>
-      <div className='mx-20 mt-[-100px] flex flex-row gap-6 mt'>
-        <div>
+    
+    
+    <div className='w-full bg-palegreen-100 mt-10'>
+    
+    
           <Profile/>
-        </div>
-        <div className='grow border-2 border-gray-100 bg-white p-4'>
-          <h2 className='text-xl font-bold'>Initiative</h2>
-          <p className="text-base text-gray-600">
-            We are committed to making a difference in our communities through various campaigns and impact initiatives.
-          </p>
-          <div className="flex flex-row items-start justify-start gap-40 pl-8 text-lg">
+       
+        <div className='w-[1100px] mt-[50px] bg-white p-4 mx-auto'>
+        
+          <div className="flex flex-row items-start justify-start gap-[500px] pl-8 text-lg">
             <h3
               className={`text-inherit font-semibold cursor-pointer ${
                 activeTab === 'campaigns' ? 'border-b-2 border-solid border-black font-bold' : ''
@@ -265,24 +261,24 @@ function SocialProfilePage() {
               Impact
             </h3>
           </div>
-          <div className="flex flex-col justify-start gap-[50px]">
+          <div className="flex flex-col justify-start gap-[30px] mt-10">
             {activeTab === 'campaigns' && (
-              <div className="box-border max-w-full h-[70px] py-2 gap-6 pr-0 pl-8">
-                {campaigns.slice(0, 6).map(campaign => (
-                  <CampaignCard key={campaign._id} campaign={campaign} openPopup={openPopup} shape="rectangle" />
+              <div className="ml-8 grid grid-cols-3 gap-4 mb-10">
+                {campaigns.slice(0, 5).map(campaign => (
+                  <CampaignCard key={campaign._id} campaign={campaign} openPopup={openPopup}  />
                 ))}
               </div>
             )}
             {activeTab === 'impact' && (
               <div className="box-border max-w-full py-0 pr-0 pl-8">
                 {/* Placeholder for Impact content */}
-                Impact content goes here
+                Work in progress........
               </div>
             )}
           </div>
-          {/* <div className="h-[50px] "> <TeamCarousel/></div> */}
+          <div className=" w-[1100px] "> <TeamCarousel/></div> 
         </div>
-      </div>
+    
     </div>
   );
 }

@@ -15,6 +15,7 @@ import SocialSignUpPage from './pages/social-signup-page';
 import SettingsPage from './pages/settings';
 import AuthCheck from './pages/check';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
+import Profile from './profileComp/profile-full';
 import React from 'react';
 
 function App() {

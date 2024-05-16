@@ -17,56 +17,56 @@ const Carousel = ({ images, quotes }) => {
   };
 
   return (
-    <div className="text-lg items-center font-extrabold ">        
-    <span className='text-lg ml-[590px]'> Meet our team</span>   {/* Added margin-bottom for spacing */}
-    <div className="container mt-20 mx-auto mr-96 flex flex-row items-center  ">
-  
-      
-      <div className="flex items-center space-x-6 w-full justify-center">  {/* Adjusted spacing and alignment */}
-        <button
-          onClick={handlePrev}
-          className="p-3 bg-gradient-to-r from-green-100 to-green-00 text-black rounded-full hover:bg-gradient-to-l hover:from-green-600 hover:to-cyan-500 transition-transform duration-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 active:scale-95"
-          aria-label="Previous"
-        >
-          ←
-        </button>
+    <div className="text-lg  w[1100px]items-center font-extrabold ">        
+   <div className="text-lg font-extrabold text-center">Meet our team</div>
 
-        <div className="flex space-x-1">  {/* Space between images */}
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className={`w-32 h-32 bg-cover bg-center transition-all cursor-pointer transform-gpu duration-300 ${
-                currentIndex === index
-                  ? 'scale-125 opacity-100 z-10'
-                  : 'opacity-60 hover:opacity-100'
-              }`}
-              style={{
-                backgroundImage: `url(${image})`,
-                borderRadius: '50%',
-              }}
-              onClick={() => handleSelect(index)}
-            />
-          ))}
-        </div>
+<div className="flex flex-col justify-center items-center mt-20">
+  <div className="flex items-center space-x-6"> {/* Adjusted spacing and alignment */}
+    <button
+      onClick={handlePrev}
+      className="p-3 bg-gradient-to-r from-green-100 to-green-00 text-black rounded-full hover:bg-gradient-to-l hover:from-green-600 hover:to-cyan-500 transition-transform duration-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 active:scale-95"
+      aria-label="Previous"
+    >
+      ←
+    </button>
 
-        <button
-          onClick={handleNext}
-          className="p-3 bg-gradient-to-r from-green-100 to-green-00 text-black rounded-full hover:bg-gradient-to-l hover:from-green-600 hover:to-cyan-500 transition-transform duration-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 active:scale-95"
-          aria-label="Next"
-        >
-          →
-        </button>
-      </div>
-
-      
+    <div className="flex space-x-1"> {/* Space between images */}
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className={`w-32 h-32 bg-cover bg-center transition-all cursor-pointer transform-gpu duration-300 ${
+            currentIndex === index
+              ? 'scale-125 opacity-100 z-10'
+              : 'opacity-60 hover:opacity-100'
+          }`}
+          style={{
+            backgroundImage: `url(${image})`,
+            borderRadius: '50%',
+          }}
+          onClick={() => handleSelect(index)}
+        />
+      ))}
     </div>
-    <div className="ml-96 px-40 items-center w-full mt-6 text-center">  {/* Additional margin for spacing */}
-        <div className="w-80 h-40 flex items-center justify-center m=20 bg-white rounded-lg ">
-          <p className="text-mini font-semibold text-black-800">
-            “{quotes[currentIndex]}”
-          </p>
-        </div>
-      </div>
+
+    <button
+      onClick={handleNext}
+      className="p-3 bg-gradient-to-r from-green-100 to-green-00 text-black rounded-full hover:bg-gradient-to-l hover:from-green-600 hover:to-cyan-500 transition-transform duration-200 shadow-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 active:scale-95"
+      aria-label="Next"
+    >
+      →
+    </button>
+  </div>
+ 
+
+
+<div className="mt-6 text-center">
+  <div className="w-80 h-40  flex items-center justify-center bg-white rounded-lg">
+    <p className="text-mini font-semibold text-black-800">
+      “{quotes[currentIndex]}”
+    </p>
+  </div>
+</div>
+</div>
     </div>
   );
 };
