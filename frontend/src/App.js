@@ -14,6 +14,12 @@ import ContactUsPage from './pages/contact-us-page';
 import SocialSignUpPage from './pages/social-signup-page';
 import SettingsPage from './pages/settings';
 import AuthCheck from './pages/check';
+import VerificationCheck from './pages/verification-check';
+// import SideBar from './components/admin-components/sidebar';
+// import SocialGroupverificationPage from './pages/Admin/social-group-verification-page';
+// import CampaignReportsPage from './pages/Admin/campaign-reports-page';
+// import Dashboard from './pages/Admin/dashboard';
+// import ContactUsPage from './pages/Admin/contact-us-page';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Profile from './profileComp/profile-full';
 import React from 'react';
@@ -36,9 +42,19 @@ function App() {
           <Route path="social-signUp" element={<SocialSignUpPage/>} />
           <Route path="settings" element={<SettingsPage/>} />
           <Route path='auth-check' element={<AuthCheck/>} />
+          <Route path='verification-check' element={<VerificationCheck/>} />
       </Routes>
       <Footer/>
     </BrowserRouter>
+    // <BrowserRouter>
+    //   <SideBar/>
+    //   <Routes>
+    //       <Route index element={<Dashboard/>}/>
+    //       <Route path="campaign-reports" element={<CampaignReportsPage/>} />
+    //       <Route path="verify-socialGroup" element={<SocialGroupverificationPage/>} />
+    //       <Route path="contact-us" element={<ContactUsPage/>} />
+    //   </Routes>
+    // </BrowserRouter>
   );
 }
 

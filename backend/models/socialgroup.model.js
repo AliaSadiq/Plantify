@@ -45,6 +45,7 @@ const SocialGroupSchema = mongoose.Schema(
     status: {
       type: String,
       required: false,
+      enum: ['on wait', 'accepted', 'rejected'],
       default: 'on wait',
     }
   },

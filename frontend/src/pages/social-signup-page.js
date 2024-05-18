@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/button";
 import axios from "axios";
+import {useNavigate} from 'react-router-dom';
 
 const SocialSignUpPage = () => {
     const [imageFileName, setImageFileName] = useState('');
@@ -8,6 +9,9 @@ const SocialSignUpPage = () => {
     const [faceImageFileName, setFaceImageFileName] = useState('');
     const [user, setUser] = useState(null);
     const [step, setStep] = useState(1);
+
+    const navigate = useNavigate();
+
     useEffect(() => {
         // Retrieve user information from local storage
         const storedUser = localStorage.getItem('user');
@@ -101,6 +105,16 @@ const SocialSignUpPage = () => {
             const response = await axios.post("http://localhost:5000/api/socialgroup", formData);
             console.log("Data submitted:", response.data);
             // Redirect or show success message
+
+            const userUpdateResponse = await axios.put(`http://localhost:5000/api/user/${user._id}`, { isSocial: true });
+            console.log("User updated:", userUpdateResponse.data);
+
+            // Update user in local storage
+            const updatedUser = { ...user, isSocial: true };
+            localStorage.setItem('user', JSON.stringify(updatedUser));
+            setUser(updatedUser);
+
+            navigate('/');
         } catch (error) {
             console.error("Error submitting data:", error);
             
@@ -156,7 +170,7 @@ const SocialSignUpPage = () => {
                         className="bg-inherit pl-2 w-full outline-none border-none" 
                         name="initiative" 
                         placeholder="Enter detail about your social group" 
-                        maxLength="250"
+                        maxLength="400"
                         required
                         value={formDataStep1.initiative}
                         onChange={(e) => handleInputChange(e, setFormDataStep1)}

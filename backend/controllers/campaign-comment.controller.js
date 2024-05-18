@@ -28,8 +28,19 @@ const getCampaignComments = async (req, res) => {
     }
 };
 
+const getCampaignCommentsByCampaignId = async (req, res) => {
+  try {
+      const { campaignId } = req.params;
+      const comments = await CampaignComment.find({ campaign: campaignId });
+      res.status(200).json(comments);
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
     createCampaignComment,
     getCampaignComment,
     getCampaignComments,
+    getCampaignCommentsByCampaignId
 };

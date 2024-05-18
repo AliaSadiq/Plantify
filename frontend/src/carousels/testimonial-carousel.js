@@ -34,6 +34,8 @@ export default function TestimonialCarousel() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />
   };
@@ -62,8 +64,8 @@ export default function TestimonialCarousel() {
                 />
                 <div className="bg-pale-100 rounded-lg p-4 z-10 relative ml-[180px] mr-10 mt-[-100px]">
                     <div className="absolute top-0 right-0 bottom-0 left-0 rounded-lg bg-oldlace" />
-                    <div className="text-left">{testimonial.testimony}</div>
-                    <div className="text-right mt-4">{testimonial.name}</div>
+                    <div className="text-left text-sm font-josefin-sans">{testimonial.testimony}</div>
+                    <div className="text-right mt-4 text-sm font-josefin-sans font-semibold">{testimonial.name}</div>
                 </div>
             </div>
         ))}

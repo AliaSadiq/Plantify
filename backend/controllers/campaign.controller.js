@@ -67,13 +67,9 @@ const socialgroupCampaigns = async (req, res) => {
   }
 };
 
-
-
-
-
 module.exports = {
     getCampaign,
     getCampaigns,
     createCampaign,
-    socialgroupCampaigns 
+    socialgroupCampaigns,
 };
