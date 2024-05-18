@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-import React, {useState,useEffect} from "react";
-=======
+
+
 import React, { useState, useEffect } from "react";
->>>>>>> 62760e50c81e83b105476428619bdda6307f9880
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -45,44 +43,17 @@ export default function CampaignDetailsCarousel({ campaign }) {
     prevArrow: <SamplePrevArrow />
   };
 
-  const doners = [
-    {
-      name: "Shabeeh",
-      amount: 100,
-      comment: "Baun naice campaign"
-    },
-    {
-      name: "Farwa",
-      amount: 330,
-      comment: "It was a great campaign had fun planting. Great experience"
-    },
-    {
-      name: "Alia",
-      amount: 460,
-      comment: "Volunteer kr k acha laga, next time mass murder-"
-    },
-    {
-      name: "Amna",
-      amount: 900,
-      comment: "Baun naice campaign"
-    },
-  ];
-<<<<<<< HEAD
-//for donation modal
-  //for the popup
-=======
-
-  // State for popup
->>>>>>> 62760e50c81e83b105476428619bdda6307f9880
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState(null);
-
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user && user._id) {
         setUserId(user._id);
+        console.log("Fetched userId from localStorage:", user._id);
+
     }
-}, []);
+  }, [1]);
+
 
   const openModal = () => {
     setShowModal(true);
@@ -92,88 +63,95 @@ export default function CampaignDetailsCarousel({ campaign }) {
     setShowModal(false);
   }
 
-    const [user, setUser] = useState(null);
-    const [comments, setComments] = useState([]);
-    const [comment, setComment] = useState({
-            user: '',
-            campaign: campaign._id,
-            comment: '',
-    })
-    useEffect(() => {
-        // Retrieve user information from local storage
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            const parsedUser = JSON.parse(storedUser);
-            setUser(parsedUser);
-        }
-    }, []);
+  //leaderboard
+const [donors, setDonors] = useState([null]);
 
-    useEffect(() => {
-        if (user) {
-            // Update comment with user._id when user state is set
-            setComment(prevState => ({
-                ...prevState,
-                user: user._id
-            }));
-        }
-    }, [user]); 
-
-    const handleInputChange = (e, setFormData) => {
-        const { name, value } = e.target;
-        setComment(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
-    const handleCommentSubmit = async (e) => {
-        e.preventDefault();
+useEffect(() => {
+    const fetchLeaderboard = async () => {
         try {
-            console.log("comment: " + comment.campaign);
-            console.log("comment: " + comment.comment);
-            console.log("comment: " + comment.user);
-            const response = await axios.post("http://localhost:5000/api/campaign-comment", comment);
-            console.log("Data submitted:", response.data);
+          const response = await axios.get(`http://localhost:5000/api/donations/leaderboard?campaignId=${campaign._id}`);
+        console.log(campaign._id)
+            setDonors(response.data);
         } catch (error) {
-            console.error("Error submitting data:", error);
+            console.error('Error fetching leaderboard:', error);
         }
     };
 
-    useEffect(() => {
-        const fetchComments = async () => {
-            try {
-                const response = await axios.get(`http://localhost:5000/api/campaign-comment/campaign/${campaign._id}`);
-                setComments(response.data || []); // Ensure comments is always an array
-            } catch (error) {
-                console.error("Error fetching comments:", error);
-                setComments([]); // Set comments to an empty array if there's an error
-            }
-        };
+    fetchLeaderboard();
+}, []);
 
-        fetchComments();
-    }, [campaign._id]);
+  const [user, setUser] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState({
+    user: '',
+    campaign: campaign._id,
+    comment: '',
+  });
 
-    if (comments === null) {
-        return <div>No comments</div>; // or display an error message
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUser(parsedUser);
     }
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      setComment(prevState => ({
+        ...prevState,
+        user: user._id
+      }));
+    }
+  }, [user]);
+
+  const handleInputChange = (e, setFormData) => {
+    const { name, value } = e.target;
+    setComment(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:5000/api/campaign-comment", comment);
+      console.log("Data submitted:", response.data);
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/campaign-comment/campaign/${campaign._id}`);
+        setComments(response.data || []);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+        setComments([]);
+      }
+    };
+
+    fetchComments();
+  }, [campaign._id]);
+
+  if (comments === null) {
+    return <div>No comments</div>;
+  }
+
   return (
     <>
       <Slider {...settings}>
         {/* Slide 1: About */}
         <div className="h-auto w-80 p-6 bg-neutral max-h-lg">
-<<<<<<< HEAD
-            <h1 className="mt-4 font-semibold text-lg font-josefin-sans text-center mx-8">{campaign.collected_donation} PKR raised of {campaign.target_donation} PKR</h1>
-            <div className="flex items-center justify-center">
-                <div className="bg-sage-100 w-80 h-4 rounded-full overflow-hidden border-2 border-sage-200">
-                    <div className="bg-navygreen-100 h-full" style={{ width: '80%' }}></div>
-                </div>
-            </div>
-            <div className="mt-8 flex flex-row gap-2 items-center justify-center">
-                <Button onClick={openModal} text="Donate" color="fill" />
-            </div>
+
+      
             <h1 className="mt-4 font-semibold text-lg font-josefin-sans text-center mx-8">About the Campaign</h1>
             <p className="mt-2 text-sm font-josefin-sans text-center mx-10">{campaign.description}</p>
-            <DonationModal showModal={showModal} closeModal={closeModal} campaignId={campaign._id} userId={userId} />
-=======
+            
+
           <h1 className="mt-4 font-semibold text-lg font-josefin-sans text-center mx-8">{campaign.collected_donation}PKR raised of {campaign.target_donation}PKR</h1>
           <div className="flex items-center justify-center">
             <div className="bg-sage-100 w-80 h-4 rounded-full overflow-hidden border-2 border-sage-200">
@@ -183,9 +161,8 @@ export default function CampaignDetailsCarousel({ campaign }) {
           <div className="mt-8 flex flex-row gap-2 items-center justify-center">
             <Button onClick={openModal} text="Donate" color="fill" />
           </div>
-          <h1 className="mt-4 font-semibold text-lg font-josefin-sans text-center mx-8">About the Campaign</h1>
-          <p className="mt-2 text-sm font-josefin-sans text-center mx-10">{campaign.description}</p>
->>>>>>> 62760e50c81e83b105476428619bdda6307f9880
+      
+
         </div>
         {/* Slide 2: Volunteering */}
         <div className="h-auto w-80 p-6 bg-neutral">
@@ -197,18 +174,20 @@ export default function CampaignDetailsCarousel({ campaign }) {
         </div>
         {/* Slide 3: Leaderboard */}
         <div className="h-auto w-80 p-6 bg-neutral">
-          <h1 className="mt-4 font-semibold text-lg font-josefin-sans text-center mx-8">Leaderboard</h1>
-          <div className="flex flex-row gap-2 items-center justify-center">
-            <div className="grow font-josefin-sans p-6 mx-10 rounded-md bg-navygreen-50 drop-shadow-md">
-              <p className="text-md font-semibold">Donations</p>
-              {doners.map((doner, index) => (
-                <div key={index} className="text-sm flow-root mt-2 rounded-lg bg-navygreen-100 p-2 drop-shadow-sm hover:drop-shadow-md">
-                  <p className="float-left">{doner.name}</p>
-                  <p className="float-right">{doner.amount}PKR</p>
+            <h1 className="mt-4 font-semibold text-lg font-josefin-sans text-center mx-8">Leaderboard</h1>
+            <div className="flex flex-row gap-2 items-center justify-center">
+                <div className="grow font-josefin-sans p-6 mx-10 rounded-md bg-navygreen-50 drop-shadow-md">
+                    <p className="text-md font-semibold">Donations</p>
+                    {donors && donors.map((donor, index) => (
+    donor && (
+        <div key={index} className="text-sm flow-root mt-2 rounded-lg bg-navygreen-100 p-2 drop-shadow-sm hover:drop-shadow-md">
+            <p className="float-left">{index + 1}. {donor.username}</p>
+        </div>
+    )
+))}
+
                 </div>
-              ))}
             </div>
-          </div>
         </div>
         {/* Slide 4: Comments */}
         <div className="gap-y-4 max-h-96 h-auto w-80 p-6 bg-neutral">
@@ -253,7 +232,8 @@ export default function CampaignDetailsCarousel({ campaign }) {
           </form>
         </div>
       </Slider>
-      <DonationModal showModal={showModal} closeModal={closeModal} />
+      <DonationModal showModal={showModal} closeModal={closeModal} campaignId={campaign._id} userId={userId}/>
+     
     </>
   );
 }

@@ -47,29 +47,27 @@
 //         </>
 //     );
 // }
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import axios from 'axios';
 
+  
 export default function DonationModal({ showModal, closeModal, campaignId, userId }) {
+    console.log(userId)
+    console.log(campaignId)
     const [amount, setAmount] = useState('');
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    console.log(userId)
+    const handleSubmit = async () => {
+     
 
         // Validate amount
-        if (!amount || isNaN(amount) || parseInt(amount) <= 0) {
-            alert('Please enter a valid donation amount.');
-            return;
-        }
-
+   
         try {
             const response = await axios.post('http://localhost:5000/api/donations', {
                 amount: parseInt(amount),
-            user: userId,
-                campaign: campaignId,
-
-              // Replace with actual payment method if needed
+                user: userId,
+                campaign: campaignId
+        
             });
 
             if (response.status === 201) {
@@ -121,11 +119,10 @@ export default function DonationModal({ showModal, closeModal, campaignId, userI
                                 <div>
                                     {/* Add payment method options here if needed */}
                                 </div>
-<<<<<<< HEAD
                                 <button type="submit" className="bg-navygreen-300 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-navygreen-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Donate</button>
-=======
+
                                 <button type="submit" className="bg-navygreen-300 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-navygreen-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay</button>
->>>>>>> 62760e50c81e83b105476428619bdda6307f9880
+
                             </form>
                         </div>
                     </div>

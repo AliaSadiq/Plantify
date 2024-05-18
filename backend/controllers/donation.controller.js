@@ -1,5 +1,6 @@
 const Donation = require('../models/donation.model');
 const mongoose = require('mongoose');
+
 // Create a new donation
 const createDonation = async (req, res) => {
     try {
@@ -36,14 +37,13 @@ const getAllDonations = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
 const getLeaderboard = async (req, res) => {
     const campaignId = req.query.campaignId;
 
     if (!campaignId) {
         return res.status(400).json({ message: 'Campaign ID is required' });
     }
-
-    console.log('Campaign ID:', campaignId);
 
     try {
         const leaderboard = await Donation.aggregate([
@@ -67,21 +67,19 @@ const getLeaderboard = async (req, res) => {
             {
                 $project: {
                     _id: 0,
-                    userId: '$_id',
-                    username: '$user.username',
-                    totalAmount: 1
+                    username: '$user.username'
                 }
             }
         ]);
 
-        console.log('Leaderboard:', leaderboard);
-
-        res.status(200).json(leaderboard);
+        res.status(200).json(leaderboard.map((entry, index) => ({
+            rank: index + 1,
+            username: entry.username
+        })));
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
-
 
 
 

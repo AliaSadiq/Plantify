@@ -18,6 +18,17 @@ const CamapignCardSh = ({ campaign, openPopup,shape }) => {
   const closeModal = () => {
       setShowModal(false);
   }
+  //for donate
+  const [userId, setUserId] = useState(null);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user._id) {
+        setUserId(user._id);
+        console.log("Fetched userId from localStorage:", user._id);
+
+    }
+  }, [1]);
+
   return (
     <div
       className={`relative overflow-hidden ${cardSizeClass}`} // Use the calculated size
@@ -48,7 +59,7 @@ const CamapignCardSh = ({ campaign, openPopup,shape }) => {
           </div>
         </div>
       </div>
-      <DonationModal showModal={showModal} closeModal={closeModal} />
+      <DonationModal showModal={showModal} closeModal={closeModal} campaignId={campaign._id} userId={userId}/>
     </div>
   );
 }

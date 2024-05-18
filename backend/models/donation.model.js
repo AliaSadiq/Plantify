@@ -6,7 +6,8 @@ const donationSchema = new mongoose.Schema({
         required: true
     },
     payment: {
-        type: String
+        type: String,
+        required: false
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
