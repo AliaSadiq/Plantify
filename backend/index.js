@@ -6,6 +6,7 @@ const campaignRoute = require("./routes/campaign.route.js");
 const userRoute = require("./routes/user.route.js");
 const testimonialRoute = require("./routes/testimonial.route.js");
 const campaignCommentRoute = require("./routes/campaign-comment.route.js");
+const donationRoutes = require('./routes/donation.route.js')
 const app = express();
 const rateLimit = require('express-rate-limit');
 
@@ -31,6 +32,7 @@ app.use("/api/socialgroup", socialgroupRouter);
 app.use("/api/user", userRoute);
 app.use("/api/testimonial", testimonialRoute);
 app.use("/api/campaign-comment", campaignCommentRoute);
+app.use("/api/donations",donationRoutes)
 
 
 //connection
