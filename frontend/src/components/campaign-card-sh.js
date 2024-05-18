@@ -1,24 +1,36 @@
 import {React, useState, useEffect} from "react";
 import { UserGroupIcon, HeartIcon } from "@heroicons/react/24/solid";
+import Button from "./button";
+import DonationModal from "../popups/donation-modal";
 
 const CamapignCardSh = ({ campaign, openPopup,shape }) => {
   const handleCardClick = () => {
     openPopup(campaign);
   };
   const cardSizeClass = shape === "rectangle" ? "w-[750px] h-32" : "w-80 h-52"; // Adjusted size based on shape
+  //for the popup
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+      setShowModal(true);
+  }
+
+  const closeModal = () => {
+      setShowModal(false);
+  }
   return (
     <div
       className={`relative overflow-hidden ${cardSizeClass}`} // Use the calculated size
-      onClick={handleCardClick}
     >
       <img 
         src={`/assets/${campaign.image}` }
         alt="Campaign Background" 
         className="w-full h-full object-cover" 
+        onClick={handleCardClick}
       />
-      <div className="absolute top-2 left-2 flex items-center font-josefin-sans mx-2">
+      <div className="absolute top-2 left-2 flex gap-2 items-center font-josefin-sans mx-2">
         <h2 className="text-white text-lg font-semibold mr-2">{campaign.name}</h2>
-        <button className="text-white bg-gray-100 border border-gray-100 px-[7px] py-[7px]  mr-2">Donate</button>
+        <Button text='Donate' onClick={openModal} color='fill'/>
         <HeartIcon className="h-[20px] w-[20px] text-white stroke-current mr-2 hover:text-pinky" />
       </div>
       <div className="absolute bottom-0 left-0 w-full flex justify-between p-2 bg-white bg-opacity-50 font-josefin-sans py-6">
@@ -36,6 +48,7 @@ const CamapignCardSh = ({ campaign, openPopup,shape }) => {
           </div>
         </div>
       </div>
+      <DonationModal showModal={showModal} closeModal={closeModal} />
     </div>
   );
 }

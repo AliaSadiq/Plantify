@@ -37,7 +37,49 @@ const getSocialGroup = async (req, res) => {
   }
 };
 
-  module.exports = {
-    createSocialGroup,
-    getSocialGroup,
-  };
+const getSocialGroupsOnWait = async (req, res) => {
+  try {
+    const socialGroups = await SocialGroup.find({ status: 'on wait' });
+    res.status(200).json(socialGroups);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const updateSocialGroup = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const socialGroup = await SocialGroup.findByIdAndUpdate(id, req.body);
+
+    if (!socialGroup) {
+      return res.status(404).json({ message: "Group not found" });
+    }
+
+    const updatedSocialGroup = await SocialGroup.findById(id);
+    res.status(200).json(updatedSocialGroup);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getSocialGroupByUserId = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const socialGroup = await SocialGroup.findOne({ user: userId });
+    if (!socialGroup) {
+      return res.status(404).json({ message: 'Social group not found' });
+    }
+    res.status(200).json(socialGroup);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  createSocialGroup,
+  getSocialGroup,
+  getSocialGroupsOnWait,
+  updateSocialGroup,
+  getSocialGroupByUserId,
+};

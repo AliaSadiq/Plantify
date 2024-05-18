@@ -51,7 +51,7 @@ const CampaignSchema = mongoose.Schema(
     status:{
         type: String,
         required: false,
-    }
+    },
   },
   {
     timestamps: true,

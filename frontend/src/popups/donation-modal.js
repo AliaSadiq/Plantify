@@ -85,7 +85,7 @@ export default function DonationModal({ showModal, closeModal, campaignId, userI
     return (
         <>
             {showModal && (
-                <div className="fixed inset-0 flex items-center justify-center">
+                <div className="fixed inset-0 flex items-center justify-center z-30">
                     <div className="absolute inset-0 flex items-center justify-center bg-opacity-40">
                         <div className="backdrop-blur-sm backdrop-filter relative bg-navygreen-100 rounded-lg p-8 max-w-md z-10 bg-opacity-100">
                             <button className="absolute top-2 right-2 text-gray-100" onClick={closeModal}>
@@ -117,10 +117,15 @@ export default function DonationModal({ showModal, closeModal, campaignId, userI
                                     />
                                 </div>
                                 <p className='mt-6 text-center text-mini font-josefin-sans font-semibold'>How would you like to make your donation?</p>
+                                <p className='mt-6 text-center text-mini font-josefin-sans font-semibold'>This feature is under development</p>
                                 <div>
                                     {/* Add payment method options here if needed */}
                                 </div>
+<<<<<<< HEAD
                                 <button type="submit" className="bg-navygreen-300 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-navygreen-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Donate</button>
+=======
+                                <button type="submit" className="bg-navygreen-300 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-navygreen-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay</button>
+>>>>>>> 62760e50c81e83b105476428619bdda6307f9880
                             </form>
                         </div>
                     </div>

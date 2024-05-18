@@ -15,9 +15,22 @@ const LandingPage = () => {
     const navigate = useNavigate();
 
     const handleInitiateCampaign = () => {
+        // const userLoggedIn = localStorage.getItem('user') !== null;
+        // if (userLoggedIn) {
+        //     navigate('/social-signUp');
+        // } else {
+        //     navigate('/auth-check');
+        // }
         const userLoggedIn = localStorage.getItem('user') !== null;
+
         if (userLoggedIn) {
-            navigate('/social-signUp');
+            const user = JSON.parse(localStorage.getItem('user'));
+            
+            if (user.isSocial) {
+                navigate('/verification-check');
+            } else {
+                navigate('/social-signup');
+            }
         } else {
             navigate('/auth-check');
         }
@@ -56,22 +69,26 @@ const LandingPage = () => {
             </div>
             {/* <div className='bg-pale py-20 mx-[400px] mt-20'></div> */}
             
-            <div className='text-center font-noto-sans-display px-10 bg-navygreen-100 py-20'>
-                <h1 className='text-2xl font-bold'>Together, we can make a difference.</h1>
+            <div className='text-center font-josefin-sans px-10 bg-navygreen-100 py-20'>
+                <h1 className='text-2xl font-bold'>Growing Green for a Sustainable Future.</h1>
                 {/* <p className='mt-4 font-light'>Join us in our mission to create a sustainable future for our planet. Together, we can make a positive impact on the environment by promoting eco-friendly practices, conserving natural resources, and advocating for environmental conservation. Let's work hand in hand towards building a greener and healthier world for generations to come.</p> */}
             </div>
-            <div className='flex flex-row justify-center gap-[10px] mt-20 mb-20 text-center'>
-                <div className='bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px]'>
-                    <SunIcon className="w-16 h-16" />
-                    <p className="text-sm">Empowering communities to embrace sustainable living through education, innovation, and action</p>
+            <div className='flex flex-row justify-center gap-[10px] mt-20 mb-20 font-josefin-sans text-center text-gray-100'>
+                <div className='bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] drop-shadow-lg'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                    </svg>
+                    <p className="mt-4 text-sm">Empowering communities to embrace sustainable living through education, innovation, and action</p>
                 </div>
-                <div className='bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px]'>
-                    <SunIcon className="w-16 h-16" />
-                    <p className="text-sm">Protecting biodiversity and preserving ecosystems for a greener, healthier planet.</p>
+                <div className='bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] drop-shadow-lg'>
+                    <SunIcon className='w-16 h-16'/>
+                    <p className="mt-4 text-sm">Protecting biodiversity and preserving ecosystems for a greener, healthier planet.</p>
                 </div>
-                <div className='bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px]'>
-                    <SunIcon className="w-16 h-16" />
-                    <p className="text-sm">Leading the charge in environmental conservation through advocacy, collaboration, and eco-conscious initiatives.</p>
+                <div className='bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] drop-shadow-lg'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25" />
+                    </svg>
+                    <p className="mt-4 text-sm">Leading the charge in environmental conservation through advocacy, collaboration, and eco-conscious initiatives.</p>
                 </div>
             </div>
             {/* About div */}
