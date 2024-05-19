@@ -6,12 +6,9 @@ const campaignRoute = require("./routes/campaign.route.js");
 const userRoute = require("./routes/user.route.js");
 const testimonialRoute = require("./routes/testimonial.route.js");
 const campaignCommentRoute = require("./routes/campaign-comment.route.js");
-<<<<<<< HEAD
 const userMessageRoute = require("./routes/user-message.route.js");
 const campaignReportRoute = require("./routes/campaign-report.route.js");
-=======
 const donationRoutes = require('./routes/donation.route.js')
->>>>>>> 34490253c3f7586c394f919b73d3781b526b3781
 const app = express();
 const rateLimit = require('express-rate-limit');
 
@@ -37,12 +34,9 @@ app.use("/api/socialgroup", socialgroupRouter);
 app.use("/api/user", userRoute);
 app.use("/api/testimonial", testimonialRoute);
 app.use("/api/campaign-comment", campaignCommentRoute);
-<<<<<<< HEAD
 app.use("/api/user-message", userMessageRoute);
 app.use("/api/campaign-report", campaignReportRoute);
-=======
 app.use("/api/donations",donationRoutes)
->>>>>>> 34490253c3f7586c394f919b73d3781b526b3781
 
 
 //connection
