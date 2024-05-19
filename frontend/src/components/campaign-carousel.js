@@ -102,7 +102,7 @@ function CampaignCarousel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev < campaigns.length - 1 ? prev + 1 : 0)); // Auto-transition every 5 seconds
-    }, 5000);
+    }, 7000);
 
     return () => clearInterval(interval); // Cleanup to prevent memory leaks
   }, []);

@@ -360,8 +360,10 @@
 // };
 
 // export default Profile;
-import React, { useState } from 'react';
 
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faCamera, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { CameraIcon, PencilIcon } from "@heroicons/react/24/solid";
@@ -441,8 +443,107 @@ const RequestCampaignForm = ({ onClose }) => {
   );
 };
 
-const Profile: React.FC = () => {
+// const Profile: React.FC = () => {
+//   const [isRequestFormVisible, setRequestFormVisible] = useState(false);
+//   const handleEditProfileImage = () => {
+//     alert('Edit profile image clicked!');
+//     // Add your logic here to handle profile image editing
+//   };
+
+//   const handleEditName = () => {
+//     alert('Edit name clicked!');
+//     // Add your logic here to handle name editing
+//   };
+
+//   const handleEditDescription = () => {
+//     alert('Edit description clicked!');
+//     // Add your logic here to handle description editing
+//   };
+
+//   return (
+//     <div className="w-[1100px] h-[550px] mx-auto bg-white overflow-hidden rounded-tl-lg rounded-tr-lg relative">
+   
+//    <div className="relative">
+//   <img
+//     className="w-full h-[200px] object-cover"
+   
+//     src= 'https://images.unsplash.com/photo-1571771019784-3ff35f4f4277?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'// replace with actual header image URL
+//     alt="Header"
+//   />
+//   <div className="absolute inset-0 flex justify-center items-center">
+//     <div className="relative mt-[200px]"> {/* Apply larger negative top margin */}
+//     <div className="relative">
+//         <div className="w-40 h-40 overflow-hidden">
+//           <img
+//             className="w-full h-full object-cover rounded-full border-4 border-white"
+//             src="https://via.placeholder.com/150" // replace with actual profile image URL
+//             alt="Profile"
+//           />
+       
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </div>
+
+//       <div className="text-center mt-[100px]">
+//         <div className="flex justify-center items-center space-x-2">
+//           <h2 className="text-lg font-semibold">Danish Heilium</h2>
+//           <button onClick={handleEditName} className="text-gray-500 cursor-pointer">
+//           <PencilIcon className="h-4 w-4" />
+//           </button>
+//         </div>
+       
+//         <div className="mt-5 flex justify-center space-x-4">
+//           <div className="text-center">
+//             <span className="block text-lg font-bold">5</span>
+//             <span className="text-black-500">Campaigns</span>
+//           </div>
+//           <button type="button" className="font-josefin-sans text-sm font-semibold text-white bg-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100" onClick={() => setRequestFormVisible(true)}>Request</button>
+        
+//         </div>
+//         <div className="mt-6 w-[750px] mx-auto text-black-700 text-sm relative text-center">
+//           <p>
+//             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fermentum urna, eu condimentum mauris tempus ut. Donec fermentum blandit aliquet. Etiam dictum dapibus ultricies. Sed vel aliquet libero. Nunc a augue fermentum, pharetra ligula sed, aliquam lacus.
+//           </p>
+//           <button
+//             onClick={handleEditDescription}
+//             className="text-gray-500 absolute top-0  self-center right-0 cursor-pointer mt-1 mr-1"
+//           >
+//              <PencilIcon className="h-4 w-4" />
+//           </button>
+//         </div>
+//       </div>
+//       {isRequestFormVisible && (
+//         <RequestCampaignForm
+//           onClose={() => setRequestFormVisible(false)} // Event handler to close the popup
+//         />
+//       )}
+//       </div>
+
+    
+//   );
+// };
+
+// export default Profile;
+const Profile = () => {
+  const { id } = useParams();
   const [isRequestFormVisible, setRequestFormVisible] = useState(false);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/socialgroup/${id}`);
+        setUserData(response.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [id]);
+
   const handleEditProfileImage = () => {
     alert('Edit profile image clicked!');
     // Add your logic here to handle profile image editing
@@ -458,68 +559,68 @@ const Profile: React.FC = () => {
     // Add your logic here to handle description editing
   };
 
+  if (!userData) {
+    return <div>Loading...</div>;
+  }
+  console.log(userData.banner);
+
   return (
     <div className="w-[1100px] h-[550px] mx-auto bg-white overflow-hidden rounded-tl-lg rounded-tr-lg relative">
-   
-   <div className="relative">
-  <img
-    className="w-full h-[200px] object-cover"
-   
-    src= 'https://images.unsplash.com/photo-1571771019784-3ff35f4f4277?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'// replace with actual header image URL
-    alt="Header"
-  />
-  <div className="absolute inset-0 flex justify-center items-center">
-    <div className="relative mt-[200px]"> {/* Apply larger negative top margin */}
-    <div className="relative">
-        <div className="w-40 h-40 overflow-hidden">
-          <img
-            className="w-full h-full object-cover rounded-full border-4 border-white"
-            src="https://via.placeholder.com/150" // replace with actual profile image URL
-            alt="Profile"
-          />
-       
+      <div className="relative">
+        <img
+          className="w-full h-[200px] object-cover"
+          src={`/assets/${userData.banner}` }
+     
+          // src= {userData.banner || 'https://images.unsplash.com/photo-1571771019784-3ff35f4f4277?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ'} // Replace with actual header image URL
+          alt="Header"
+        />
+        <div className="absolute inset-0 flex justify-center items-center">
+          <div className="relative mt-[200px]">
+            <div className="relative">
+              <div className="w-40 h-40 overflow-hidden">
+                <img
+                  className="w-full h-full object-cover rounded-full border-4 border-white"
+                  src={`/assets/${userData.banner}` } // Replace with actual profile image URL
+                  alt="Profile"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
       <div className="text-center mt-[100px]">
         <div className="flex justify-center items-center space-x-2">
-          <h2 className="text-lg font-semibold">Danish Heilium</h2>
-          <button onClick={handleEditName} className="text-gray-500 cursor-pointer">
-          <PencilIcon className="h-4 w-4" />
-          </button>
-        </div>
+          <h2 className="text-lg font-semibold">{userData.name}</h2>
        
+        </div>
+
         <div className="mt-5 flex justify-center space-x-4">
           <div className="text-center">
             <span className="block text-lg font-bold">5</span>
             <span className="text-black-500">Campaigns</span>
           </div>
-          <button type="button" className="font-josefin-sans text-sm font-semibold text-white bg-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100" onClick={() => setRequestFormVisible(true)}>Request</button>
-        
-        </div>
-        <div className="mt-6 w-[750px] mx-auto text-black-700 text-sm relative text-center">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fermentum urna, eu condimentum mauris tempus ut. Donec fermentum blandit aliquet. Etiam dictum dapibus ultricies. Sed vel aliquet libero. Nunc a augue fermentum, pharetra ligula sed, aliquam lacus.
-          </p>
           <button
-            onClick={handleEditDescription}
-            className="text-gray-500 absolute top-0  self-center right-0 cursor-pointer mt-1 mr-1"
+            type="button"
+            className="font-josefin-sans text-sm font-semibold text-white bg-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100"
+            onClick={() => setRequestFormVisible(true)}
           >
-             <PencilIcon className="h-4 w-4" />
+            Request
           </button>
         </div>
-      </div>
-      {isRequestFormVisible && (
-        <RequestCampaignForm
-          onClose={() => setRequestFormVisible(false)} // Event handler to close the popup
-        />
-      )}
+
+        <div className="mt-6 w-[750px] mx-auto text-black-700 text-sm relative text-center">
+          <p>
+            {userData.description || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fermentum urna, eu condimentum mauris tempus ut. Donec fermentum blandit aliquet. Etiam dictum dapibus ultricies. Sed vel aliquet libero. Nunc a augue fermentum, pharetra ligula sed, aliquam lacus.'}
+          </p>
+       
+        </div>
       </div>
 
-    
+      {isRequestFormVisible && (
+        <RequestCampaignForm onClose={() => setRequestFormVisible(false)} />
+      )}
+    </div>
   );
 };
 

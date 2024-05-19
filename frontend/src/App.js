@@ -110,6 +110,7 @@ import AuthCheck from './pages/check';
 import VerificationCheck from './pages/verification-check';
 import Onboard from './pages/dashboard-pages/onboard';
 import Profile from './profileComp/profile-full';
+// import Profile from './components/profile';
 import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import DashboardLayout from './Layout/dashboard-layout';
@@ -146,6 +147,24 @@ function App() {
   return (
     <BrowserRouter>
       <AppContent />
+      <NavBar/>
+      <Routes>
+          <Route index element={<LandingPage/>}/>
+          <Route path="campaign" element={<CampaignPage/>} />
+           <Route path="campaign/socialGroup/:id" element={<Profile/>} /> 
+          <Route path="home" element={<HomePage/>} />
+          <Route path="login" element={<LoginPage/>} />
+          <Route path="logout" element={<Logout/>} />
+          <Route path="shop" element={<Shop/>} />
+          <Route path="plantify-network" element={<PlantifyNetwork/>} />
+          <Route path="contact-us" element={<ContactUsPage/>} />
+          <Route path="about-us" element={<PlantifyNetwork/>} />
+          <Route path="social-signUp" element={<SocialSignUpPage/>} />
+          <Route path="settings" element={<SettingsPage/>} />
+          <Route path='auth-check' element={<AuthCheck/>} />
+          <Route path='verification-check' element={<VerificationCheck/>} />
+      </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 }
