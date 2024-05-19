@@ -78,7 +78,7 @@ const NavBar = () => {
                 <div className="flex gap-4 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     {user ? (
                         <>
-                            <p className='self-center'>{user.username}</p>
+                            <p className={`self-center font-josefin-sans ${isScrolled ? 'text-white' : 'text-gray-100'} transition-colors duration-1000 ease-in-out`}>{user.username}</p>
                             <ProfileDropdown/>
                         </>
                     ) : (
@@ -93,9 +93,14 @@ const NavBar = () => {
                 </div>
                 <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                     <ul className={`flex flex-col p-4 md:p-0 mt-4 font-josefin-sans text-sm md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 ${isScrolled ? 'text-white' : 'text-gray-100'} transition-colors duration-1000 ease-in-out`}>
-                        <li>
+                        {/* <li>
                             <Link to="/home"  className="navbar-link py-2 px-3 hover:font-semibold" aria-current="page">Home</Link>
-                        </li>
+                        </li> */}
+                        {user && (
+                            <li>
+                                <Link to="/personal-growth" className="navbar-link py-2 px-3 hover:font-semibold">Personal Growth</Link>
+                            </li>
+                        )}
                         <li>
                             <Link to="/shop" className="navbar-link py-2 px-3 hover:font-semibold">Shop</Link>
                         </li>
@@ -107,12 +112,7 @@ const NavBar = () => {
                         </li>
                         {user && (
                             <li>
-                                <Link to="/personal-growth" className="navbar-link py-2 px-3 hover:font-semibold">Personal Growth</Link>
-                            </li>
-                        )}
-                        {user && (
-                            <li>
-                                <Link to="/dashboard" className="navbar-link py-2 px-3 hover:font-semibold">Dashboard</Link>
+                                <Link to="/social-dashboard" className="navbar-link py-2 px-3 hover:font-semibold">Dashboard</Link>
                             </li>
                         )}
                         <li>

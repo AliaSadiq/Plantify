@@ -39,7 +39,12 @@ const LandingPage = () => {
     const [showModal, setShowModal] = useState(false);
 
     const openModal = () => {
-        setShowModal(true);
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            navigate('/campaign');
+        } else {
+            setShowModal(true);
+        }
     }
 
     const closeModal = () => {

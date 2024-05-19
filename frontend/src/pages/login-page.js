@@ -22,7 +22,7 @@ const LoginPage = () => {
             if (response.status === 200) {
                 //storing the user in local storage.
                 localStorage.setItem('user', JSON.stringify(response.data));
-                navigate('/home'); // Navigate to homepage on successful login
+                navigate('/personal-growth'); // Navigate to homepage on successful login
                 // Reload the window to ensure the changes take effect immediately
                 window.location.reload()
             } else {

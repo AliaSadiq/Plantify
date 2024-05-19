@@ -10,10 +10,6 @@ const CampaignSchema = mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: 'SocialGroup',
     },
-    comments:[{
-      type: Schema.Types.ObjectId,
-      ref: 'CampaignComment',
-    }],
     description: {
       type: String,
       required: true

@@ -57,7 +57,7 @@ const CampaignDetailsPopup = ({ campaign, closePopup }) => {
           <CampaignDetailsCarousel campaign={campaign}/>
         </div>
       </div>
-      <ReportModal showModal={showModal} closeModal={closeModal} />
+      <ReportModal campaign={campaign} showModal={showModal} closeModal={closeModal} />
     </div>
 
   );

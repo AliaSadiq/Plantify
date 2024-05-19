@@ -115,6 +115,7 @@ const SocialSignUpPage = () => {
             setUser(updatedUser);
 
             navigate('/');
+            alert('Please wait until your social group has been verified, It can take a few days.')
         } catch (error) {
             console.error("Error submitting data:", error);
             
