@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { XYPlot, LineSeries, XAxis, YAxis, VerticalGridLines, HorizontalGridLines } from 'react-vis';
+import Button from '../components/button';
 
 const HomePage = () => {
     const [user, setUser] = useState(null);
@@ -30,6 +31,10 @@ const HomePage = () => {
         { x: 9, y: 0 }
     ];
 
+    const handleGoToCampaigns = () => {
+        navigate("/campaign");
+    }
+
     return (
         <div>
             <div className='text-center font-josefin-sans bg-navygreen-100 px-10 py-40'>
@@ -37,8 +42,8 @@ const HomePage = () => {
                     <>
                         <p className='text-2xl font-bold'>Hello {user.username}!</p>
                         <p className='text-lg font-bold'>This is your own Personal Area on Plantify</p>
-                        <p className='mt-20 text-mini'>Check out the latest campaigns and be a part of the initiative.</p>
-                        <button type="button" className="mt-4 font-josefin-sans text-sm font-semibold text-gray-100 p-4 rounded hover:rounded-full border-2 border-gray-100">Go to Campaigns</button>
+                        <p className='mt-20 mb-4 text-mini'>Check out the latest campaigns and be a part of the initiative.</p>
+                        <Button text="Go to Campaigns" onClick={handleGoToCampaigns} />
                     </>
                 ) : (
                     <p>Loading...</p>

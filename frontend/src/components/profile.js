@@ -182,7 +182,7 @@ const Profile = () => {
       >
         <img
           className="w-full h-[200px] object-cover"
-          src={`/assets/${userData.}` }
+          src={`/assets/testimonial-1.jpeg` }
           alt="Header"
         />
         <div className="absolute inset-0 flex justify-center items-center">
