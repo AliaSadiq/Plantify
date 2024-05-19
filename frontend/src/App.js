@@ -22,6 +22,7 @@ import VerificationCheck from './pages/verification-check';
 // import ContactUsPage from './pages/Admin/contact-us-page';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Profile from './profileComp/profile-full';
+// import Profile from './components/profile';
 import React from 'react';
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
       <Routes>
           <Route index element={<LandingPage/>}/>
           <Route path="campaign" element={<CampaignPage/>} />
-          {/* <Route path="campaign/socialGroup/:id" element={<SocialProfilePage/>} /> */}
+           <Route path="campaign/socialGroup/:id" element={<Profile/>} /> 
           <Route path="home" element={<HomePage/>} />
           <Route path="login" element={<LoginPage/>} />
           <Route path="logout" element={<Logout/>} />

@@ -236,7 +236,7 @@ function SocialProfilePage() {
   return (
     
     
-    <div className='w-full bg-palegreen-100 mt-10'>
+    <div className='w-full bg-white mt-[110px]'>
     
     
           <Profile/>
