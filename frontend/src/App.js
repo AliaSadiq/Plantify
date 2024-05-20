@@ -107,6 +107,7 @@ import ContactUsPage from './pages/contact-us-page';
 import SocialSignUpPage from './pages/social-signup-page';
 import SettingsPage from './pages/settings';
 import AuthCheck from './pages/check';
+import Profile from './profileComp/profile-full';
 import VerificationCheck from './pages/verification-check';
 import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
@@ -123,6 +124,7 @@ const AppContent = () => {
         <Route index element={<LandingPage />} />
         <Route path="campaign" element={<CampaignPage />} />
         <Route path="personal-growth" element={<HomePage />} />
+        <Route path="campaign/social-group/:id" element={<Profile/>} />
         <Route path="login" element={<LoginPage />} />
         <Route path="logout" element={<Logout />} />
         <Route path="shop" element={<Shop />} />

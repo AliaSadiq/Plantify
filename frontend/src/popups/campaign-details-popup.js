@@ -51,7 +51,7 @@ const CampaignDetailsPopup = ({ campaign, closePopup }) => {
         {/* Share Icon */}
         <div className='text-center font-josefin-sans'>
           <h1 className='relative text-xl font-bold'>{campaign.name}</h1>
-          <p className='relative font-light'>A campaign by <Link to={`/campaign/socialGroup/${campaign.socialGroup._id}`} className="text-gray-100 hover:text-pinky"><span className='font-semibold'>{campaign.socialGroup.name}</span></Link></p>
+          <p className='relative font-light'>A campaign by <Link to={`/campaign/social-group/${campaign.socialGroup._id}`} className="text-gray-100 hover:text-pinky"><span className='font-semibold'>{campaign.socialGroup.name}</span></Link></p>
         </div>
         <div className='mx-20 mt-10 max-w-3xl'>
           <CampaignDetailsCarousel campaign={campaign}/>

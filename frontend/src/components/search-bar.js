@@ -3,7 +3,7 @@ import React from 'react';
 const SearchBar = ({ onSearch }) => {
     const handleInputChange = (event) => {
         const query = event.target.value;
-        //onSearch(query);
+        onSearch(query); // Call the onSearch function with the query
     };
 
     return (

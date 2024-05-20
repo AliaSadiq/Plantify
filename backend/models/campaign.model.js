@@ -48,6 +48,10 @@ const CampaignSchema = mongoose.Schema(
         type: String,
         required: false,
     },
+    volunteers: {
+      type: Number,
+      require: false
+    }
   },
   {
     timestamps: true,

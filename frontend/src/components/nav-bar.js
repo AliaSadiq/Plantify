@@ -1,13 +1,16 @@
+// 
 import React, { useState, useEffect } from 'react';
 import logo from '../images/leaf.png';
 import { Link } from "react-router-dom";
 import SignUpModal from '../popups/signup-modal';
 import avatar from '../images/testimonial-3.jpeg';
 import ProfileDropdown from '../dropdowns/profile-dropdown';
+import axios from 'axios';
 
 const NavBar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [user, setUser] = useState(null);
+    const [isSocialAccepted, setIsSocialAccepted] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -20,14 +23,6 @@ const NavBar = () => {
         };
 
         window.addEventListener('scroll', handleScroll);
-
-        // // Retrieve user information from local storage
-        // const storedUser = localStorage.getItem('user');
-        // if (storedUser) {
-        //     const parsedUser = JSON.parse(storedUser);
-        //     setUser(parsedUser);
-        // }
-
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -44,12 +39,20 @@ const NavBar = () => {
     }, []);
 
     useEffect(() => {
-        if (user) {
-            console.log('user: ' + user._id)
-            console.log('user: ' + user.username);
-            console.log('user: ' + user.password);  // Be cautious about logging sensitive information
-            console.log('user: ' + user.email);
-            console.log('user: ' + user.isSocial);
+        const checkSocialGroupStatus = async (userId) => {
+            try {
+                const response = await axios.get(`http://localhost:5000/api/socialgroup/${userId}`);
+                const socialGroup = response.data;
+                if (socialGroup && socialGroup.status === 'accepted') {
+                    setIsSocialAccepted(true);
+                }
+            } catch (error) {
+                console.error('Error fetching social group:', error);
+            }
+        };
+
+        if (user && user.isSocial) {
+            checkSocialGroupStatus(user._id);
         }
     }, [user]);
 
@@ -70,7 +73,7 @@ const NavBar = () => {
     }
 
     return(
-        <nav className={`fixed w-full z-30 top-0 start-0  ${isScrolled ? 'bg-gray-100' : 'bg-transparent'} transition-colors duration-1000 ease-in-out`}>
+        <nav className={`fixed w-full z-30 top-0 start-0 ${isScrolled ? 'bg-gray-100' : 'bg-transparent'} transition-colors duration-1000 ease-in-out`}>
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src={logo} className="h-8" alt="Plantify Logo"></img> <span className='font-josefin-sans text-lg font-semibold text-navygreen-300 '>Plantify</span>
@@ -93,9 +96,6 @@ const NavBar = () => {
                 </div>
                 <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                     <ul className={`flex flex-col p-4 md:p-0 mt-4 font-josefin-sans text-sm md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 ${isScrolled ? 'text-white' : 'text-gray-100'} transition-colors duration-1000 ease-in-out`}>
-                        {/* <li>
-                            <Link to="/home"  className="navbar-link py-2 px-3 hover:font-semibold" aria-current="page">Home</Link>
-                        </li> */}
                         {user && (
                             <li>
                                 <Link to="/personal-growth" className="navbar-link py-2 px-3 hover:font-semibold">Personal Growth</Link>
@@ -110,7 +110,7 @@ const NavBar = () => {
                         <li>
                             <Link to="/plantify-network" className="navbar-link py-2 px-3 hover:font-semibold">Plantify Network</Link>
                         </li>
-                        {user && (
+                        {user && isSocialAccepted && (
                             <li>
                                 <Link to="/social-dashboard" className="navbar-link py-2 px-3 hover:font-semibold">Dashboard</Link>
                             </li>

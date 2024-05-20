@@ -15,12 +15,6 @@ const LandingPage = () => {
     const navigate = useNavigate();
 
     const handleInitiateCampaign = () => {
-        // const userLoggedIn = localStorage.getItem('user') !== null;
-        // if (userLoggedIn) {
-        //     navigate('/social-signUp');
-        // } else {
-        //     navigate('/auth-check');
-        // }
         const userLoggedIn = localStorage.getItem('user') !== null;
 
         if (userLoggedIn) {
@@ -72,11 +66,9 @@ const LandingPage = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className='bg-pale py-20 mx-[400px] mt-20'></div> */}
             
             <div className='text-center font-josefin-sans px-10 bg-navygreen-100 py-20'>
                 <h1 className='text-2xl font-bold'>Growing Green for a Sustainable Future.</h1>
-                {/* <p className='mt-4 font-light'>Join us in our mission to create a sustainable future for our planet. Together, we can make a positive impact on the environment by promoting eco-friendly practices, conserving natural resources, and advocating for environmental conservation. Let's work hand in hand towards building a greener and healthier world for generations to come.</p> */}
             </div>
             <div className='flex flex-row justify-center gap-[10px] mt-20 mb-20 font-josefin-sans text-center text-gray-100'>
                 <div className='bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] drop-shadow-lg'>
@@ -152,25 +144,6 @@ const LandingPage = () => {
                     <h1 className="text-3xl font-bold">Get your Plant today</h1>
                     <p className="mt-2 text-mini text-justify">Enhance your space with our diverse selection of plants. Choose your favorite from our wide variety and bring nature into your home today.</p>
                     <div className='mt-10 text-mini'><Link to='/shop'><Button text="Shop now!"/></Link></div>
-                    
-                    {/* <div className="flex flex-col items-center justify-center mt-20 mb-10">
-                        <h1 className='text-xl font-bold font-josefin-sans'>Best of our Products for you</h1>
-                        <div className='flex flex-row gap-[20px] items-center justify-center mt-10'>
-                            <div className='bg-ivory p-8 w-[318px] h-[394px] rounded-lg hover:shadow-lg'>
-                                <img src={prod1} alt="Product 1" className="w-full h-full object-cover rounded-lg" />
-                            </div>
-                            <div className='bg-ivory p-8 w-[318px] h-[394px] rounded-lg hover:shadow-lg'>
-                                <img src={prod2} alt="Product 2" className="w-full h-full object-cover rounded-lg" />
-                            </div>
-                            <div className='bg-ivory p-8 w-[318px] h-[394px] rounded-lg hover:shadow-lg'>
-                                <img src={prod3} alt="Product 3" className="w-full h-full object-cover rounded-lg" />
-                            </div>
-                            <div className='bg-ivory p-8 w-[318px] h-[394px] rounded-lg hover:shadow-lg'>
-                                <img src={prod4} alt="Product 4" className="w-full h-full object-cover rounded-lg" />
-                            </div>
-                        </div>
-                        <Link to="/shop"> <p className='mt-8'>view all products</p> </Link>
-                    </div> */}
                 </div>
             </div>
             {/* Campaigns showcase */}

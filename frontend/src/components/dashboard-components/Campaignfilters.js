@@ -721,7 +721,7 @@ const FilterableCampaigns = () => {
     // Fetch campaigns here
     const fetchCampaigns = async () => {
             try {
-              const response = await axios.get('http://localhost:5000/api/campaigns'); // Replace '/api/campaigns' with your actual backend API endpoint
+              const response = await axios.get('http://localhost:5000/api/campaigns');
               setCampaigns(response.data.campaigns);
             } catch (error) {
               console.error('Error fetching campaigns:', error);
@@ -741,7 +741,7 @@ const FilterableCampaigns = () => {
     if (filter === 'all') {
       return true;
     }
-    return campaign.Status === filter;
+    return campaign.status === filter;
   });
 
   return (

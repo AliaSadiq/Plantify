@@ -9,8 +9,8 @@ const getCampaigns = async (req, res) => {
         description: 1,
         image: 1,
         location: 1,
-        start_date: { $dateToString: { format: "%d-%m-%Y", date: "$start_date" } },
-        end_date: { $dateToString: { format: "%d-%m-%Y", date: "$end_date" } },
+        start_date: 1,
+        end_date: 1,
         target_donation: 1,
         collected_donation: 1,
         status: 1

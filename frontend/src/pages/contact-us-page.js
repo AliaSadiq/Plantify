@@ -33,24 +33,24 @@ const ContactUsPage = () => {
   return (
     <div className="bg-cover bg-center h-screen pt-10" style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="absolute inset-0 backdrop-blur-lg backdrop-filter bg-ivory bg-opacity-50"></div>
-      <div className="absolute container mx-auto flex justify-center items-center h-full">
-        <div className="w-1/2">
+      <div className="absolute container mx-auto lg:flex lg:flex-row md:flex-col sm:flex-col justify-center items-center h-full">
+        <div className="lg:w-1/2 sm:w-1/4">
           <div className="ml-40 mr-20 font-josefin-sans text-gray-100">
-            <h1 className="text-2xl font-bold mb-4">Connect with Us!</h1>
-            <p className="text-mini mb-8">
+            <h1 className="lg:text-2xl sm:text-lg font-bold mb-4">Connect with Us!</h1>
+            <p className="lg:text-mini sm:text-sm mb-8">
               We're eager to hear from you, whether it's questions, feedback, or just a friendly chat. Let's start a conversation!
             </p>
           </div>
         </div>
-        <div className="w-1/2">
+        <div className="lg:w-1/2 sm:w-1/4">
           <div className="bg-navygreen-200 mr-40 font-josefin-sans backdrop-blur-sm backdrop-filter bg-opacity-60 p-8 rounded-lg">
-            <h2 className="text-2xl font-bold mb-4">Send us a message</h2>
+            <h2 className="lg:text-2xl md:text-xl sm:text-xl font-bold mb-4">Send us a message</h2>
             <form>
               <label htmlFor="name" className="block font-mini font-josefin-sans mb-1">Name</label>
-              <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
+              <div className="flex items-center bg-neutral mb-4 lg:py-2 lg:px-3 sm:py-1 sm:px-2 rounded-2xl">
                 <input
                   id="name"
-                  className="bg-inherit pl-2 w-full outline-none border-none"
+                  className="bg-inherit rounded-lg pl-2 w-full outline-none border-none"
                   type="text"
                   name="name"
                   placeholder="Enter your name"
@@ -59,10 +59,10 @@ const ContactUsPage = () => {
                 />
               </div>
               <label htmlFor="email" className="block font-mini font-josefin-sans mb-1">Email</label>
-              <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
+              <div className="flex items-center bg-neutral mb-4 lg:py-2 lg:px-3 sm:py-1 sm:px-2 rounded-2xl">
                 <input
                   id="email"
-                  className="bg-inherit pl-2 w-full outline-none border-none"
+                  className="bg-inherit rounded-lg pl-2 w-full outline-none border-none"
                   type="email"
                   name="email"
                   placeholder="Enter your email"
@@ -72,10 +72,10 @@ const ContactUsPage = () => {
                 />
               </div>
               <label htmlFor="message" className="block font-mini font-josefin-sans mb-1">Message</label>
-              <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
+              <div className="flex items-center bg-neutral mb-4 lg:py-2 lg:px-3 sm:py-1 sm:px-2 rounded-2xl">
                 <textarea
                   id="message"
-                  className="bg-inherit pl-2 w-full outline-none border-none"
+                  className="bg-inherit rounded-lg pl-2 w-full outline-none border-none"
                   name="message"
                   placeholder="Enter detail about your message"
                   value={formData.message}
