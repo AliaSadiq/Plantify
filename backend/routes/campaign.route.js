@@ -5,7 +5,7 @@ const {getCampaign, getCampaigns, createCampaign,socialgroupCampaigns, addCommen
 
 router.get('/', getCampaigns);
 router.get("/:id", getCampaign);
-router.get("/social/:social_Id", socialgroupCampaigns);
+router.get('/socialgroup/:socialId', socialgroupCampaigns)
 router.post("/", createCampaign);
 
 module.exports = router;

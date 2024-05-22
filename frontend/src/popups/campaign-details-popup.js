@@ -29,17 +29,17 @@ const CampaignDetailsPopup = ({ campaign, closePopup }) => {
           <XMarkIcon className="h-6 w-6" />
         </button>
         <div className='absolute flex flex-row gap-2 top-2 left-2'>
-          <button 
+          {/* <button 
             className="text-gray-100 hover:text-gray-800 focus:outline-none" 
           >
             <ShareIcon className="h-6 w-6" />
-          </button>
+          </button> */}
           {/* Like Icon */}
-          <button 
+          {/* <button 
             className="text-gray-100 hover:text-gray-800 focus:outline-none" 
           >
             <HeartIcon className="h-6 w-6" />
-          </button>
+          </button> */}
           {/* Report Icon */}
           <button 
             onClick={openModal}

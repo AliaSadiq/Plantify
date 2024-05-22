@@ -29,6 +29,7 @@ function SamplePrevArrow(props) {
 
 export default function TestimonialCarousel() {
   var settings = {
+    arrows: false,
     dots: true,
     infinite: true,
     speed: 500,
@@ -57,12 +58,12 @@ export default function TestimonialCarousel() {
         {testimonials.map((testimonial) => (
             <div className="w-full overflow-hidden flex flex-row justify-start px-2 py-4 relative text-black text-sm font-inter">
                 <img
-                className="h-64 w-64 rounded-full object-cover mr-10"
+                className="w-40 h-40 lg:h-64 lg:w-64 rounded-full object-cover mr-10"
                 loading="lazy"
                 alt=""
                 src={`/assets/${testimonial.image}`}
                 />
-                <div className="bg-pale-100 rounded-lg p-4 z-10 relative ml-[180px] mr-10 mt-[-100px]">
+                <div className="bg-pale-100 rounded-lg p-4 z-10 relative ml-[100px] mt-[-50px] lg:ml-[180px] mr-10 lg:mt-[-100px]">
                     <div className="absolute top-0 right-0 bottom-0 left-0 rounded-lg bg-oldlace" />
                     <div className="text-left text-sm font-josefin-sans">{testimonial.testimony}</div>
                     <div className="text-right mt-4 text-sm font-josefin-sans font-semibold">{testimonial.name}</div>

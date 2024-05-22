@@ -67,7 +67,7 @@ const CamapignCardSh = ({ campaign, openPopup,shape }) => {
         <div className="text-white font-josefin-sans">
           <div className="text-gray-100 flex items-center">
             <UserGroupIcon className="h-4 w-4 text-gray-100 mr-1" />
-            <p className="text-xs font-light">10 Volunteers</p>
+            <p className="text-xs font-light">{campaign.volunteers} Volunteers</p>
           </div>
           <div className="bg-sage-100 h-2 rounded-full overflow-hidden border-2 border-white mt-[8px]">
             <div className="bg-navygreen-300 h-full" style={{ width: `${(campaign.collected_donation / campaign.targeted_donation) * 100}%` }}></div>

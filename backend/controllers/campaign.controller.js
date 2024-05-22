@@ -13,7 +13,8 @@ const getCampaigns = async (req, res) => {
         end_date: 1,
         target_donation: 1,
         collected_donation: 1,
-        status: 1
+        status: 1,
+        volunteers: 1
       });
     res.status(200).json(campaigns);
   } catch (error) {
@@ -51,21 +52,26 @@ const createCampaign = async (req, res) => {
 
 
 const socialgroupCampaigns = async (req, res) => {
-  try {
-    const social_Id = req.params.social_Id;
-    console.log('Received social_Id:', social_Id); // Add this line for debugging
-    const socialIdAsInt = parseInt(social_Id, 10);
-
-    if (isNaN(socialIdAsInt)) {
-      return res.status(400).json({ message: 'Invalid social_Id provided' });
-    }
-
-    const userCampaigns = await Campaign.find({ socialId: socialIdAsInt });
-    res.status(200).json(userCampaigns);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+    try {
+      const { socialId } = req.params; // Correctly destructure the parameter from req.params
+      console.log('Received socialId:', socialId); // Log the received ID
+  
+      // Verify that socialId is a valid ObjectId format if needed
+      if (!mongoose.Types.ObjectId.isValid(socialId)) {
+        return res.status(400).json({ message: 'Invalid socialId provided' });
+      }
+  
+      const userCampaigns = await Campaign.find({ socialGroup: socialId }); // Change findOne to find
+      if (!userCampaigns.length) {
+        return res.status(404).json({ message: 'No campaigns found for this social group' });
+      }
+  
+      res.status(200).json(userCampaigns);
+    } catch (error) {
+      console.error('Error fetching campaigns:', error);
+      res.status(500).json({ message: error.message });
+    }
+  };
 
 module.exports = {
     getCampaign,

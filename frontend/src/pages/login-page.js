@@ -73,7 +73,7 @@ const LoginPage = () => {
                         <input className="pl-2 outline-none border-none" type="password" name="password" id="password" placeholder="Password" value={user.password} onChange={handleInput}/>
                     </div>
                     <button type="submit" className="block w-full bg-navygreen-200 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Login</button>
-                    <span className="text-sm ml-2 hover:text-blue-500 cursor-pointer">Forgot Password ?</span>
+                    {/* <span className="text-sm ml-2 hover:text-blue-500 cursor-pointer">Forgot Password ?</span> */}
                 </form>
             </div>
         </div>

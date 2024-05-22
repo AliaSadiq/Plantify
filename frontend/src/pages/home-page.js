@@ -68,12 +68,12 @@ const HomePage = () => {
 
     return (
         <div>
-            <div className='flex flex-col w-full items-center justify-between text-center font-josefin-sans bg-navygreen-100 px-4 py-10 sm:px-6 sm:py-20 md:px-10 md:py-40 lg:px-16 lg:py-56'>
+            <div className='flex flex-col w-full items-center justify-between text-center font-josefin-sans bg-navygreen-100 px-4 py-40 lg:px-16 lg:py-56'>
                 {user ? (
                     <>
                         <p className='text-xl sm:text-2xl lg:text-3xl font-bold'>Hello {user.username}!</p>
-                        <p className='text-base sm:text-lg lg:text-xl font-bold'>This is your own Personal Area on Plantify</p>
-                        <p className='mt-10 sm:mt-20 mb-2 sm:mb-4 text-sm sm:text-base'>Check out the latest campaigns and be a part of the initiative.</p>
+                        <p className='text-base lg:text-xl font-bold'>This is your own Personal Area on Plantify</p>
+                        <p className='mb-4 mt-10 text-sm lg:text-mini'>Check out the latest campaigns and be a part of the initiative.</p>
                         <Button text="Go to Campaigns" onClick={handleGoToCampaigns} />
                     </>
                 ) : (
@@ -220,16 +220,16 @@ const HomePage = () => {
                                     <p className="text-black font-semibold w-20">13:20</p>
                                     <div className="h-10 w-1 bg-green-500 ml-2"></div>
                                     <div className="ml-4">
-                                        <p className="text-green-500">Design</p>
-                                        <p className="text-gray-800">Task Management</p>
+                                        <p className="text-green-500">Khanpur</p>
+                                        <p className="text-gray-800">by RGC</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center">
                                     <p className="text-black font-semibold w-20">10:00</p>
                                     <div className="h-10 w-1 bg-blue-500 ml-2"></div>
                                     <div className="ml-4">
-                                        <p className="text-blue-500">Dribbble Shot</p>
-                                        <p className="text-gray-800">Meet Up</p>
+                                        <p className="text-blue-500">Gulberg Campaign</p>
+                                        <p className="text-gray-800">by Riphah Green Club</p>
                                     </div>
                                 </div>
                             </div>
@@ -249,8 +249,8 @@ const HomePage = () => {
                                     <p className="text-black font-semibold w-20">11:00</p>
                                     <div className="h-10 w-1 bg-green-500 ml-2"></div>
                                     <div className="ml-4">
-                                        <p className="text-green-500">Design</p>
-                                        <p className="text-gray-800">Mobile App</p>
+                                        <p className="text-green-500">Multan Campaign</p>
+                                        <p className="text-gray-800">by Green Pakistan</p>
                                     </div>
                                 </div>
                             </div>
@@ -273,6 +273,7 @@ const HomePage = () => {
                         </div>
                     </div>
                     <div className='p-8 bg-navygreen-100 drop-shadow-xl rounded-xl font-josefin-sans'>
+                        <h1 className='mb-6 font-semibold text-lg text-gray-100'>Donation Status</h1>
                         <Line data={data} options={options}/>
                     </div>
                 </div>

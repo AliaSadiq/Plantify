@@ -36,8 +36,8 @@ const ContactUsPage = () => {
       <div className="absolute container mx-auto lg:flex lg:flex-row md:flex-col sm:flex-col justify-center items-center h-full">
         <div className="lg:w-1/2 sm:w-1/4">
           <div className="ml-40 mr-20 font-josefin-sans text-gray-100">
-            <h1 className="lg:text-2xl sm:text-lg font-bold mb-4">Connect with Us!</h1>
-            <p className="lg:text-mini sm:text-sm mb-8">
+            <h1 className="text-2xl font-bold mb-4">Connect with Us!</h1>
+            <p className="lg:text-mini sm:hidden mb-8">
               We're eager to hear from you, whether it's questions, feedback, or just a friendly chat. Let's start a conversation!
             </p>
           </div>
