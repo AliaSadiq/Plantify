@@ -10,6 +10,8 @@ module.exports = {
           "100": "#F9F9EB",
           "200": "#D4E7C5",
           "300": "#dcf4a9",
+          "400": "#b7ce6e",
+          "500": "#a0bf40"
         },
         gray: {
           "100": "#222",
@@ -49,7 +51,8 @@ module.exports = {
         gg:"#E0F7E6",
         greentop:"#61CE95",
         dashboard:"#8AA07C",
-        dbhover:"#768c67"
+        dbhover:"#768c67",
+        prom:"#8ba25d",
       },
       spacing: {},
       fontFamily: {

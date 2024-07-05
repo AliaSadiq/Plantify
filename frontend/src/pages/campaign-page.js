@@ -117,7 +117,7 @@ const CampaignPage = () => {
 
   //jsx
   return (
-    <div>
+    <div className='bg-neutral'>
       <CampaignHeaderCarousel/>
       <div className='flow-root mt-20 mb-10 ml-20 mr-[450px]'>
         <p className="float-left text-xl font-bold text-gray-100 font-josefin-sans">List of all the campaigns</p>

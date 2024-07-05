@@ -98,7 +98,7 @@ import Footer from './components/footer';
 import NavBar from './components/nav-bar';
 import LandingPage from './pages/landing-page';
 import CampaignPage from './pages/campaign-page';
-import HomePage from './pages/home-page';
+import HomePage from './pages/personal-growth-page';
 import LoginPage from './pages/login-page';
 import Shop from './pages/shop';
 import Logout from './pages/logout';
