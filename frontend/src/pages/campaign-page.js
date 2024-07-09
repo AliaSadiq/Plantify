@@ -132,7 +132,7 @@ const CampaignPage = () => {
         <div className='ml-20 grid grid-cols-1 md:gap-4 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-10'>
           {/* Render CampaignCardSh components for each filtered campaign */}
           {filteredCampaigns.map(campaign => (
-            <CampaignCardSh key={campaign._id} campaign={campaign} openPopup={openPopup}/>
+            <CampaignCardSh key={campaign._id} campaign={campaign}/>
           ))}
         </div>
         <div className="mr-10">

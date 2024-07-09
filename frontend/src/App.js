@@ -99,6 +99,7 @@ import NavBar from './components/nav-bar';
 import LandingPage from './pages/landing-page';
 import CampaignPage from './pages/campaign-page';
 import HomePage from './pages/personal-growth-page';
+import CampaignDetailsPage from './pages/campaign-details-page';
 import LoginPage from './pages/login-page';
 import Shop from './pages/shop';
 import Logout from './pages/logout';
@@ -124,6 +125,7 @@ const AppContent = () => {
         <Route index element={<LandingPage />} />
         <Route path="campaign" element={<CampaignPage />} />
         <Route path="personal-growth" element={<HomePage />} />
+        <Route path="campaign-details" element={<CampaignDetailsPage />} />
         <Route path="campaign/social-group/:id" element={<Profile/>} />
         <Route path="login" element={<LoginPage />} />
         <Route path="logout" element={<Logout />} />
