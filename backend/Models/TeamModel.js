@@ -6,25 +6,10 @@ const TeamSchema = mongoose.Schema(
       type: String,
       required: [true, "Please enter campaign name"],
     },
-    
-    location:{
+    role: {
       type: String,
       required: true,
-    },
-
-    city:{
-      type: String,
-      required: false, // Changed to false
-    },
-      bio: { // Changed to lowercase "description"
-      type: String,
-      required: false, // Changed to true if it's required
-      default: "", // Changed default value to an empty string
-    },
-    Status: {
-      type: String,
-      enum: ['ongoing', 'past', 'future'],
-      default: 'ongoing', // Default status if not provided
+      default: "member",
     },
     profilePic: { // Changed to lowercase "images"
       type: String, // Changed to an array of strings

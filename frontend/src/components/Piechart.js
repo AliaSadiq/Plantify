@@ -11,7 +11,7 @@ const PieChartGraph = () => {
         height: '2px',
       },
       labels: [],
-      colors: ['#243624', '#406440', '#5B935B', '#77C077'],
+      colors: ['#DDE6D6', '#8E9688', '#99BC85', '#77C077',],
     },
   });
 

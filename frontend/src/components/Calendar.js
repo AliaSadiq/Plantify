@@ -20,24 +20,24 @@ const Calendar = ({ events }) => {
   
 
   return (
-    <div className="right-2 top-72 p-2 bg-white rounded-md h-auto w-56 shadow-md">
+    <div className="right-2  mt-14 p-2 bg-white rounded-md h-56  w-56 shadow-md">
       <div className="flex flex-col md:flex-row justify-between items-center mb-4">
         <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))}>
           Prev
         </button>
-        <h2 className="text-lg font-bold">{currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()}</h2>
+        <h2 className="text-md font-bold">{currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()}</h2>
         <button onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1))}>
           Next
         </button>
       </div>
       <div className="grid grid-cols-7 gap-1">
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-          <div key={day} className="text-xs md:text-sm text-center">{day}</div>
+          <div key={day} className="text-lg md:text-sm text-center">{day}</div>
         ))}
         {getDaysInMonth().map(day => (
           <div
             key={day}
-            className={`text-xs md:text-sm text-center ${hasEvent(day) ? 'bg-blue-500 text-white rounded-full' : ''}`}
+            className={`text-lg md:text-sm text-center ${hasEvent(day) ? 'bg-blue-500 text-white rounded-full' : ''}`}
           >
             {day}
           </div>

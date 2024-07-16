@@ -43,7 +43,7 @@ const app = express();
 
 const campaignRoutes = require("./Routes/campaignRoutes.js");
 const requestRoutes = require("./Routes/requestRoutes.js");
-const teamRoutes = require("./Routes/teamRoutes.js");
+const teamRoutes = require("./Routes/TeamRoutes.js");
 
 
 // Middleware
@@ -62,14 +62,21 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/campaigns", campaignRoutes);
-app.use("/api/requests", requestRoutes);
+app.use("/api/campaignrequests", requestRoutes);
 app.use("/api/teams", teamRoutes);
 
 
 // MongoDB connection
 mongoose
-  .connect("mongodb+srv://aliaakhaann11:8G0Vq0PHwuL0TsXU@plantify.8dzi6cr.mongodb.net/", { useNewUrlParser: true, useUnifiedTopology: true })
+  // .connect("mongodb+srv://aliaakhaann11:8G0Vq0PHwuL0TsXU@plantify.8dzi6cr.mongodb.net/", { useNewUrlParser: true, useUnifiedTopology: true })
+  
+//  .connect("mongodb+srv://farwa:@backenddb.uhcz40u.mongodb.net/?retryWrites=true&w=majority&appName=BackendDB")
+//   .then(() => {
+
+.connect("mongodb+srv://farwa:006OyU1ZCZhowFSt@backenddb.uhcz40u.mongodb.net/Plantify?retryWrites=true&w=majority&appName=BackendDB")
+
   .then(() => {
+
     console.log("Connection is successful!");
     app.listen(5000, () => {
       console.log("Server is running on port 5000");

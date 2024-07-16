@@ -1,41 +1,42 @@
 
 import React from "react";
-import Calendar from "../components/Calendar.js";
-import PieChartGraph from "../components/Piechart.js";
+ import Calendar from "../components/Calendar.js";
+ import PieChartGraph from "../components/Piechart.js";
 import RequestCampaign from "../components/requestCampaigns.js";
-import Team from "../components/Team.js";
-import CampaignGraph from"../components/campaignGraph.js"
+ import Team from "../components/Team.js";
+// import AreaChart from"../components/AreaChart.js"
+import CampaignChart from "../components/campaignGraph.js";
 const Onboard = () => {
 
   return (
 
-    <div className="flex h-full">
+    <div className="flex h-full  bg-ivory bg-opacity-50">
       <div className="font-josefin-sans text-gary-100 ">
-        <h1 className="text-2xl font-bold p-full pt-5 pl-2">Dashboard</h1>
+        <h1 className="text-lg font-bold p-full pt-5 pl-2">Dashboard</h1>
         <div className="flex">
         <div className="perspective flex-1">
   <div className="box-border  h-56 top-5 bg-white rounded-md shadow  ml-2 relative">
-    <div className="absolute top-0 left-10 text-lg font-bold">Campaign Graph</div>
+    <div className="absolute font-semibold top-0 left-5 text-md font-bold">Campaign Graph</div>
     
-    <CampaignGraph />
+    <CampaignChart />
   </div>
   
 </div>
 
 <div className="perspective flex-1">
-  <div className="box-border  h-56 top-5 bg-white rounded-md shadow ml-2 relative">
-    <div className="absolute top-0 left-10 text-lg font-bold">Locations</div>
+  <div className="box-border h-56 top-5 bg-white rounded-md shadow ml-2 relative">
+    <div className="absolute top-0 left-1 text-md font-semibold">Locations</div>
     <div className="h-80 w-80 mr-15 pt-10">
     <PieChartGraph />
     </div>
   </div>
 </div>
 </div>
-<div className="box-border h-64 top-10 bg-white rounded-md shadow-lg ml-2 relative" >
+<div className="box-border  h-72 top-8 bg-white rounded-md shadow-lg ml-2 relative" >
 <RequestCampaign/>
 </div>
       <div className="absolute  text-black top-0 right-0 px-20 py-80">
-       <div className="fixed right-0.5 top-2 shadow-md rounded-l-full h-16 w-48 bg-gg"> 
+       {/* <div className="fixed right-0.5 top-2 shadow-md rounded-l-full h-16 w-48 bg-gg"> 
           <div className="absolute top-2 right-2 flex items-center">
              <div className=" flex flex-col right-2">
               <span className="text-sm font-medium">Alia Sadiq</span>
@@ -49,16 +50,16 @@ const Onboard = () => {
               alt="Profile Picture"
             />
            </div> 
-        </div> 
+        </div>  */}
         {/* <div> */}
-        <div className="absolute right-3 h-48 top-20 flex items-center  ">
+        <div className="absolute right-3 h-52 top-10 flex items-center  ">
           <Calendar />
         </div>
         {/* <div> */}
-        <div className="absolute right-1 top-1 flex items-center ">
+        <div className="absolute right-1 top-3  flex items-center ">
         <Team/>
         </div>
-      
+        
 {/* </div>  */}
 
  </div>  

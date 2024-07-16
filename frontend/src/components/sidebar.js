@@ -5,11 +5,11 @@ import { FaChartLine, FaBullhorn, FaCalendarAlt, FaUser, FaChartBar, FaArrowLeft
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col h-full w-52 bg-dashboard text-white">
+    <div className="flex flex-col h-full  w-52 bg-ivory text-white">
       <div className="flex items-center justify-start ml-10 h-16 border-b border-gray-800">
         <div className="flex items-start">
-          <FaChartLine className="text-green text-2xl mr-2" />
-          <span className="text-xl font-semibold">Plantify</span>
+          <FaChartLine className="text-black  text-xl mt-1 mr-2" />
+          <span className="text-lg  text-black font-semibold">Plantify</span>
         </div>
       </div>
       <div className="flex flex-col p-4 space-y-4 flex-grow">

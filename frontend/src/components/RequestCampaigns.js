@@ -15,7 +15,7 @@ const RequestCampaign = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/requests");
+        const response = await axios.get("http://localhost:5000/api/campaignrequests");
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -32,7 +32,7 @@ const RequestCampaign = () => {
 
   const handleReject = (campaign) => {
     // Your reject logic here
-    setRejectedMessage(`${campaign.name} campaign has been rejected.`);
+    setRejectedMessage(`${campaign.title} campaign has been rejected.`);
     setData(data.filter(item => item !== campaign)); // Remove the rejected campaign from the list
     setSelectedCampaign(null); // Clear selected campaign
   };
@@ -45,7 +45,7 @@ const RequestCampaign = () => {
   return (
     <div className="container mx-auto p-4 overflow-auto" style={{ maxHeight: "250px" }}>
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold">Campaign Requests</h1>
+        <h1 className="text-md font-bold">Campaign Requests</h1>
         <input
           type="text"
           placeholder="Search..."
@@ -57,11 +57,11 @@ const RequestCampaign = () => {
       <div className="flex flex-col space-y-4">
         {Array.isArray(data) &&
           data
-            .filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
+            .filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
             .map((item, index) => (
               <div
                 key={index}
-                className={`flex items-center justify-between p-4 rounded-lg shadow-md ${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
+                className={`flex items-center justify-between p-4 rounded-lg shadow-md ${index % 2 === 0 ? "bg-gray-" : "bg-white"}`}
                 onClick={() => handleCampaignClick(item)}
               >
                 <div className="flex items-center cursor-pointer">
@@ -71,8 +71,8 @@ const RequestCampaign = () => {
                     className="w-12 h-12 rounded-full mr-4"
                   /> */}
                   <div>
-                    <h2 className="text-lg font-semibold">{item.name}</h2>
-                    <p className="text-gray-600">{item.description}</p>
+                    <h2 className="text-sm font-semibold">{item.title}</h2>
+                    <p className="text-gray-600">{item.location}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
@@ -83,7 +83,9 @@ const RequestCampaign = () => {
             ))}
       </div>
       {showPopup && selectedCampaign && (
-  <div className="fixed inset-0  bg-dashboard bg-opacity-10 flex items-center  justify-center">
+  <div className="fixed inset-0  bg-dashboard bg-opacity
+  
+  -10 flex items-center  justify-center">
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm py-50">
       <div className="flex items-center mb-4">
        
@@ -94,7 +96,7 @@ const RequestCampaign = () => {
           alt={selectedCampaign.name}
           className="w-16 h-16 rounded-full mr-4"
         /> */}
-          <h2 className="text-xl font-bold">{selectedCampaign.name}</h2>
+          <h2 className="text-sm font-bold">{selectedCampaign.title}</h2>
           <p className="text-gray-600 text"><strong>Location: </strong>{selectedCampaign.location}</p>
 
           <p className="text-gray-600 text whitespace-pre-wrap"><strong>Description:</strong> {selectedCampaign.description}</p>
@@ -102,7 +104,7 @@ const RequestCampaign = () => {
       </div>
       <div className="flex justify-end space-x-4">
         <button
-          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          className="px-4 py-2  bg-greentop text-white rounded hover:bg-green-600"
           onClick={() => handleAccept(selectedCampaign)}
         >
           Accept

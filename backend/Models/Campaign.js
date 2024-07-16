@@ -1,59 +1,64 @@
-const mongoose = require('mongoose');
+const {mongoose, Schema} = require("mongoose");
 
 const CampaignSchema = mongoose.Schema(
   {
-    title: {
+    name: {
       type: String,
-      required: [false, "Please enter campaign name"],
+      required: [true, "Please enter campaign name"],
     },
-    description:{
-      type: String,
-      required:false,
-     
+    socialGroup:{
+      type: Schema.Types.ObjectId,
+      ref: 'SocialGroup',
     },
-    startDate: {
+    description: {
       type: String,
-      required: false,
-     
+      required: true
     },
-    endData:{
+    image: {
       type: String,
-      required:false,
+      required: true,
+      default: 0,
     },
-    location:{
+    location: {
       type: String,
-      required:false,
+      required: true,
+      default: 0,
     },
-    city: {
-      type: String,
-      required: false,
-    },
-    banner: {
-      type: String,
+    start_date: {
+      type: Date,
       required: false,
     },
-   targetDonation:{
-      type:Number,
-      required: false,
-      default:0,
+    end_date: {
+        type: Date,
+        required: false,
     },
-    
-    volunteers:{
-      type: [Number],
-      required: false,
-      default:[],
-    },  
+    target_donation:{
+        type: Number,
+        required: true,
+    },
+    collected_donation:{
+        type: Number,
+        required: false,
+    },
+    likes: {
+      type: Number,
+      require: false,
+    },
     status:{
-      type: String,
-      required:true,
-      
+        type: String,
+        required: false,
     },
+    volunteers: {
+      type: Number,
+      require: false
+    }
   },
   {
     timestamps: true,
   }
- );
+);
 
-const campaign = mongoose.model("Campaign", CampaignSchema); // Pass ProductSchema object here
 
-module.exports = campaign;
+const Campaign = mongoose.model("Campaign", CampaignSchema);
+
+module.exports = Campaign;

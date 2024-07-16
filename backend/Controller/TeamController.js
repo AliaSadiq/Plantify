@@ -1,10 +1,7 @@
-const member = require("../Models/TeamModel.js");
-//onst Team = require('../Models/Team'); // Assuming you have a Team model defined
-
-// Controller functions
+const Team = require("../Models/TeamModel.js");
 const getTeams = async (req, res) => {
   try {
-    const teams = await member.find();
+    const teams = await Team.find();
     res.status(200).json(teams);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -13,7 +10,7 @@ const getTeams = async (req, res) => {
 
 const getTeam = async (req, res) => {
   try {
-    const team = await member.findById(req.params.id);
+    const team = await Team.findById(req.params.id);
     if (team) {
       res.status(200).json(team);
     } else {
@@ -26,10 +23,12 @@ const getTeam = async (req, res) => {
 
 const addTeam = async (req, res) => {
   try {
-    const { name, role } = req.body;
-    const profilePic = req.file ? req.file.filename : null;
+    const { name, role,profilePic } = req.body;
+    console.log(name);
+    console.log(role);
+    console.log(profilePic);
     
-    const newTeamMember = new member({
+    const newTeamMember = new Team({
       name,
       role,
       profilePic
@@ -44,10 +43,9 @@ const addTeam = async (req, res) => {
 
 const updateTeam = async (req, res) => {
   try {
-    const { name, role } = req.body;
-    const profilePic = req.file ? req.file.filename : null;
+    const { name, role,profilePic } = req.body;
 
-    const updatedTeamMember = await member.findByIdAndUpdate(req.params.id, {
+    const updatedTeamMember = await Team.findByIdAndUpdate(req.params.id, {
       name,
       role,
       profilePic
@@ -61,7 +59,7 @@ const updateTeam = async (req, res) => {
 
 const deleteTeam = async (req, res) => {
   try {
-    await member.findByIdAndDelete(req.params.id);
+    await Team.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: 'Team member deleted successfully' });
   } catch (error) {
     res.status(500).json({ error: error.message });
