@@ -280,7 +280,7 @@ const CampaignCardSh = ({ campaign, openPopup, shape }) => {
 
   return (
     <div
-      className={`bg-white rounded-[20px] w-80 shadow-lg overflow-hidden font-josefin-sans p-2`} // Rounded corners and shadow for a card look
+      className={`bg-white rounded-[20px] w-80 shadow-2xl overflow-hidden font-josefin-sans p-2`} // Rounded corners and shadow for a card look
     >
       {/* Image Section */}
       <div className="relative">

@@ -9,6 +9,8 @@ export default function CampaignDetailsPage() {
     const { id } = useParams();
     const [campaign, setCampaign] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState('progress'); // State for managing active tab
+
 
     //volunteers popup
     const handleOpenModal = () => {
@@ -133,11 +135,42 @@ export default function CampaignDetailsPage() {
                             />
                         </div>
                     </div>
-                    <div className="flex">
+                    {/* Tabs Section */}
+                    <div className="flex mt-4">
+                        <button
+                            className={`relative p-4 rounded-t-lg ${activeTab === 'progress' ? 'bg-gray-200' : 'bg-gray-100'} flex-1`}
+                            onClick={() => setActiveTab('progress')}
+                        >
+                            Campaign Progress
+                        </button>
+                        <button
+                            className={`relative p-4 rounded-t-lg ${activeTab === 'trees' ? 'bg-gray-200' : 'bg-gray-100'} flex-1`}
+                            onClick={() => setActiveTab('trees')}
+                        >
+                            Trees to be Planted
+                        </button>
+                    </div>
+                    <div className="p-4 bg-gray-200 rounded-b-lg">
+                        {activeTab === 'progress' && (
+                            <div>
+                                <h2 className="text-xl font-semibold mb-4">Campaign Progress</h2>
+                                <p>Details about campaign progress...</p>
+                                {/* Add detailed content about the campaign progress here */}
+                            </div>
+                        )}
+                        {activeTab === 'trees' && (
+                            <div>
+                                <h2 className="text-xl font-semibold mb-4">Trees to be Planted</h2>
+                                <p>Details about trees to be planted...</p>
+                                {/* Add detailed content about the trees to be planted here */}
+                            </div>
+                        )}
+                    </div>
+                    {/* <div className="flex">
                         <div className="relative bg-pinky p-4 mt-4 rounded-[20px] w-full">
                             <h2 className="text-center">Campaign Progress</h2>
                         </div>
-                    </div>
+                    </div> */}
                     {/* <div class="flex items-center justify-center" x-data="{ circumference: 2 * 22 / 7 * 120 }">
                         <svg class="transform -rotate-90 w-72 h-72">
                             <circle cx="145" cy="145" r="120" stroke="currentColor" stroke-width="30" fill="transparent"
