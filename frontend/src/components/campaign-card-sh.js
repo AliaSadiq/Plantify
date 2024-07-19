@@ -229,7 +229,7 @@
 // export default CampaignCardSh;
 
 import { React, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { UserGroupIcon, HeartIcon } from "@heroicons/react/24/solid";
 import Button from "./button";
 import DonationModal from "../popups/donation-modal";
@@ -284,12 +284,13 @@ const CampaignCardSh = ({ campaign, openPopup, shape }) => {
     >
       {/* Image Section */}
       <div className="relative">
-        <img
-          src={`/assets/${campaign.image}`}
-          alt="Campaign Background"
-          className="w-full h-28 object-cover rounded-[20px]"
-          onClick={handleCardClick}
-        />
+        <Link to={`/campaign-details/${campaign._id}`}>
+          <img
+            src={`/assets/${campaign.image}`}
+            alt="Campaign Background"
+            className="w-full h-28 object-cover rounded-[20px]"
+          />
+        </Link>
         {/* Heart Icon */}
         <div className="absolute top-2 right-2">
           <HeartIcon className="w-6 text-red-500" />
@@ -343,7 +344,7 @@ const CampaignCardSh = ({ campaign, openPopup, shape }) => {
         <div className="flex justify-between items-center">
           <div className="flex items-center text-gray-500">
             <UserGroupIcon className="h-4 w-4 mr-1" />
-            <p className="text-sm">{campaign.volunteers} Volunteers</p>
+            <p className="text-sm">{campaign.volunteers} Donations</p>
           </div>
         </div>
       </div>

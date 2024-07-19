@@ -26,7 +26,20 @@ const getCampaigns = async (req, res) => {
 const getCampaign = async (req, res) => {
   try {
     const { id } = req.params;
-    const campaign = await Campaign.findById(id);
+    const campaign = await Campaign.findById(id)
+      .populate('socialGroup') // Populate the socialGroup field
+      .select({
+        name: 1,
+        description: 1,
+        image: 1,
+        location: 1,
+        start_date: 1,
+        end_date: 1,
+        target_donation: 1,
+        collected_donation: 1,
+        status: 1,
+        volunteers: 1
+      });
     res.status(200).json(campaign);
   } catch (error) {
     res.status(500).json({ message: error.message });

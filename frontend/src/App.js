@@ -125,7 +125,7 @@ const AppContent = () => {
         <Route index element={<LandingPage />} />
         <Route path="campaign" element={<CampaignPage />} />
         <Route path="personal-growth" element={<HomePage />} />
-        <Route path="campaign-details" element={<CampaignDetailsPage />} />
+        <Route path="campaign-details/:id" element={<CampaignDetailsPage />} />
         <Route path="campaign/social-group/:id" element={<Profile/>} />
         <Route path="login" element={<LoginPage />} />
         <Route path="logout" element={<Logout />} />
@@ -153,4 +153,5 @@ function App() {
 }
 
 export default App;
+
 
