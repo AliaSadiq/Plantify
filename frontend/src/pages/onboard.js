@@ -2,10 +2,10 @@
 import React from "react";
  import Calendar from "../components/Calendar.js";
  import PieChartGraph from "../components/Piechart.js";
-import RequestCampaign from "../components/requestCampaigns.js";
- import Team from "../components/Team.js";
+import RequestCampaign from "../components/RequestCampaigns.js";
+ import Team from "../components/team.js";
 // import AreaChart from"../components/AreaChart.js"
-import CampaignChart from "../components/campaignGraph.js";
+import CampaignChart from "../components/CampaignGraph.js";
 const Onboard = () => {
 
   return (

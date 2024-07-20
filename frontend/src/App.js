@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Layout from '../src/components/Layout';
 import Onboard from './pages/onboard.js';
 import Campaigns from '../src/pages/Campaigns';
-import Profile from './pages/Profile.js';
+import Profile from './pages/profile.js';
 import Insight from '../src/pages/Insights.js';
 import CreateCampaignForm from '../src/pages/createCampaign.js';
 import EditCampaignForm from './pages/editCampaign.js';

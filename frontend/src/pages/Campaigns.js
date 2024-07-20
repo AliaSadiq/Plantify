@@ -2,7 +2,7 @@ import React from "react";
 import FilterableCampaigns from "../components/Filters.js";
 import CampaignList from "../components/CampaignList.js";
 import Calendar from "../components/Calendar";
-import Team from "../components/Team.js";
+import Team from "../components/team.js";
 import { FaPlusCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
