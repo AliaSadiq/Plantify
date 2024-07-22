@@ -4,6 +4,7 @@ import Button from '../components/button';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
 import { Label } from 'recharts';
+import CustomCalendar from '../components/custom-calendar';
 
 ChartJS.register(
     LineElement,
@@ -178,14 +179,15 @@ const HomePage = () => {
                         <Line data={data} options={options}/>
                     </div>
                 </div> */}
-                <div className='flow-root ml-20 bg-pinky w-[55%]'>
-                    <h1 className='float-left font-bold text-md'>
+                <div className='ml-20 w-[55%]'>
+                    {/* <h1 className='float-left font-bold text-md'>
                         Event Calendar
-                    </h1>
-                    <div className='float-right'>
+                    </h1> */}
+                    {/* <div className='float-right'>
                         <button className='rounded-full bg-yolk p-8'></button>
                         <button className='rounded-full bg-yolk p-8'></button>
-                    </div>
+                    </div> */}
+                    <CustomCalendar/>
                 </div>
             </div>
         </div>
