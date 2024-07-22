@@ -1,0 +1,36 @@
+/* CustomCalendar.css */
+.calendar-container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.react-calendar {
+    width: 100%;
+    border: none;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.react-calendar__tile {
+    position: relative;
+}
+
+.event-marker {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    color: black;
+}
+
+.react-calendar__tile--active {
+    background: #006edc;
+    color: white;
+}
+
+.react-calendar__tile--active:hover,
+.react-calendar__tile--active:focus {
+    background: #005bb5;
+}

@@ -4,6 +4,7 @@ import Button from '../components/button';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
 import { Label } from 'recharts';
+import CustomCalendar from '../components/custom-calendar';
 
 ChartJS.register(
     LineElement,
@@ -80,8 +81,8 @@ const HomePage = () => {
                     <p>Loading...</p>
                 )}
             </div>
-            <div className='flex flex-col lg:flex-row gap-10 lg:gap-20 items-start bg-neutral text-gray-100 py-20 lg:py-40 rounded-t-[78px] mt-[-50px] lg:mt-[-100px]'>
-                <div className='bg-neutral w-full lg:w-auto px-4 md:px-6 lg:px-10 py-8 lg:py-0 max-w-2xl'>
+            <div className='flex flex-col lg:flex-row gap-10 lg:gap-20 items-start bg-neutral text-gray-100 py-20 lg:py-20 rounded-t-[78px] mt-[-50px] lg:mt-[-100px]'>
+                {/* <div className='bg-neutral w-full lg:w-auto px-4 md:px-6 lg:px-10 py-8 lg:py-0 max-w-2xl'>
                     <h1 className='font-bold font-josefin-sans text-lg mb-4'>Event Calendar</h1>
                     <div className="font-josefin-sans space-y-6 relative">
                         <div className="absolute left-4 sm:left-6 md:left-8 top-0 bottom-0 w-1 bg-gray-300"></div>
@@ -157,8 +158,8 @@ const HomePage = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className='flex flex-col gap-y-10 lg:gap-y-20 w-full lg:w-auto px-4 md:px-6 lg:px-0 py-8 lg:py-0 mr-0 lg:mr-10'>
+                </div> */}
+                {/* <div className='flex flex-col gap-y-10 lg:gap-y-20 w-full lg:w-auto px-4 md:px-6 lg:px-0 py-8 lg:py-0 mr-0 lg:mr-10'>
                     <div className='flex flex-col lg:flex-row gap-4 lg:gap-10'>
                         <div className='p-8 bg-navygreen-100 rounded-lg drop-shadow-lg'>
                             <h1 className='text-md font-semibold font-josefin-sans'>Challenge 1</h1>
@@ -177,6 +178,16 @@ const HomePage = () => {
                         <h1 className='mb-6 font-semibold text-lg text-gray-100'>Donation Status</h1>
                         <Line data={data} options={options}/>
                     </div>
+                </div> */}
+                <div className='ml-20 w-[55%]'>
+                    {/* <h1 className='float-left font-bold text-md'>
+                        Event Calendar
+                    </h1> */}
+                    {/* <div className='float-right'>
+                        <button className='rounded-full bg-yolk p-8'></button>
+                        <button className='rounded-full bg-yolk p-8'></button>
+                    </div> */}
+                    <CustomCalendar/>
                 </div>
             </div>
         </div>
