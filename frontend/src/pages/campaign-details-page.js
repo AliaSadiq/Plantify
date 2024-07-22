@@ -136,36 +136,38 @@ export default function CampaignDetailsPage() {
                         </div>
                     </div>
                     {/* Tabs Section */}
-                    <div className="flex mt-4">
-                        <button
-                            className={`relative p-4 rounded-t-lg ${activeTab === 'progress' ? 'bg-gray-200' : 'bg-gray-100'} flex-1`}
-                            onClick={() => setActiveTab('progress')}
-                        >
-                            Campaign Progress
-                        </button>
-                        <button
-                            className={`relative p-4 rounded-t-lg ${activeTab === 'trees' ? 'bg-gray-200' : 'bg-gray-100'} flex-1`}
-                            onClick={() => setActiveTab('trees')}
-                        >
-                            Trees to be Planted
-                        </button>
-                    </div>
-                    <div className="p-4 bg-gray-200 rounded-b-lg">
-                        {activeTab === 'progress' && (
-                            <div>
-                                <h2 className="text-xl font-semibold mb-4">Campaign Progress</h2>
-                                <p>Details about campaign progress...</p>
-                                {/* Add detailed content about the campaign progress here */}
+                        <div className="flex justify-center">
+                            <div className="text-sm flex items-center p-4 gap-2 justify-center mt-4 bg-neutral max-w-fit rounded-pl">
+                                <button
+                                    className={`max-w-fit p-4 rounded-pl hover:bg-navygreen-200 ${activeTab === 'progress' ? 'bg-navygreen-200' : 'bg-neutral'} flex-1`}
+                                    onClick={() => setActiveTab('progress')}
+                                >
+                                    Campaign Progress
+                                </button>
+                                <button
+                                    className={`max-w-fit p-4 rounded-pl hover:bg-navygreen-200 ${activeTab === 'trees' ? 'bg-navygreen-200' : 'bg-neutral'} flex-1`}
+                                    onClick={() => setActiveTab('trees')}
+                                >
+                                    Trees to be Planted
+                                </button>
                             </div>
-                        )}
-                        {activeTab === 'trees' && (
-                            <div>
-                                <h2 className="text-xl font-semibold mb-4">Trees to be Planted</h2>
-                                <p>Details about trees to be planted...</p>
-                                {/* Add detailed content about the trees to be planted here */}
-                            </div>
-                        )}
-                    </div>
+                        </div>
+                        <div className="p-4 mt-2 bg-gray-200 rounded-b-lg">
+                            {activeTab === 'progress' && (
+                                <div>
+                                    <h2 className="text-xl font-semibold mb-4">Campaign Progress</h2>
+                                    <p>Details about campaign progress...</p>
+                                    {/* Add detailed content about the campaign progress here */}
+                                </div>
+                            )}
+                            {activeTab === 'trees' && (
+                                <div>
+                                    <h2 className="text-xl font-semibold mb-4">Trees to be Planted</h2>
+                                    <p>Details about trees to be planted...</p>
+                                    {/* Add detailed content about the trees to be planted here */}
+                                </div>
+                            )}
+                        </div>
                     {/* <div className="flex">
                         <div className="relative bg-pinky p-4 mt-4 rounded-[20px] w-full">
                             <h2 className="text-center">Campaign Progress</h2>

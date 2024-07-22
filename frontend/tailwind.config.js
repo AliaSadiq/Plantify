@@ -63,6 +63,7 @@ module.exports = {
         xl: "20px",
         "mid-6": "17.6px",
         "smi-8": "12.8px",
+        "pl": "20px", //plantify reserved
         "11xl": "30px",
       },
     },
