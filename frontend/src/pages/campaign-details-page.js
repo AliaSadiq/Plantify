@@ -4,12 +4,20 @@ import axios from "axios";
 import Button from '../components/button';
 import { Link } from "react-router-dom";
 import VolunteeringModal from "../popups/volunteering-modal";
+import Tabs from "../components/tabs";
+import { CarouselDefault } from "../carousels/trees-to-be-planted-carousel";
 
 export default function CampaignDetailsPage() {
     const { id } = useParams();
     const [campaign, setCampaign] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    //tabs
     const [activeTab, setActiveTab] = useState('progress'); // State for managing active tab
+    //declaring tabs 
+    const tabs = [
+        { value: 'progress', label: 'Campaign Progress' },
+        { value: 'trees', label: 'Trees to be Planted' }
+    ];
 
 
     //volunteers popup
@@ -136,53 +144,53 @@ export default function CampaignDetailsPage() {
                         </div>
                     </div>
                     {/* Tabs Section */}
-                    <div className="flex mt-4">
-                        <button
-                            className={`relative p-4 rounded-t-lg ${activeTab === 'progress' ? 'bg-gray-200' : 'bg-gray-100'} flex-1`}
-                            onClick={() => setActiveTab('progress')}
-                        >
-                            Campaign Progress
-                        </button>
-                        <button
-                            className={`relative p-4 rounded-t-lg ${activeTab === 'trees' ? 'bg-gray-200' : 'bg-gray-100'} flex-1`}
-                            onClick={() => setActiveTab('trees')}
-                        >
-                            Trees to be Planted
-                        </button>
-                    </div>
-                    <div className="p-4 bg-gray-200 rounded-b-lg">
-                        {activeTab === 'progress' && (
-                            <div>
-                                <h2 className="text-xl font-semibold mb-4">Campaign Progress</h2>
-                                <p>Details about campaign progress...</p>
-                                {/* Add detailed content about the campaign progress here */}
+                        {/* <div className="flex justify-center">
+                            <div className="text-sm flex items-center p-4 gap-2 justify-center mt-4 bg-neutral max-w-fit rounded-pl">
+                                <button
+                                    className={`max-w-fit p-4 rounded-pl hover:bg-navygreen-200 ${activeTab === 'progress' ? 'bg-navygreen-200' : 'bg-neutral'} flex-1`}
+                                    onClick={() => setActiveTab('progress')}
+                                >
+                                    Campaign Progress
+                                </button>
+                                <button
+                                    className={`max-w-fit p-4 rounded-pl hover:bg-navygreen-200 ${activeTab === 'trees' ? 'bg-navygreen-200' : 'bg-neutral'} flex-1`}
+                                    onClick={() => setActiveTab('trees')}
+                                >
+                                    Trees to be Planted
+                                </button>
                             </div>
-                        )}
-                        {activeTab === 'trees' && (
-                            <div>
-                                <h2 className="text-xl font-semibold mb-4">Trees to be Planted</h2>
-                                <p>Details about trees to be planted...</p>
-                                {/* Add detailed content about the trees to be planted here */}
-                            </div>
-                        )}
-                    </div>
-                    {/* <div className="flex">
-                        <div className="relative bg-pinky p-4 mt-4 rounded-[20px] w-full">
-                            <h2 className="text-center">Campaign Progress</h2>
-                        </div>
-                    </div> */}
-                    {/* <div class="flex items-center justify-center" x-data="{ circumference: 2 * 22 / 7 * 120 }">
-                        <svg class="transform -rotate-90 w-72 h-72">
-                            <circle cx="145" cy="145" r="120" stroke="currentColor" stroke-width="30" fill="transparent"
-                                class="text-gray-700" />
+                        </div> */}
+                        <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+                        <div className="p-4 mt-2 rounded-b-lg">
+                            {activeTab === 'progress' && (
+                                <div>
+                                    <h2 className="text-xl font-semibold mb-4">Campaign Progress</h2>
+                                    <p>Details about campaign progress...</p>
+                                    <div className="flex flex-row gap-2 bg-pinky justify-center px-8 mt-4">
+                                        <div className="rounded-pl bg-navygreen-100 hover:flex-grow h-4 w-32">
 
-                            <circle cx="145" cy="145" r="120" stroke="currentColor" stroke-width="30" fill="transparent"
-                                strokeDasharray="50"
-                                strokeDashoffset="50 - 75 / 100 * 50"
-                                class="text-blue-500 " />
-                        </svg>
-                        <span class="absolute text-5xl" x-text="75">75</span>
-                    </div> */}
+                                        </div>
+                                        <div className="rounded-pl bg-navygreen-100 hover:flex-grow h-4 w-32">
+
+                                        </div>
+                                        <div className="rounded-pl bg-navygreen-100 hover:flex-grow h-4 w-32">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                            {activeTab === 'trees' && (
+                                <div>
+                                    <h2 className="text-xl font-semibold mb-4">Trees to be Planted</h2>
+                                    <p>Details about trees to be planted...</p>
+                                    <div className="flex flex-row justify-center">
+                                        <div className=" mt-10 p-8 rounded-pl bg-navygreen-100 w-1/2">
+                                            <CarouselDefault/>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                 </div>
         
                 {/* Narrower Div */}
@@ -249,6 +257,31 @@ export default function CampaignDetailsPage() {
                                 <p className="text-right">Reply</p>
                             </li>
                         </ul>
+                        <div className="mt-4 flex items-center bg-neutral py-2 px-3 rounded-2xl">
+                            <input 
+                                id="comment" 
+                                className="bg-inherit pl-2 w-full outline-none border-none" 
+                                type="text" 
+                                name="comment" 
+                                placeholder="Add a comment..." 
+                                required
+                            />
+                            <button className="p-2 rounded-2xl ml-2 hover:bg-navygreen-100">
+                                <svg 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    fill="none" viewBox="0 0 24 24" 
+                                    strokeWidth={1.5} 
+                                    stroke="currentColor" 
+                                    className="size-6"
+                                >
+                                    <path 
+                                        strokeLinecap="round" 
+                                        strokeLinejoin="round" 
+                                        d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" 
+                                    />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

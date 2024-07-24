@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const withMT = require("@material-tailwind/react/utils/withMT");
+module.exports = withMT({
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -63,6 +64,7 @@ module.exports = {
         xl: "20px",
         "mid-6": "17.6px",
         "smi-8": "12.8px",
+        "pl": "20px", //plantify reserved
         "11xl": "30px",
       },
     },
@@ -79,4 +81,4 @@ module.exports = {
       inherit: "inherit",
     },
   },
-}
+});
