@@ -280,21 +280,21 @@ const CampaignCardSh = ({ campaign, openPopup, shape }) => {
 
   return (
     <div
-      className={`bg-white rounded-[20px] w-80 shadow-2xl overflow-hidden font-josefin-sans p-2`} // Rounded corners and shadow for a card look
+      className={`flex flex-col bg-white rounded-[20px] max-w-fit shadow-2xl overflow-hidden font-josefin-sans p-2`} // Rounded corners and shadow for a card look
     >
       {/* Image Section */}
-      <div className="relative">
+      <div className="">
         <Link to={`/campaign-details/${campaign._id}`}>
           <img
             src={`/assets/${campaign.image}`}
             alt="Campaign Background"
-            className="w-full h-28 object-cover rounded-[20px]"
+            className="w-80 h-28 object-cover rounded-[20px]"
           />
         </Link>
         {/* Heart Icon */}
-        <div className="absolute top-2 right-2">
+        {/* <div className="absolute top-2 right-2">
           <HeartIcon className="w-6 text-red-500" />
-        </div>
+        </div> */}
       </div>
       {/* Text Details Section */}
       <div className="p-4">
