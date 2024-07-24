@@ -108,7 +108,7 @@ const CampaignPage = () => {
       {/* Carousel */}
       <CampaignHeaderCarousel campaigns={campaigns} setFilteredCampaigns={setFilteredCampaigns} />
       <div className='my-10 gap-60 flex item-center justify-center'>
-          <p className=" text-xl font-bold text-gray-100 font-josefin-sans">
+          <p className="text-xl font-bold text-gray-100 font-josefin-sans">
             List of all the campaigns
           </p>
           <div className=''>
@@ -116,7 +116,7 @@ const CampaignPage = () => {
           </div>
       </div>
       <div className='flex px-20 gap-8 justify-between'>
-        <div className='flex flex-col pl-4 bg-pinky items-start w-[230px]'>
+        <div className='flex flex-col pl-4 bg-navygreen-100 rounded-pl items-start w-[230px]'>
           <h2 className='mt-2 font-bold text-md ml-2'>Categories</h2>
           <ul className='flex flex-col gap-y-2 rounded-lg mt-4 text-sm'>
             <li className='p-2 hover:bg-navygreen-200 rounded-lg hover:font-semibold'>Shabeeh Campaigns</li>
@@ -124,7 +124,7 @@ const CampaignPage = () => {
             <li className='p-2 hover:bg-navygreen-200 rounded-lg hover:font-semibold'>Farwa Campaigns</li>
           </ul>
         </div>
-        <div className=' grid grid-cols-1 md:gap-4 md:grid-cols-2 xl:grid-cols-3 bg-navygreen-100 gap-4 mb-10'>
+        <div className='grid grid-cols-1 md:gap-4 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10'>
           {filteredCampaigns.map(campaign => (
             <CampaignCardSh key={campaign._id} campaign={campaign} />
           ))}
@@ -132,7 +132,7 @@ const CampaignPage = () => {
         {/* <div className="justify-self-end">
           <Widget />
         </div> */}
-        <div className='pr-4 bg-yolk max-w-[350px]'>
+        <div className='pr-4 max-w-[350px]'>
           <h2 className='mt-2 font-bold text-md ml-2'>Recents</h2>
           <div className='grid grid-cols-1'>
             <div className='mt-4 flex flex-row gap-4'>
