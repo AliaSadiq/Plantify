@@ -124,10 +124,24 @@ const CampaignPage = () => {
             <li className='p-2 hover:bg-navygreen-200 rounded-lg hover:font-semibold'>Farwa Campaigns</li>
           </ul>
         </div>
-        <div className='grid grid-cols-1 md:gap-4 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10'>
+        {/* <div className='grid grid-cols-1 md:gap-4 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10'> */}
+        {/* <div className='grid grid-cols-1 md:gap-4 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10'>
           {filteredCampaigns.map(campaign => (
             <CampaignCardSh key={campaign._id} campaign={campaign} />
           ))}
+        </div> */}
+        <div>
+          {filteredCampaigns.length > 0 ? (
+            <div className='grid grid-cols-1 md:gap-4 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10'>
+              {filteredCampaigns.map(campaign => (
+                <CampaignCardSh key={campaign._id} campaign={campaign} />
+              ))}
+            </div>
+          ) : (
+            <div className='text-center text-gray-200 text-md font-semibold mt-10'>
+              No such campaign exists.
+            </div>
+          )}
         </div>
         {/* <div className="justify-self-end">
           <Widget />
