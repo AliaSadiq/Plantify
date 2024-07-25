@@ -1,19 +1,17 @@
 const express = require("express");
-const routes = express.Router();
-
+const router = express.Router();
 const {
   getTeam,
   getTeams,
   addTeam,
   updateTeam,
   deleteTeam,
-} = require("../Controller/TeamController.js");
+} = require("../controllers/team.controller.js");
 
+router.get("/:groupId/team", getTeams);
+router.get("/:groupId/team/:teamId", getTeam);
+router.post("/:groupId/team", addTeam);
+router.put("/:groupId/team/:teamId", updateTeam);
+router.delete("/:groupId/team/:teamId", deleteTeam);
 
-routes.get("/", getTeams);
-routes.get("/:id", getTeam);
-routes.put("/:id", updateTeam);
-routes.delete("/:id", deleteTeam);
-routes.post("/", addTeam);
-
-module.exports = routes;
+module.exports = router;
