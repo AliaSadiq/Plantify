@@ -1,5 +1,5 @@
 const Campaign = require("../models/campaign.model");
-
+const mongoose = require('mongoose');
 const getCampaigns = async (req, res) => {
   try {
     const campaigns = await Campaign.find()
