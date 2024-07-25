@@ -11,6 +11,10 @@ export default function CampaignDetailsPage() {
     const { id } = useParams();
     const [campaign, setCampaign] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState("");
+
+
     //tabs
     const [activeTab, setActiveTab] = useState('progress'); // State for managing active tab
     //declaring tabs 
@@ -29,25 +33,43 @@ export default function CampaignDetailsPage() {
         setIsModalOpen(false);
     };
 
+    //fetching the campaign and the campaign commments
     useEffect(() => {
         const fetchCampaignDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/campaigns/${id}`);
-                setCampaign(response.data);
+                const campaignResponse = await axios.get(`http://localhost:5000/api/campaigns/${id}`);
+                setCampaign(campaignResponse.data);
+    
+                const commentsResponse = await axios.get(`http://localhost:5000/api/campaign-comment/campaign/${id}`);
+                setComments(commentsResponse.data);
             } catch (error) {
-                console.error("Error fetching campaign details:", error);
+                console.error("Error fetching campaign details or comments:", error);
             }
         };
-
+    
         fetchCampaignDetails();
     }, [id]);
 
-    if (!campaign) {
-        return <div>Loading...</div>;
-    }
+    const handleAddComment = async (e) => {
+        e.preventDefault();
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user && user._id) {
+            try {
+                const response = await axios.post("http://localhost:5000/api/campaign-comment", {
+                    user: user._id,
+                    campaign: id,
+                    comment: newComment,
+                });
+                setComments([...comments, response.data]);
+                setNewComment("");
+            } catch (error) {
+                console.error("Error adding comment:", error);
+            }
+        }
+    };
 
     return (
-        <div className="mt-0 bg-neutral"> 
+        <div className="min-h-screen bg-neutral"> 
             <div className="flex flex-col items-center justify-center mt-40">
                 <h1 className="font-bold text-2xl">{campaign.name}</h1>
                 <p className="font-semibold text-mini mb-10 flex items-center justify-center gap-2">
@@ -143,30 +165,13 @@ export default function CampaignDetailsPage() {
                             />
                         </div>
                     </div>
-                    {/* Tabs Section */}
-                        {/* <div className="flex justify-center">
-                            <div className="text-sm flex items-center p-4 gap-2 justify-center mt-4 bg-neutral max-w-fit rounded-pl">
-                                <button
-                                    className={`max-w-fit p-4 rounded-pl hover:bg-navygreen-200 ${activeTab === 'progress' ? 'bg-navygreen-200' : 'bg-neutral'} flex-1`}
-                                    onClick={() => setActiveTab('progress')}
-                                >
-                                    Campaign Progress
-                                </button>
-                                <button
-                                    className={`max-w-fit p-4 rounded-pl hover:bg-navygreen-200 ${activeTab === 'trees' ? 'bg-navygreen-200' : 'bg-neutral'} flex-1`}
-                                    onClick={() => setActiveTab('trees')}
-                                >
-                                    Trees to be Planted
-                                </button>
-                            </div>
-                        </div> */}
                         <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
                         <div className="p-4 mt-2 rounded-b-lg">
                             {activeTab === 'progress' && (
                                 <div>
                                     <h2 className="text-xl font-semibold mb-4">Campaign Progress</h2>
                                     <p>Details about campaign progress...</p>
-                                    <div className="flex flex-row gap-2 bg-pinky justify-center px-8 mt-4">
+                                    <div className="flex flex-row gap-2 justify-center px-8 mt-4">
                                         <div className="rounded-pl bg-navygreen-100 hover:flex-grow h-4 w-32">
 
                                         </div>
@@ -212,7 +217,7 @@ export default function CampaignDetailsPage() {
                     <div className="bg-inherit w-full h-auto rounded-[20px] p-4 mt-4 border-neutral border-2">
                         <h1 className="font-bold text-xl text-center mt-6">About the Campaign</h1>
                         <p className="mx-10 text-center mt-4 text-sm">
-                            Join us in our mission to make Lahore greener and healthier with our upcoming plantation campaign! Our goal is to plant thousands of trees across the city, creating more green spaces and improving the environment for future generations.
+                            {campaign.description}
                         </p>
                         <div className="flex gap-4 items-center justify-center mt-4">
                             <Button text="Follow Campaign" />
@@ -223,39 +228,19 @@ export default function CampaignDetailsPage() {
                     <div className="bg-inherit w-full p-2 border-neutral border-2 rounded-[20px] mt-4">
                         <h2 className="font-semibold text-md text-center py-2">Comments</h2>
                         <ul className="flex flex-col items-start overflow-y-auto max-h-96">
-                            <li className="relative w-full p-4 border-b-2 border-neutral">
-                                <div className="w-full flex flex-row items-center">
-                                    <img src="/assets/testimonial-2.jpeg" className="w-14 h-14 object-cover rounded-full" />
-                                    <div className="ml-2 w-full flow-root">
-                                        <p className="float-left font-semibold ml-2">Username</p>
-                                        <p className="float-right text-gray-500 text-sm">12.06.2024</p>
+                            {comments.map((comment) => (
+                                <li className="relative w-full p-4 border-b-2 border-neutral">
+                                    <div className="w-full flex flex-row items-center">
+                                        <img src="/assets/testimonial-2.jpeg" className="w-14 h-14 object-cover rounded-full" />
+                                        <div className="ml-2 w-full flow-root">
+                                            <p className="float-left font-semibold ml-2">{comment.user.username}</p>
+                                            <p className="float-right text-gray-500 text-sm">{new Date(comment.date).toLocaleDateString()}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <p className="mt-2 mr-4 text-justify text-sm">achi campaign thi good work!</p>
-                                <p className="text-right">Reply</p>
-                            </li>
-                            <li className="relative w-full p-4 border-b-2 border-neutral">
-                                <div className="w-full flex flex-row items-center">
-                                    <img src="/assets/testimonial-2.jpeg" className="w-14 h-14 object-cover rounded-full" />
-                                    <div className="ml-2 w-full flow-root">
-                                        <p className="float-left font-semibold ml-2">Username</p>
-                                        <p className="float-right text-gray-500 text-sm">12.06.2024</p>
-                                    </div>
-                                </div>
-                                <p className="mt-2 mr-4 text-justify text-sm">achi campaign thi good work!</p>
-                                <p className="text-right">Reply</p>
-                            </li>
-                            <li className="relative w-full p-4 border-b-2 border-neutral">
-                                <div className="w-full flex flex-row items-center">
-                                    <img src="/assets/testimonial-2.jpeg" className="w-14 h-14 object-cover rounded-full" />
-                                    <div className="ml-2 w-full flow-root">
-                                        <p className="float-left font-semibold ml-2">Username</p>
-                                        <p className="float-right text-gray-500 text-sm">12.06.2024</p>
-                                    </div>
-                                </div>
-                                <p className="mt-2 mr-4 text-justify text-sm">achi campaign thi good work!</p>
-                                <p className="text-right">Reply</p>
-                            </li>
+                                    <p className="mt-2 mr-4 text-justify text-sm">{comment.comment}</p>
+                                    <p className="text-right">Reply</p>
+                                </li>
+                            ))}
                         </ul>
                         <div className="mt-4 flex items-center bg-neutral py-2 px-3 rounded-2xl">
                             <input 
@@ -264,9 +249,14 @@ export default function CampaignDetailsPage() {
                                 type="text" 
                                 name="comment" 
                                 placeholder="Add a comment..." 
+                                value={newComment}
+                                onChange={(e) => setNewComment(e.target.value)}
                                 required
                             />
-                            <button className="p-2 rounded-2xl ml-2 hover:bg-navygreen-100">
+                            <button 
+                                className="p-2 rounded-2xl ml-2 hover:bg-navygreen-100"
+                                onClick={handleAddComment}
+                            >
                                 <svg 
                                     xmlns="http://www.w3.org/2000/svg" 
                                     fill="none" viewBox="0 0 24 24" 

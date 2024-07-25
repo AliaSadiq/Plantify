@@ -22,7 +22,6 @@ const getCampaigns = async (req, res) => {
   }
 };
 
-
 const getCampaign = async (req, res) => {
   try {
     const { id } = req.params;
