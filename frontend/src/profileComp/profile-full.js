@@ -95,8 +95,10 @@ import header from '../images/about-1.jpeg';
 import profile from '../images/carousel-1.jpeg';
 import ReviewComponent from './review-profile';
 import QuestionComponent from './profile-question';
+import ImpactComponent from './impact-profile';
 import CampaignCardSh from '../components/campaign-card-sh';
 import { useParams } from 'react-router-dom';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const MainPage = () => {
   const [activeTab, setActiveTab] = useState('campaign');
@@ -104,14 +106,14 @@ const MainPage = () => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [profileData, setProfileData] = useState(null);
   const [teamMembers, setTeamMembers] = useState([]);
-  const [campaigns, setCampaigns] = useState([]); // To store fetched campaigns
+  const [campaigns, setCampaigns] = useState([]);
   const [selectedCampaign, setSelectedCampaign] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/socialgroup/${id}`); // Update this endpoint as needed
+        const response = await axios.get(`http://localhost:5000/api/socialgroup/${id}`);
         setProfileData(response.data);
         setTeamMembers(response.data.teamMembers);
       } catch (error) {
@@ -121,11 +123,11 @@ const MainPage = () => {
 
     const fetchCampaigns = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/campaigns/socialgroup/${id}`); // Correctly match the backend route
+        const response = await axios.get(`http://localhost:5000/api/campaigns/socialgroup/${id}`);
         console.log("Campaigns fetched for socialId:", id);
-        setCampaigns(response.data); // Set the fetched campaigns
+        setCampaigns(response.data);
       } catch (error) {
-        console.error('Error fetching campaigns:', error); // Handle error
+        console.error('Error fetching campaigns:', error);
       }
     };
 
@@ -138,10 +140,10 @@ const MainPage = () => {
   };
 
   if (!profileData) {
-    return <div>Loading...</div>; // Show loading indicator while fetching data
+    return <div>Loading...</div>;
   }
 
-  const totalRating = profileData.totalRating || 4.5; // Update this as needed
+  const totalRating = profileData.totalRating || 4.5;
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
@@ -160,15 +162,16 @@ const MainPage = () => {
                 <img src={member.avatar || avatar} alt="Team Member" className="rounded-full w-12 h-12" />
                 <div>
                   <h4 className="text-sm font-semibold text-black">{member.name}</h4>
+            
                 </div>
               </li>
             ))}
           </ul>
           {selectedMember && (
-            <div className="mt-8 p-4 bg-white shadow-lg rounded-lg">
+            <div className="mt-11 p-4 bg-white shadow-lg rounded-lg">
               <h4 className="text-sm font-bold text-black">{selectedMember.name}</h4>
               <p className="text-sm text-gray-500">{selectedMember.email}</p>
-              <p className="text-sm text-gray-500">{selectedMember.position}</p>
+              <p className="text-sm text-gray-500">{selectedMember.role}</p>
             </div>
           )}
         </div>
@@ -213,6 +216,10 @@ const MainPage = () => {
                   </svg>
                 ))}
                 <span className="ml-2 text-sm text-gray-800">{totalRating.toFixed(1)} out of 5</span>
+                <div className="ml-auto flex items-center">
+                  <FaMapMarkerAlt className="text-gray-800" />
+                  <span className="text-sm text-gray-800 ml-1">{profileData.location}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -237,11 +244,11 @@ const MainPage = () => {
               {activeTab === 'campaign' && (
                 <div className="p-4 max-w-3xl mx-auto">
                   <h2 className="text-2xl font-bold">Campaigns</h2>
-                <div className="ml-8 grid grid-cols-1 sm:grid-cols-2 sm:gap-2 md:gap-3 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 mb-10 gap-y-2">
-                  {campaigns.slice(0, 6).map(campaign => (
+                  <div className="ml-8 grid grid-cols-1 sm:grid-cols-2 sm:gap-2 md:gap-3 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 mb-10 gap-y-2">
+                    {campaigns.slice(0, 6).map(campaign => (
                       <CampaignCardSh key={campaign._id} campaign={campaign} />
-                  ))}
-                </div>
+                    ))}
+                  </div>
                 </div>
               )}
               {activeTab === 'social-media' && (
@@ -251,21 +258,11 @@ const MainPage = () => {
                 </div>
               )}
               {activeTab === 'impact' && (
-                <div id="impact">
-                  <h2 className="text-xl font-bold">Impact</h2>
-                  <p>Impact details here...</p>
-                </div>
+              <ImpactComponent />
               )}
-              {activeTab === 'reviews' && (
-                <div id="reviews">
-                  <ReviewComponent />
-                </div>
-              )}
-              {activeTab === 'questions' && (
-                <div id="questions">
-                  <QuestionComponent />
-                </div>
-              )}
+              {activeTab === 'reviews' && <ReviewComponent />}
+              {activeTab === 'questions' && <QuestionComponent />}
+              
             </div>
           </div>
         </div>
