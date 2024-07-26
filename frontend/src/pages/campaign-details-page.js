@@ -13,7 +13,23 @@ export default function CampaignDetailsPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
+    const [activeStage, setActiveStage] = useState(0); // State for managing active stage
 
+    // Define stages and descriptions
+    const stages = [
+        { 
+            title: 'Fundraising', 
+            description: 'We are currently in the fundraising phase of our campaign. This is a crucial stage where every contribution, no matter how small, brings us closer to our goal. Your donations will help us acquire the necessary resources to make this campaign a success. With your support, we can transform our vision into reality. Join us in this journey of hope and growth, and be a part of something truly impactful. Together, we can make a difference and leave a lasting legacy for future generations.' 
+        },
+        { 
+            title: 'Buying Plants', 
+            description: 'We are now entering the exciting phase of buying plants for our campaign. The funds raised are being used to procure a diverse range of trees and plants that are not only beautiful but also beneficial to the environment. This stage marks the beginning of tangible progress, as we prepare to bring greenery and life to our community. Your contributions are making it possible for us to select the best species that will thrive and make a lasting impact. Stay tuned as we move closer to the plantation phase, where your support will bloom into a greener future.' 
+        },
+        { 
+            title: 'Plantation', 
+            description: 'We are thrilled to announce that we have reached the plantation phase of our campaign. This is the moment where all our collective efforts come to fruition. Volunteers are actively planting the trees, ensuring they are carefully placed and nurtured to grow strong and healthy. This stage is not just about planting trees; it\'s about planting hope, sustainability, and a better future. Your support has been instrumental in reaching this milestone, and we are grateful for your commitment to our cause. Let\'s continue to work together to create a greener, more vibrant community.' 
+        },
+    ];
 
     //tabs
     const [activeTab, setActiveTab] = useState('progress'); // State for managing active tab
@@ -67,6 +83,10 @@ export default function CampaignDetailsPage() {
             }
         }
     };
+
+    if (!campaign) {
+        return <div>Loading...</div>; // Add a loading state while campaign data is being fetched
+    }
 
     return (
         <div className="min-h-screen bg-neutral"> 
@@ -165,23 +185,27 @@ export default function CampaignDetailsPage() {
                             />
                         </div>
                     </div>
+                    {/* <div className="mt-4 p-2 rounded-pl border border-2 border-neutral">
                         <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
                         <div className="p-4 mt-2 rounded-b-lg">
                             {activeTab === 'progress' && (
                                 <div>
                                     <h2 className="text-xl font-semibold mb-4">Campaign Progress</h2>
                                     <p>Details about campaign progress...</p>
-                                    <div className="flex flex-row gap-2 justify-center px-8 mt-4">
-                                        <div className="rounded-pl bg-navygreen-100 hover:flex-grow h-4 w-32">
-
-                                        </div>
-                                        <div className="rounded-pl bg-navygreen-100 hover:flex-grow h-4 w-32">
-
-                                        </div>
-                                        <div className="rounded-pl bg-navygreen-100 hover:flex-grow h-4 w-32">
-
-                                        </div>
+                                    <div className="flex flex-row gap-2 justify-center px-8 mt-8">
+                                        {stages.map((stage, index) => (
+                                            <div
+                                                key={index}
+                                                className={`flex items-center justify-center rounded-pl bg-navygreen-100 h-4 transition-all p-4 duration-300 cursor-pointer ${activeStage === index ? 'flex-grow' : 'w-40 hover:flex-grow'}`}
+                                                onClick={() => setActiveStage(index)}
+                                            >
+                                                <p className="text-center">{stages[index].title}</p>
+                                            </div>
+                                        ))}
                                     </div>
+                                    <p className="text-center text-justify mt-4">
+                                        {stages[activeStage].description}
+                                    </p>
                                 </div>
                             )}
                             {activeTab === 'trees' && (
@@ -189,13 +213,50 @@ export default function CampaignDetailsPage() {
                                     <h2 className="text-xl font-semibold mb-4">Trees to be Planted</h2>
                                     <p>Details about trees to be planted...</p>
                                     <div className="flex flex-row justify-center">
-                                        <div className=" mt-10 p-8 rounded-pl bg-navygreen-100 w-1/2">
-                                            <CarouselDefault/>
+                                        <div className="mt-10 p-8 rounded-pl bg-navygreen-100 w-1/2">
+                                            <CarouselDefault />
                                         </div>
                                     </div>
                                 </div>
                             )}
                         </div>
+                    </div> */}
+                     <div className="mt-4 p-2 rounded-pl border border-2 border-neutral">
+                        <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+                        <div className="p-4 mt-2 rounded-b-lg">
+                            {activeTab === 'progress' && (
+                                <div>
+                                    <h2 className="text-xl font-semibold mb-4">Campaign Progress</h2>
+                                    <p>Details about campaign progress...</p>
+                                    <div className="flex flex-row gap-2 justify-center px-8 mt-8">
+                                        {stages.map((stage, index) => (
+                                            <div
+                                                key={index}
+                                                className={`flex items-center justify-center rounded-pl bg-navygreen-100 h-12 transition-all duration-300 ${activeStage === index ? 'flex-grow p-4' : 'w-40'}`}
+                                                onClick={() => setActiveStage(index)}
+                                            >
+                                                <p className={`text-center ${activeStage === index ? 'text-white' : 'text-gray-500'}`}>{stage.title}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <p className="text-center text-justify mt-4">
+                                        {stages[activeStage].description}
+                                    </p>
+                                </div>
+                            )}
+                            {activeTab === 'trees' && (
+                                <div>
+                                    <h2 className="text-xl font-semibold mb-4">Trees to be Planted</h2>
+                                    <p>Details about trees to be planted...</p>
+                                    <div className="flex flex-row justify-center">
+                                        <div className="mt-10 p-8 rounded-pl bg-navygreen-100 w-1/2">
+                                            <CarouselDefault />
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
         
                 {/* Narrower Div */}
@@ -242,11 +303,11 @@ export default function CampaignDetailsPage() {
                                 </li>
                             ))}
                         </ul>
-                        <div className="mt-4 flex items-center bg-neutral py-2 px-3 rounded-2xl">
-                            <input 
+                        <div className="mt-4 flex items-center bg-navygreen-100 bg-neutral py-2 px-3 rounded-2xl">
+                            <textarea 
                                 id="comment" 
-                                className="bg-inherit pl-2 w-full outline-none border-none" 
-                                type="text" 
+                                className="bg-inherit pl-2 w-full outline-none border-none"
+                                style={{ resize: "none" }}
                                 name="comment" 
                                 placeholder="Add a comment..." 
                                 value={newComment}
@@ -254,7 +315,7 @@ export default function CampaignDetailsPage() {
                                 required
                             />
                             <button 
-                                className="p-2 rounded-2xl ml-2 hover:bg-navygreen-100"
+                                className="p-2 rounded-2xl ml-2 hover:bg-navygreen-200"
                                 onClick={handleAddComment}
                             >
                                 <svg 
@@ -271,6 +332,30 @@ export default function CampaignDetailsPage() {
                                     />
                                 </svg>
                             </button>
+                        </div>
+                    </div>
+                    <div className="bg-inherit w-full p-2 border-neutral border-2 rounded-[20px] mt-4">
+                        <h2 className="font-semibold text-md text-center py-2">Donors</h2>
+                        <div className="flex justify-between items-center my-4 mx-2 border border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
+                            <div className="flex items-center justify-start bg-navygreen-100 p-2 rounded-pl">
+                                <img src="/assets/testimonial-1.jpeg" className="w-8 rounded rounded-full" />
+                                <p className="mx-2 ">Alia donated</p>
+                            </div>
+                            <img className="mr-2" src="/assets/leaves.png" />
+                        </div>
+                        <div className="flex justify-between items-center my-4 mx-2 border border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
+                            <div className="flex items-center justify-start bg-navygreen-100 p-2 rounded-pl">
+                                <img src="/assets/testimonial-1.jpeg" className="w-8 rounded rounded-full" />
+                                <p className="mx-2 ">Alia donated</p>
+                            </div>
+                            <img className="mr-2" src="/assets/leaves.png" />
+                        </div>
+                        <div className="flex justify-between items-center my-4 mx-2 border border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
+                            <div className="flex items-center justify-start bg-navygreen-100 p-2 rounded-pl">
+                                <img src="/assets/testimonial-1.jpeg" className="w-8 rounded rounded-full" />
+                                <p className="mx-2 ">Alia donated</p>
+                            </div>
+                            <img className="mr-2" src="/assets/leaves.png" />
                         </div>
                     </div>
                 </div>
