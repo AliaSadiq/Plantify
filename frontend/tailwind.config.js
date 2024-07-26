@@ -38,6 +38,7 @@ module.exports = withMT({
           "200": "#ECEED3",
           "300": "#D0D2A8",
         },
+        glass:"#F5F6EF",
         ivory: "#F2F3E6",
         neutral: "#F5F5F5",
         niga: "#e8ede7",
@@ -54,6 +55,7 @@ module.exports = withMT({
         dashboard:"#8AA07C",
         dbhover:"#768c67",
         prom:"#8ba25d",
+        text:"#8FB081",
       },
       spacing: {},
       fontFamily: {
@@ -69,6 +71,7 @@ module.exports = withMT({
       },
     },
     fontSize: {
+      xm:"9px",
       sm: "14px",
       mini: "18px",
       md: "20px",
@@ -78,7 +81,11 @@ module.exports = withMT({
       "lilxl": "50px",
       "3xl": "60px",
       "4xl": "80px",
+      "full":"120px",
       inherit: "inherit",
+    },
+    lineHeight: {
+      'extra-tall': '1.5', // You can adjust this value as needed
     },
   },
 });
