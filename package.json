@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "concurrently": "^8.2.2",
     "cors": "^2.8.5",
     "react-vis": "^1.12.1"
   },

@@ -14,6 +14,7 @@ const LandingPage = () => {
 
     const navigate = useNavigate();
 
+    //initiate campaign button code
     const handleInitiateCampaign = () => {
         const userLoggedIn = localStorage.getItem('user') !== null;
 

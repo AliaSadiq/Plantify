@@ -137,7 +137,7 @@ const AppContent = () => {
         <Route path="settings" element={<SettingsPage />} />
         <Route path='auth-check' element={<AuthCheck />} />
         <Route path='verification-check' element={<VerificationCheck />} />
-        <Route path='social-dashboard/*' element={<DashboardLayout />} />
+        <Route path='social-dashboard/:id/*' element={<DashboardLayout />} />
       </Routes>
       {!isDashboardRoute && <Footer />}
     </>
@@ -153,5 +153,3 @@ function App() {
 }
 
 export default App;
-
-

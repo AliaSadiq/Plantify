@@ -17,6 +17,7 @@ module.exports = withMT({
         gray: {
           "100": "#222",
           "200": "rgba(34, 34, 34, 0.6)",
+          "300": "#cccccc",
         },
         navygreen: {
           "25": '#f8fcf6',

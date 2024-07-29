@@ -49,7 +49,7 @@ const socialgroupCampaigns = async (req, res) => {
         return res.status(400).json({ message: 'Invalid socialId provided' });
       }
   
-      const userCampaigns = await Campaign.find({ socialGroup: socialId }); // Change findOne to find
+      const userCampaigns = await Campaign.find({ socialGroup: socialId }).populate('socialGroup');; // Change findOne to find
       if (!userCampaigns.length) {
         return res.status(404).json({ message: 'No campaigns found for this social group' });
       }
