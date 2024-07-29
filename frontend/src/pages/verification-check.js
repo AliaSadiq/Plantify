@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Button from '../components/button';
 
 export default function VerificationCheck() {
     const [status, setStatus] = useState(null);
@@ -17,7 +18,7 @@ export default function VerificationCheck() {
                     if (socialGroup) {
                         setStatus(socialGroup.status);
                         if (socialGroup.status === 'accepted') {
-                            navigate('/social-dashboard');
+                            navigate(`/social-dashboard/${socialGroup._id}`);
                         }
                     } else {
                         setStatus('No social group found for this user.');
@@ -46,8 +47,10 @@ export default function VerificationCheck() {
     };
 
     return (
-        <div className='my-40'>
+        <div className='flex flex-col gap-y-4 min-h-screen items-center justify-center'>
             <p className='text-lg'>{getVerificationMessage()}</p>
+            <img src='/assets/clockwise.png' className='w-20 mb-4'/>
+            <Button text="Go to Homepage" color='fill'/>
         </div>
     );
 }

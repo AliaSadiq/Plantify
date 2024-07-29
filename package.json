@@ -1,6 +1,13 @@
 {
   "dependencies": {
+    "concurrently": "^8.2.2",
     "cors": "^2.8.5",
     "react-vis": "^1.12.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "cd frontend && npm start",
+    "backend": "cd backend && npm start",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\""
   }
 }

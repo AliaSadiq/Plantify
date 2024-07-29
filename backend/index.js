@@ -27,7 +27,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cors());
 
-
 // routes
 app.use("/api/campaigns", campaignRoute);
 app.use("/api/socialgroup", socialgroupRouter);
@@ -37,7 +36,6 @@ app.use("/api/campaign-comment", campaignCommentRoute);
 app.use("/api/user-message", userMessageRoute);
 app.use("/api/campaign-report", campaignReportRoute);
 app.use("/api/donations",donationRoutes)
-
 
 //connection
 mongoose
