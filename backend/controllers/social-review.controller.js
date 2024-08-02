@@ -29,13 +29,14 @@ const SocialGroup = require("../models/socialgroup.model.js");
 // };
 const addReview = async (req, res) => {
   try {
-    const { rating, message } = req.body; // Removed 'user'
+    const { rating, message, user } = req.body;
     const socialGroup = await SocialGroup.findById(req.params.groupId);
 
     if (socialGroup) {
       const newReview = new Review({
         rating,
         message,
+        user, // Ensure 'user' is coming from req.body
         socialGroup: req.params.groupId,
       });
 
@@ -48,6 +49,7 @@ const addReview = async (req, res) => {
       res.status(404).json({ message: 'Social group not found' });
     }
   } catch (error) {
+    console.error("Error adding review:", error); // Log the error
     res.status(500).json({ error: error.message });
   }
 };
@@ -67,7 +69,7 @@ const getReviews = async (req, res) => {
 };
 
 // Get a specific review by ID
-exports.getReviews = async (req, res) => {
+const getReview = async (req, res) => {
   try {
     const { groupId } = req.params;
     const socialGroup = await SocialGroup.findById(groupId);

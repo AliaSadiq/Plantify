@@ -136,10 +136,18 @@ const ReviewComponent = ({ groupId }) => {
   const [newReview, setNewReview] = useState({ text: '', rating: 5 });
   const [showForm, setShowForm] = useState(false);
   const [hoverRating, setHoverRating] = useState(0);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    // Fetch reviews from the backend
-    axios.get(`/api/socialgroup-review/${groupId}`)
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user._id) {
+      setUserId(user._id);
+      console.log("Fetched userId from localStorage:", user._id);
+    }
+  }, []);
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/socialgroup-review/${groupId}`)
       .then(response => {
         setReviews(response.data);
       })
@@ -152,15 +160,21 @@ const ReviewComponent = ({ groupId }) => {
     const { name, value } = e.target;
     setNewReview({ ...newReview, [name]: value });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Add new review to the backend
-    axios.post(`/api/socialgroup-review/${groupId}/review`, newReview)
+  
+    const user = JSON.parse(localStorage.getItem('user'));
+    const reviewData = {
+      ...newReview,
+      user: user._id,
+    };
+  
+    console.log('Review Data:', reviewData);
+  
+    axios.post(`http://localhost:5000/api/socialgroup-review/${groupId}/review`, reviewData)
       .then(response => {
         setReviews([...reviews, response.data]);
-        setNewReview({ text: '', rating: 5 });
+        setNewReview({ message: '', rating: 5 });
         setShowForm(false);
         alert('Review submitted successfully!');
       })
@@ -168,6 +182,8 @@ const ReviewComponent = ({ groupId }) => {
         console.error('Error adding review:', error);
       });
   };
+  
+  
 
   const handleRatingClick = (rating) => {
     setNewReview({ ...newReview, rating });
@@ -212,7 +228,7 @@ const ReviewComponent = ({ groupId }) => {
                   {'🌱'.repeat(review.rating)}
                 </div>
               </div>
-              <p className="mt-2">{review.text}</p>
+              <p className="mt-2">{review.message}</p>
             </div>
           ))}
         </>
@@ -243,8 +259,8 @@ const ReviewComponent = ({ groupId }) => {
           <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2">Review:</label>
             <textarea
-              name="text"
-              value={newReview.text}
+              name="message"
+              value={newReview.message}
               onChange={handleInputChange}
               className="border p-2 rounded w-full"
               placeholder="Tell others what you think about this project. Would you recommend it and why?"
@@ -272,6 +288,7 @@ const ReviewComponent = ({ groupId }) => {
 };
 
 export default ReviewComponent;
+
 
 // import React, { useState, useEffect } from 'react';
 // import axios from 'axios';

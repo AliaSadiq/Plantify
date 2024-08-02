@@ -221,7 +221,7 @@ export default function CampaignDetailsPage() {
                             )}
                         </div>
                     </div> */}
-                     <div className="mt-4 p-2 rounded-pl border border-2 border-neutral">
+                     <div className="mt-4 p-2 rounded-pl border  border-neutral">
                         <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
                         <div className="p-4 mt-2 rounded-b-lg">
                             {activeTab === 'progress' && (
@@ -239,7 +239,7 @@ export default function CampaignDetailsPage() {
                                             </div>
                                         ))}
                                     </div>
-                                    <p className="text-center text-justify mt-4">
+                                    <p className="text-center  mt-4">
                                         {stages[activeStage].description}
                                     </p>
                                 </div>
@@ -303,7 +303,7 @@ export default function CampaignDetailsPage() {
                                 </li>
                             ))}
                         </ul>
-                        <div className="mt-4 flex items-center bg-navygreen-100 bg-neutral py-2 px-3 rounded-2xl">
+                        <div className="mt-4 flex items-center bg-navygreen-100  py-2 px-3 rounded-2xl">
                             <textarea 
                                 id="comment" 
                                 className="bg-inherit pl-2 w-full outline-none border-none"
@@ -336,23 +336,23 @@ export default function CampaignDetailsPage() {
                     </div>
                     <div className="bg-inherit w-full p-2 border-neutral border-2 rounded-[20px] mt-4">
                         <h2 className="font-semibold text-md text-center py-2">Donors</h2>
-                        <div className="flex justify-between items-center my-4 mx-2 border border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
+                        <div className="flex justify-between items-center my-4 mx-2  border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
                             <div className="flex items-center justify-start bg-navygreen-100 p-2 rounded-pl">
-                                <img src="/assets/testimonial-1.jpeg" className="w-8 rounded rounded-full" />
+                                <img src="/assets/testimonial-1.jpeg" className="w-8  rounded-full" />
                                 <p className="mx-2 ">Alia donated</p>
                             </div>
                             <img className="mr-2" src="/assets/leaves.png" />
                         </div>
-                        <div className="flex justify-between items-center my-4 mx-2 border border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
+                        <div className="flex justify-between items-center my-4 mx-2 border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
                             <div className="flex items-center justify-start bg-navygreen-100 p-2 rounded-pl">
-                                <img src="/assets/testimonial-1.jpeg" className="w-8 rounded rounded-full" />
+                                <img src="/assets/testimonial-1.jpeg" className="w-8  rounded-full" />
                                 <p className="mx-2 ">Alia donated</p>
                             </div>
                             <img className="mr-2" src="/assets/leaves.png" />
                         </div>
-                        <div className="flex justify-between items-center my-4 mx-2 border border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
+                        <div className="flex justify-between items-center my-4 mx-2  border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
                             <div className="flex items-center justify-start bg-navygreen-100 p-2 rounded-pl">
-                                <img src="/assets/testimonial-1.jpeg" className="w-8 rounded rounded-full" />
+                                <img src="/assets/testimonial-1.jpeg" className="w-8  rounded-full" />
                                 <p className="mx-2 ">Alia donated</p>
                             </div>
                             <img className="mr-2" src="/assets/leaves.png" />
