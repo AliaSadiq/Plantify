@@ -261,7 +261,7 @@ const MainPage = () => {
               <ImpactComponent />
               )}
               {activeTab === 'reviews' && <ReviewComponent  groupId={id}/>}
-              {activeTab === 'questions' && <QuestionComponent />}
+              {activeTab === 'questions' && <QuestionComponent groupId={id}/>}
               
             </div>
           </div>
