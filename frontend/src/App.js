@@ -92,54 +92,124 @@
 
 // export default App;
 
-import './App.css';
-import './index.css';
+// import './App.css';
+// import './index.css';
+// import Footer from './components/footer';
+// import NavBar from './components/nav-bar';
+// import LandingPage from './pages/landing-page';
+// import CampaignPage from './pages/campaign-page';
+// import HomePage from './pages/personal-growth-page';
+// import CampaignDetailsPage from './pages/campaign-details-page';
+// import LoginPage from './pages/login-page';
+// import Shop from './pages/shop';
+// import Logout from './pages/logout';
+// import PlantifyNetwork from './pages/network';
+// import ContactUsPage from './pages/contact-us-page';
+// import SocialSignUpPage from './pages/social-signup-page';
+// import SellerSignup from './pages/seller-signup-page';
+// import SettingsPage from './pages/settings';
+// import AuthCheck from './pages/check';
+// import Profile from './profileComp/profile-full';
+// import AboutUsPage from './pages/about-us-page';
+// import VerificationCheck from './pages/verification-check';
+// import React from 'react';
+// import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+// import DashboardLayout from './Layout/dashboard-layout';
+
+// const AppContent = () => {
+//   const location = useLocation();
+//   const isDashboardRoute = location.pathname.startsWith("/social-dashboard");
+
+//   return (
+//     <>
+//       {!isDashboardRoute && <NavBar />}
+//       <Routes>
+//         <Route index element={<LandingPage />} />
+//         <Route path="campaign" element={<CampaignPage />} />
+//         <Route path="personal-growth" element={<HomePage />} />
+//         <Route path="campaign-details/:id" element={<CampaignDetailsPage />} />
+//         <Route path="campaign/social-group/:id" element={<Profile/>} />
+//         <Route path="login" element={<LoginPage />} />
+//         <Route path="logout" element={<Logout />} />
+//         <Route path="shop" element={<Shop />} />
+//         <Route path="plantify-network" element={<PlantifyNetwork />} />
+//         <Route path="contact-us" element={<ContactUsPage />} />
+//         <Route path="about-us" element={<AboutUsPage />} />
+//         <Route path="about-us" element={<PlantifyNetwork />} />
+//         <Route path="social-signUp" element={<SocialSignUpPage />} />
+//         <Route path="seller-signup" element={<SellerSignup />} />
+//         <Route path="settings" element={<SettingsPage />} />
+//         <Route path='auth-check' element={<AuthCheck />} />
+//         <Route path='verification-check' element={<VerificationCheck />} />
+//         <Route path='social-dashboard/:id/*' element={<DashboardLayout />} />
+//       </Routes>
+//       {!isDashboardRoute && <Footer />}
+//     </>
+//   );
+// };
+
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <AppContent />
+//     </BrowserRouter>
+//   );
+// }
+
+// export default App;
+
+// App.js
+import React from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Footer from './components/footer';
 import NavBar from './components/nav-bar';
 import LandingPage from './pages/landing-page';
 import CampaignPage from './pages/campaign-page';
 import HomePage from './pages/personal-growth-page';
 import CampaignDetailsPage from './pages/campaign-details-page';
-import LoginPage from './pages/login-page';
 import Shop from './pages/shop';
 import Logout from './pages/logout';
 import PlantifyNetwork from './pages/network';
 import ContactUsPage from './pages/contact-us-page';
-import SocialSignUpPage from './pages/social-signup-page';
 import SettingsPage from './pages/settings';
 import AuthCheck from './pages/check';
 import Profile from './profileComp/profile-full';
+import AboutUsPage from './pages/about-us-page';
 import VerificationCheck from './pages/verification-check';
-import React from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import DashboardLayout from './Layout/dashboard-layout';
+import AuthLayout from './Layout/auth-layout';
 
 const AppContent = () => {
   const location = useLocation();
   const isDashboardRoute = location.pathname.startsWith("/social-dashboard");
+  const isAuthRoute = location.pathname.startsWith("/login") || location.pathname.startsWith("/social-signup") || location.pathname.startsWith("/seller-signup");
 
   return (
     <>
-      {!isDashboardRoute && <NavBar />}
+      {!isDashboardRoute && !isAuthRoute && <NavBar />}
       <Routes>
         <Route index element={<LandingPage />} />
         <Route path="campaign" element={<CampaignPage />} />
         <Route path="personal-growth" element={<HomePage />} />
         <Route path="campaign-details/:id" element={<CampaignDetailsPage />} />
-        <Route path="campaign/social-group/:id" element={<Profile/>} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="logout" element={<Logout />} />
+        <Route path="campaign/social-group/:id" element={<Profile />} />
         <Route path="shop" element={<Shop />} />
+        <Route path="logout" element={<Logout />} />
         <Route path="plantify-network" element={<PlantifyNetwork />} />
         <Route path="contact-us" element={<ContactUsPage />} />
+        <Route path="about-us" element={<AboutUsPage />} />
         <Route path="about-us" element={<PlantifyNetwork />} />
-        <Route path="social-signUp" element={<SocialSignUpPage />} />
         <Route path="settings" element={<SettingsPage />} />
         <Route path='auth-check' element={<AuthCheck />} />
         <Route path='verification-check' element={<VerificationCheck />} />
-        <Route path='social-dashboard/:id/*' element={<DashboardLayout />} />
+        
+        {/* Auth routes */}
+        {isAuthRoute && <Route path="/*" element={<AuthLayout />} />}
+
+        {/* Dashboard routes */}
+        {isDashboardRoute && <Route path="social-dashboard/:id/*" element={<DashboardLayout />} />}
       </Routes>
-      {!isDashboardRoute && <Footer />}
+      {!isDashboardRoute && !isAuthRoute && <Footer />}
     </>
   );
 };

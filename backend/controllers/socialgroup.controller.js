@@ -37,6 +37,15 @@ const getSocialGroup = async (req, res) => {
   }
 };
 
+const getSocialGroupsAccepted = async (req, res) => {
+  try {
+    const socialGroups = await SocialGroup.find({ status: 'accepted'});
+    res.status(200).json(socialGroups);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const getSocialGroupsOnWait = async (req, res) => {
   try {
     const socialGroups = await SocialGroup.find({ status: 'on wait' });
@@ -63,6 +72,22 @@ const updateSocialGroup = async (req, res) => {
   }
 };
 
+const deleteSocialGroup = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const socialGroup = await SocialGroup.findByIdAndDelete(id);
+
+    if (!socialGroup) {
+      return res.status(404).json({ message: "Group not found" });
+    }
+
+    res.status(200).json({ message: "Group deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const getSocialGroupByUserId = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -79,7 +104,9 @@ const getSocialGroupByUserId = async (req, res) => {
 module.exports = {
   createSocialGroup,
   getSocialGroup,
+  getSocialGroupsAccepted,
   getSocialGroupsOnWait,
   updateSocialGroup,
+  deleteSocialGroup,
   getSocialGroupByUserId,
 };

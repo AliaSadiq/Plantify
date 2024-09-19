@@ -57,3 +57,18 @@
   position: relative;
   z-index: 1; /* Ensure the text stays in front of the overlay */
 }
+
+/* form fields */
+/* styles.css */
+.custom-form input {
+  width: 100%;
+  padding: 0.5rem; /* p-2 in Tailwind */
+  border: 1px solid lightgray;
+  border-radius: 0.5rem; /* rounded-lg in Tailwind */
+  outline: none;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.custom-form input:focus {
+  box-shadow: 0 0 0 3px rgba(178, 255, 191, 0.3); /* focus:ring-palegreen-300 in Tailwind */
+}

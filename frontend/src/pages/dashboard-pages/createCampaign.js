@@ -284,41 +284,23 @@
 // export default CreateCampaignForm;
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const CreateCampaignForm = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [imageFileName, setImageFileName] = useState('');
-    const [faceImageFileName, setFaceImageFileName] = useState('');
-    const [user, setUser] = useState(null);
     const [step, setStep] = useState(1);
     const [volunteerToggle, setVolunteerToggle] = useState(false);
-
-    useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            const parsedUser = JSON.parse(storedUser);
-            setUser(parsedUser);
-        }
-    }, []);
+    const { id } = useParams();
 
     const [formDataStep1, setFormDataStep1] = useState({
-        user: '',
+        socialGroup: id,
         name: '',
         description: '',
         image: '',
         start_date: '',
         end_date: '',
     });
-
-    useEffect(() => {
-        if (user) {
-            setFormDataStep1(prevState => ({
-                ...prevState,
-                user: user._id
-            }));
-        }
-    }, [user]);
 
     const [formDataStep2, setFormDataStep2] = useState({
         target_donation: '',
@@ -380,7 +362,6 @@ const CreateCampaignForm = () => {
 
             // Clear the form fields
             setFormDataStep1({
-                user: user._id,
                 name: '',
                 description: '',
                 image: '',
@@ -388,7 +369,7 @@ const CreateCampaignForm = () => {
                 end_date: '',
             });
             setFormDataStep2({
-                target_donation: '',
+                target_donation: '0',
                 volunteers: 0,
                 location: ''
             });
@@ -559,7 +540,7 @@ const CreateCampaignForm = () => {
     };
 
     return (
-        <div className="flex items-center gap-[100px] justify-center min-h-screen">
+        <div className="flex ml-64 items-center gap-[100px] justify-center min-h-screen">
             {step === 1 ? (
                 <>
                     <div className="border border-2 border-gray-100 bg-white p-8 rounded-lg w-[600px]">

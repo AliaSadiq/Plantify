@@ -149,6 +149,74 @@ const LandingPage = () => {
                     <div className='mt-10 text-mini'><Link to='/shop'><Button text="Shop now!"/></Link></div>
                 </div>
             </div>
+            {/* different signups div */}
+            {/* <div className='flex flex-col lg:flex lg:flex-row items-center justify-center gap-[10px] mt-20 mb-20 font-josefin-sans text-center text-gray-100'>
+                <div className='group bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] drop-shadow-lg'>
+                    <h1 className='font-bold group-hover:hidden'>
+                        Open your plant store!
+                    </h1>
+                </div>
+                <div className='group bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] drop-shadow-lg'>
+                    <h1 className='font-bold group-hover:hidden'>
+                        Become a member!
+                    </h1>
+                    <button className='opacity-0 group-hover:opacity-100 p-4 bg-gray-100 text-white text-mini font-semibold'>
+                        Sign Up as Seller
+                    </button>
+                </div>
+                <div className='group bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] drop-shadow-lg'>
+                    <h1 className='font-bold group-hover:hidden'>
+                        Initiate Campaign!
+                    </h1>
+                </div>
+            </div> */}
+            {/* Different signups div */}
+            <div className='flex flex-col lg:flex-row items-center justify-center gap-[20px] mt-20 mb-20 font-josefin-sans text-center text-gray-100'>
+                {/* Seller Signup Option */}
+                <div className='group bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] h-[200px] lg:w-[350px] lg:h-[250px] drop-shadow-lg hover:h-[320px] transition-all duration-300 ease-in-out relative overflow-hidden'>
+                    <h1 className='font-bold text-lg mb-2'>Open your plant store!</h1>
+                    {/* Hidden description and button initially */}
+                    <p className='text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                    Start your own plant store, reach new customers, and sell your unique plants!
+                    </p>
+                    <Link to="/seller-signup"> 
+                        <button className='mt-4 opacity-0 group-hover:opacity-100 text-sm bg-gray-100 text-white px-4 py-2 rounded-full transition-opacity duration-300'>
+                        Sign Up as Seller
+                        </button>
+                    </Link>
+                </div>
+
+                {/* Member Signup Option */}
+                <div className='group bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] h-[200px] lg:w-[350px] lg:h-[250px] drop-shadow-lg hover:h-[320px] transition-all duration-300 ease-in-out relative overflow-hidden'>
+                    <h1 className='font-bold text-lg mb-2'>Become a member!</h1>
+                    {/* Hidden description and button initially */}
+                    <p className='text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                    Join our community to support green campaigns and access exclusive content.
+                    </p>
+                    <Link to="/seller-sign-up"> 
+                        <button className='mt-4 opacity-0 group-hover:opacity-100 text-sm bg-gray-100 text-white px-4 py-2 rounded-full transition-opacity duration-300'>
+                        Sign Up as Member
+                        </button>
+                    </Link>
+                </div>
+
+                {/* Social Group Signup Option */}
+                <div className='group bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] h-[200px] lg:w-[350px] lg:h-[250px] drop-shadow-lg hover:h-[320px] transition-all duration-300 ease-in-out relative overflow-hidden'>
+                    <h1 className='font-bold text-lg mb-2'>Initiate Campaigns!</h1>
+                    {/* Hidden description and button initially */}
+                    <p className='text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                    Become a social group leader and initiate impactful plant campaigns in your community.
+                    </p>
+                    <Link to="/social-signUp"> 
+                        <button className='mt-4 opacity-0 group-hover:opacity-100 text-sm bg-gray-100 text-white px-4 py-2 rounded-full transition-opacity duration-300'>
+                        Sign Up as Social Group
+                        </button>
+                    </Link>
+                </div>
+            </div>
+
+
+
             {/* Campaigns showcase */}
             <div className="flex flex-col lg:flex-row gap-10 justify-center lg:justify-between bg-neutral to-white items-center pt-20 pb-10 px-40">
                 <div className="mx-4 lg:mr-40 font-josefin-sans">

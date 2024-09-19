@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../components/button';
 
@@ -50,7 +50,7 @@ export default function VerificationCheck() {
         <div className='flex flex-col gap-y-4 min-h-screen items-center justify-center'>
             <p className='text-lg'>{getVerificationMessage()}</p>
             <img src='/assets/clockwise.png' className='w-20 mb-4'/>
-            <Button text="Go to Homepage" color='fill'/>
+            <Link to="/"><Button text="Go to Homepage" color='fill'/></Link>
         </div>
     );
 }
