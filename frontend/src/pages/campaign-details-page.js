@@ -16,9 +16,13 @@ export default function CampaignDetailsPage() {
     const user = useUser();
     const [campaign, setCampaign] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+<<<<<<< HEAD
     // const [isReportModalOpen, setIsReportModalOpen] = useState(false);
     const [comments, setComments] = useState([]);
     const { donations, loading, error } = useDonationsByCampaign(id);
+=======
+    const [comments, setComments] = useState([]);
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
     const [newComment, setNewComment] = useState("");
     const [activeStage, setActiveStage] = useState(0); // State for managing active stage
 
@@ -56,6 +60,7 @@ export default function CampaignDetailsPage() {
         setIsModalOpen(false);
     };
 
+<<<<<<< HEAD
     //volunteers popup
     // const handleReportModalOpen = () => {
     //     setIsReportModalOpen(true);
@@ -65,6 +70,8 @@ export default function CampaignDetailsPage() {
     //     setIsReportModalOpen(false);
     // };
 
+=======
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
     //fetching the campaign and the campaign commments
     useEffect(() => {
         const fetchCampaignDetails = async () => {
@@ -84,7 +91,12 @@ export default function CampaignDetailsPage() {
 
     const handleAddComment = async (e) => {
         e.preventDefault();
+<<<<<<< HEAD
         if (user?._id) {
+=======
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user && user._id) {
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
             try {
                 const response = await axios.post("http://localhost:5000/api/campaign-comment", {
                     user: user._id,
@@ -99,6 +111,7 @@ export default function CampaignDetailsPage() {
         }
     };
 
+<<<<<<< HEAD
     const handleShare = () => {
         const shareUrl = `${window.location.origin}/campaign-details/${id}`;
         navigator.clipboard.writeText(shareUrl).then(() => {
@@ -117,13 +130,20 @@ export default function CampaignDetailsPage() {
         });
     };
 
+=======
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
     if (!campaign) {
         return <div>Loading...</div>; // Add a loading state while campaign data is being fetched
     }
 
     return (
+<<<<<<< HEAD
         <div className="min-h-screen bg-white"> 
             <div className="flex flex-col items-center justify-center pt-40">
+=======
+        <div className="min-h-screen bg-neutral"> 
+            <div className="flex flex-col items-center justify-center mt-40">
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
                 <h1 className="font-bold text-2xl">{campaign.name}</h1>
                 <p className="font-semibold text-mini mb-10 flex items-center justify-center gap-2">
                     a campaign by
@@ -269,7 +289,11 @@ export default function CampaignDetailsPage() {
                             )}
                         </div>
                     </div> */}
+<<<<<<< HEAD
                      <div className="mt-4 p-2 rounded-pl border border-2 border-neutral">
+=======
+                     <div className="mt-4 p-2 rounded-pl border  border-neutral">
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
                         <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
                         <div className="p-4 mt-2 rounded-b-lg">
                             {activeTab === 'progress' && (
@@ -287,7 +311,11 @@ export default function CampaignDetailsPage() {
                                             </div>
                                         ))}
                                     </div>
+<<<<<<< HEAD
                                     <p className="text-center text-justify mt-4">
+=======
+                                    <p className="text-center  mt-4">
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
                                         {stages[activeStage].description}
                                     </p>
                                 </div>
@@ -340,7 +368,11 @@ export default function CampaignDetailsPage() {
                             {comments.map((comment) => (
                                 <li className="relative w-full p-4 border-b-2 border-neutral">
                                     <div className="w-full flex flex-row items-center">
+<<<<<<< HEAD
                                         <img src="/assets/testimonial-2.jpeg" className="w-14 h-14 object-cover rounded-full" alt="user avatar"/>
+=======
+                                        <img src="/assets/testimonial-2.jpeg" className="w-14 h-14 object-cover rounded-full" />
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
                                         <div className="ml-2 w-full flow-root">
                                             <p className="float-left font-semibold ml-2">{comment.user.username}</p>
                                             <p className="float-right text-gray-500 text-sm">{new Date(comment.date).toLocaleDateString()}</p>
@@ -351,7 +383,11 @@ export default function CampaignDetailsPage() {
                                 </li>
                             ))}
                         </ul>
+<<<<<<< HEAD
                         <div className="mt-4 flex items-center bg-neutral py-2 px-3 rounded-2xl">
+=======
+                        <div className="mt-4 flex items-center bg-navygreen-100  py-2 px-3 rounded-2xl">
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
                             <textarea 
                                 id="comment" 
                                 className="bg-inherit pl-2 w-full outline-none border-none"
@@ -382,6 +418,7 @@ export default function CampaignDetailsPage() {
                             </button>
                         </div>
                     </div>
+<<<<<<< HEAD
                     {/* donors div */}
                     {/* <div className="bg-inherit w-full p-2 border-neutral border-2 rounded-[20px] mt-4">
                         <h2 className="font-semibold text-md text-center py-2">Donors</h2>
@@ -432,6 +469,31 @@ export default function CampaignDetailsPage() {
                         ) : (
                             <p className="text-center">No donations yet.</p>
                         )}
+=======
+                    <div className="bg-inherit w-full p-2 border-neutral border-2 rounded-[20px] mt-4">
+                        <h2 className="font-semibold text-md text-center py-2">Donors</h2>
+                        <div className="flex justify-between items-center my-4 mx-2  border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
+                            <div className="flex items-center justify-start bg-navygreen-100 p-2 rounded-pl">
+                                <img src="/assets/testimonial-1.jpeg" className="w-8  rounded-full" />
+                                <p className="mx-2 ">Alia donated</p>
+                            </div>
+                            <img className="mr-2" src="/assets/leaves.png" />
+                        </div>
+                        <div className="flex justify-between items-center my-4 mx-2 border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
+                            <div className="flex items-center justify-start bg-navygreen-100 p-2 rounded-pl">
+                                <img src="/assets/testimonial-1.jpeg" className="w-8  rounded-full" />
+                                <p className="mx-2 ">Alia donated</p>
+                            </div>
+                            <img className="mr-2" src="/assets/leaves.png" />
+                        </div>
+                        <div className="flex justify-between items-center my-4 mx-2  border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
+                            <div className="flex items-center justify-start bg-navygreen-100 p-2 rounded-pl">
+                                <img src="/assets/testimonial-1.jpeg" className="w-8  rounded-full" />
+                                <p className="mx-2 ">Alia donated</p>
+                            </div>
+                            <img className="mr-2" src="/assets/leaves.png" />
+                        </div>
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
                     </div>
                 </div>
             </div>

@@ -202,12 +202,16 @@ const AppContent = () => {
         <Route path="settings" element={<SettingsPage />} />
         <Route path='auth-check' element={<AuthCheck />} />
         <Route path='verification-check' element={<VerificationCheck />} />
+<<<<<<< HEAD
         
         {/* Auth routes */}
         {isAuthRoute && <Route path="/*" element={<AuthLayout />} />}
 
         {/* Dashboard routes */}
         {isDashboardRoute && <Route path="social-dashboard/:id/*" element={<DashboardLayout />} />}
+=======
+        <Route path='social-dashboard/:id/*' element={<DashboardLayout />} />
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
       </Routes>
       {!isDashboardRoute && !isAuthRoute && <Footer />}
     </>
@@ -222,4 +226,8 @@ function App() {
   );
 }
 
+<<<<<<< HEAD
 export default App;
+=======
+export default App;
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9

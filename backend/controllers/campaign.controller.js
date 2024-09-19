@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const getCampaigns = async (req, res) => {
   try {
+<<<<<<< HEAD
     const { page = 1, limit = 6, search = '' } = req.query;
     const skip = (page - 1) * limit;
 
@@ -20,11 +21,17 @@ const getCampaigns = async (req, res) => {
     const totalPages = Math.ceil(totalCampaigns / limit);
 
     res.status(200).json({ campaigns, totalPages });
+=======
+    const campaigns = await Campaign.find()
+      .populate('socialGroup') // Populate the socialGroup field
+    res.status(200).json(campaigns);
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+<<<<<<< HEAD
 // const getCampaigns = async (req, res) => {
 //   try {
 //     const campaigns = await Campaign.find()
@@ -35,6 +42,8 @@ const getCampaigns = async (req, res) => {
 //   }
 // };
 
+=======
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
 const getCampaign = async (req, res) => {
   try {
     const { id } = req.params;
@@ -74,10 +83,17 @@ const socialgroupCampaigns = async (req, res) => {
         return res.status(400).json({ message: 'Invalid socialId provided' });
       }
   
+<<<<<<< HEAD
       const userCampaigns = await Campaign.find({ socialGroup: socialId }).populate('socialGroup'); // Change findOne to find
       if (!userCampaigns.length) {
         return res.status(404).json({ message: 'No campaigns found for this social group' });
       }
+=======
+      const userCampaigns = await Campaign.find({ socialGroup: socialId }).populate('socialGroup');; // Change findOne to find
+      if (!userCampaigns.length) {
+        return res.status(404).json({ message: 'No campaigns found for this social group' });
+      }
+>>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
   
       res.status(200).json(userCampaigns);
   } catch (error) {
