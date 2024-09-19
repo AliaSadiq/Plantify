@@ -39,13 +39,9 @@ app.use("/api/campaign-comment", campaignCommentRoute);
 app.use("/api/user-message", userMessageRoute);
 app.use("/api/campaign-report", campaignReportRoute);
 app.use("/api/donations",donationRoutes);
-<<<<<<< HEAD
 app.use("/api/sellers",sellerRoute);
-
-=======
 app.use("/api/socialgroup-review", reviewRoutes);
 app.use("/api/socialgroup-question", questionRoutes);
->>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
 
 //connection
 mongoose

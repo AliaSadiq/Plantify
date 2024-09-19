@@ -20,10 +20,6 @@ ChartJS.register(
 const Onboard = () => {
   const { id } = useParams();
   const [socialGroup, setSocialGroup] = useState(null);
-<<<<<<< HEAD
-=======
-  console.log("socialGroup id: " + id);
->>>>>>> eb47ad213267f5eb8af73cc4ab4f1bffb01d7fe9
 
   useEffect(() => {
     const fetchGroupData = async () => {
