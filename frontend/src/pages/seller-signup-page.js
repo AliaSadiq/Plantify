@@ -74,7 +74,7 @@ const Step1 = ({ onNext }) => {
             <Button 
                 text="Next" 
                 type="button" 
-                className="w-full mt-2 bg-gray-100 text-white shadow-md" 
+                className="w-full mt-2 py-2 bg-gray-100 text-white shadow-md" 
                 onClick={handleNext}
             />
         </form>

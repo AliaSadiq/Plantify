@@ -10,6 +10,7 @@ import ReportModal from "../popups/report-modal";
 import DonationModal from "../popups/donation-modal";
 import Tabs from "../components/tabs";
 import { CarouselDefault } from "../carousels/trees-to-be-planted-carousel";
+import ProgressBar from "../components/progress-bar";
 
 export default function CampaignDetailsPage() {
     const { id } = useParams();
@@ -233,42 +234,6 @@ export default function CampaignDetailsPage() {
                             />
                         </div>
                     </div>
-                    {/* <div className="mt-4 p-2 rounded-pl border border-2 border-neutral">
-                        <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
-                        <div className="p-4 mt-2 rounded-b-lg">
-                            {activeTab === 'progress' && (
-                                <div>
-                                    <h2 className="text-xl font-semibold mb-4">Campaign Progress</h2>
-                                    <p>Details about campaign progress...</p>
-                                    <div className="flex flex-row gap-2 justify-center px-8 mt-8">
-                                        {stages.map((stage, index) => (
-                                            <div
-                                                key={index}
-                                                className={`flex items-center justify-center rounded-pl bg-navygreen-100 h-4 transition-all p-4 duration-300 cursor-pointer ${activeStage === index ? 'flex-grow' : 'w-40 hover:flex-grow'}`}
-                                                onClick={() => setActiveStage(index)}
-                                            >
-                                                <p className="text-center">{stages[index].title}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <p className="text-center text-justify mt-4">
-                                        {stages[activeStage].description}
-                                    </p>
-                                </div>
-                            )}
-                            {activeTab === 'trees' && (
-                                <div>
-                                    <h2 className="text-xl font-semibold mb-4">Trees to be Planted</h2>
-                                    <p>Details about trees to be planted...</p>
-                                    <div className="flex flex-row justify-center">
-                                        <div className="mt-10 p-8 rounded-pl bg-navygreen-100 w-1/2">
-                                            <CarouselDefault />
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </div> */}
                      <div className="mt-4 p-2 rounded-pl border border-2 border-neutral">
                         <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
                         <div className="p-4 mt-2 rounded-b-lg">
@@ -312,14 +277,9 @@ export default function CampaignDetailsPage() {
                     {/* Donation Bar Div */}
                     <div className="bg-inherit w-full h-auto rounded-[20px] p-4 border-neutral border-2">
                         <h1 className="font-bold text-lg text-center">{campaign.collected_donation} PKR raised off {campaign.target_donation} PKR</h1>
-                        <div className="bg-palegreen-200 h-4 rounded-full mt-4 mx-10">
-                            <div
-                                className="bg-navygreen-300 h-full rounded-full"
-                                style={{ width: `${(campaign.collected_donation / campaign.target_donation) * 100}%` }}
-                            ></div>
-                        </div>
+                        <ProgressBar width={80} className="mt-4 mx-10"/>
                         <div className="flex items-center justify-center mt-8">
-                            <Button text="Donate" onClick={handleOpenModal}/>
+                            <Button text="Donate" onClick={handleOpenModal} className="bg-gray-100 text-white py-2 shadow-md"/>
                         </div>
                     </div>
                     {/* About Div */}

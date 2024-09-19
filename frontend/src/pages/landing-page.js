@@ -195,7 +195,7 @@ const LandingPage = () => {
                     </p>
                     <Link to="/seller-sign-up"> 
                         <button className='mt-4 opacity-0 group-hover:opacity-100 text-sm bg-gray-100 text-white px-4 py-2 rounded-full transition-opacity duration-300'>
-                        Sign Up as Member
+                            Sign Up as Member
                         </button>
                     </Link>
                 </div>
@@ -207,9 +207,9 @@ const LandingPage = () => {
                     <p className='text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                     Become a social group leader and initiate impactful plant campaigns in your community.
                     </p>
-                    <Link to="/social-signUp"> 
+                    <Link to="/social-signup"> 
                         <button className='mt-4 opacity-0 group-hover:opacity-100 text-sm bg-gray-100 text-white px-4 py-2 rounded-full transition-opacity duration-300'>
-                        Sign Up as Social Group
+                            Sign Up as Social Group
                         </button>
                     </Link>
                 </div>
