@@ -11,6 +11,7 @@ const campaignReportRoute = require("./routes/campaign-report.route.js");
 const donationRoutes = require('./routes/donation.route.js')
 const reviewRoutes = require("./routes/social-review.route.js");
 const questionRoutes=require("./routes/social-question.route.js");
+const teamroute=require("./routes/team.route.js");
 const app = express();
 const rateLimit = require('express-rate-limit');
 
@@ -40,7 +41,7 @@ app.use("/api/campaign-report", campaignReportRoute);
 app.use("/api/donations",donationRoutes);
 app.use("/api/socialgroup-review", reviewRoutes);
 app.use("/api/socialgroup-question", questionRoutes);
-
+app.use("/api/socialteams", teamroute);
 //connection
 mongoose
   .connect('mongodb+srv://farwa:006OyU1ZCZhowFSt@backenddb.uhcz40u.mongodb.net/Plantify?retryWrites=true&w=majority&appName=BackendDB')
