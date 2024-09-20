@@ -1,91 +1,213 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { CameraIcon, PencilIcon } from "@heroicons/react/24/solid";
 
 const Profile = () => {
+  const [userData, setUserData] = useState({
+    name: 'Alia sadiq',
+    description: 'Experienced in developing comprehensive campaign strategies tailored to specific causes and target audiences. Proficient in setting clear objectives, defining key performance indicators (KPIs), and creating actionable plans to achieve campaign goals.',
+    profileImage: 'https://via.placeholder.com/150',
+    headerImage: 'https://via.placeholder.com/800x200'
+  });
+
+  const [isEditingName, setIsEditingName] = useState(false);
+  const [isEditingDescription, setIsEditingDescription] = useState(false);
+  const [tempName, setTempName] = useState(userData.name);
+  const [tempDescription, setTempDescription] = useState(userData.description);
+
+  const handleEditName = () => {
+    setIsEditingName(true);
+  };
+
+  const handleEditDescription = () => {
+    setIsEditingDescription(true);
+  };
+
+  const handleSaveName = () => {
+    setUserData(prevState => ({
+      ...prevState,
+      name: tempName
+    }));
+    setIsEditingName(false);
+  };
+
+  const handleSaveDescription = () => {
+    setUserData(prevState => ({
+      ...prevState,
+      description: tempDescription
+    }));
+    setIsEditingDescription(false);
+  };
+
+  const handleDropProfileImage = (event) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setUserData(prevState => ({
+          ...prevState,
+          profileImage: reader.result
+        }));
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleDropHeaderImage = (event) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setUserData(prevState => ({
+          ...prevState,
+          headerImage: reader.result
+        }));
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleProfileImageClick = () => {
+    document.getElementById('profileImageInput').click();
+  };
+
+  const handleHeaderImageClick = () => {
+    document.getElementById('headerImageInput').click();
+  };
+
+  const handleProfileImageChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setUserData(prevState => ({
+          ...prevState,
+          profileImage: reader.result
+        }));
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleHeaderImageChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setUserData(prevState => ({
+          ...prevState,
+          headerImage: reader.result
+        }));
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
-    <div className="container mx-auto pt-8">
-      <div className="flex justify-between items-center">
-        {/* Profile Picture */}
-        <div className="flex items-center">
-          <img
-            src="https://picsum.photos/id/237/100"
-            alt="Profile"
-            className="w-16 h-16 rounded-full mr-4"
-          />
-          {/* Username, Edit Profile Button */}
-          <div>
-            <h1 className="font-bold text-xl">Alia Sadiq</h1>
-            <button className="border border-gray-400 rounded-md py-1 px-3 mt-2">
-              Edit Profile
-            </button>
-          </div>
-        </div>
-        {/* Posts, Followers, Following Counts */}
-        <div className="flex">
-          <div className="mr-6">
-            <span className="font-semibold">Posts:</span> 100
-          </div>
-          <div className="mr-6">
-            <span className="font-semibold">Followers:</span> 1000
-          </div>
-          <div className="mr-6">
-            <span className="font-semibold">Following:</span> 500
+    <div className="w-[1100px] h-[550px] mx-auto bg-white overflow-hidden rounded-tl-lg rounded-tr-lg relative">
+      <div 
+        className="relative" 
+        onDrop={handleDropHeaderImage} 
+        onDragOver={(event) => event.preventDefault()}
+        onClick={handleHeaderImageClick}
+      >
+        <img
+          className="w-full h-[200px] object-cover"
+          src={userData.headerImage}
+          alt="Header"
+        />
+        <div className="absolute inset-0 flex justify-center items-center">
+          <div className="relative mt-[200px]">
+            <div 
+              className="relative" 
+              onDrop={handleDropProfileImage} 
+              onDragOver={(event) => event.preventDefault()}
+              onClick={handleProfileImageClick}
+            >
+              <div className="w-40 h-40 overflow-hidden">
+                <img
+                  className="w-full h-full object-cover rounded-full border-4 border-white"
+                  src={userData.profileImage}
+                  alt="Profile"
+                />
+                <button className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 rounded-full cursor-pointer">
+                  <CameraIcon className="h-6 w-6 text-white" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <input
+        type="file"
+        id="profileImageInput"
+        style={{ display: 'none' }}
+        onChange={handleProfileImageChange}
+      />
+      <input
+        type="file"
+        id="headerImageInput"
+        style={{ display: 'none' }}
+        onChange={handleHeaderImageChange}
+      />
 
-      {/* Name, Bio */}
-      <div className="mt-4">
-        <h2 className="font-semibold text-lg">Full Name</h2>
-        <p className="text-sm text-gray-600 mt-2">Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      </div>
-
-      {/* Highlight Stories
-      <div className="mt-4">
-        <h2 className="font-semibold text-lg">Highlights</h2>
-        <div className="flex mt-2">
-          {/* Highlight story items 
-          <div className="mr-4">
-            <img
-               className="w-16 h-16 rounded-full"
-               src="https://picsum.photos/id/237/100"
-               alt="Profile Picture"
-            />
-            <p className="text-sm text-center mt-1">Highlight 1</p>
-          </div>
-          <div className="mr-4">
-            <img
-                className="w-16 h-16 rounded-full"
-                 src="https://picsum.photos/id/237/100"
-                 alt="Profile Picture"
-            />
-            <p className="text-sm text-center mt-1">Highlight 2</p>
-          </div>
-          {/* Add more highlight stories here 
+      <div className="text-center mt-[100px]">
+        <div className="flex justify-center items-center space-x-2">
+          {isEditingName ? (
+            <>
+              <input
+                type="text"
+                value={tempName}
+                onChange={(e) => setTempName(e.target.value)}
+                className="text-lg font-semibold border p-1"
+              />
+              <button onClick={handleSaveName} className="text-gray-500 cursor-pointer">
+                Save
+              </button>
+              <button onClick={() => setIsEditingName(false)} className="text-gray-500 cursor-pointer">
+                Cancel
+              </button>
+            </>
+          ) : (
+            <>
+              <h2 className="text-lg font-semibold">{userData.name}</h2>
+              <button onClick={handleEditName} className="text-gray-500 cursor-pointer">
+                <PencilIcon className="h-4 w-4" />
+              </button>
+            </>
+          )}
         </div>
-      </div> */}
 
-      {/* Posts Grid */}
-      <div className="grid grid-cols-3 gap-4 mt-8">
-      
-        {/* Post items */}
-        <div>
-          <img
-            className="w-80 h-80 "
-            src="https://fastly.picsum.photos/id/134/200/200.jpg?hmac=a3L-JjVSGeG8w3SdNpzxdh8WSC0xHJXgeD6QryCK7pU"
-            alt="post picture"
-          />
+        <div className="mt-6 w-[750px] mx-auto text-black-700 text-sm relative text-center">
+          {isEditingDescription ? (
+            <>
+              <textarea
+                value={tempDescription}
+                onChange={(e) => setTempDescription(e.target.value)}
+                className="w-full border p-1"
+              />
+              <button onClick={handleSaveDescription} className="text-gray-500 cursor-pointer">
+                Save
+              </button>
+              <button onClick={() => setIsEditingDescription(false)} className="text-gray-500 cursor-pointer">
+                Cancel
+              </button>
+            </>
+          ) : (
+            <>
+              <p>{userData.description}</p>
+              <button
+                onClick={handleEditDescription}
+                className="text-gray-500 absolute top-0 right-0 cursor-pointer mt-1 mr-1"
+              >
+                <PencilIcon className="h-4 w-4" />
+              </button>
+            </>
+          )}
         </div>
-        <div>
-          <img
-            className="w-80 h-80"
-            src="https://picsum.photos/seed/picsum/200/300"
-            alt="Profile Picture"
-          />
-        </div>
-        {/* Add more posts here */}
       </div>
-      </div>
-
+    </div>
   );
 };
 

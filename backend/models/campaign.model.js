@@ -35,6 +35,7 @@ const CampaignSchema = mongoose.Schema(
     target_donation:{
         type: Number,
         required: true,
+        default: 0,
     },
     collected_donation:{
         type: Number,

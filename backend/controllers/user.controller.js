@@ -3,22 +3,23 @@ const bcrypt = require("bcrypt");
 
 const createUser = async (req, res) => {
   try {
-      const { username, email, password } = req.body;
+    const { username, email, password, avatar } = req.body;
 
-      // Generate a salt to hash the password
-      const saltRounds = 10;
-      const hashedPassword = await bcrypt.hash(password, saltRounds);
+    // Generate a salt to hash the password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-      // Create the user with the hashed password
-      const user = await User.create({
-          username,
-          email,
-          password: hashedPassword,
-      });
+    // Create the user with the hashed password and avatar
+    const user = await User.create({
+      username,
+      email,
+      password: hashedPassword,
+      avatar // This will be either the selected avatar or the default one
+    });
 
-      res.status(200).json(user);
+    res.status(200).json(user);
   } catch (error) {
-      res.status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 

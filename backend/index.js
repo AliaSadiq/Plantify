@@ -8,6 +8,7 @@ const testimonialRoute = require("./routes/testimonial.route.js");
 const campaignCommentRoute = require("./routes/campaign-comment.route.js");
 const userMessageRoute = require("./routes/user-message.route.js");
 const campaignReportRoute = require("./routes/campaign-report.route.js");
+const sellerRoute = require("./routes/seller.route.js");
 const donationRoutes = require('./routes/donation.route.js')
 const reviewRoutes = require("./routes/social-review.route.js");
 const questionRoutes=require("./routes/social-question.route.js");
@@ -39,6 +40,7 @@ app.use("/api/campaign-comment", campaignCommentRoute);
 app.use("/api/user-message", userMessageRoute);
 app.use("/api/campaign-report", campaignReportRoute);
 app.use("/api/donations",donationRoutes);
+app.use("/api/sellers",sellerRoute);
 app.use("/api/socialgroup-review", reviewRoutes);
 app.use("/api/socialgroup-question", questionRoutes);
 app.use("/api/socialteams", teamroute);

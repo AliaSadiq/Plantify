@@ -1,3 +1,4 @@
+import { Avatar } from "@material-tailwind/react";
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom'
@@ -6,12 +7,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function ProfileDropdown() {
+export default function ProfileDropdown({avatar}) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-full bg-cover bg-no-repeat p-6 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" style={{ backgroundImage: `url(/assets/profile.jpeg)` }}>
-          {/* <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
+        {/* <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-full bg-cover bg-no-repeat p-6 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" style={{ backgroundImage: `url(/assets/profile.jpeg)` }}>
+          {/* <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />}
+        </Menu.Button> */}
+        <Menu.Button>
+          <Avatar src={`/assets/avatars/${avatar}`} alt="avatar" />
         </Menu.Button>
       </div>
 
