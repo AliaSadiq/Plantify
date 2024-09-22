@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminTable from '../tables/admin-table';
+import AdminTable from '../components/tables/verification-table';
 
 export default function CampaignReportsPage () {
     return(
