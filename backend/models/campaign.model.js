@@ -112,10 +112,17 @@ const CampaignSchema = mongoose.Schema(
         message: "End date must be after the start date"
       }
     },
+<<<<<<< HEAD
     target_donation: {
       type: Number,
       required: [true, "Please set a target donation amount"],
       min: [1, "Target donation must be at least 1"]
+=======
+    target_donation:{
+        type: Number,
+        required: true,
+        default: 0,
+>>>>>>> 589074bf9d3361b5580d9a6b8e4a4c130927edf5
     },
     collected_donation: {
       type: Number,

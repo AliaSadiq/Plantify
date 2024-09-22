@@ -19,9 +19,14 @@ module.exports = withMT({
           "500": "#a0bf40",
           
         },
+        forest: {
+          "100": "#323D43",
+          "200": "#242B30",
+        },
         gray: {
           "100": "#222",
           "200": "rgba(34, 34, 34, 0.6)",
+          "300": "#cccccc",
         },
         navygreen: {
           "25": '#f8fcf6',
@@ -82,6 +87,7 @@ module.exports = withMT({
     fontSize: {
       xm:"9px",
       sm: "14px",
+      xmini: "16px",
       mini: "18px",
       md: "20px",
       lg: "25px",

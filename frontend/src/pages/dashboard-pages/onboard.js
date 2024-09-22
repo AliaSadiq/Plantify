@@ -973,6 +973,7 @@ import dashboardbg from "../../images/dashboardbg.png";
 const Onboard = () => {
   const { id: socialGroupId } = useParams();
   const [socialGroup, setSocialGroup] = useState(null);
+<<<<<<< HEAD
   const [user, setUser] = useState("");
 
   useEffect(() => {
@@ -989,6 +990,8 @@ const Onboard = () => {
 
     fetchUser();
   }, []);
+=======
+>>>>>>> 589074bf9d3361b5580d9a6b8e4a4c130927edf5
 
   useEffect(() => {
     const fetchGroupData = async () => {

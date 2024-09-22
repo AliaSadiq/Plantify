@@ -8,9 +8,15 @@ const testimonialRoute = require("./routes/testimonial.route.js");
 const campaignCommentRoute = require("./routes/campaign-comment.route.js");
 const userMessageRoute = require("./routes/user-message.route.js");
 const campaignReportRoute = require("./routes/campaign-report.route.js");
+const sellerRoute = require("./routes/seller.route.js");
 const donationRoutes = require('./routes/donation.route.js')
+<<<<<<< HEAD
 const requestCampaignRoute = require("./routes/request-campaign.route.js");
 const teamRoute =require("./routes/team.route.js");
+=======
+const reviewRoutes = require("./routes/social-review.route.js");
+const questionRoutes=require("./routes/social-question.route.js");
+>>>>>>> 589074bf9d3361b5580d9a6b8e4a4c130927edf5
 const app = express();
 const rateLimit = require('express-rate-limit');
 //rate-limiting (checking)
@@ -36,9 +42,17 @@ app.use("/api/testimonial", testimonialRoute);
 app.use("/api/campaign-comment", campaignCommentRoute);
 app.use("/api/user-message", userMessageRoute);
 app.use("/api/campaign-report", campaignReportRoute);
+<<<<<<< HEAD
 app.use("/api/donations",donationRoutes)
 app.use("/api/request-campaign", requestCampaignRoute);
 app.use("/api/teams",teamRoute);
+=======
+app.use("/api/donations",donationRoutes);
+app.use("/api/sellers",sellerRoute);
+app.use("/api/socialgroup-review", reviewRoutes);
+app.use("/api/socialgroup-question", questionRoutes);
+
+>>>>>>> 589074bf9d3361b5580d9a6b8e4a4c130927edf5
 //connection
 mongoose
 .connect('mongodb://farwa:006OyU1ZCZhowFSt@ac-o9umohz-shard-00-00.uhcz40u.mongodb.net:27017,ac-o9umohz-shard-00-01.uhcz40u.mongodb.net:27017,ac-o9umohz-shard-00-02.uhcz40u.mongodb.net:27017/Plantify?ssl=true&replicaSet=atlas-jvykwq-shard-0&authSource=admin&retryWrites=true&w=majority&appName=BackendDB') 

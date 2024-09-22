@@ -7,6 +7,11 @@ const UserSchema = mongoose.Schema(
       required: [true, "Please enter your email"],
       unique: true,
     },
+    avatar: {
+      type: String,
+      required: false,
+      default: "avatar-1.png",
+    },
     email: {
       type: String,
       required: true,
@@ -15,6 +20,11 @@ const UserSchema = mongoose.Schema(
     password: {
       type: String,
       required: true,
+    },
+    role: {
+      type: String,
+      required: true,
+      default: "user",
     },
     isSocial: {
       type: Boolean,

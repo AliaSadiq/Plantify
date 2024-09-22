@@ -38,6 +38,22 @@ const getAllDonations = async (req, res) => {
     }
 };
 
+// Get all donations by campaign id
+const getAllDonationsByCampaign = async (req, res) => {
+    try {
+        const campaignId = req.params.id; // Get the campaign ID from request parameters
+        const donations = await Donation.find({ campaign: campaignId }).populate('user').populate('campaign'); // Fetch donations and populate user details
+
+        if (!donations.length) {
+            return res.status(404).json({ message: 'No donations found for this campaign.' });
+        }
+
+        res.status(200).json(donations); // Return the found donations
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error', error: error.message }); // Handle server errors
+    }
+};
+
 const getLeaderboard = async (req, res) => {
     const campaignId = req.query.campaignId;
 
@@ -86,6 +102,6 @@ const getLeaderboard = async (req, res) => {
 module.exports = {
     getAllDonations,
     createDonation,
-    getLeaderboard
-   
+    getLeaderboard,
+    getAllDonationsByCampaign   
 };
