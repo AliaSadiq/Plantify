@@ -83,21 +83,6 @@ export default function CampaignDetailsPage() {
         fetchCampaignDetails();
     }, [id]);
 
-<<<<<<< HEAD
-    const handleDonation = async () => {
-        try {
-            const response = await axios.post("http://localhost:5000/api/donate", {
-                amount: 1000, // example amount, you can get this from the state or input
-                campaignId: id
-            });
-            // Redirect to JazzCash payment page or handle response
-            window.location.href = response.data.paymentUrl;
-        } catch (error) {
-            console.error("Error processing donation:", error);
-        }
-    };
-
-=======
     const handleAddComment = async (e) => {
         e.preventDefault();
         if (user?._id) {
@@ -133,7 +118,6 @@ export default function CampaignDetailsPage() {
         });
     };
 
->>>>>>> 589074bf9d3361b5580d9a6b8e4a4c130927edf5
     if (!campaign) {
         return <div>Loading...</div>; // Add a loading state while campaign data is being fetched
     }
@@ -295,11 +279,7 @@ export default function CampaignDetailsPage() {
                         <h1 className="font-bold text-lg text-center">{campaign.collected_donation} PKR raised off {campaign.target_donation} PKR</h1>
                         <ProgressBar width={80} className="mt-4 mx-10"/>
                         <div className="flex items-center justify-center mt-8">
-<<<<<<< HEAD
-                            <Button onClick={handleDonation} text="Donate" />
-=======
                             <Button text="Donate" onClick={handleOpenModal} className="bg-gray-100 text-white py-2 shadow-md"/>
->>>>>>> 589074bf9d3361b5580d9a6b8e4a4c130927edf5
                         </div>
                     </div>
                     {/* About Div */}

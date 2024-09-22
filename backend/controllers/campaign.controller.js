@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 
 const getCampaigns = async (req, res) => {
   try {
-<<<<<<< HEAD
-    const campaigns = await Campaign.find()
-      .populate('socialGroup');
-    res.status(200).json(campaigns);
-=======
+
+    // // const campaigns = await Campaign.find()
+    //   .populate('socialGroup');
+    // res.status(200).json(campaigns);
+
     const { page = 1, limit = 6, search = '' } = req.query;
     const skip = (page - 1) * limit;
 
@@ -26,7 +26,7 @@ const getCampaigns = async (req, res) => {
     const totalPages = Math.ceil(totalCampaigns / limit);
 
     res.status(200).json({ campaigns, totalPages });
->>>>>>> 589074bf9d3361b5580d9a6b8e4a4c130927edf5
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -62,12 +62,6 @@ const createCampaign = async (req, res) => {
 const getCampaignsBySocialGroupId = async (req, res) => {
   const { socialId } = req.params;
 
-<<<<<<< HEAD
-  // Check if socialGroupId is a valid MongoDB ObjectId
-  if (!mongoose.Types.ObjectId.isValid(socialId)) {
-    return res.status(400).json({ message: 'Invalid Social Group ID format' });
-  }
-=======
 const socialgroupCampaigns = async (req, res) => {
   try {
     const { socialId } = req.params; // Correctly destructure the parameter from req.params
@@ -89,7 +83,6 @@ const socialgroupCampaigns = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
->>>>>>> 589074bf9d3361b5580d9a6b8e4a4c130927edf5
 
   try {
     // Convert the socialGroupId into an ObjectId
@@ -251,6 +244,7 @@ module.exports = {
   getCampaign,
   createCampaign,
   getKeyMetrics,
+  socialgroupCampaigns,
   getsocialgroupCampaigns,
   getCampaignsBySocialGroup,
   getCampaignsBySocialGroupId,

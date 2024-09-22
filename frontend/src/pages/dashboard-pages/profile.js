@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 import React from 'react';
 import PieChartGraph from "../../components/dashboard-components/Piechart.js";
-=======
-import React, { useState } from 'react';
-import { CameraIcon, PencilIcon } from "@heroicons/react/24/solid";
-
->>>>>>> 589074bf9d3361b5580d9a6b8e4a4c130927edf5
 const Profile = () => {
   const [userData, setUserData] = useState({
     name: 'Alia sadiq',
@@ -183,8 +177,7 @@ const Profile = () => {
             </>
           )}
         </div>
-<<<<<<< HEAD
-      </div> */}
+      </div> 
 <div>
   <PieChartGraph/>
 </div>
@@ -198,35 +191,6 @@ const Profile = () => {
             src="https://fastly.picsum.photos/id/134/200/200.jpg?hmac=a3L-JjVSGeG8w3SdNpzxdh8WSC0xHJXgeD6QryCK7pU"
             alt="post picture"
           />
-=======
-
-        <div className="mt-6 w-[750px] mx-auto text-black-700 text-sm relative text-center">
-          {isEditingDescription ? (
-            <>
-              <textarea
-                value={tempDescription}
-                onChange={(e) => setTempDescription(e.target.value)}
-                className="w-full border p-1"
-              />
-              <button onClick={handleSaveDescription} className="text-gray-500 cursor-pointer">
-                Save
-              </button>
-              <button onClick={() => setIsEditingDescription(false)} className="text-gray-500 cursor-pointer">
-                Cancel
-              </button>
-            </>
-          ) : (
-            <>
-              <p>{userData.description}</p>
-              <button
-                onClick={handleEditDescription}
-                className="text-gray-500 absolute top-0 right-0 cursor-pointer mt-1 mr-1"
-              >
-                <PencilIcon className="h-4 w-4" />
-              </button>
-            </>
-          )}
->>>>>>> 589074bf9d3361b5580d9a6b8e4a4c130927edf5
         </div>
       </div>
     </div>
