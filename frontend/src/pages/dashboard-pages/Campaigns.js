@@ -240,7 +240,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Table from "../../components/dashboard-components/table.js";
 import { FaPlusCircle } from "react-icons/fa";
-import SearchBar from "../../components/search-bar.js"
+import SearchBar from "../../components/search-bar.js";
 import axios from "axios";
 import Button from "../../components/button.js";
 import { Input } from "@material-tailwind/react";
