@@ -1,9 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const { getRequestCampaign,createRequestCampaign } = require('../controllers/campaign-request.controller.js');
+const { getRequests,
+    getRequest,
+    addRequest,
+    updateRequest,
+    deleteRequest } = require('../controllers/campaign-request.controllers');
 
-router.post('/', createRequestCampaign);
-router.get('/', getRequestCampaign);
-
-
+router.post('/', addRequest);
+router.get('/:id', getRequests);
+router.get('/', getRequest);
+router.add('/', addRequest);
+router.put('/id',updateRequest);
+router.delete('/:id', deleteRequest);
+getRequests,
+getRequest,
+addRequest,
+updateRequest,
+deleteRequest
 module.exports = router;

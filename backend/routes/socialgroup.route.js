@@ -6,6 +6,7 @@ router.post("/", createSocialGroup);
 router.get("/onWait", getSocialGroupsOnWait);
 router.get("/:id", getSocialGroup);
 router.put("/:id", updateSocialGroup);
-router.get("/user/:userId", getSocialGroupByUserId)
+router.get("/user/:userId", getSocialGroupByUserId);
+router.get("/:id/Insights",getSocialGroup)
 
 module.exports = router;

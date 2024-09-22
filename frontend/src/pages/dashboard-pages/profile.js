@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PieChartGraph from "../../components/dashboard-components/Piechart.js";
 const Profile = () => {
   return (
     <div className="container mx-auto pt-8">
@@ -63,7 +63,9 @@ const Profile = () => {
           {/* Add more highlight stories here 
         </div>
       </div> */}
-
+<div>
+  <PieChartGraph/>
+</div>
       {/* Posts Grid */}
       <div className="grid grid-cols-3 gap-4 mt-8">
       

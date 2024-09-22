@@ -42,6 +42,19 @@ export default function CampaignDetailsPage() {
         fetchCampaignDetails();
     }, [id]);
 
+    const handleDonation = async () => {
+        try {
+            const response = await axios.post("http://localhost:5000/api/donate", {
+                amount: 1000, // example amount, you can get this from the state or input
+                campaignId: id
+            });
+            // Redirect to JazzCash payment page or handle response
+            window.location.href = response.data.paymentUrl;
+        } catch (error) {
+            console.error("Error processing donation:", error);
+        }
+    };
+
     if (!campaign) {
         return <div>Loading...</div>;
     }
@@ -205,7 +218,7 @@ export default function CampaignDetailsPage() {
                             ></div>
                         </div>
                         <div className="flex items-center justify-center mt-8">
-                            <Button text="Donate" />
+                            <Button onClick={handleDonation} text="Donate" />
                         </div>
                     </div>
                     {/* About Div */}

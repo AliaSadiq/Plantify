@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 const withMT = require("@material-tailwind/react/utils/withMT");
 module.exports = withMT({
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}",
+    "path-to-your-node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
+    "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
+  ],
+  
   theme: {
     extend: {
       colors: {
@@ -12,7 +16,8 @@ module.exports = withMT({
           "200": "#D4E7C5",
           "300": "#dcf4a9",
           "400": "#b7ce6e",
-          "500": "#a0bf40"
+          "500": "#a0bf40",
+          
         },
         gray: {
           "100": "#222",
@@ -38,6 +43,7 @@ module.exports = withMT({
           "200": "#ECEED3",
           "300": "#D0D2A8",
         },
+        dgreen:"#97b58a",
         glass:"#F5F6EF",
         ivory: "#F2F3E6",
         neutral: "#F5F5F5",
@@ -56,6 +62,9 @@ module.exports = withMT({
         dbhover:"#768c67",
         prom:"#8ba25d",
         text:"#8FB081",
+      },
+      scrollbar: {
+        thumb: '#DDE6D6',
       },
       spacing: {},
       fontFamily: {

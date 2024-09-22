@@ -1,63 +1,155 @@
-const {mongoose, Schema} = require("mongoose");
+// const {mongoose, Schema, trusted} = require("mongoose");
+// const { type } = require("os");
 
+// const CampaignSchema = mongoose.Schema(
+//   {
+//     name: {
+//       type: String,
+//       required: [true, "Please enter campaign name"],
+//     },
+//     socialGroup:{
+//       type: mongoose.Schema.Types.ObjectId,
+//       ref: 'SocialGroup',
+//       required:true
+//     },
+//     description: {
+//       type: String,
+//       required: true
+//     },
+//     likes:{
+//       type:String,
+
+//     },
+//     followers:{
+//       type:String,
+
+//     },
+//     image: {
+//       type: String,
+//       required: true,
+//       default: 0,
+//     },
+//     location: {
+//       type: String,
+//       required: true,
+//       default: 0,
+//     },
+//     start_date: {
+//       type: Date,
+//       required: false,
+//     },
+//     end_date: {
+//         type: Date,
+//         required: false,
+//     },
+//     target_donation:{
+//         type: Number,
+//         required: true,
+//     },
+//     collected_donation:{
+//         type: Number,
+//         required: false,
+//     },
+    
+//     status:{
+//         type: String,
+//         default: true,
+//     },
+//     volunteers: {
+//       type: Number,
+//       require: false
+//     }
+//     // socialGroup: { type: mongoose.Schema.Types.ObjectId, ref: 'SocialGroup' },
+//   },
+//   {
+//     timestamps: true,
+//   }
+// );
+
+
+// const Campaign = mongoose.model("Campaign", CampaignSchema);
+
+// module.exports = Campaign;const mongoose = require("mongoose");
+const {mongoose, Schema, trusted} = require("mongoose");
+const { type } = require("os");
 const CampaignSchema = mongoose.Schema(
   {
     name: {
       type: String,
       required: [true, "Please enter campaign name"],
+      trim: true, // Removes extra spaces
+      maxlength: [100, "Campaign name cannot exceed 100 characters"]
     },
-    socialGroup:{
-      type: Schema.Types.ObjectId,
-      ref: 'SocialGroup',
+    socialGroup: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "SocialGroup",
+      required: true
     },
     description: {
       type: String,
-      required: true
+      required: [true, "Please provide a description for the campaign"],
+      maxlength: [500, "Description cannot exceed 500 characters"]
     },
     image: {
       type: String,
-      required: true,
-      default: 0,
+      required: [true, "Please upload an image"],
     },
     location: {
       type: String,
-      required: true,
-      default: 0,
+      required: [true, "Please provide a location"],
     },
     start_date: {
       type: Date,
-      required: false,
+      required: [true, "Please provide a start date"]
     },
     end_date: {
-        type: Date,
-        required: false,
+      type: Date,
+      required: [true, "Please provide an end date"],
+      validate: {
+        validator: function (value) {
+          return value > this.start_date; // End date must be after the start date
+        },
+        message: "End date must be after the start date"
+      }
     },
-    target_donation:{
-        type: Number,
-        required: true,
+    target_donation: {
+      type: Number,
+      required: [true, "Please set a target donation amount"],
+      min: [1, "Target donation must be at least 1"]
     },
-    collected_donation:{
-        type: Number,
-        required: false,
+    collected_donation: {
+      type: Number,
+      default: 0
     },
     likes: {
       type: Number,
-      require: false,
+      default: 0
     },
-    status:{
-        type: String,
-        required: false,
+    followers: {
+      type: Number,
+      default: 0
+    },
+    status: {
+      type: String,
+      default:"true",
+      enum: ['active', 'completed', 'pending'] 
     },
     volunteers: {
       type: Number,
-      require: false
-    }
+      default: 0
+    },
+    trees: [
+      {
+        name: { type: String, required: true },
+        price: { type: Number, required: true, min: 1 },
+        image: { type: String, required: true }
+      }
+    ]
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );
-
 
 const Campaign = mongoose.model("Campaign", CampaignSchema);
 
