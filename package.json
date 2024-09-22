@@ -1,7 +1,10 @@
 {
   "dependencies": {
+    "@material-tailwind/react": "^2.1.9",
+    "@react-stately/utils": "^3.10.2",
     "concurrently": "^8.2.2",
     "cors": "^2.8.5",
+    "date-fns": "^3.6.0",
     "react-vis": "^1.12.1"
   },
   "scripts": {

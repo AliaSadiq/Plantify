@@ -7,7 +7,7 @@ const {
   addRequest,
   updateRequest,
   deleteRequest,
-} = require("../Controller/RequestsController.js");
+} = require("../controllers/request-campaign.controller");
 
 // Define your routes
 routes.get("/", getRequests);

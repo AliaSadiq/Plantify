@@ -1,4 +1,4 @@
-const Request = require("../Models/RequestsModel.js");
+const Request = require("../models/request-campaign.model");
 
 const getRequests = async (req, res) => {
   try {
