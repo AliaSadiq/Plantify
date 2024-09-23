@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { CameraIcon, PencilIcon } from "@heroicons/react/24/solid";
-
+import React from 'react';
+import PieChartGraph from "../../components/dashboard-components/Piechart.js";
 const Profile = () => {
   const [userData, setUserData] = useState({
     name: 'Alia sadiq',
@@ -178,33 +177,20 @@ const Profile = () => {
             </>
           )}
         </div>
-
-        <div className="mt-6 w-[750px] mx-auto text-black-700 text-sm relative text-center">
-          {isEditingDescription ? (
-            <>
-              <textarea
-                value={tempDescription}
-                onChange={(e) => setTempDescription(e.target.value)}
-                className="w-full border p-1"
-              />
-              <button onClick={handleSaveDescription} className="text-gray-500 cursor-pointer">
-                Save
-              </button>
-              <button onClick={() => setIsEditingDescription(false)} className="text-gray-500 cursor-pointer">
-                Cancel
-              </button>
-            </>
-          ) : (
-            <>
-              <p>{userData.description}</p>
-              <button
-                onClick={handleEditDescription}
-                className="text-gray-500 absolute top-0 right-0 cursor-pointer mt-1 mr-1"
-              >
-                <PencilIcon className="h-4 w-4" />
-              </button>
-            </>
-          )}
+      </div> 
+<div>
+  <PieChartGraph/>
+</div>
+      {/* Posts Grid */}
+      <div className="grid grid-cols-3 gap-4 mt-8">
+      
+        {/* Post items */}
+        <div>
+          <img
+            className="w-80 h-80 "
+            src="https://fastly.picsum.photos/id/134/200/200.jpg?hmac=a3L-JjVSGeG8w3SdNpzxdh8WSC0xHJXgeD6QryCK7pU"
+            alt="post picture"
+          />
         </div>
       </div>
     </div>

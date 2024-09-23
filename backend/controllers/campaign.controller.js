@@ -76,9 +76,19 @@ const socialgroupCampaigns = async (req, res) => {
   }
 };
 
+const getCampaignCount = async (req, res) => {
+  try {
+    const totalCampaigns = await Campaign.countDocuments();
+    res.status(200).json({ count: totalCampaigns });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
     getCampaign,
     getCampaigns,
     createCampaign,
     socialgroupCampaigns,
+    getCampaignCount,
 };

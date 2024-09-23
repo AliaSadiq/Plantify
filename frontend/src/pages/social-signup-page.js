@@ -61,19 +61,19 @@ const SocialSignUpPage = () => {
     // };
 
     const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
-      const file = event.target.files[0];
-      if (file && file.type.startsWith("image/")) {
-          setFileState(file.name);
-          setFormData(prevState => ({
-              ...prevState,
-              [fieldName]: file.name
-          }));
-      } else {
-          alert("Please select a valid image file.");
-          // Clear the file input field
-          event.target.value = ""; // Reset the input value
-      }
-  };
+        const file = event.target.files[0];
+        if (file && file.type.startsWith("image/")) {
+            setFileState(file.name);
+            setFormData(prevState => ({
+                ...prevState,
+                [fieldName]: file.name
+            }));
+        } else {
+            alert("Please select a valid image file.");
+            // Clear the file input field
+            event.target.value = ""; // Reset the input value
+        }
+    };
 
     const handleInputChange = (e, setFormData) => {
         const { name, value } = e.target;
@@ -101,11 +101,11 @@ const SocialSignUpPage = () => {
 
     const handleStep2Submit = async (e) => {
         e.preventDefault();
-            console.log('faceimage: ' + formDataStep2.faceImage);
-            console.log('cnic: ' + formDataStep2.cnic);
-            console.log('contact: ' + formDataStep2.contact);
-            console.log('address: ' + formDataStep2.address);
-            console.log('status: ' + formDataStep2.status);
+        console.log('faceimage: ' + formDataStep2.faceImage);
+        console.log('cnic: ' + formDataStep2.cnic);
+        console.log('contact: ' + formDataStep2.contact);
+        console.log('address: ' + formDataStep2.address);
+        console.log('status: ' + formDataStep2.status);
         try {
             const formData = {
                 ...formDataStep1,

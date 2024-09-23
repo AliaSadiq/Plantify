@@ -101,6 +101,15 @@ const getSocialGroupByUserId = async (req, res) => {
   }
 };
 
+const getSocialGroupCount = async (req, res) => {
+  try {
+    const totalGroups = await SocialGroup.countDocuments();
+    res.status(200).json({ count: totalGroups });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createSocialGroup,
   getSocialGroup,
@@ -109,4 +118,5 @@ module.exports = {
   updateSocialGroup,
   deleteSocialGroup,
   getSocialGroupByUserId,
+  getSocialGroupCount,
 };

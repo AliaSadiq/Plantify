@@ -118,7 +118,7 @@ const CampaignList = ({ campaigns, onEdit, onDelete }) => {
               <h3 className="text-xl font-semibold mb-1">{campaign.name}</h3>
               <p className="text-gray-600 mb-1">Location: {campaign.location}</p>
               <p className="text-gray-600 mb-1">Date: {campaign.start_date ? new Date(campaign.start_date).toLocaleDateString() : "N/A"}</p>
-              <p className="text-gray-600 mb-2">Target Donations: {campaign.target_donation}</p>
+              <p className="text-gray-600 mb-2">status: {campaign.start_date}</p>
               <p className="text-gray-600 mb-2">Collected Donations: {campaign.collected_donation}</p>
             </div>
             <div className="flex items-center mt-4">

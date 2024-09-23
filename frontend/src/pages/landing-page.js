@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import landing from '../images/landing.jpeg';
 import TestimonialCarousel from '../carousels/testimonial-carousel';
 import ProductCarousel from '../carousels/product-carousel';
-import {SunIcon} from '@heroicons/react/24/solid';
+import {GlobeAsiaAustraliaIcon, SunIcon, UserGroupIcon} from '@heroicons/react/24/solid';
 import goal from '../images/goal.jpeg';
 import CampaignCarousel from '../components/campaign-carousel';
 import Button from '../components/button';
@@ -92,7 +92,7 @@ const LandingPage = () => {
             {/* About div */}
             <div className='bg-neutral'>
                 <div className='font-noto-sans-display text-xl lg:text-lilxl font-semibold text-center lg:text-left lg:px-[100px] pt-[20px]'>
-                    <span className='text-navygreen-200'>Together</span><span className=''>, we <span className='text-navygreen-200'>can</span> make </span><h1 >a difference.</h1>
+                    <span className='text-navygreen-300'>Together</span><span className=''>, we <span className='text-navygreen-300'>can</span> make </span><h1 >a difference.</h1>
                     {/* <p className='mt-4 font-light'>Join us in our mission to create a sustainable future for our planet. Together, we can make a positive impact on the environment by promoting eco-friendly practices, conserving natural resources, and advocating for environmental conservation. Let's work hand in hand towards building a greener and healthier world for generations to come.</p> */}
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4'>
@@ -100,26 +100,26 @@ const LandingPage = () => {
                         <img src={goal} alt='leaf image' className='self-center rounded-xl w-40 lg:w-96 h-auto mx-10 object-cover'/>
                     {/* </div> */}
                     <div className='grid lg:grid-rows-2 lg:grid-cols-2 grid-cols-1 grid-row-4 gap-x-4 gap-y-0 mt-10 lg:mt-40 mr-10'>
-                    <div className='p-8'>
-                        <SunIcon className='w-10 bg-navygreen-200 bg-opacity-40 rounded-sm p-2'/>
-                        <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>Environmental Advocacy</h1>
-                        <p className='text-sm'>Join us in advocating for a greener planet. Raise awareness, inspire action, and make a difference in the fight against climate change and environmental degradation.</p>
-                    </div>
-                    <div className='p-8'>
-                        <SunIcon className='w-10 bg-navygreen-200 bg-opacity-40 rounded-sm p-2'/>
-                        <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>Community Engagement</h1>
-                        <p className='text-sm'>Connect with like-minded individuals and organizations dedicated to sustainability. Engage in discussions, share ideas, and collaborate on projects that promote eco-friendly living and environmental conservation.</p>
-                    </div>
-                    <div className='p-8'>
-                        <SunIcon className='w-10 bg-navygreen-200 bg-opacity-40 rounded-sm p-2'/>
-                        <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>Sustainable Practices</h1>
-                        <p className='text-sm'>Discover practical tips and resources for living a more sustainable lifestyle. From reducing waste to supporting green businesses, learn how small changes can have a big impact on the health of our planet.</p>
-                    </div>
-                    <div className='p-8'>
-                        <SunIcon className='w-10 bg-navygreen-200 bg-opacity-40 rounded-sm p-2'/>
-                        <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>Collective Impact</h1>
-                        <p className='text-sm'>Together, we can create positive change. By working collaboratively, we amplify our voices and efforts to protect the environment and build a more sustainable future for generations to come.</p>
-                    </div>
+                        <div className='p-8'>
+                            <SunIcon className='w-10 bg-navygreen-200 bg-opacity-40 rounded-sm p-2'/>
+                            <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>Environmental Advocacy</h1>
+                            <p className='text-sm'>Join us in advocating for a greener planet. Raise awareness, inspire action, and make a difference in the fight against climate change and environmental degradation.</p>
+                        </div>
+                        <div className='p-8'>
+                            <UserGroupIcon className='w-10 bg-navygreen-200 bg-opacity-40 rounded-sm p-2'/>
+                            <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>Community Engagement</h1>
+                            <p className='text-sm'>Connect with like-minded individuals and organizations dedicated to sustainability. Engage in discussions, share ideas, and collaborate on projects that promote eco-friendly living and environmental conservation.</p>
+                        </div>
+                        <div className='p-8'>
+                            <GlobeAsiaAustraliaIcon className='w-10 bg-navygreen-200 bg-opacity-40 rounded-sm p-2'/>
+                            <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>Sustainable Practices</h1>
+                            <p className='text-sm'>Discover practical tips and resources for living a more sustainable lifestyle. From reducing waste to supporting green businesses, learn how small changes can have a big impact on the health of our planet.</p>
+                        </div>
+                        <div className='p-8'>
+                            <SunIcon className='w-10 bg-navygreen-200 bg-opacity-40 rounded-sm p-2'/>
+                            <h1 className='mt-2 text-lg font-josefin-sans font-semibold'>Collective Impact</h1>
+                            <p className='text-sm'>Together, we can create positive change. By working collaboratively, we amplify our voices and efforts to protect the environment and build a more sustainable future for generations to come.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -146,30 +146,9 @@ const LandingPage = () => {
                 <div className="mx-10 lg:mr-40 text-center lg:text-left font-josefin-sans">
                     <h1 className="text-2xl lg:text-3xl font-bold">Get your Plant today</h1>
                     <p className="mt-2 text-mini text-center lg:text-justify">Enhance your space with our diverse selection of plants. Choose your favorite from our wide variety and bring nature into your home today.</p>
-                    <div className='mt-10 text-mini'><Link to='/shop'><Button text="Shop now!"/></Link></div>
+                    <div className='mt-10 text-mini'><Link to='/shop'><Button text="Shop now!" className="py-2 shadow-md"/></Link></div>
                 </div>
             </div>
-            {/* different signups div */}
-            {/* <div className='flex flex-col lg:flex lg:flex-row items-center justify-center gap-[10px] mt-20 mb-20 font-josefin-sans text-center text-gray-100'>
-                <div className='group bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] drop-shadow-lg'>
-                    <h1 className='font-bold group-hover:hidden'>
-                        Open your plant store!
-                    </h1>
-                </div>
-                <div className='group bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] drop-shadow-lg'>
-                    <h1 className='font-bold group-hover:hidden'>
-                        Become a member!
-                    </h1>
-                    <button className='opacity-0 group-hover:opacity-100 p-4 bg-gray-100 text-white text-mini font-semibold'>
-                        Sign Up as Seller
-                    </button>
-                </div>
-                <div className='group bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] drop-shadow-lg'>
-                    <h1 className='font-bold group-hover:hidden'>
-                        Initiate Campaign!
-                    </h1>
-                </div>
-            </div> */}
             {/* Different signups div */}
             <div className='flex flex-col lg:flex-row items-center justify-center gap-[20px] mt-20 mb-20 font-josefin-sans text-center text-gray-100'>
                 {/* Seller Signup Option */}
@@ -222,7 +201,7 @@ const LandingPage = () => {
                 <div className="mx-4 lg:mr-40 font-josefin-sans">
                     <h1 className="text-2xl text-center lg:text-left lg:text-3xl font-bold">Become part of the Initiatives</h1>
                     <p className="mt-2 text-mini text-center lg:text-justify">Join the initiatives and play your part in preserving the greenery.</p>
-                    <div className='mt-10 text-mini'><Link to='/campaign'><Button text="See all Campaigns"/></Link></div>
+                    <div className='mt-10 text-mini'><Link to='/campaign'><Button text="See all Campaigns" className="py-2 shadow-md"/></Link></div>
                 </div>
                 <div className='w-96'>
                     <CampaignCarousel className='w-80'/>
