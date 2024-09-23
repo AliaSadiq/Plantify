@@ -30,13 +30,17 @@ const addQuestion = async (req, res) => {
 const getQuestionsForGroup = async (req, res) => {
   try {
     const { groupId } = req.params;
-    const questions = await Question.find({ socialGroupId: groupId }).populate('replies.user', 'name');
+    console.log(groupId);
+    // No need to populate for embedded replies
+    const questions = await Question.find({ socialGroup: groupId }).exec();
     res.status(200).json(questions);
   } catch (error) {
     console.error('Error fetching questions:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+
+
 // Add a reply to a question
 const addReply = async (req, res) => {
   try {
@@ -90,7 +94,8 @@ const deleteQuestion = async (req, res) => {
     const question = await Question.findById(req.params.questionId);
 
     if (question) {
-      await question.remove();
+      // Replace .remove() with .deleteOne()
+      await question.deleteOne(); 
       res.status(200).json({ message: 'Question deleted' });
     } else {
       res.status(404).json({ message: 'Question not found' });
@@ -100,6 +105,7 @@ const deleteQuestion = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 // Edit a reply
 const editReply = async (req, res) => {
