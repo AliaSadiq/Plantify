@@ -105,11 +105,19 @@ const QuestionSection = ({ groupId }) => {
   const [showForm, setShowForm] = useState(false);
   const [editingQuestion, setEditingQuestion] = useState(null);
   const [editingReply, setEditingReply] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null); // To handle errors
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/socialgroup-question/${groupId}/questions`)
-      .then(response => setQuestions(response.data))
-      .catch(error => console.error('Error fetching questions:', error));
+    axios
+      .get(`http://localhost:5000/api/socialgroup-question/${groupId}/questions`)
+      .then((response) => {
+        console.log(response.data); // Check what the API returns
+        setQuestions(response.data);
+  
+      })
+      .catch((error) =>
+        console.error('Error fetching questions:', error)
+      );
   }, [groupId]);
 
   const handleInputChange = (e) => {
@@ -119,46 +127,94 @@ const QuestionSection = ({ groupId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = JSON.parse(localStorage.getItem('user'));
+
+    // Handle the case where the user is not logged in
+    if (!user) {
+      setErrorMessage('Please log in to ask a question.');
+      return;
+    }
+
+    // Reset error message
+    setErrorMessage(null);
+
     if (editingQuestion) {
-      axios.put(`http://localhost:5000/api/socialgroup-question/${groupId}/question/${editingQuestion._id}`, { text: newQuestion })
-        .then(response => {
-          const updatedQuestions = questions.map(q => (q._id === editingQuestion._id ? response.data : q));
+      axios
+        .put(
+          `http://localhost:5000/api/socialgroup-question/${groupId}/question/${editingQuestion._id}`,
+          { text: newQuestion }
+        )
+        .then((response) => {
+          const updatedQuestions = questions.map((q) =>
+            q._id === editingQuestion._id ? response.data : q
+          );
           setQuestions(updatedQuestions);
           setEditingQuestion(null);
           setNewQuestion('');
           setShowForm(false);
         })
-        .catch(error => console.error('Error editing question:', error));
+        .catch((error) => {
+          setErrorMessage('Error editing question. Please try again.');
+          console.error('Error editing question:', error);
+        });
     } else {
-      axios.post(`http://localhost:5000/api/socialgroup-question/${groupId}/question`, { text: newQuestion, userId: user._id })
-        .then(response => {
+      axios
+        .post(`http://localhost:5000/api/socialgroup-question/${groupId}/question`, {
+          text: newQuestion,
+          userId: user._id,
+        })
+        .then((response) => {
           setQuestions([...questions, response.data]);
           setNewQuestion('');
           setShowForm(false);
         })
-        .catch(error => console.error('Error adding question:', error));
+        .catch((error) => {
+          setErrorMessage('Error adding question. Please try again.');
+          console.error('Error adding question:', error);
+        });
     }
   };
 
   const handleReplySubmit = (questionId, replyText) => {
     const user = JSON.parse(localStorage.getItem('user'));
+
+    if (!user) {
+      setErrorMessage('Please log in to submit a reply.');
+      return;
+    }
+
+    setErrorMessage(null); // Reset error message
+
     if (editingReply) {
-      axios.put(`http://localhost:5000/api/socialgroup-question/${groupId}/reply/${editingReply._id}`, { text: replyText })
-        .then(response => {
-          const updatedQuestions = questions.map(q => {
+      axios
+        .put(
+          `http://localhost:5000/api/socialgroup-question/${groupId}/reply/${editingReply._id}`,
+          { text: replyText }
+        )
+        .then((response) => {
+          const updatedQuestions = questions.map((q) => {
             if (q._id === questionId) {
-              q.replies = q.replies.map(r => (r._id === editingReply._id ? response.data : r));
+              q.replies = q.replies.map((r) =>
+                r._id === editingReply._id ? response.data : r
+              );
             }
             return q;
           });
           setQuestions(updatedQuestions);
           setEditingReply(null);
         })
-        .catch(error => console.error('Error editing reply:', error));
+        .catch((error) => {
+          setErrorMessage('Error editing reply. Please try again.');
+          console.error('Error editing reply:', error);
+        });
     } else {
-      axios.post(`http://localhost:5000/api/socialgroup-question/${groupId}/reply`, { text: replyText, userId: user._id, questionId })
-        .then(response => {
-          const updatedQuestions = questions.map(q => {
+      axios
+        .post(`http://localhost:5000/api/socialgroup-question/${groupId}/reply`, {
+          text: replyText,
+          userId: user._id,
+          questionId,
+        })
+        .then((response) => {
+          const updatedQuestions = questions.map((q) => {
             if (q._id === questionId) {
               q.replies.push(response.data);
             }
@@ -166,7 +222,10 @@ const QuestionSection = ({ groupId }) => {
           });
           setQuestions(updatedQuestions);
         })
-        .catch(error => console.error('Error adding reply:', error));
+        .catch((error) => {
+          setErrorMessage('Error adding reply. Please try again.');
+          console.error('Error adding reply:', error);
+        });
     }
   };
 
@@ -177,11 +236,15 @@ const QuestionSection = ({ groupId }) => {
   };
 
   const handleDeleteQuestion = (questionId) => {
-    axios.delete(`http://localhost:5000/api/socialgroup-question/${groupId}/question/${questionId}`)
+    axios
+      .delete(`http://localhost:5000/api/socialgroup-question/${groupId}/question/${questionId}`)
       .then(() => {
-        setQuestions(questions.filter(q => q._id !== questionId));
+        setQuestions(questions.filter((q) => q._id !== questionId));
       })
-      .catch(error => console.error('Error deleting question:', error));
+      .catch((error) => {
+        setErrorMessage('Error deleting question. Please try again.');
+        console.error('Error deleting question:', error);
+      });
   };
 
   const handleEditReply = (reply) => {
@@ -189,17 +252,21 @@ const QuestionSection = ({ groupId }) => {
   };
 
   const handleDeleteReply = (replyId, questionId) => {
-    axios.delete(`http://localhost:5000/api/socialgroup-question/${groupId}/reply/${replyId}`)
+    axios
+      .delete(`http://localhost:5000/api/socialgroup-question/${groupId}/reply/${replyId}`)
       .then(() => {
-        const updatedQuestions = questions.map(q => {
+        const updatedQuestions = questions.map((q) => {
           if (q._id === questionId) {
-            q.replies = q.replies.filter(r => r._id !== replyId);
+            q.replies = q.replies.filter((r) => r._id !== replyId);
           }
           return q;
         });
         setQuestions(updatedQuestions);
       })
-      .catch(error => console.error('Error deleting reply:', error));
+      .catch((error) => {
+        setErrorMessage('Error deleting reply. Please try again.');
+        console.error('Error deleting reply:', error);
+      });
   };
 
   return (
@@ -216,6 +283,10 @@ const QuestionSection = ({ groupId }) => {
           </button>
         )}
       </div>
+
+      {/* Display error messages */}
+      {errorMessage && <div className="text-red-500 mb-4">{errorMessage}</div>}
+
       {showForm && (
         <form onSubmit={handleSubmit} className="mb-4 p-4 border rounded-lg shadow-md">
           <textarea
@@ -245,21 +316,22 @@ const QuestionSection = ({ groupId }) => {
       {questions.map((question, index) => (
         <div key={index} className="mb-4 p-4 border rounded-lg shadow-md">
           <div className="flex items-center">
-            <img src="https://via.placeholder.com/48" alt={question.user.username} className="rounded-full w-12 h-12" />
+            <img
+              src="https://via.placeholder.com/48"
+              alt={question.user.username}
+              className="rounded-full w-12 h-12"
+            />
             <div className="ml-4">
               <div className="text-gray-700 font-bold">{question.user.username}</div>
               <div className="text-gray-500 text-sm">{question.time}</div>
             </div>
-            <button
+            {/* <button
               className="ml-auto text-red-500"
               onClick={() => handleDeleteQuestion(question._id)}
             >
               Delete
-            </button>
-            <button
-              className="ml-2 text-blue-500"
-              onClick={() => handleEditQuestion(question)}
-            >
+            </button> */}
+            <button className="ml-2 text-blue-500" onClick={() => handleEditQuestion(question)}>
               Edit
             </button>
           </div>
@@ -267,7 +339,11 @@ const QuestionSection = ({ groupId }) => {
           {question.replies.map((reply, replyIndex) => (
             <div key={replyIndex} className="ml-12 mt-4 p-4 border rounded-lg shadow-md bg-gray-50">
               <div className="flex items-center">
-                <img src="https://via.placeholder.com/48" alt={reply.user} className="rounded-full w-12 h-12" />
+                <img
+                  src="https://via.placeholder.com/48"
+                  alt={reply.user}
+                  className="rounded-full w-12 h-12"
+                />
                 <div className="ml-4">
                   <div className="text-black font-bold">{reply.user}</div>
                   <div className="text-black text-sm">{reply.time}</div>
@@ -278,37 +354,13 @@ const QuestionSection = ({ groupId }) => {
                 >
                   Delete
                 </button>
-                <button
-                  className="ml-2 text-blue-500"
-                  onClick={() => handleEditReply(reply)}
-                >
+                <button className="ml-2 text-blue-500" onClick={() => handleEditReply(reply)}>
                   Edit
                 </button>
               </div>
               <p className="mt-2">{reply.text}</p>
             </div>
           ))}
-          {editingReply && editingReply.question === question._id && (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleReplySubmit(question._id, editingReply.text);
-              }}
-              className="ml-12 mt-4 p-4 border rounded-lg shadow-md bg-gray-50"
-            >
-              <textarea
-                value={editingReply.text}
-                onChange={(e) =>
-                  setEditingReply({ ...editingReply, text: e.target.value })
-                }
-                className="border p-2 rounded w-full"
-                placeholder="Edit reply..."
-              />
-              <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-full mt-2">
-                Submit reply
-              </button>
-            </form>
-          )}
         </div>
       ))}
     </div>
@@ -316,3 +368,4 @@ const QuestionSection = ({ groupId }) => {
 };
 
 export default QuestionSection;
+

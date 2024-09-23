@@ -208,8 +208,8 @@ const ReviewComponent = ({ groupId }) => {
               <div className="ml-4">
                 <div className="flex space-x-2">
                   <span className="text-gray-500">{reviews.length} Total Reviews</span>
-                  <span className="text-gray-500">{reviews.filter(review => review.type === 'expert').length} Expert's Reviews</span>
-                  <span className="text-gray-500">{reviews.filter(review => review.type === 'citizen').length} Citizen's Reviews</span>
+                  {/* <span className="text-gray-500">{reviews.filter(review => review.type === 'expert').length} Expert's Reviews</span>
+                  <span className="text-gray-500">{reviews.filter(review => review.type === 'citizen').length} Citizen's Reviews</span> */}
                 </div>
               </div>
             </div>

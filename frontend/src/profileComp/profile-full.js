@@ -65,7 +65,7 @@ const MainPage = () => {
 
   return (
 <div className="min-h-screen bg-gray-50 p-6">
-  <div className="flex flex-wrap md:flex-nowrap mt-[80px]">
+  <div className="flex flex-wrap md:flex-nowrap mt-[80px] ml-11">
     {/* Profile Section - Larger Width */}
     <div className="w-full md:w-2/3 p-2">
       <div className="flex-grow bg-white shadow-lg rounded-tl-11xl rounded-tr-11xl relative">
@@ -162,12 +162,12 @@ const MainPage = () => {
     )}
     {activeTab === 'reviews' && (
       <div className="p-4 max-w-full md:max-w-3xl mx-auto">
-        <ReviewComponent />
+        <ReviewComponent groupId={id} />
       </div>
     )}
     {activeTab === 'questions' && (
       <div className="p-4 max-w-full md:max-w-3xl mx-auto">
-        <QuestionComponent />
+        <QuestionComponent groupId={id}/>
       </div>
     )}
   </div>
@@ -177,7 +177,7 @@ const MainPage = () => {
     </div>
 
     {/* Right Section for Social Links and Team - Smaller Width */}
-    <div className="w-full md:w-1/4 p-2">
+    <div className="w-full md:w-1/4 p-2 ml-6">
       {/* Social Links */}
       <div className="mb-4 p-4 bg-white shadow-lg rounded-pl">
         <h3 className="text-md font-bold text-gray-800">Social Links</h3>
