@@ -23,7 +23,7 @@ const limiter = rateLimit({
   message: "too many requests from this IP has been recieved, please try again in an hour."
 }) 
 app.get("/",(req,res) => {
-  res.json("Hello");
+  res.json("Hi hello");
 })
 //applying the rate limiting on a route.
 app.use('/api/user', limiter);
