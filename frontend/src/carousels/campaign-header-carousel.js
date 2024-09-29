@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
-import carousel1 from '../images/carousel-1.jpeg';
-import carousel2 from '../images/carousel-2.jpeg';
-import carousel3 from '../images/carousel-3.jpeg';
+
 import SearchBar from '../components/search-bar';
 
 function CampaignHeaderCarousel({ campaigns, setFilteredCampaigns }) {
   const slides = [
     {
-      img: carousel1,
+      img: `${process.env.PUBLIC_URL}/assets/images/carousel-1.jpeg`,
     },
     {
-      img: carousel2,
+      img: `${process.env.PUBLIC_URL}/assets/images/carousel-2.jpeg`,
     },
     {
-      img: carousel3,
+      img: `${process.env.PUBLIC_URL}/assets/images/carousel-3.jpeg`,
     },
   ];
 
@@ -73,11 +71,11 @@ function CampaignHeaderCarousel({ campaigns, setFilteredCampaigns }) {
         </div>
       </div>
       <div className="absolute inset-0 bg-ivory bg-opacity-40"></div>
-      {/* Left Arrow /}
+      {/* Left Arrow */}
       <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
         <BsChevronCompactLeft onClick={prevSlide} size={30} />
       </div>
-      {/ Right Arrow */}
+      {/* Right Arrow */}
       <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
         <BsChevronCompactRight onClick={nextSlide} size={30} />
       </div>
@@ -88,6 +86,7 @@ function CampaignHeaderCarousel({ campaigns, setFilteredCampaigns }) {
             onClick={() => goToSlide(slideIndex)}
             className='text-2xl cursor-pointer'
           >
+            <RxDotFilled />
           </div>
         ))}
       </div>

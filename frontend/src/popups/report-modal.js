@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function ReportModal({ campaign, showModal, closeModal }) {
   const [reason, setReason] = useState('');
-
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
   const handleChange = (e) => {
     setReason(e.target.value);
   };
@@ -17,7 +17,7 @@ export default function ReportModal({ campaign, showModal, closeModal }) {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/api/campaign-report', reportData);
+      const response = await axios.post(`${apiUrl}/api/campaign-report`, reportData);
       console.log('Report submitted successfully', response.data);
       alert('Report Submitted succesfully');
       // Optionally, close the modal and reset the form

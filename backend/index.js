@@ -11,14 +11,9 @@ const campaignReportRoute = require("./routes/campaign-report.route.js");
 const sellerRoute = require("./routes/seller.route.js");
 const donationRoutes = require('./routes/donation.route.js')
 const reviewRoutes = require("./routes/social-review.route.js");
-<<<<<<< HEAD
+const requestCampaignRoute = require("./routes/campaign-request.route.js");
 const questionRoutes=require("./routes/social-question.route.js");
 const teamroute=require("./routes/team.route.js");
-=======
-const questionRoutes = require("./routes/social-question.route.js");
-const teamRoute = require("./routes/team.route.js");
-const requestCampaignRoute = require("./routes/request-campaign.route.js");
->>>>>>> a789a6590c890bf96cf655b3f40f32509d967ab5
 const app = express();
 const rateLimit = require('express-rate-limit');
 //rate-limiting (checking)
@@ -46,7 +41,6 @@ app.use("/api/user-message", userMessageRoute);
 app.use("/api/campaign-report", campaignReportRoute);
 app.use("/api/donations",donationRoutes)
 app.use("/api/request-campaign", requestCampaignRoute);
-app.use("/api/teams",teamRoute);
 app.use("/api/sellers",sellerRoute);
 app.use("/api/socialgroup-review", reviewRoutes);
 app.use("/api/socialgroup-question", questionRoutes);

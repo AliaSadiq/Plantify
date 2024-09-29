@@ -2,10 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import prod1 from '../images/product-4.png';
-import prod2 from '../images/product-5.png';
-import prod3 from '../images/product-6.png';
-import prod4 from '../images/product-7.png';
+
 
 // Custom arrow components
 function SampleNextArrow(props) {
@@ -43,16 +40,16 @@ export default function ProductCarousel() {
 
   const products = [
     {
-        image: prod1,
+        image: `${process.env.PUBLIC_URL}/assets/images/product-4.png`,
     },
     {
-        image: prod2,
+        image: `${process.env.PUBLIC_URL}/assets/images/product-5.png`,
     },
     {
-        image: prod3,
+        image: `${process.env.PUBLIC_URL}/assets/images/product-6.png`,
     },
     {
-        image: prod4,
+        image: `${process.env.PUBLIC_URL}/assets/images/product-7.png`,
     },
   ];
 

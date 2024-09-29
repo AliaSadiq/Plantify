@@ -1,11 +1,10 @@
 import {React, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import landing from '../images/landing.jpeg';
 import TestimonialCarousel from '../carousels/testimonial-carousel';
 import ProductCarousel from '../carousels/product-carousel';
 import {GlobeAsiaAustraliaIcon, SunIcon, UserGroupIcon} from '@heroicons/react/24/solid';
-import goal from '../images/goal.jpeg';
+
 import CampaignCarousel from '../components/campaign-carousel';
 import Button from '../components/button';
 import SignUpModal from '../popups/signup-modal';
@@ -49,7 +48,7 @@ const LandingPage = () => {
         <div mt-0 >
             <div className="relative">
                 {/* Background image with blurred overlay */}
-                <div className="absolute inset-0 bg-cover bg-center z-0 pb-40" style={{ backgroundImage: `url(${landing})` }}>
+                <div className="absolute inset-0 bg-cover bg-center z-0 pb-40"  style={{ backgroundImage: `url(${process.env.PUBLIC_URL + '/assets/images/landing.jpeg'})` }}>
                     <div className="absolute inset-0 backdrop-blur-lg backdrop-filter bg-ivory bg-opacity-50"></div>
                 </div>
                 {/* Content */}
@@ -97,7 +96,7 @@ const LandingPage = () => {
                 </div>
                 <div className='flex flex-col lg:flex-row gap-4'>
                     {/* <div className='max-w-96'> */}
-                        <img src={goal} alt='leaf image' className='self-center rounded-xl w-40 lg:w-96 h-auto mx-10 object-cover'/>
+                        <img src={ `${process.env.PUBLIC_URL}/assets/images/goal.jpeg` } alt='leaf image' className='self-center rounded-xl w-40 lg:w-96 h-auto mx-10 object-cover'/>
                     {/* </div> */}
                     <div className='grid lg:grid-rows-2 lg:grid-cols-2 grid-cols-1 grid-row-4 gap-x-4 gap-y-0 mt-10 lg:mt-40 mr-10'>
                         <div className='p-8'>

@@ -8,7 +8,7 @@ const EditCampaignForm = () => {
   const [step, setStep] = useState(1);
   const [volunteerToggle, setVolunteerToggle] = useState(false);
   const [bannerFileName, setBannerFileName] = useState('');
-
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
   const [formDataStep1, setFormDataStep1] = useState({
     user: '',
     name: '',
@@ -43,7 +43,7 @@ const EditCampaignForm = () => {
 
   useEffect(() => {
     if (campaignId) {
-      axios.get(`http://localhost:5000/api/campaigns/${campaignId}`)
+      axios.get(`${apiUrl}/api/campaigns/${campaignId}`)
         .then(response => {
           const campaign = response.data;
           console.log("Fetched campaign:", campaign); // Debugging log
@@ -117,11 +117,11 @@ const EditCampaignForm = () => {
       };
 
       if (campaignId) {
-        const response = await axios.put(`http://localhost:5000/api/campaigns/${campaignId}`, formData);
+        const response = await axios.put(`${apiUrl}/api/campaigns/${campaignId}`, formData);
         console.log("Campaign updated:", response.data);
         alert("Campaign updated");
       } else {
-        const response = await axios.post("http://localhost:5000/api/campaigns", formData);
+        const response = await axios.post(`${apiUrl}/api/campaigns`, formData);
         console.log("Campaign created:", response.data);
         alert("Campaign created");
       }
@@ -284,7 +284,7 @@ const EditCampaignForm = () => {
     <div className="flex items-center gap-[100px] justify-center min-h-screen">
       {step === 1 ? (
         <>
-          <div className="border border-2 border-gray-100 bg-white p-8 px-5 rounded-lg w-[400px]">
+          <div className="border-2 border-gray-100 bg-white p-8 px-5 rounded-lg w-[400px]">
             {renderStep1Form()}
           </div>
           <img src={`${process.env.PUBLIC_URL}/assest/Seeding-bro.png`} alt="leaves illustration" className="w-[500px] mt-8" />

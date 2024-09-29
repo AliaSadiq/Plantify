@@ -10,7 +10,8 @@ export default function useCreateSeller () {
     const createSeller = async (sellerData) => {
         setLoading(true);
         try {
-            const response = await axios.post("http://localhost:5000/api/sellers/", sellerData);
+            const apiUrl = process.env.REACT_APP_API_BASE_URL;
+            const response = await axios.post(`${apiUrl}/api/sellers/`, sellerData);
             setLoading(false);
             navigate('/');
             alert('Please wait until your social group has been verified, It can take a few days.')

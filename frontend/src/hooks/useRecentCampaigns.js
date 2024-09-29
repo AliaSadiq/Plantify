@@ -10,7 +10,8 @@ const useRecentCampaigns = () => {
   useEffect(() => {
     const fetchRecentCampaigns = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/campaigns');
+        const apiUrl = process.env.REACT_APP_API_BASE_URL;
+        const response = await axios.get(`${apiUrl}/api/campaigns`);
         const sortedCampaigns = response.data.sort((a, b) => moment(b.createdAt) - moment(a.createdAt));
         const topRecentCampaigns = sortedCampaigns.slice(0, 3);
         setRecentCampaigns(topRecentCampaigns);

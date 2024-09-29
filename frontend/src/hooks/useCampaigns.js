@@ -6,11 +6,12 @@ const useCampaigns = (page, limit) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [totalPages, setTotalPages] = useState(1);
-
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/campaigns?page=${page}&limit=${limit}`);
+       
+        const response = await axios.get(`${apiUrl}/api/campaigns?page=${page}&limit=${limit}`);
         setCampaigns(response.data.campaigns);  // Assuming API returns campaigns and total pages
         setTotalPages(response.data.totalPages);
       } catch (err) {
@@ -20,7 +21,7 @@ const useCampaigns = (page, limit) => {
       }
     };
     fetchCampaigns();
-  }, [page, limit]);
+  }, [page, limit,apiUrl]);
 
   return { campaigns, loading, error, totalPages };
 };
