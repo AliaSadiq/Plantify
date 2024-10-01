@@ -9,7 +9,8 @@ const useFetchSocialGroupCampaigns = (id) => {
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/campaigns/socialgroup/${id}`);
+        const apiUrl = process.env.REACT_APP_API_BASE_URL;
+        const response = await axios.get(`${apiUrl}/api/campaigns/socialgroup/${id}`);
         console.log("Campaigns fetched for socialId:", id);
         setCampaigns(response.data);
       } catch (error) {

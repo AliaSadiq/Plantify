@@ -9,7 +9,8 @@ const useDonationsByCampaign = (campaignId) => {
     // Define the async function to fetch donations
     const fetchDonations = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/donations/campaign/${campaignId}`);
+        const apiUrl = process.env.REACT_APP_API_BASE_URL;
+        const response = await fetch(`${apiUrl}/api/donations/campaign/${campaignId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch donations.');
         }

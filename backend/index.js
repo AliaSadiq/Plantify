@@ -25,7 +25,9 @@ const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   message: "too many requests from this IP has been recieved, please try again in an hour."
 }) 
-
+app.get("/",(req,res) => {
+  res.json("Hi hello");
+})
 //applying the rate limiting on a route.
 app.use('/api/user', limiter);
 
@@ -45,7 +47,6 @@ app.use("/api/user-message", userMessageRoute);
 app.use("/api/campaign-report", campaignReportRoute);
 app.use("/api/donations",donationRoutes)
 app.use("/api/request-campaign", requestCampaignRoute);
-app.use("/api/teams",teamRoute);
 app.use("/api/sellers",sellerRoute);
 app.use("/api/socialgroup-review", reviewRoutes);
 app.use("/api/socialgroup-question", questionRoutes);

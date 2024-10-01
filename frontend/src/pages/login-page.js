@@ -8,7 +8,7 @@ import Button from '../components/button';
 
 const LoginPage = () => {
     const navigate = useNavigate();
-
+    const apiUrl = process.env.REACT_APP_API_BASE_URL;
     // Define the validation schema using Yup
     const validationSchema = Yup.object({
         email: Yup.string()
@@ -27,7 +27,7 @@ const LoginPage = () => {
     // Handle form submission
     const handleSubmit = async (values, { setSubmitting, setErrors }) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/user/login', values);
+            const response = await axios.post(`${apiUrl}/api/user/login`, values);
             if (response.status === 200) {
                 // Store the user in local storage
                 localStorage.setItem('user', JSON.stringify(response.data));

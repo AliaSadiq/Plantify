@@ -7,7 +7,7 @@ const AboutUsPage = () => {
       {/* Hero Section */}
       <div
         className="bg-cover bg-center h-screen flex justify-center items-center relative"
-        style={{ backgroundImage: `url(/assets/contact-us.jpeg)` }}
+        style={{ backgroundImage: `url(${process.env.PUBLIC_URL + '/assets/images/contact-us.jpeg'})` }}
       >
         <div className="absolute inset-0 backdrop-blur-lg bg-opacity-60 bg-navygreen-100"></div>
         <div className="relative z-10 text-center p-8">

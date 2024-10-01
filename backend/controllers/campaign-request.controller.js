@@ -31,10 +31,21 @@ const createRequestCampaign = async (req, res) => {
 };
 
 
-
+const deleteRequestCampaign = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const deletedRequest = await Request.findByIdAndDelete(id);
+      if (!deletedRequest) {
+        return res.status(404).json({ message: "Request not found" });
+      }
+      res.status(200).json(deletedRequest);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
 
 // GET API to Retrieve Campaign Requests for a Social Group
-const getRequestCampaign= async (req, res) => {
+const getRequestsCampaign= async (req, res) => {
   try {
   
 
@@ -44,9 +55,11 @@ const getRequestCampaign= async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}
+};
+
 
 module.exports = {
-    getRequestCampaign,
-    createRequestCampaign
+    getRequestsCampaign,
+    createRequestCampaign,
+deleteRequestCampaign,
 };

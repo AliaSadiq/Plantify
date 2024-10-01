@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import DropdownMessage from './DropdownMessage';
 import DropdownUser from './DropdownUser';
-import LogoIcon from '../../images/logo/logo-icon.svg';
+
 import DarkModeSwitcher from './DarkModeSwitcher';
 
 const Index = (props) => {
@@ -53,7 +53,7 @@ const Index = (props) => {
           {/* <!-- Hamburger Toggle BTN --> */}
 
           <Link className="block flex-shrink-0 lg:hidden" to="/">
-            <img src={LogoIcon} alt="Logo" />
+            <img src={`${process.env.PUBLIC_URL}/assets/images/logo/logo-icon.svg`} alt="Logo" />
           </Link>
         </div>
 

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import SeedingBro from "../../images/Seeding-bro.png";
-import Reforestation from "../../images/Reforestation-bro.png";
+
 import { useParams } from "react-router-dom";
 // import SeedingBro from 'path/to/your/Seeding-bro.png';
 const CreateCampaignForm = () => {
@@ -18,7 +17,7 @@ const CreateCampaignForm = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const { id } = useParams();
-
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -137,7 +136,7 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
       console.log("Submitting data:", formData);
 
       const response = await axios.post(
-        "http://localhost:5000/api/campaigns",
+        `${apiUrl}/api/campaigns `,
         formData
       );
       console.log("Data submitted:", response.data);
@@ -797,7 +796,7 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
             {renderStep1Form()}
           </div>
           <img
-            src={SeedingBro}
+            src={`${process.env.PUBLIC_URL}/assets/images/Seeding-bro.png"`}
             alt="leaves illustration"
             className="w-[400px] mt-8"
           />
@@ -805,7 +804,7 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
       ) : (
         <>
           <img
-            src={Reforestation}
+            src={`${process.env.PUBLIC_URL}/assets/images/Reforestation-bro.png`}
             alt="leaves illustration"
             className="w-[400px] ml-12 mt-8"
           />

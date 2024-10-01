@@ -17,6 +17,7 @@ export default function CampaignDetailsPage() {
     const user = useUser();
     const [campaign, setCampaign] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const apiUrl = process.env.REACT_APP_API_BASE_URL;
     // const [isReportModalOpen, setIsReportModalOpen] = useState(false);
     const [comments, setComments] = useState([]);
     const { donations, loading, error } = useDonationsByCampaign(id);
@@ -70,10 +71,11 @@ export default function CampaignDetailsPage() {
     useEffect(() => {
         const fetchCampaignDetails = async () => {
             try {
-                const campaignResponse = await axios.get(`http://localhost:5000/api/campaigns/${id}`);
+               
+                const campaignResponse = await axios.get(`${apiUrl}/api/campaigns/${id}`);
                 setCampaign(campaignResponse.data);
     
-                const commentsResponse = await axios.get(`http://localhost:5000/api/campaign-comment/campaign/${id}`);
+                const commentsResponse = await axios.get(`${apiUrl}/api/campaign-comment/campaign/${id}`);
                 setComments(commentsResponse.data);
             } catch (error) {
                 console.error("Error fetching campaign details or comments:", error);
@@ -87,7 +89,8 @@ export default function CampaignDetailsPage() {
         e.preventDefault();
         if (user?._id) {
             try {
-                const response = await axios.post("http://localhost:5000/api/campaign-comment", {
+               
+                const response = await axios.post(`${apiUrl}/api/campaign-comment`, {
                     user: user._id,
                     campaign: id,
                     comment: newComment,
@@ -101,7 +104,8 @@ export default function CampaignDetailsPage() {
     };
 
     const handleShare = () => {
-        const shareUrl = `${window.location.origin}/campaign-details/${id}`;
+        
+        const shareUrl = `${apiUrl}/campaign-details/${id}`;
         navigator.clipboard.writeText(shareUrl).then(() => {
             alert("Link copied to clipboard!");
         }).catch((err) => {
@@ -110,7 +114,8 @@ export default function CampaignDetailsPage() {
     };
 
     const handleReport = () => {
-        const shareUrl = `${window.location.origin}/campaign-details/${id}`;
+        
+        const shareUrl = `${apiUrl}/campaign-details/${id}`;
         navigator.clipboard.writeText(shareUrl).then(() => {
             alert("Link copied to clipboard!");
         }).catch((err) => {

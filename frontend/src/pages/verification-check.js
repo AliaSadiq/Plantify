@@ -6,13 +6,13 @@ import Button from '../components/button';
 export default function VerificationCheck() {
     const [status, setStatus] = useState(null);
     const navigate = useNavigate();
-
+    const apiUrl = process.env.REACT_APP_API_BASE_URL;
     useEffect(() => {
         const fetchSocialGroupStatus = async () => {
             try {
                 const user = JSON.parse(localStorage.getItem('user'));
                 if (user) {
-                    const response = await axios.get(`http://localhost:5000/api/socialgroup/user/${user._id}`);
+                    const response = await axios.get(`${apiUrl}/api/socialgroup/user/${user._id}`);
                     const socialGroup = response.data;
                     
                     if (socialGroup) {

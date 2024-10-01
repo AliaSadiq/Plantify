@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import avatar from '../images/testimonial-2.jpeg';
 import Button from "../components/button";
 import DonationModal from "../popups/donation-modal";
 import axios from 'axios';
 
 // Custom arrow components
 function SampleNextArrow(props) {
+  
   const { className, style, onClick } = props;
   return (
     <div
@@ -58,7 +58,8 @@ const [donors, setDonors] = useState([null]);
 useEffect(() => {
     const fetchLeaderboard = async () => {
         try {
-          const response = await axios.get(`http://localhost:5000/api/donations/leaderboard?campaignId=${campaign._id}`);
+          const apiUrl = process.env.REACT_APP_API_BASE_URL;
+          const response = await axios.get(`${apiUrl}/api/donations/leaderboard?campaignId=${campaign._id}`);
         console.log(campaign._id)
             setDonors(response.data);
         } catch (error) {
@@ -119,7 +120,8 @@ useEffect(() => {
             console.log("comment: " + comment.campaign);
             console.log("comment: " + comment.comment);
             console.log("comment: " + comment.user);
-            const response = await axios.post("http://localhost:5000/api/campaign-comment", comment);
+            const apiUrl = process.env.REACT_APP_API_BASE_URL;
+            const response = await axios.post(`${apiUrl}/api/campaign-comment`, comment);
             console.log("Data submitted:", response.data);
         } catch (error) {
             console.error("Error submitting data:", error);
@@ -129,7 +131,8 @@ useEffect(() => {
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/campaign-comment/campaign/${campaign._id}`);
+              const apiUrl = process.env.REACT_APP_API_BASE_URL;
+                const response = await axios.get(`${apiUrl}/api/campaign-comment/campaign/${campaign._id}`);
                 setComments(response.data || []); // Ensure comments is always an array
             } catch (error) {
                 console.error("Error fetching comments:", error);
@@ -191,7 +194,7 @@ useEffect(() => {
               {comments.map((comment) => (
                 <div className="relative grid grid-cols-1 gap-4 p-4 mb-8 bg-navygreen-100 shadow-lg">
                   <div className="relative flex gap-4">
-                    <img src={avatar} className="relative rounded-lg -top-[25px] -mb-4 bg-navygreen-100 h-16 w-16" alt="" loading="lazy" />
+                    <img src={`${process.env.PUBLIC_URL}/assets/images/testimonial-2.jpeg`} className="relative rounded-lg -top-[25px] -mb-4 bg-navygreen-100 h-16 w-16" alt="" loading="lazy" />
                     <div className="flex flex-col w-full">
                       <div className="flex flex-row justify-between">
                         <p className="relative text-mini whitespace-nowrap truncate overflow-hidden">{comment.user && comment.user.username ? comment.user.username : 'Anonymous'}</p>

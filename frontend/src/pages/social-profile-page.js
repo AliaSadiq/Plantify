@@ -7,11 +7,11 @@ const SocialProfilePage = () => {
   const [socialGroup, setSocialGroup] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
     const fetchSocialGroup = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/socialgroup/${id}`);
+        const response = await axios.get(`${apiUrl}/api/socialgroup/${id}`);
         setSocialGroup(response.data);
         setLoading(false);
       } catch (error) {

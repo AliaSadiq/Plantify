@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../images/leaf.png';
+
 
 
 export default function Footer() {
@@ -9,7 +9,7 @@ export default function Footer() {
             <div class="md:flex md:justify-between">
               <div class="mb-6 md:mb-0">
                   <a href="https://flowbite.com/" class="flex items-center">
-                      <img src={logo} class="h-8 me-3" alt="FlowBite Logo" />
+                      <img src={`${process.env.PUBLIC_URL}/assets/images/leaf.png`} class="h-8 me-3" alt="FlowBite Logo" />
                       <span class="font-josefin-sans self-center text-2xl font-semibold text-white whitespace-nowrap dark:text-white">Plantify</span>
                   </a>
               </div>

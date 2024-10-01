@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 import MetricCard from '../../components/dashboard-components/KeyMetricCard';
 import { Doughnut } from 'react-chartjs-2';
 import ProgressBar from "../../components/progress-bar";
-import dashboardbg from "../../images/dashboardbg.png";
+
 import { useParams } from 'react-router-dom';
 const Insights = () => {
   const [metrics, setMetrics] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { id } = useParams();
-
+  const apiUrl = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
     // Fetch data from API
     const fetchMetrics = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/campaigns/insights/${id}`); // API endpoint
+        const response = await fetch(`${apiUrl}/api/campaigns/insights/${id}`); // API endpoint
         const data = await response.json();
 
         // Format data for your metrics structure
@@ -141,7 +141,7 @@ const Insights = () => {
   }
 
   return (
-    <div className="bg-cover bg-center min-h-screen" style={{ backgroundImage: `url(${dashboardbg})` }}>
+    <div className="bg-cover bg-center min-h-screen"  style={{ backgroundImage: `url(${process.env.PUBLIC_URL + '/assets/images/dashboardbg.png'})` }}>
       <div className="px-20 py-4 mx-auto max-w-screen-xl">
         <h1 className="text-2xl font-bold mb-6">Campaign Insights</h1>
         <ProgressBar width={80} className="mt-4 mx-10 mb-6" />
