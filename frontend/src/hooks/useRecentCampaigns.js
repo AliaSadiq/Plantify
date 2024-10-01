@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import moment from 'moment';
 
 const useRecentCampaigns = () => {
   const [recentCampaigns, setRecentCampaigns] = useState([]);
@@ -10,10 +9,9 @@ const useRecentCampaigns = () => {
   useEffect(() => {
     const fetchRecentCampaigns = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/campaigns');
-        const sortedCampaigns = response.data.sort((a, b) => moment(b.createdAt) - moment(a.createdAt));
-        const topRecentCampaigns = sortedCampaigns.slice(0, 3);
-        setRecentCampaigns(topRecentCampaigns);
+        const response = await axios.get('http://localhost:5000/api/campaigns/recent');
+        setRecentCampaigns(response.data);
+        setLoading(false);
       } catch (err) {
         setError(err.message);
       } finally {

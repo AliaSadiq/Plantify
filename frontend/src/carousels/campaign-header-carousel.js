@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-import { RxDotFilled } from 'react-icons/rx';
 import carousel1 from '../images/carousel-1.jpeg';
 import carousel2 from '../images/carousel-2.jpeg';
 import carousel3 from '../images/carousel-3.jpeg';
 import SearchBar from '../components/search-bar';
 
-function CampaignHeaderCarousel({ campaigns, setFilteredCampaigns }) {
+function CampaignHeaderCarousel({ campaigns, onSearch }) {
   const slides = [
     {
       img: carousel1,
@@ -48,11 +47,13 @@ function CampaignHeaderCarousel({ campaigns, setFilteredCampaigns }) {
   }, [currentIndex]);
 
   useEffect(() => {
-    const filtered = campaigns.filter(campaign =>
-      campaign.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredCampaigns(filtered);
-  }, [searchQuery, campaigns, setFilteredCampaigns]);
+    if (onSearch) {
+      const filtered = campaigns.filter(campaign =>
+        campaign.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      onSearch(filtered);  // Call onSearch prop function with the filtered campaigns
+    }
+  }, [searchQuery, campaigns, onSearch]);
 
   const handleSearch = (query) => {
     setSearchQuery(query);

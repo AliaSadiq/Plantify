@@ -68,8 +68,8 @@ const LandingPage = () => {
                 </div>
             </div>
             
-            <div className='text-center font-josefin-sans px-10 bg-navygreen-100 py-20'>
-                <h1 className='text-xl lg:text-2xl font-bold'>Growing Green for a Sustainable Future.</h1>
+            <div className='text-center font-josefin-sans px-10 bg-navygreen-100 py-10'>
+                <h1 className='text-xl lg:text-lg font-bold'>Grow with Us - Support and Organize Plant Campaigns.</h1>
             </div>
             <div className='flex flex-col lg:flex lg:flex-row items-center justify-center gap-[10px] mt-20 mb-20 font-josefin-sans text-center text-gray-100'>
                 <div className='bg-navygreen-100 p-6 rounded-lg flex flex-col items-center justify-center w-[300px] drop-shadow-lg'>

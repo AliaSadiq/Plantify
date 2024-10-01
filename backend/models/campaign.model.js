@@ -144,7 +144,11 @@ const CampaignSchema = mongoose.Schema(
         price: { type: Number, required: true, min: 1 },
         image: { type: String, required: true }
       }
-    ]
+    ],
+    requested: {
+      type: Boolean,
+      default:"false",
+    },
   },
   {
     timestamps: true

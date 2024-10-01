@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import Profile from '../components/profile';
+import UserProfile from '../components/user-profile';
 
 export default function SettingsPage() {
     // const [user, setUser] = useState(null);
@@ -10,7 +10,11 @@ export default function SettingsPage() {
     //     const parsedUser = JSON.parse(storedUser);
     //     setUser(parsedUser);
     // }
-
+    const user = {
+        "username" : "Ali Ahmed",
+        "avatar" : "avatar-1.png",
+        "email" : "ali@gmail.com"
+    }
     return (
         <div className='my-40 flex flex-row gap-40 items-center justify-center'>
             <div className='flex flex-col bg-navygreen-100 rounded-xl'>
@@ -62,7 +66,7 @@ export default function SettingsPage() {
                 </form>
             </div>
             <div className='self-center'>
-                <Profile/>
+                <UserProfile user={user}/>
             </div>
         </div>
     );
