@@ -217,7 +217,6 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import CampaignCardSh from '../components/campaign-card-sh';
-import CampaignDetailsPopup from '../popups/campaign-details-popup';
 import CampaignHeaderCarousel from '../carousels/campaign-header-carousel';
 import FilterDropdown from '../dropdowns/filter-dropdown';
 import Pagination from '../components/pagination'; // Custom pagination component
