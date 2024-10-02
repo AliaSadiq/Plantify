@@ -35,16 +35,14 @@ const createRequestCampaign = async (req, res) => {
 
 // GET API to Retrieve Campaign Requests for a Social Group
 const getRequestCampaign= async (req, res) => {
-  try {
-  
-
-    // Fetch CampaignRequests for the given SocialGroup
-    const campaignRequests = await CampaignRequest.find();
-    res.status(200).json(campaignRequests);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-}
+     
+        try {
+          const requests = await Request.find({});
+          res.status(200).json(requests);
+        } catch (error) {
+          res.status(500).json({ message: error.message });
+        }
+      };
 
 module.exports = {
     getRequestCampaign,

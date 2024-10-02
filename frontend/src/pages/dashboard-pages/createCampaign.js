@@ -53,35 +53,6 @@ const CreateCampaignForm = () => {
     trees: [],
   });
 
-  // const handleFileInputChange = (
-  //   event,
-  //   setFileState,
-  //   setFormData,
-  //   fieldName
-  // ) => {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     setFileState(file.name);
-  //     setFormData((prevState) => ({
-  //       ...prevState,
-  //       [fieldName]: file.name,
-  //     }));
-  //   }
-  // };
-//   const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
-//     const file = event.target.files[0];
-//     if (file && file.type.startsWith("image/")) {
-//         setFileState(file.name);
-//         setFormData(prevState => ({
-//             ...prevState,
-//             [fieldName]: file.name
-//         }));
-//     } else {
-//         alert("Please select a valid image file.");
-//         // Clear the file input field
-//         event.target.value = ""; // Reset the input value
-//     }
-// };
 const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
     const file = event.target.files[0];
     if (file && file.type.startsWith("image/")) {
@@ -137,7 +108,7 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
       console.log("Submitting data:", formData);
 
       const response = await axios.post(
-        "http://localhost:5000/api/campaigns",
+        `https://localhost:3000/api/campaigns`,
         formData
       );
       console.log("Data submitted:", response.data);

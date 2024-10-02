@@ -62,27 +62,6 @@ const createCampaign = async (req, res) => {
 const getCampaignsBySocialGroupId = async (req, res) => {
   const { socialId } = req.params;
 
-const socialgroupCampaigns = async (req, res) => {
-  try {
-    const { socialId } = req.params; // Correctly destructure the parameter from req.params
-    console.log('Received socialId:', socialId); // Log the received ID
-  
-      // Verify that socialId is a valid ObjectId format if needed
-      if (!mongoose.Types.ObjectId.isValid(socialId)) {
-        return res.status(400).json({ message: 'Invalid socialId provided' });
-      }
-  
-      const userCampaigns = await Campaign.find({ socialGroup: socialId }).populate('socialGroup'); // Change findOne to find
-      if (!userCampaigns.length) {
-        return res.status(404).json({ message: 'No campaigns found for this social group' });
-      }
-  
-      res.status(200).json(userCampaigns);
-  } catch (error) {
-    console.error('Error fetching campaigns:', error);
-    res.status(500).json({ message: error.message });
-  }
-};
 
   try {
     // Convert the socialGroupId into an ObjectId
@@ -200,6 +179,28 @@ const getCampaignInsights = async (req, res) => {
 
     res.status(200).json(insightData);
   } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const socialgroupCampaigns = async (req, res) => {
+  try {
+    const { socialId } = req.params; // Correctly destructure the parameter from req.params
+    console.log('Received socialId:', socialId); // Log the received ID
+  
+      // Verify that socialId is a valid ObjectId format if needed
+      if (!mongoose.Types.ObjectId.isValid(socialId)) {
+        return res.status(400).json({ message: 'Invalid socialId provided' });
+      }
+  
+      const userCampaigns = await Campaign.find({ socialGroup: socialId }).populate('socialGroup'); // Change findOne to find
+      if (!userCampaigns.length) {
+        return res.status(404).json({ message: 'No campaigns found for this social group' });
+      }
+  
+      res.status(200).json(userCampaigns);
+  } catch (error) {
+    console.error('Error fetching campaigns:', error);
     res.status(500).json({ message: error.message });
   }
 };

@@ -101,7 +101,7 @@ export default function CampaignDetailsPage() {
     };
 
     const handleShare = () => {
-        const shareUrl = `${window.location.origin}/campaign-details/${id}`;
+        const shareUrl = `https://localhost:3000/campaign-details/${id}`;
         navigator.clipboard.writeText(shareUrl).then(() => {
             alert("Link copied to clipboard!");
         }).catch((err) => {
@@ -110,7 +110,7 @@ export default function CampaignDetailsPage() {
     };
 
     const handleReport = () => {
-        const shareUrl = `${window.location.origin}/campaign-details/${id}`;
+        const shareUrl = `https://localhost:3000/campaign-details/${id}`;
         navigator.clipboard.writeText(shareUrl).then(() => {
             alert("Link copied to clipboard!");
         }).catch((err) => {

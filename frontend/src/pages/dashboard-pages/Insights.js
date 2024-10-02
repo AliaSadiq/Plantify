@@ -14,7 +14,7 @@ const Insights = () => {
     // Fetch data from API
     const fetchMetrics = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/campaigns/insights/${id}`); // API endpoint
+        const response = await fetch(`https://localhost:3000/api/campaigns/insights/${id}`); // API endpoint
         const data = await response.json();
 
         // Format data for your metrics structure
@@ -97,48 +97,48 @@ const Insights = () => {
     fetchMetrics();
   }, [id]);
 
-  // const doughnutData = {
-  //   labels: ['Targeted Donation', 'Collected Donation'],
-  //   datasets: [
-  //     {
-  //       data: metrics.length ? [metrics[0].value.replace('Rs.', ''), metrics[1].value.replace('Rs.', '')] : [],
-  //       backgroundColor: ['#99BC85', '#B5B6B8'],
-  //       hoverBackgroundColor: ['#99BC85', '#B5B6B8'],
-  //     }
-  //   ]
-  // };
   const doughnutData = {
     labels: ['Targeted Donation', 'Collected Donation'],
     datasets: [
       {
-        data: metrics.length 
-          ? [
-              Number(metrics[0].value.replace('Rs.', '').replace(/,/g, '').trim()), 
-              Number(metrics[1].value.replace('Rs.', '').replace(/,/g, '').trim())
-            ] 
-          : [0, 0],
+        data: metrics.length ? [metrics[0].value.replace('Rs.', ''), metrics[1].value.replace('Rs.', '')] : [],
         backgroundColor: ['#99BC85', '#B5B6B8'],
         hoverBackgroundColor: ['#99BC85', '#B5B6B8'],
       }
     ]
   };
+  // const doughnutData = {
+  //   labels: ['Targeted Donation', 'Collected Donation'],
+  //   datasets: [
+  //     {
+  //       data: metrics.length 
+  //         ? [
+  //             Number(metrics[0].value.replace('Rs.', '').replace(/,/g, '').trim()), 
+  //             Number(metrics[1].value.replace('Rs.', '').replace(/,/g, '').trim())
+  //           ] 
+  //         : [0, 0],
+  //       backgroundColor: ['#99BC85', '#B5B6B8'],
+  //       hoverBackgroundColor: ['#99BC85', '#B5B6B8'],
+  //     }
+  //   ]
+  // };
   
-  // Calculate total for percentages
-  const total = doughnutData.datasets[0].data.reduce((acc, val) => acc + val, 0);
-  if (total > 0) {
-    doughnutData.datasets[0].data = [
-      (Number(metrics[0].value.replace('Rs.', '').replace(/,/g, '').trim()) / total) * 100,
-      (Number(metrics[1].value.replace('Rs.', '').replace(/,/g, '').trim()) / total) * 100
-    ];
-  }
+  // // Calculate total for percentages
+  // const total = doughnutData.datasets[0].data.reduce((acc, val) => acc + val, 0);
+  // if (total > 0) {
+  //   doughnutData.datasets[0].data = [
+  //     (Number(metrics[0].value.replace('Rs.', '').replace(/,/g, '').trim()) / total) * 100,
+  //     (Number(metrics[1].value.replace('Rs.', '').replace(/,/g, '').trim()) / total) * 100
+  //   ];
+  // }
   
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
 
   return (
     <div className="bg-cover bg-center min-h-screen" style={{ backgroundImage: `url(${dashboardbg})` }}>
