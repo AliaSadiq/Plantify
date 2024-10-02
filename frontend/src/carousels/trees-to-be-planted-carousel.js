@@ -5,21 +5,21 @@ export function CarouselDefault() {
     <Carousel className="rounded-xl">
       <div className="flex items-center justify-center">
         <img
-          src={`${process.env.PUBLIC_URL}/assets/images/product-4.png`}
+          src={`${process.env.PUBLIC_URL}/assets/product-4.png`}
           alt="image 1"
           className="object-cover"
         />
       </div>
       <div className="flex items-center justify-center">
         <img
-          src={`${process.env.PUBLIC_URL}/assets/images/product-4.png`}
+          src={`${process.env.PUBLIC_URL}/assets/product-4.png`}
           alt="image 1"
           className="object-cover"
         />
       </div>
       <div className="flex items-center justify-center">
         <img
-          src={`${process.env.PUBLIC_URL}/assets/images/product-4.png`}
+          src={`${process.env.PUBLIC_URL}/assets/product-4.png`}
           alt="image 1"
           className="object-cover"
         />

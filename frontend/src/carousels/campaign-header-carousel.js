@@ -3,18 +3,19 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import carousel1 from '../images/carousel-1.jpeg';
 import carousel2 from '../images/carousel-2.jpeg';
 import carousel3 from '../images/carousel-3.jpeg';
+
 import SearchBar from '../components/search-bar';
 
 function CampaignHeaderCarousel({ campaigns, onSearch }) {
   const slides = [
     {
-      img: `${process.env.PUBLIC_URL}/assets/images/carousel-1.jpeg`,
+      img: `/assets/carousel-1.jpeg`,
     },
     {
-      img: `${process.env.PUBLIC_URL}/assets/images/carousel-2.jpeg`,
+      img: `${process.env.PUBLIC_URL}/assets/carousel-2.jpeg`,
     },
     {
-      img: `${process.env.PUBLIC_URL}/assets/images/carousel-3.jpeg`,
+      img: `${process.env.PUBLIC_URL}/assets/carousel-3.jpeg`,
     },
   ];
 
@@ -89,7 +90,6 @@ function CampaignHeaderCarousel({ campaigns, onSearch }) {
             onClick={() => goToSlide(slideIndex)}
             className='text-2xl cursor-pointer'
           >
-            <RxDotFilled />
           </div>
         ))}
       </div>

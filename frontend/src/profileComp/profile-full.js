@@ -67,12 +67,12 @@ const MainPage = () => {
     <div className="w-full md:w-2/3 p-2">
       <div className="flex-grow bg-white shadow-lg rounded-tl-11xl rounded-tr-11xl relative">
         <div className="relative bg-gray-200 rounded-tl-11xl rounded-tr-11xl overflow-hidden">
-          <img src={`${process.env.PUBLIC_URL}/assets/images/about-1.jpeg`} alt="Background" className="w-full h-56 object-cover" />
+          <img src={`${process.env.PUBLIC_URL}/assets/about-1.jpeg`} alt="Background" className="w-full h-56 object-cover" />
           
           <div className="absolute inset-0 bg-black opacity-50"></div>
           </div>
           <div className="absolute top-40 left-6 w-[120px] h-[120px] bg-white rounded-full overflow-hidden border-4 border-white">
-            <img src={`${process.env.PUBLIC_URL}/assets/images/carousel-1.jpeg`} alt="Profile" className="w-full h-full object-cover" />
+            <img src={`${process.env.PUBLIC_URL}/assets/carousel-1.jpeg`} alt="Profile" className="w-full h-full object-cover" />
           </div>
        
 
@@ -219,7 +219,7 @@ const MainPage = () => {
               }`}
               onClick={() => setSelectedMember(member)}
             >
-              <img src={member.avatar || `${process.env.PUBLIC_URL}/assets/images/testimonial-2.jpeg`} alt="Team Member" className="rounded-full w-12 h-12" />
+              <img src={member.avatar || `/assets/testimonial-2.jpeg`} alt="Team Member" className="rounded-full w-12 h-12" />
               <div>
                 <h4 className="text-sm font-semibold text-black">{member.name}</h4>
               </div>

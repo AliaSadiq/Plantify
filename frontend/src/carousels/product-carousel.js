@@ -40,16 +40,16 @@ export default function ProductCarousel() {
 
   const products = [
     {
-        image: `${process.env.PUBLIC_URL}/assets/images/product-4.png`,
+        image: `${process.env.PUBLIC_URL}/assets/product-4.png`,
     },
     {
-        image: `${process.env.PUBLIC_URL}/assets/images/product-5.png`,
+        image: `${process.env.PUBLIC_URL}/assets/product-5.png`,
     },
     {
-        image: `${process.env.PUBLIC_URL}/assets/images/product-6.png`,
+        image: `${process.env.PUBLIC_URL}/assets/product-6.png`,
     },
     {
-        image: `${process.env.PUBLIC_URL}/assets/images/product-7.png`,
+        image: `${process.env.PUBLIC_URL}/assets/product-7.png`,
     },
   ];
 
