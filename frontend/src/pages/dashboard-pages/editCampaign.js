@@ -43,7 +43,11 @@ const EditCampaignForm = () => {
 
   useEffect(() => {
     if (campaignId) {
+<<<<<<< HEAD
       axios.get(`${apiUrl}/api/campaigns/${campaignId}`)
+=======
+      axios.get(`https://localhost:3000/api/campaigns/${campaignId}`)
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
         .then(response => {
           const campaign = response.data;
           console.log("Fetched campaign:", campaign); // Debugging log
@@ -117,11 +121,19 @@ const EditCampaignForm = () => {
       };
 
       if (campaignId) {
+<<<<<<< HEAD
         const response = await axios.put(`${apiUrl}/api/campaigns/${campaignId}`, formData);
         console.log("Campaign updated:", response.data);
         alert("Campaign updated");
       } else {
         const response = await axios.post(`${apiUrl}/api/campaigns`, formData);
+=======
+        const response = await axios.put(`https://localhost:3000/api/campaigns/${campaignId}`, formData);
+        console.log("Campaign updated:", response.data);
+        alert("Campaign updated");
+      } else {
+        const response = await axios.post(`https://localhost:3000/api/campaigns`, formData);
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
         console.log("Campaign created:", response.data);
         alert("Campaign created");
       }

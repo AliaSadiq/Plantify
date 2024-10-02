@@ -59,8 +59,12 @@ const Campaigns = () => {
       }
 
       try {
+<<<<<<< HEAD
         const apiUrl = process.env.REACT_APP_API_BASE_URL;
         const response = await axios.get(`${apiUrl}/api/campaigns/socialgroup/${id}`);
+=======
+        const response = await axios.get(`https://localhost:3000/api/campaigns/socialgroup/${id}`);
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
         const formattedCampaigns = response.data.map(campaign => ({
           ...campaign,
           start_date: format(new Date(campaign.start_date), 'MMM dd, yyyy'),

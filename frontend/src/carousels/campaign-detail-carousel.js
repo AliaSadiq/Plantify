@@ -58,8 +58,12 @@ const [donors, setDonors] = useState([null]);
 useEffect(() => {
     const fetchLeaderboard = async () => {
         try {
+<<<<<<< HEAD
           const apiUrl = process.env.REACT_APP_API_BASE_URL;
           const response = await axios.get(`${apiUrl}/api/donations/leaderboard?campaignId=${campaign._id}`);
+=======
+          const response = await axios.get(`https://localhost:3000/api/donations/leaderboard?campaignId=${campaign._id}`);
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
         console.log(campaign._id)
             setDonors(response.data);
         } catch (error) {
@@ -120,8 +124,12 @@ useEffect(() => {
             console.log("comment: " + comment.campaign);
             console.log("comment: " + comment.comment);
             console.log("comment: " + comment.user);
+<<<<<<< HEAD
             const apiUrl = process.env.REACT_APP_API_BASE_URL;
             const response = await axios.post(`${apiUrl}/api/campaign-comment`, comment);
+=======
+            const response = await axios.post(`https://localhost:3000/api/campaign-comment`, comment);
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
             console.log("Data submitted:", response.data);
         } catch (error) {
             console.error("Error submitting data:", error);
@@ -131,8 +139,12 @@ useEffect(() => {
     useEffect(() => {
         const fetchComments = async () => {
             try {
+<<<<<<< HEAD
               const apiUrl = process.env.REACT_APP_API_BASE_URL;
                 const response = await axios.get(`${apiUrl}/api/campaign-comment/campaign/${campaign._id}`);
+=======
+                const response = await axios.get(`https://localhost:3000/api/campaign-comment/campaign/${campaign._id}`);
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
                 setComments(response.data || []); // Ensure comments is always an array
             } catch (error) {
                 console.error("Error fetching comments:", error);

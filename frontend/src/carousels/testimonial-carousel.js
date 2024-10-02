@@ -43,8 +43,12 @@ export default function TestimonialCarousel() {
 
   const [testimonials, setTestimonials] = useState([]);
   useEffect(()=>{
+<<<<<<< HEAD
     const apiUrl = process.env.REACT_APP_API_BASE_URL;
     axios.get(`${apiUrl}/api/testimonial`)
+=======
+    axios.get(`https://localhost:3000/api/testimonial`)
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
     .then((response) => {
       setTestimonials(response.data);
       console.log('testimonials: ' + testimonials);

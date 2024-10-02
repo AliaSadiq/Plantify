@@ -45,6 +45,7 @@ const deleteRequestCampaign = async (req, res) => {
   };
 
 // GET API to Retrieve Campaign Requests for a Social Group
+<<<<<<< HEAD
 const getRequestsCampaign= async (req, res) => {
   try {
   
@@ -57,6 +58,17 @@ const getRequestsCampaign= async (req, res) => {
   }
 };
 
+=======
+const getRequestCampaign= async (req, res) => {
+     
+        try {
+          const requests = await Request.find({});
+          res.status(200).json(requests);
+        } catch (error) {
+          res.status(500).json({ message: error.message });
+        }
+      };
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
 
 module.exports = {
     getRequestsCampaign,

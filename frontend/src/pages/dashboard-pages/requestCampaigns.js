@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
 import React, { useState, useEffect } from "react";
 import {
   CardHeader,
@@ -31,7 +34,11 @@ const RequestCampaign = () => {
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
+<<<<<<< HEAD
         const response = await axios.get(`${apiUrl}/api/request-campaign`);
+=======
+        const response = await axios.get(`https://localhost:3000/api/request-campaign`);
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
         setCampaigns(response.data);
       } catch (error) {
         console.error("Error fetching campaigns:", error);
@@ -57,7 +64,11 @@ const handleSearch = (query) => {
   const handleReject = async () => {
     if (selectedCampaign) {
       try {
+<<<<<<< HEAD
         await axios.delete(`${apiUrl}/api/request-campaign/${selectedCampaign._id}`);
+=======
+        await axios.delete(`https://localhost:3000/api/request-campaign/${selectedCampaign._id}`);
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
         setCampaigns(campaigns.filter(campaign => campaign._id !== selectedCampaign._id));
         handleCloseDialog();
       } catch (error) {
@@ -219,7 +230,10 @@ const handleSearch = (query) => {
   </Dialog>
 )}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
     </div>
   );
 };

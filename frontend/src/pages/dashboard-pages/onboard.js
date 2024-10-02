@@ -29,7 +29,11 @@ const Onboard = () => {
   useEffect(() => {
     const fetchGroupData = async () => {
       try {
+<<<<<<< HEAD
         const response = await axios.get(`${apiUrl}/api/socialgroup/${socialGroupId}`);
+=======
+        const response = await axios.get(`https://localhost:3000/api/socialgroup/${socialGroupId}`);
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
         setSocialGroup(response.data);
       } catch (error) {
         console.error("Error fetching social group data:", error);

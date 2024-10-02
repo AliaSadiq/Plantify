@@ -17,7 +17,11 @@ const TeamMember = () => {
   useEffect(() => {
     const fetchTeamData = async () => {
       try {
+<<<<<<< HEAD
         const response = await axios.get(`${apiUrl}/api/teams`);
+=======
+        const response = await axios.get(`https://localhost:3000/api/teams`);
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
         setTeamMembers(response.data);
       } catch (error) {
         console.error('Error fetching team data:', error);
@@ -46,7 +50,11 @@ const TeamMember = () => {
   const deleteMember = async (index) => {
     try {
       const memberToDelete = teamMembers[index];
+<<<<<<< HEAD
       await axios.delete(`${apiUrl}/api/teams/${memberToDelete._id}`);
+=======
+      await axios.delete(`https://localhost:3000/api/teams/${memberToDelete._id}`);
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
       const updatedMembers = teamMembers.filter((_, i) => i !== index);
       setTeamMembers(updatedMembers);
     } catch (error) {
@@ -95,7 +103,11 @@ const TeamMember = () => {
         const formData = new FormData();
         formData.append('file', imageFile);
         // Upload the image to the server
+<<<<<<< HEAD
         const response = await axios.post(`${apiUrl}/api/teams`, formData, {
+=======
+        const response = await axios.post(`https://localhost:3000/api/teams`, formData, {
+>>>>>>> ecf0a21711252f14d304a554a09bc949b80361f7
           headers: {
             'Content-Type': 'multipart/form-data'
           }
