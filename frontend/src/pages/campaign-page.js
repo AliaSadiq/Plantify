@@ -171,8 +171,8 @@ const CampaignPage = () => {
         <div className='flex flex-col pl-4 bg-navygreen-100 rounded-pl items-start w-[230px]'>
           <h2 className='mt-2 font-bold text-md ml-2'>Categories</h2>
           <ul className='flex flex-col gap-y-2 rounded-lg mt-4 text-sm'>
-            <li className='p-2 hover:bg-navygreen-200 rounded-lg hover:font-semibold'>Donation Campaigns</li>
-            <li className='p-2 hover:bg-navygreen-200 rounded-lg hover:font-semibold'>Awareness Campaigns</li>
+            <li className='p-2 hover:bg-navygreen-200 rounded-lg hover:font-semibold'>Campaigns</li>
+            <li className='p-2 hover:bg-navygreen-200 rounded-lg hover:font-semibold'>Social Groups</li>
           </ul>
         </div>
         <div>

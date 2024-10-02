@@ -26,12 +26,57 @@ const createSocialGroup = async (req, res) => {
     console.log('ye hogaya');
   }
 };
+const getAllSocialGroups = async (req, res) => {
+  try {
+    // Find all social groups and populate the reviews field
+    const socialGroups = await SocialGroup.find().populate('reviews');
+
+    if (!socialGroups || socialGroups.length === 0) {
+      return res.status(404).json({ message: 'No social groups found' });
+    }
+
+    // Map over all social groups to calculate the average rating for each one
+    const socialGroupsWithRatings = socialGroups.map(group => {
+      const totalRatings = group.reviews.reduce((sum, review) => sum + review.rating, 0);
+      const averageRating = group.reviews.length > 0 
+        ? totalRatings / group.reviews.length 
+        : 0;
+
+      return {
+        ...group._doc,   // Spread the existing social group data
+        averageRating,   // Add the average rating for the group
+      };
+    });
+
+    // Send response with all social groups and their average ratings
+    res.status(200).json(socialGroupsWithRatings);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 const getSocialGroup = async (req, res) => {
   try {
     const { id } = req.params;
-    const socialGroup = await SocialGroup.findById(id);
-    res.status(200).json(socialGroup);
+
+    // Find the social group and populate the reviews field
+    const socialGroup = await SocialGroup.findById(id).populate('reviews');
+
+    if (!socialGroup) {
+      return res.status(404).json({ message: 'SocialGroup not found' });
+    }
+
+    // Calculate the total rating and average rating
+    const totalRatings = socialGroup.reviews.reduce((sum, review) => sum + review.rating, 0);
+    const averageRating = socialGroup.reviews.length > 0 
+      ? totalRatings / socialGroup.reviews.length 
+      : 0;
+
+    // Send response with social group data and average rating
+    res.status(200).json({
+      ...socialGroup._doc,  // Spread the existing social group data
+      averageRating,        // Add the average rating
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -110,6 +155,42 @@ const getSocialGroupCount = async (req, res) => {
   }
 };
 
+const followSocialGroup = async (req, res) => {
+  try {
+    console.log(req.body); // Check if req.user is available
+    const {userId} = req.body;
+    const { id } = req.params;
+
+    if (!userId) {
+      return res.status(401).json({ message: "You need to be logged in to follow groups." });
+    }
+
+    const socialGroup = await SocialGroup.findById(id);
+    if (!socialGroup) {
+      return res.status(404).json({ message: "SocialGroup not found" });
+    }
+
+    // Check if user is already following the group
+    const isFollowing = socialGroup.followers.includes(userId);
+
+    if (isFollowing) {
+      socialGroup.followers.pull(userId);
+      await socialGroup.save();
+      return res.status(200).json({ message: "You have unfollowed the group." });
+    } else {
+      socialGroup.followers.push(userId);
+      await socialGroup.save();
+      return res.status(200).json({ message: "You are now following the group." });
+    }
+  } catch (error) {
+    console.error(error); // Log the error for better debugging
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+
+
 module.exports = {
   createSocialGroup,
   getSocialGroup,
@@ -119,4 +200,6 @@ module.exports = {
   deleteSocialGroup,
   getSocialGroupByUserId,
   getSocialGroupCount,
+  followSocialGroup,
+  getAllSocialGroups
 };

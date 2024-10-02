@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require('cors');
+require('dotenv').config();
 const socialgroupRouter = require("./routes/socialgroup.route.js");
 const campaignRoute = require("./routes/campaign.route.js");
 const userRoute = require("./routes/user.route.js");
@@ -11,14 +12,9 @@ const campaignReportRoute = require("./routes/campaign-report.route.js");
 const sellerRoute = require("./routes/seller.route.js");
 const donationRoutes = require('./routes/donation.route.js')
 const reviewRoutes = require("./routes/social-review.route.js");
-<<<<<<< HEAD
-const questionRoutes=require("./routes/social-question.route.js");
-const teamroute=require("./routes/team.route.js");
-=======
 const questionRoutes = require("./routes/social-question.route.js");
 const teamRoute = require("./routes/team.route.js");
 const requestCampaignRoute = require("./routes/request-campaign.route.js");
->>>>>>> a789a6590c890bf96cf655b3f40f32509d967ab5
 const app = express();
 const rateLimit = require('express-rate-limit');
 //rate-limiting (checking)
@@ -50,11 +46,10 @@ app.use("/api/teams",teamRoute);
 app.use("/api/sellers",sellerRoute);
 app.use("/api/socialgroup-review", reviewRoutes);
 app.use("/api/socialgroup-question", questionRoutes);
-app.use("/api/socialteams", teamroute);
+// app.use("/api/socialteams", teamroute);
 //connection
 mongoose
-.connect('mongodb://farwa:006OyU1ZCZhowFSt@ac-o9umohz-shard-00-00.uhcz40u.mongodb.net:27017,ac-o9umohz-shard-00-01.uhcz40u.mongodb.net:27017,ac-o9umohz-shard-00-02.uhcz40u.mongodb.net:27017/Plantify?ssl=true&replicaSet=atlas-jvykwq-shard-0&authSource=admin&retryWrites=true&w=majority&appName=BackendDB') 
-//.connect('mongodb+srv://farwa:006OyU1ZCZhowFSt@backenddb.uhcz40u.mongodb.net/Plantify?retryWrites=true&w=majority&appName=BackendDB')
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Connected to database!");
     app.listen(5000, () => {

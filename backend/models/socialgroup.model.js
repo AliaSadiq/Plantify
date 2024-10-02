@@ -123,10 +123,12 @@ const SocialGroupSchema = new Schema(
       type: String,
       required: true,
     },
-    followers:{
-      type:String,
-      required: true,
-    },
+    followers: [
+      {
+        type: Schema.Types.ObjectId, // Reference to user IDs
+        ref: 'User', // Assuming followers are users
+      }
+    ],
     status: {
       type: String,
       enum: ['on wait', 'accepted', 'rejected'],

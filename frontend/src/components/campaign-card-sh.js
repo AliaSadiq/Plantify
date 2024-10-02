@@ -235,7 +235,7 @@ import Button from "./button";
 import DonationModal from "../popups/donation-modal";
 import SignUpModal from "../popups/signup-modal";
 
-const CampaignCardSh = ({ campaign, openPopup, shape }) => {
+const CampaignCardSh = ({ campaign}) => {
 
   const navigate = useNavigate();
 
