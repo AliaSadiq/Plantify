@@ -26,6 +26,40 @@ const createSocialGroup = async (req, res) => {
     console.log('ye hogaya');
   }
 };
+//edit 
+const editSocialGroup = async (req, res) => {
+  try {
+    console.log("Editing group data:", req.body);
+
+    // Find the social group by ID and update it with the new data
+    const updatedGroup = await SocialGroup.findByIdAndUpdate(
+      req.params.id, // Get the group ID from URL params
+      {
+        name: req.body.name,
+        initiative: req.body.initiative,
+        image: req.body.image,         // Updated image field
+        banner: req.body.banner,       // Updated banner field
+        location: req.body.location,
+        facebook: req.body.facebook,
+        twitter: req.body.twitter,
+        instagram: req.body.instagram,
+      },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedGroup) {
+      return res.status(404).json({ message: 'Social group not found' });
+    }
+
+    res.status(200).json(updatedGroup);
+  } catch (error) {
+    console.error('Error updating group:', error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+//get all groups 
+
 const getAllSocialGroups = async (req, res) => {
   try {
     // Find all social groups and populate the reviews field
@@ -201,5 +235,6 @@ module.exports = {
   getSocialGroupByUserId,
   getSocialGroupCount,
   followSocialGroup,
-  getAllSocialGroups
+  getAllSocialGroups,
+  editSocialGroup
 };
