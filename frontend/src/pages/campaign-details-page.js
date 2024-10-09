@@ -140,7 +140,7 @@ export default function CampaignDetailsPage() {
                 {/* Wider Div */}
                 <div className="w-full md:w-[60%] lg:w-[55%] bg-white p-4 rounded-[20px] drop-shadow-lg">
                     <div className="relative">
-                        <div className="absolute flex flex-row gap-2 items-center justify-center top-4 right-4 p-2 rounded-full bg-navygreen-100">
+                        <div className="absolute flex flex-row gap-2 items-center justify-center top-4 right-4 p-1 rounded-full bg-navygreen-100">
                             {/* like button */}
                             <button className="p-2 rounded-full hover:bg-navygreen-200">
                                 <svg
@@ -276,7 +276,7 @@ export default function CampaignDetailsPage() {
                 <div className="w-full md:w-[40%] lg:w-[35%] bg-white p-4 rounded-[20px] shadow-md">
                     {/* Donation Bar Div */}
                     <div className="bg-inherit w-full h-auto rounded-[20px] p-4 border-neutral border-2">
-                        <h1 className="font-bold text-lg text-center">{campaign.collected_donation} PKR raised off {campaign.target_donation} PKR</h1>
+                        <h1 className="font-bold text-md text-center">{campaign.collected_donation} PKR raised off {campaign.target_donation} PKR</h1>
                         <ProgressBar width={80} className="mt-4 mx-10"/>
                         <div className="flex items-center justify-center mt-8">
                             <Button text="Donate" onClick={handleOpenModal} className="bg-gray-100 text-white py-2 shadow-md"/>
@@ -284,30 +284,30 @@ export default function CampaignDetailsPage() {
                     </div>
                     {/* About Div */}
                     <div className="bg-inherit w-full h-auto rounded-[20px] p-4 mt-4 border-neutral border-2">
-                        <h1 className="font-bold text-xl text-center mt-6">About the Campaign</h1>
+                        <h1 className="font-bold text-md text-center mt-6">About the Campaign</h1>
                         <p className="mx-10 text-center mt-4 text-sm">
                             {campaign.description}
                         </p>
                         <div className="flex gap-4 items-center justify-center mt-4">
-                            <Button text="Follow Campaign" />
-                            <Button text="Volunteer in Campaign" onClick={handleOpenModal}/>
+                            <Button text="Follow Campaign" className="py-2"/>
+                            <Button text="Volunteer in Campaign" onClick={handleOpenModal} className="py-2"/>
                         </div>
                     </div>
                     {/* Comments Div */}
                     <div className="bg-inherit w-full p-2 border-neutral border-2 rounded-[20px] mt-4">
                         <h2 className="font-semibold text-md text-center py-2">Comments</h2>
-                        <ul className="flex flex-col items-start overflow-y-auto max-h-96">
+                        <ul className="flex flex-col items-start overflow-y-auto max-h-80">
                             {comments.map((comment) => (
-                                <li className="relative w-full p-4 border-b-2 border-neutral">
+                                <li className="relative w-full p-2 border-b-2 border-neutral">
                                     <div className="w-full flex flex-row items-center">
-                                        <img src="/assets/testimonial-2.jpeg" className="w-14 h-14 object-cover rounded-full" alt="user avatar"/>
-                                        <div className="ml-2 w-full flow-root">
+                                        <img src="/assets/testimonial-2.jpeg" className="w-10 h-10 object-cover rounded-full" alt="user avatar"/>
+                                        <div className="ml-2 w-full text-sm flow-root">
                                             <p className="float-left font-semibold ml-2">{comment.user.username}</p>
-                                            <p className="float-right text-gray-500 text-sm">{new Date(comment.date).toLocaleDateString()}</p>
+                                            <p className="float-right text-gray-500">{new Date(comment.date).toLocaleDateString()}</p>
                                         </div>
                                     </div>
                                     <p className="mt-2 mr-4 text-justify text-sm">{comment.comment}</p>
-                                    <p className="text-right">Reply</p>
+                                    <p className="text-right text-sm">Reply</p>
                                 </li>
                             ))}
                         </ul>
@@ -367,31 +367,32 @@ export default function CampaignDetailsPage() {
                             <img className="mr-2" src="/assets/leaves.png" alt="leaves"/>
                         </div>
                     </div> */}
-                    <div className="bg-inherit w-full p-2 border-neutral border-2 rounded-[20px] mt-4">
+                    <div className="bg-navygreen-100 w-full p-2 rounded-[20px] mt-4">
                         <h2 className="font-semibold text-md text-center py-2">Donors</h2>
-
-                        {/* Display the donations */}
-                        {donations.length > 0 ? (
-                            donations.map((donation, index) => (
-                            <div
-                                key={index}
-                                className="flex justify-between items-center my-4 mx-2 border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40"
-                            >
-                                <div className="flex items-center justify-start bg-navygreen-100 p-2 rounded-pl">
-                                {/* Donor's avatar and name */}
-                                <img
-                                    src={`/assets/avatars/${donation.user.avatar}`} // Use a default image if donor doesn't have an avatar
-                                    className="w-8 rounded-full"
-                                    alt="user avatar"
-                                />
-                                <p className="mx-2">{donation.user.username} donated</p>
+                        <ul className="flex flex-col gap-y-2">
+                            {/* Display the donations */}
+                            {donations.length > 0 ? (
+                                donations.map((donation, index) => (
+                                <div
+                                    key={index}
+                                    className="flex justify-between items-center border-2 p-2 border-neutral rounded-pl bg-opacity-40"
+                                >
+                                    <div className="flex items-center justify-start rounded-pl">
+                                    {/* Donor's avatar and name */}
+                                    <img
+                                        src={`/assets/avatars/${donation.user.avatar}`} // Use a default image if donor doesn't have an avatar
+                                        className="w-8 rounded-full"
+                                        alt="user avatar"
+                                    />
+                                    <p className="mx-2">{donation.user.username} donated</p>
+                                    </div>
+                                    <img className="w-6 h-6" src="/assets/leaves.png" alt="leaves" />
                                 </div>
-                                <img className="mr-2" src="/assets/leaves.png" alt="leaves" />
-                            </div>
-                            ))
-                        ) : (
-                            <p className="text-center">No donations yet.</p>
-                        )}
+                                ))
+                            ) : (
+                                <p className="text-center">No donations yet.</p>
+                            )}
+                        </ul>                        
                     </div>
                 </div>
             </div>

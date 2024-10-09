@@ -72,3 +72,62 @@
 .custom-form input:focus {
   box-shadow: 0 0 0 3px rgba(178, 255, 191, 0.3); /* focus:ring-palegreen-300 in Tailwind */
 }
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 15s linear infinite;
+}
+
+/* Reduce the font size for the calendar */
+.fc .fc-toolbar-title {
+  font-size: 1rem; /* Adjust month title size */
+}
+
+.fc .fc-button {
+  font-size: 0.85rem; /* Adjust button sizes */
+}
+
+.fc .fc-header-toolbar {
+  font-size: 0.85rem; /* Adjust toolbar font size */
+}
+
+.fc .fc-daygrid-day-number {
+  font-size: 0.75rem; /* Adjust day numbers size */
+}
+
+.fc .fc-event-title {
+  font-size: 0.75rem; /* Adjust event title size */
+}
+
+
+@layer utilities {
+  /* Custom scrollbar for ul */
+  ul::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ul::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 10px;
+  }
+
+  ul::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ul::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  ul::-webkit-scrollbar-button {
+    display: none; /* No arrows */
+  }
+}

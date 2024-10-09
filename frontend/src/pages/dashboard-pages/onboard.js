@@ -1096,7 +1096,7 @@ const Onboard = () => {
   return (
     <div
       className="bg-cover ml bg-ivory flex flex-col bg-center min-h-screen"
-      style={{ backgroundImage: `url(${dashboardbg})` }}
+      // style={{ backgroundImage: `url(${dashboardbg})` }}
     >
       <div className="flex ml-64 flex-row">
         <div className="flex flex-col justify-center w-auto rounded-lg bg-[rgba(255, 255, 255, 0.1)] backdrop-blur-md p-4 mr-4">
