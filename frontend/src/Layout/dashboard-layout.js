@@ -41,6 +41,7 @@ import CreateCampaignForm from '../pages/dashboard-pages/createCampaign';
 import Footer from '../components/footer';
 import Sidebar from '../components/dashboard-components/sidebar';
 import EditCampaignForm from '../pages/dashboard-pages/editCampaign';
+import Profile from '../pages/dashboard-pages/profile.js';
 
 const DashboardLayout = () => {
   return (
@@ -53,6 +54,8 @@ const DashboardLayout = () => {
         <Route path="Insights/:id" element={<Insight />} />
         <Route path="createCampaign" element={<CreateCampaignForm />} />
         <Route path="Messages" element={<Message />} />
+        <Route path="Profile" element={<Profile />} />
+
         <Route path="editCampaign/:campaignId" element={<EditCampaignForm />} />
       </Routes>
     </>

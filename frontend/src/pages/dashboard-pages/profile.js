@@ -1,200 +1,353 @@
-import React from 'react';
-import PieChartGraph from "../../components/dashboard-components/Piechart.js";
-const Profile = () => {
-  const [userData, setUserData] = useState({
-    name: 'Alia sadiq',
-    description: 'Experienced in developing comprehensive campaign strategies tailored to specific causes and target audiences. Proficient in setting clear objectives, defining key performance indicators (KPIs), and creating actionable plans to achieve campaign goals.',
-    profileImage: 'https://via.placeholder.com/150',
-    headerImage: 'https://via.placeholder.com/800x200'
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+// // import avatar from '../images/testimonial-2.jpeg';
+// import { useParams } from 'react-router-dom';
+
+// const MainPage = (socialGroupId) => {
+//   const [isFollowing, setIsFollowing] = useState(false);
+//   const [profileData, setProfileData] = useState({
+//     name: '',
+//     location: '',
+//     image: '',
+//     initiative: '',
+//     facebook: '',
+//     twitter: '',
+//     instagram: ''
+//   });
+//   const { id } = useParams();
+  
+//   const user = JSON.parse(localStorage.getItem('user'));
+//   const userId = user ? user._id : null;
+
+//   useEffect(() => {
+//     const fetchProfileData = async () => {
+//       try {
+//         const response = await axios.get(`http://localhost:5000/api/socialgroup/${id}`);
+//         const data = response.data;
+
+//         setProfileData({
+//           name: data.name || '',
+//           location: data.location || '',
+//           image: data.image || '',
+//           initiative: data.initiative || '',
+//           facebook: data.facebook || '',
+//           twitter: data.twitter || '',
+//           instagram: data.instagram || '',
+//           followers: data.followers || [],
+//         });
+
+//         if (userId && data.followers.includes(userId)) {
+//           setIsFollowing(true);
+//         }
+//       } catch (error) {
+//         console.error('Error fetching profile data:', error);
+//       }
+//     };
+
+//     fetchProfileData();
+//   }, [id, userId]);
+
+//   const handleInputChange = (e) => {
+//     const { name, value } = e.target;
+//     setProfileData(prevData => ({ ...prevData, [name]: value }));
+//   };
+
+//   const handleSave = async () => {
+//     try {
+//       const response = await axios.put(`http://localhost:5000/api/socialgroup/${id}/edit`, profileData);
+//       alert(response.data.message);
+//     } catch (error) {
+//       console.error('Error updating profile:', error);
+//     }
+//   };
+
+//   if (!profileData) {
+//     return <div>Loading...</div>;
+//   }
+
+//   return (
+ 
+//       <div className="flex flex-wrap md:flex-nowrap mt-2 ml-64">
+//         {/* Profile Section - Larger Width */}
+//         <div className="w-full md:w-2/3 p-2">
+//           <div className="flex-grow bg-white shadow-lg rounded-tl-11xl rounded-tr-11xl relative">
+//             <div className="relative bg-gray-200 rounded-tl-11xl rounded-tr-11xl overflow-hidden">
+//               <input
+//                 type="text"
+//                 name="image"
+//                 value={profileData.image}
+//                 onChange={handleInputChange}
+//                 placeholder="Profile Image URL"
+//                 className="w-full h-56 object-cover"
+//               />
+//             </div>
+//             <div className="p-6">
+//               <input
+//                 type="text"
+//                 name="name"
+//                 value={profileData.name}
+//                 onChange={handleInputChange}
+//                 placeholder="Group Name"
+//                 className="text-lg font-bold"
+//               />
+//               <textarea
+//                 name="initiative"
+//                 value={profileData.initiative}
+//                 onChange={handleInputChange}
+//                 placeholder="Initiative"
+//                 className="mt-2 w-full text-sm"
+//               />
+//               <div className="mt-6 flex items-center">
+//                 <input
+//                   type="text"
+//                   name="location"
+//                   value={profileData.location}
+//                   onChange={handleInputChange}
+//                   placeholder="Location"
+//                   className="text-sm text-gray-800"
+//                 />
+//               </div>
+
+//               {/* Social Links Section */}
+//               <div className="mt-4">
+//                 <h3 className="text-md font-bold text-gray-800">Social Links</h3>
+//                 <div className="mt-2 space-y-2">
+//                   <input
+//                     type="text"
+//                     name="facebook"
+//                     value={profileData.facebook}
+//                     onChange={handleInputChange}
+//                     placeholder="Facebook URL"
+//                     className="text-blue-600"
+//                   />
+//                   <input
+//                     type="text"
+//                     name="twitter"
+//                     value={profileData.twitter}
+//                     onChange={handleInputChange}
+//                     placeholder="Twitter URL"
+//                     className="text-blue-400"
+//                   />
+//                   <input
+//                     type="text"
+//                     name="instagram"
+//                     value={profileData.instagram}
+//                     onChange={handleInputChange}
+//                     placeholder="Instagram URL"
+//                     className="text-pink-600"
+//                   />
+//                 </div>
+//               </div>
+
+//               {/* Save Button */}
+//               <div className="mt-6">
+//                 <button
+//                   className="px-4 py-2 bg-green-900 text-white rounded-lg"
+//                   onClick={handleSave}
+//                 >
+//                   Save Changes
+//                 </button>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+  
+//   );
+// };
+
+// export default MainPage;
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+
+const MainPage = () => {
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [profileData, setProfileData] = useState({
+    name: '',
+    location: '',
+    banner: '',
+    image: '',
+    initiative: '',
+    facebook: '',
+    twitter: '',
+    instagram: ''
   });
+  const [bannerFile, setBannerFile] = useState(null); // For Banner Image Upload
+  const [profileFile, setProfileFile] = useState(null); // For Profile Image Upload
+  const { id } = useParams();
+  
+  const user = JSON.parse(localStorage.getItem('user'));
+  const userId = user ? user._id : null;
 
-  const [isEditingName, setIsEditingName] = useState(false);
-  const [isEditingDescription, setIsEditingDescription] = useState(false);
-  const [tempName, setTempName] = useState(userData.name);
-  const [tempDescription, setTempDescription] = useState(userData.description);
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/socialgroup/${id}`);
+        const data = response.data;
 
-  const handleEditName = () => {
-    setIsEditingName(true);
-  };
+        setProfileData({
+          name: data.name || '',
+          location: data.location || '',
+          banner: data.banner || '',
+          image: data.image || '',
+          initiative: data.initiative || '',
+          facebook: data.facebook || '',
+          twitter: data.twitter || '',
+          instagram: data.instagram || '',
+          followers: data.followers || [],
+        });
 
-  const handleEditDescription = () => {
-    setIsEditingDescription(true);
-  };
-
-  const handleSaveName = () => {
-    setUserData(prevState => ({
-      ...prevState,
-      name: tempName
-    }));
-    setIsEditingName(false);
-  };
-
-  const handleSaveDescription = () => {
-    setUserData(prevState => ({
-      ...prevState,
-      description: tempDescription
-    }));
-    setIsEditingDescription(false);
-  };
-
-  const handleDropProfileImage = (event) => {
-    event.preventDefault();
-    const file = event.dataTransfer.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setUserData(prevState => ({
-          ...prevState,
-          profileImage: reader.result
-        }));
+        if (userId && data.followers.includes(userId)) {
+          setIsFollowing(true);
+        }
+      } catch (error) {
+        console.error('Error fetching profile data:', error);
       }
     };
-    reader.readAsDataURL(file);
+
+    fetchProfileData();
+  }, [id, userId]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProfileData(prevData => ({ ...prevData, [name]: value }));
   };
 
-  const handleDropHeaderImage = (event) => {
-    event.preventDefault();
-    const file = event.dataTransfer.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setUserData(prevState => ({
-          ...prevState,
-          headerImage: reader.result
-        }));
-      }
-    };
-    reader.readAsDataURL(file);
+  const handleBannerUpload = (e) => {
+    setBannerFile(e.target.files[0]);
   };
 
-  const handleProfileImageClick = () => {
-    document.getElementById('profileImageInput').click();
+  const handleProfileUpload = (e) => {
+    setProfileFile(e.target.files[0]);
   };
 
-  const handleHeaderImageClick = () => {
-    document.getElementById('headerImageInput').click();
-  };
+  const handleSave = async () => {
+    const formData = new FormData();
+    formData.append('name', profileData.name);
+    formData.append('location', profileData.location);
+    formData.append('initiative', profileData.initiative);
+    formData.append('facebook', profileData.facebook);
+    formData.append('twitter', profileData.twitter);
+    formData.append('instagram', profileData.instagram);
 
-  const handleProfileImageChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setUserData(prevState => ({
-          ...prevState,
-          profileImage: reader.result
-        }));
-      }
-    };
-    reader.readAsDataURL(file);
-  };
+    if (bannerFile) {
+      formData.append('banner', bannerFile);
+    }
 
-  const handleHeaderImageChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setUserData(prevState => ({
-          ...prevState,
-          headerImage: reader.result
-        }));
-      }
-    };
-    reader.readAsDataURL(file);
+    if (profileFile) {
+      formData.append('image', profileFile);
+    }
+
+    try {
+      const response = await axios.put(`http://localhost:5000/api/socialgroup/${id}/edit`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      alert(response.data.message);
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
   };
 
   return (
-    <div className="w-[1100px] h-[550px] mx-auto bg-white overflow-hidden rounded-tl-lg rounded-tr-lg relative">
-      <div 
-        className="relative" 
-        onDrop={handleDropHeaderImage} 
-        onDragOver={(event) => event.preventDefault()}
-        onClick={handleHeaderImageClick}
-      >
-        <img
-          className="w-full h-[200px] object-cover"
-          src={userData.headerImage}
-          alt="Header"
-        />
-        <div className="absolute inset-0 flex justify-center items-center">
-          <div className="relative mt-[200px]">
-            <div 
-              className="relative" 
-              onDrop={handleDropProfileImage} 
-              onDragOver={(event) => event.preventDefault()}
-              onClick={handleProfileImageClick}
-            >
-              <div className="w-40 h-40 overflow-hidden">
-                <img
-                  className="w-full h-full object-cover rounded-full border-4 border-white"
-                  src={userData.profileImage}
-                  alt="Profile"
-                />
-                <button className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 rounded-full cursor-pointer">
-                  <CameraIcon className="h-6 w-6 text-white" />
-                </button>
-              </div>
-            </div>
+    <div className="flex flex-wrap md:flex-nowrap mt-2 ml-64">
+      {/* Profile Section - Larger Width */}
+      <div className="w-full md:w-2/3 p-2">
+        <div className="flex-grow bg-white shadow-lg rounded-tl-11xl rounded-tr-11xl relative">
+          {/* Banner Image */}
+          <div className="relative bg-gray-200 rounded-tl-11xl rounded-tr-11xl overflow-hidden">
+            <img
+              src={bannerFile ? URL.createObjectURL(bannerFile) : `/assets/${profileData.banner}`}
+              alt="Banner"
+              className="w-full h-56 object-cover"
+            />
+            <input type="file" onChange={handleBannerUpload} />
           </div>
-        </div>
-      </div>
-      <input
-        type="file"
-        id="profileImageInput"
-        style={{ display: 'none' }}
-        onChange={handleProfileImageChange}
-      />
-      <input
-        type="file"
-        id="headerImageInput"
-        style={{ display: 'none' }}
-        onChange={handleHeaderImageChange}
-      />
 
-      <div className="text-center mt-[100px]">
-        <div className="flex justify-center items-center space-x-2">
-          {isEditingName ? (
-            <>
+          {/* Profile Image */}
+          <div className="absolute top-40 left-6 w-[120px] h-[120px] bg-white rounded-full overflow-hidden border-4 border-white">
+            <img
+              src={profileFile ? URL.createObjectURL(profileFile) : `/assets/${profileData.image}`}
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
+            <input type="file" onChange={handleProfileUpload} />
+          </div>
+
+          <div className="p-6">
+            <input
+              type="text"
+              name="name"
+              value={profileData.name}
+              onChange={handleInputChange}
+              placeholder="Group Name"
+              className="text-lg font-bold"
+            />
+            <textarea
+              name="initiative"
+              value={profileData.initiative}
+              onChange={handleInputChange}
+              placeholder="Initiative"
+              className="mt-2 w-full text-sm"
+            />
+            <div className="mt-6 flex items-center">
               <input
                 type="text"
-                value={tempName}
-                onChange={(e) => setTempName(e.target.value)}
-                className="text-lg font-semibold border p-1"
+                name="location"
+                value={profileData.location}
+                onChange={handleInputChange}
+                placeholder="Location"
+                className="text-sm text-gray-800"
               />
-              <button onClick={handleSaveName} className="text-gray-500 cursor-pointer">
-                Save
+            </div>
+
+            {/* Social Links Section */}
+            <div className="mt-4">
+              <h3 className="text-md font-bold text-gray-800">Social Links</h3>
+              <div className="mt-2 space-y-2">
+                <input
+                  type="text"
+                  name="facebook"
+                  value={profileData.facebook}
+                  onChange={handleInputChange}
+                  placeholder="Facebook URL"
+                  className="text-blue-600"
+                />
+                <input
+                  type="text"
+                  name="twitter"
+                  value={profileData.twitter}
+                  onChange={handleInputChange}
+                  placeholder="Twitter URL"
+                  className="text-blue-400"
+                />
+                <input
+                  type="text"
+                  name="instagram"
+                  value={profileData.instagram}
+                  onChange={handleInputChange}
+                  placeholder="Instagram URL"
+                  className="text-pink-600"
+                />
+              </div>
+            </div>
+
+            {/* Save Button */}
+            <div className="mt-6">
+              <button
+                className="px-4 py-2 bg-green-900 text-white rounded-lg"
+                onClick={handleSave}
+              >
+                Save Changes
               </button>
-              <button onClick={() => setIsEditingName(false)} className="text-gray-500 cursor-pointer">
-                Cancel
-              </button>
-            </>
-          ) : (
-            <>
-              <h2 className="text-lg font-semibold">{userData.name}</h2>
-              <button onClick={handleEditName} className="text-gray-500 cursor-pointer">
-                <PencilIcon className="h-4 w-4" />
-              </button>
-            </>
-          )}
-        </div>
-      </div> 
-<div>
-  <PieChartGraph/>
-</div>
-      {/* Posts Grid */}
-      <div className="grid grid-cols-3 gap-4 mt-8">
-      
-        {/* Post items */}
-        <div>
-          <img
-            className="w-80 h-80 "
-            src="https://fastly.picsum.photos/id/134/200/200.jpg?hmac=a3L-JjVSGeG8w3SdNpzxdh8WSC0xHJXgeD6QryCK7pU"
-            alt="post picture"
-          />
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Profile;
+export default MainPage;
