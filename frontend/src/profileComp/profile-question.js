@@ -99,7 +99,7 @@ import React, { useState, useEffect } from 'react';
 import { PencilIcon } from '@heroicons/react/24/solid';
 import axios from 'axios';
 
-const QuestionSection = ({ groupId }) => {
+const QuestionSection = ({ groupId,isAdmin }) => {
   const [questions, setQuestions] = useState([]);
   const [newQuestion, setNewQuestion] = useState('');
   const [showForm, setShowForm] = useState(false);
