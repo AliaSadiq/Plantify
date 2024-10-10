@@ -312,11 +312,12 @@ const MainPage = () => {
   </ul>
 
   {/* Tabs Content */}
-  <div className="mt-4">
+  <div className="mt-4 w-full">
     {activeTab === 'campaign' && (
-      <div className="p-4 max-w-full md:max-w-3xl mx-auto">
+      <div className="p-4 w-full mx-auto">
         <h2 className="text-2xl font-bold">Campaigns</h2>
-        <div className="ml-0 sm:ml-8 grid grid-cols-1 sm:grid-cols-2 sm:gap-2 md:gap-3 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 mb-10 gap-y-2">
+        {/* <div className="ml-0 sm:ml-8 grid grid-cols-1 sm:grid-cols-2 sm:gap-2 md:gap-3 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 mb-10 gap-y-2"> */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-x-2 gap-y-2">
           {campaigns.slice(0, 6).map(campaign => (
             <CampaignCardSh key={campaign._id} campaign={campaign} />
           ))}
