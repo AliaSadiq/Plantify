@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import Profile from '../components/profile';
+// import Profile from '../components/profile';
 
 export default function SettingsPage() {
     // const [user, setUser] = useState(null);
@@ -62,7 +62,7 @@ export default function SettingsPage() {
                 </form>
             </div>
             <div className='self-center'>
-                <Profile/>
+                {/* <Profile/> */}
             </div>
         </div>
     );

@@ -86,6 +86,7 @@ module.exports = withMT({
     },
     fontSize: {
       xm:"9px",
+      xs: "12px",
       sm: "14px",
       xmini: "16px",
       mini: "18px",

@@ -85,10 +85,43 @@ const getCampaignCount = async (req, res) => {
   }
 };
 
+const getCampaignInsights = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // Fetch the campaign by its ID
+    const campaign = await Campaign.findById(id)
+      .populate('socialGroup'); // Populate any related socialGroup data if needed
+
+    if (!campaign) {
+      return res.status(404).json({ message: 'Campaign not found' });
+    }
+
+    // Format the insights data
+    const insightData = {
+      collecteddonations: campaign.collected_donation || 0,
+      targetDonations: campaign.target_donation,
+      likes: campaign.likes || 0,
+      followers: campaign.volunteers || 0,
+      performanceData: [
+        { name: 'Day 1', value: 200 },
+        { name: 'Day 2', value: 500 },
+        { name: 'Day 3', value: 300 },
+        // Add more performance data as needed
+      ],
+    };
+
+    res.status(200).json(insightData);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
     getCampaign,
     getCampaigns,
     createCampaign,
     socialgroupCampaigns,
     getCampaignCount,
+    getCampaignInsights,
 };
