@@ -120,7 +120,7 @@ const LoginPage = () => {
                                     <Button
                                         text="Login"
                                         type="submit"
-                                        className="shadow-md w-full bg-gray-100 text-white"
+                                        className="shadow-md w-full bg-gray-100 text-white py-2"
                                     />
                                 </Form>
                             )}

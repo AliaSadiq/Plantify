@@ -7,7 +7,7 @@ export default function UserProfile () {
   return (
     <div className="rounded-pl p-4 h-full">
       <div className="flex gap-4">
-        <img src="/assets/avatars/avatar-1.png" alt="profile picture" className="border-2 border-gray-100 w-40 h-40 rounded-full"/>
+        <img src="/assets/avatars/avatar-1.png" alt="profile picture" className="border-2 border-gray-100 w-28 h-28 rounded-full"/>
         <div className="text-start">
           {user? (
             <h3 className="text-md font-semibold">{user.username}</h3>

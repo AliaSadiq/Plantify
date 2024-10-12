@@ -264,6 +264,9 @@ export default function CampaignDetailsPage() {
                                     <div className="flex flex-row justify-center">
                                         <div className="mt-10 p-8 rounded-pl bg-navygreen-100 w-1/2">
                                             <CarouselDefault />
+                                            {/* <img src={`/assets/${campaign.trees[0]}`}/>
+                                            <p>{campaign.collected_donation}</p>
+                                            <p>{campaign.trees[0].image}</p> */}
                                         </div>
                                     </div>
                                 </div>

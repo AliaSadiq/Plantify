@@ -338,8 +338,8 @@ const Campaigns = () => {
         <div className="flex flex-col justify-center w-auto rounded-lg bg-[rgba(255, 255, 255, 0.1)] backdrop-blur-md ml-4 pt-4 mr-4">
           <h1 className="text-xl  font-josefin-sans font-bold">Campaign List</h1>
         </div>
-        <div className="max-h-fit w-full rounded  pl-4 pr-4 mt-10 mr-4">
-        <div className="flex items-center justify-between mb-4">
+        <div className="max-h-fit w-full">
+          <div className="flex items-center justify-between mb-4">
             <div className="flex items-center w-[450px] gap-2">
                {/* <Input
                 label="Search"

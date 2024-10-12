@@ -477,7 +477,7 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
             </div>
             <div className="flex justify-end">
               <button
-              onClick={handleAddTree}
+                onClick={handleAddTree}
                 type="submit"
                 className="mt-1 px-6 py-1 text-white rounded hover:rounded-full border-2 border-gray-100 bg-dashboard"
               >
@@ -779,6 +779,7 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
             Back
           </button>
           <button
+            onClick={handleStep2Submit}
             type="submit"
             className="font-josefin-sans bg-dashboard text-white text-sm font-semibold px-4 py-2 rounded hover:rounded-full border-2 border-gray-100"
           >
