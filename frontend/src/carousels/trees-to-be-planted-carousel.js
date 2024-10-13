@@ -1,33 +1,23 @@
 import { Carousel } from "@material-tailwind/react";
-import prod1 from '../images/product-4.png';
-import prod2 from '../images/product-5.png';
-import prod3 from '../images/product-6.png';
-import prod4 from '../images/product-7.png';
- 
-export function CarouselDefault() {
+import Slider from "react-slick/lib/slider";
+
+export function CarouselDefault({ trees = [] }) {
   return (
-    <Carousel className="rounded-xl">
-      <div className="flex items-center justify-center">
-        <img
-          src={prod1}
-          alt="image 1"
-          className="object-cover"
-        />
-      </div>
-      <div className="flex items-center justify-center">
-        <img
-          src={prod1}
-          alt="image 1"
-          className="object-cover"
-        />
-      </div>
-      <div className="flex items-center justify-center">
-        <img
-          src={prod1}
-          alt="image 1"
-          className="object-cover"
-        />
-      </div>
-    </Carousel>
+    <Slider className="rounded-xl">
+      {trees.map((tree, index) => (
+        <div 
+          key={index}
+          className="flex flex-col items-center justify-center space-y-2"
+        >
+          <img
+            src={`/assets/${tree.image}`}
+            alt={`${tree.name} image`}
+            className="w-64 h-64 object-cover rounded-lg"
+          />
+          <p className="text-center font-semibold">Name: {tree.name}</p>
+          <p className="text-center">Price: Rs.{tree.price}</p>
+        </div>
+      ))}
+    </Slider>
   );
 }
