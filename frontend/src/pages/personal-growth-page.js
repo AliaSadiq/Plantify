@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import useFetchUserLocalStorage from "../hooks/useFetchUserLocalStorage";
 import Calendar from "../components/calendar";
 import Button from "../components/button";
-import Wave from "react-wavify";
+// import Wave from "react-wavify";
 import { StarIcon } from "@heroicons/react/24/solid";
 import UserProfile from "../components/user-profile";
 
