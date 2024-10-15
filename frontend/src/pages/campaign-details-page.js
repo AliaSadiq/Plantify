@@ -263,7 +263,8 @@ export default function CampaignDetailsPage() {
                                     <p>Details about trees to be planted...</p>
                                     <div className="flex flex-row justify-center">
                                         <div className="mt-10 p-8 rounded-pl bg-navygreen-100 w-1/2">
-                                            <CarouselDefault />
+                                            <CarouselDefault trees={campaign.trees}/>
+                                            {/* <img src={`/assets/${campaign.trees[0].image}`}/> */}
                                         </div>
                                     </div>
                                 </div>
@@ -343,30 +344,6 @@ export default function CampaignDetailsPage() {
                         </div>
                     </div>
                     {/* donors div */}
-                    {/* <div className="bg-inherit w-full p-2 border-neutral border-2 rounded-[20px] mt-4">
-                        <h2 className="font-semibold text-md text-center py-2">Donors</h2>
-                        <div className="flex justify-between items-center my-4 mx-2 border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
-                            <div className="flex items-center justify-start bg-navygreen-100 p-2 rounded-pl">
-                                <img src="/assets/testimonial-1.jpeg" className="w-8 rounded-full" alt="user avatar"/>
-                                <p className="mx-2 ">Alia donated</p>
-                            </div>
-                            <img className="mr-2" src="/assets/leaves.png" />
-                        </div>
-                        <div className="flex justify-between items-center my-4 mx-2 border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
-                            <div className="flex items-center justify-start bg-navygreen-100 p-2 rounded-pl">
-                                <img src="/assets/testimonial-1.jpeg" className="w-8 rounded-full" alt="user avatar"/>
-                                <p className="mx-2 ">Alia donated</p>
-                            </div>
-                            <img className="mr-2" src="/assets/leaves.png" />
-                        </div>
-                        <div className="flex justify-between items-center my-4 mx-2 border-2 p-2 border-neutral rounded-pl bg-navygreen-100 bg-opacity-40">
-                            <div className="flex items-center justify-start bg-navygreen-100 p-2 rounded-pl">
-                                <img src="/assets/testimonial-1.jpeg" className="w-8 rounded-full" alt="user avatar"/>
-                                <p className="mx-2 ">Alia donated</p>
-                            </div>
-                            <img className="mr-2" src="/assets/leaves.png" alt="leaves"/>
-                        </div>
-                    </div> */}
                     <div className="bg-navygreen-100 w-full p-2 rounded-[20px] mt-4">
                         <h2 className="font-semibold text-md text-center py-2">Donors</h2>
                         <ul className="flex flex-col gap-y-2">

@@ -50,7 +50,7 @@ export default function VerificationCheck() {
         <div className='flex flex-col gap-y-4 min-h-screen items-center justify-center'>
             <p className='text-lg'>{getVerificationMessage()}</p>
             <img src='/assets/clockwise.png' className='w-20 mb-4'/>
-            <Link to="/"><Button text="Go to Homepage" color='fill'/></Link>
+            <Link to="/"><Button text="Go to Homepage" className="py-2 bg-gray-100 text-white"/></Link>
         </div>
     );
 }
