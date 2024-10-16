@@ -1,9 +1,24 @@
 import React, { useState } from "react";
 import useDeleteUser from "../../hooks/delete-user";
+import UserProfileModal from "../modals/user-profile-modal";
 
 export default function UserTable({ users }) {
     const [updatedUsers, setUpdatedUsers] = useState(users); // Keep track of the users state
     const { deleteUser, loading, error } = useDeleteUser();
+    const [selectedUser, setSelectedUser] = useState(null); // To store the user that was clicked
+    const [isModalOpen, setIsModalOpen] = useState(false); // To track if the modal is open or closed
+
+    // Function to open the modal and set the selected message
+    const handleOpenModal = (user) => {
+        setSelectedUser(user);
+        setIsModalOpen(true);
+    };
+
+    // Function to close the modal
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setSelectedUser(null);
+    };
 
     const handleDelete = async (id) => {
         const isDeleted = await deleteUser(id);
@@ -28,7 +43,11 @@ export default function UserTable({ users }) {
                 </thead>
                 <tbody>
                     {updatedUsers.map((user) => (
-                        <tr key={user._id} className="border-b-[0.5px] dark:border-gray-400 border-gray-100 hover:bg-navygreen-100 hover:bg-opacity-50 hover:text-gray-100">
+                        <tr 
+                            key={user._id} 
+                            className="border-b-[0.5px] dark:border-gray-400 border-gray-100 hover:bg-navygreen-100 hover:bg-opacity-50 hover:text-gray-100"
+                            onClick={() => handleOpenModal(user)}
+                        >
                             <td className="px-4 py-2">
                                 <img src={`assets/avatars/${user.avatar}`} alt="group image" className="w-14 h-14 object-cover rounded-full" />
                             </td>
@@ -68,6 +87,11 @@ export default function UserTable({ users }) {
                     ))}
                 </tbody>
             </table>
+            {/* Modal component */}
+            {isModalOpen && selectedUser && (
+                <UserProfileModal user={selectedUser} onClose={handleCloseModal}/>
+            )}
+            
         </div>
     );
 }

@@ -1,15 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function VerificationTable({ socialGroups }) {
     const handleAccept = async (id) => {
         try {
             const response = await axios.put(`http://localhost:5000/api/socialgroup/${id}`, { status: "accepted" });
-            // Assuming your backend returns the updated social group after the status is updated
             const updatedSocialGroup = response.data;
-            // Update the state of social groups with the updated social group
-            // You need to implement a function to update the state here
-            // For simplicity, you can re-fetch the social groups from the server after the update
+            alert('Social group has been verfied');
+            window.location.reload();
         } catch (error) {
             console.error("Error accepting social group:", error);
         }
@@ -18,11 +17,9 @@ export default function VerificationTable({ socialGroups }) {
     const handleReject = async (id) => {
         try {
             const response = await axios.put(`http://localhost:5000/api/socialgroup/${id}`, { status: "rejected" });
-            // Assuming your backend returns the updated social group after the status is updated
             const updatedSocialGroup = response.data;
-            // Update the state of social groups with the updated social group
-            // You need to implement a function to update the state here
-            // For simplicity, you can re-fetch the social groups from the server after the update
+            alert('Social group has been rejected');
+            window.location.reload();
         } catch (error) {
             console.error("Error rejecting social group:", error);
         }
@@ -42,57 +39,67 @@ export default function VerificationTable({ socialGroups }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {socialGroups.map((socialGroup) => (
-                        <tr key={socialGroup.id}>
-                            <td className="px-4 py-2">
-                                <img src={`assets/${socialGroup.image}`} alt="group image" className="w-14 h-14 object-cover rounded-full" />
-                            </td>
-                            <td>
-                                {socialGroup.name}
-                            </td>
-                            <td>
-                                {socialGroup.cnic}
-                            </td>
-                            <td>
-                                <img src={`assets/${socialGroup.faceImage}`} alt="group image" className="w-14 h-14 object-cover rounded-full" />
-                            </td>
-                            <td>
-                                <button 
-                                    onClick={() => handleAccept(socialGroup._id)} 
-                                    className="text-gray-100 dark:text-navygreen-100 hover:text-navygreen-300"
-                                >
-                                    <svg 
-                                        xmlns="http://www.w3.org/2000/svg" 
-                                        fill="none" 
-                                        viewBox="0 0 24 24" 
-                                        strokeWidth={5} 
-                                        stroke="currentColor" 
-                                        className="size-6"
+                    {socialGroups.length > 0 ? (
+                        socialGroups.map((socialGroup) => (
+                            <tr key={socialGroup.id}>
+                                <td className="px-4 py-2">
+                                    <img src={`assets/${socialGroup.image}`} alt="group image" className="w-14 h-14 object-cover rounded-full" />
+                                </td>
+                                <td>
+                                    <Link to={`social-profile/${socialGroup._id}`}>
+                                        {socialGroup.name}
+                                    </Link>
+                                </td>
+                                <td>
+                                    {socialGroup.cnic}
+                                </td>
+                                <td>
+                                    <img src={`assets/${socialGroup.faceImage}`} alt="group image" className="w-14 h-14 object-cover rounded-full" />
+                                </td>
+                                <td>
+                                    <button 
+                                        onClick={() => handleAccept(socialGroup._id)} 
+                                        className="text-gray-100 dark:text-navygreen-100 hover:text-navygreen-300"
                                     >
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                                    </svg>
-                                </button>
-                            </td>
-                            <td>
-                                <button 
-                                onClick={() => handleReject(socialGroup._id)} 
-                                className="text-gray-100 dark:text-navygreen-100 hover:text-red-500"
-                                >
-                                    <svg 
-                                        xmlns="http://www.w3.org/2000/svg" 
-                                        fill="none"
-                                        viewBox="0 0 24 24" 
-                                        strokeWidth={5} 
-                                        stroke="currentColor" 
-                                        className="size-6"
+                                        <svg 
+                                            xmlns="http://www.w3.org/2000/svg" 
+                                            fill="none" 
+                                            viewBox="0 0 24 24" 
+                                            strokeWidth={5} 
+                                            stroke="currentColor" 
+                                            className="size-6"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button 
+                                    onClick={() => handleReject(socialGroup._id)} 
+                                    className="text-gray-100 dark:text-navygreen-100 hover:text-red-500"
                                     >
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                    </svg>
+                                        <svg 
+                                            xmlns="http://www.w3.org/2000/svg" 
+                                            fill="none"
+                                            viewBox="0 0 24 24" 
+                                            strokeWidth={5} 
+                                            stroke="currentColor" 
+                                            className="size-6"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                        </svg>
 
-                                </button>
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="6" className="text-center py-4">
+                                No social groups available
                             </td>
                         </tr>
-                    ))}
+                    )}
                 </tbody>
             </table>
         </div>

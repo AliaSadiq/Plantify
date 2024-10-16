@@ -1,6 +1,41 @@
-import React from "react";
+import React, {useState} from "react";
+import ContactModal from "../modals/contact-us-modal";
 
 export default function ContactUsTable({ messages }) {
+
+    const [selectedMessage, setSelectedMessage] = useState(null); // To store the message that was clicked
+    const [isModalOpen, setIsModalOpen] = useState(false); // To track if the modal is open or closed
+
+    // Function to open the modal and set the selected message
+    const handleOpenModal = (message) => {
+        setSelectedMessage(message);
+        setIsModalOpen(true);
+    };
+
+    // Function to close the modal
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setSelectedMessage(null);
+    };
+
+    // Function to truncate message to 3-4 words
+    const truncateMessage = (messageText) => {
+        const words = messageText.split(" ");
+        if (words.length <= 4) {
+            return messageText;
+        }
+        return words.slice(0, 3).join(" ") + "...";
+    };
+
+    // Function to format date as dd-mm-yyyy
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() is zero-based
+        const year = date.getFullYear();
+        return `${day}-${month}-${year}`;
+    };
+
     return (
         <div className="rounded-pl bg-navygreen-100 overflow-x-auto shadow-md">
             <table className="w-full text-gray-100 dark:text-gray-400 text-sm bg-navygreen-100 dark:bg-forest-100 p-4 text-left rounded-pl">
@@ -9,13 +44,19 @@ export default function ContactUsTable({ messages }) {
                         <th className="p-4 rounded-tl-pl">Name</th>
                         <th>Email</th>
                         <th>Message</th>
+                        <th>Date</th>
                         <th>Reply</th>
                         <th className="rounded-tr-pl">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {messages.map((message) => (
-                        <tr key={message.id} className="border-b-[0.5px] dark:border-gray-400 border-gray-100 hover:bg-navygreen-100 hover:bg-opacity-50 hover:text-gray-100">
+                        // <tr key={message.id} className="border-b-[0.5px] dark:border-gray-400 border-gray-100 hover:bg-navygreen-100 hover:bg-opacity-50 hover:text-gray-100">
+                        <tr
+                            key={message.id}
+                            className="border-b-[0.5px] dark:border-gray-400 border-gray-100 hover:bg-navygreen-100 hover:bg-opacity-50 hover:text-gray-100"
+                            onClick={() => handleOpenModal(message)} // Open the modal when clicked
+                        >
                             <td className="px-4 py-2">
                                 {message.name}
                             </td>
@@ -23,7 +64,10 @@ export default function ContactUsTable({ messages }) {
                                 {message.email}
                             </td>
                             <td>
-                                {message.message}
+                                {truncateMessage(message.message)}
+                            </td>
+                            <td>
+                                {formatDate(message.createdAt)}
                             </td>
                             <td>
                                 <button 
@@ -62,6 +106,10 @@ export default function ContactUsTable({ messages }) {
                     ))}
                 </tbody>
             </table>
+            {/* Modal component */}
+            {isModalOpen && selectedMessage && (
+                <ContactModal message={selectedMessage} onClose={handleCloseModal} />
+            )}
         </div>
     );
 }

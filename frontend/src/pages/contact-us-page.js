@@ -16,7 +16,7 @@ export default function ContactUsPage () {
     return(
         <div className='min-h-screen ml-[245px] p-4'> 
             <div className='min-h-screen p-8 rounded-pl bg-neutral'>
-                <h1 className='mb-6 text-lg font-semibold'>Users on Plantify</h1>
+                <h1 className='mb-6 text-lg font-semibold'>Contact us</h1>
                 <ContactUsTable messages={messages}/>
             </div>
         </div>

@@ -1,8 +1,12 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import EditGroupModal from "../modals/edit-group-modal";
 
 export default function SocialGroupTable({ socialGroups, setSocialGroups }) {
+    // navigate object
+    const navigate = useNavigate();
+
     const [selectedGroup, setSelectedGroup] = useState(null); // For editing modal
     const [showModal, setShowModal] = useState(false); // Control modal visibility
 
@@ -23,6 +27,11 @@ export default function SocialGroupTable({ socialGroups, setSocialGroups }) {
         }
     };
 
+    // navigate to social profile
+    const handleNavigate = (id) => {
+        navigate(`/social-groups/social-profile/${id}`);
+    };
+
     return (
         <div className="rounded-pl bg-navygreen-100 overflow-x-auto shadow-md">
             <table className="w-full text-gray-100 dark:text-gray-400 text-sm bg-navygreen-100 dark:bg-forest-100 p-4 text-left rounded-pl">
@@ -38,7 +47,11 @@ export default function SocialGroupTable({ socialGroups, setSocialGroups }) {
                 </thead>
                 <tbody>
                     {socialGroups.map((socialGroup) => (
-                        <tr key={socialGroup.id} className="border-b-[0.5px] dark:border-gray-400 border-gray-100 hover:bg-navygreen-100 hover:bg-opacity-50 hover:text-gray-100">
+                        <tr 
+                            key={socialGroup.id} 
+                            className="border-b-[0.5px] dark:border-gray-400 border-gray-100 hover:bg-navygreen-100 hover:bg-opacity-50 hover:text-gray-100"
+                            onClick={() => handleNavigate(socialGroup._id)}
+                        >
                             <td className="px-4 py-2">
                                 <img src={`assets/${socialGroup.image}`} alt="group image" className="w-14 h-14 object-cover rounded-full" />
                             </td>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
-    <div className="fixed h-full flex flex-col w-60 bg-navygreen-100 px-4 rounded-r-pl text-white dark:bg-forest-100">
+    <div className="fixed h-full flex flex-col w-62 bg-navygreen-100 px-4 rounded-r-pl text-white dark:bg-forest-100">
       {/* <div className="flex items-center justify-center p-4 mt-2 border-b-[1px] border-gray-100">
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
@@ -100,6 +100,21 @@ const Sidebar = () => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
             </svg>
             <p>Users</p>
+          </li>
+        </Link>
+        <Link to="add-plantify-admin">
+          <li className='flex flex-row items-center gap-2 hover:bg-navygreen-200 dark:hover:bg-opacity-30 p-4 rounded rounded-pl'>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              strokeWidth={1.5} 
+              stroke="currentColor" 
+              className="size-4"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+            <p>Add Admin</p>
           </li>
         </Link>
         <Link to="contact-us">
