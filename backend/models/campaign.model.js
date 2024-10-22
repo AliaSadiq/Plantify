@@ -1,75 +1,3 @@
-// const {mongoose, Schema, trusted} = require("mongoose");
-// const { type } = require("os");
-
-// const CampaignSchema = mongoose.Schema(
-//   {
-//     name: {
-//       type: String,
-//       required: [true, "Please enter campaign name"],
-//     },
-//     socialGroup:{
-//       type: mongoose.Schema.Types.ObjectId,
-//       ref: 'SocialGroup',
-//       required:true
-//     },
-//     description: {
-//       type: String,
-//       required: true
-//     },
-//     likes:{
-//       type:String,
-
-//     },
-//     followers:{
-//       type:String,
-
-//     },
-//     image: {
-//       type: String,
-//       required: true,
-//       default: 0,
-//     },
-//     location: {
-//       type: String,
-//       required: true,
-//       default: 0,
-//     },
-//     start_date: {
-//       type: Date,
-//       required: false,
-//     },
-//     end_date: {
-//         type: Date,
-//         required: false,
-//     },
-//     target_donation:{
-//         type: Number,
-//         required: true,
-//     },
-//     collected_donation:{
-//         type: Number,
-//         required: false,
-//     },
-    
-//     status:{
-//         type: String,
-//         default: true,
-//     },
-//     volunteers: {
-//       type: Number,
-//       require: false
-//     }
-//     // socialGroup: { type: mongoose.Schema.Types.ObjectId, ref: 'SocialGroup' },
-//   },
-//   {
-//     timestamps: true,
-//   }
-// );
-
-
-// const Campaign = mongoose.model("Campaign", CampaignSchema);
-
-// module.exports = Campaign;const mongoose = require("mongoose");
 const {mongoose, Schema, trusted} = require("mongoose");
 const { type } = require("os");
 const CampaignSchema = mongoose.Schema(
@@ -125,10 +53,12 @@ const CampaignSchema = mongoose.Schema(
       type: Number,
       default: 0
     },
-    followers: {
-      type: Number,
-      default: 0
-    },
+    followers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User', 
+      }
+    ],
     status: {
       type: String,
       default:"true",
