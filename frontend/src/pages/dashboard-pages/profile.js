@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { FiEdit2 } from 'react-icons/fi'; // Import pencil icon
+import QuestionSection from '../../profileComp/profile-question';
 
 const MainPage = () => {
   const [isFollowing, setIsFollowing] = useState(false);
@@ -228,6 +229,10 @@ const MainPage = () => {
             </div>
           </div>
         </div>
+      </div>
+    {/* Right-Side Section for Questions */}
+    <div className="w-full md:w-1/3 p-2 ml-4"> {/* Adds space with ml-4 */}
+        <QuestionSection groupId={id} showReplyOption={true} /> {/* Pass necessary props */}
       </div>
     </div>
   );
