@@ -10,7 +10,7 @@ router.get("/:id", getSocialGroup);
 router.put("/:id", updateSocialGroup);
 router.delete("/:id", deleteSocialGroup);
 router.get("/user/:userId", getSocialGroupByUserId)
-router.get("/socialgroups",getAllSocialGroups)
+router.get("/",getAllSocialGroups);
 router.post("/:id/follow",followSocialGroup)
 router.put('/:id/edit', editSocialGroup);
 module.exports = router;
