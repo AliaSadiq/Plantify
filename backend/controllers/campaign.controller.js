@@ -1,30 +1,6 @@
 const Campaign = require("../models/campaign.model");
 const mongoose = require('mongoose');
 
-// const getCampaigns = async (req, res) => {
-//   try {
-//     const { page = 1, limit = 6, search = '' } = req.query;
-//     const skip = (page - 1) * limit;
-
-//     // Search filter
-//     const searchFilter = search
-//       ? { name: { $regex: search, $options: 'i' } } // Case-insensitive search
-//       : {};
-
-//     const campaigns = await Campaign.find(searchFilter)
-//       .populate('socialGroup')
-//       .skip(skip)
-//       .limit(Number(limit));
-
-//     const totalCampaigns = await Campaign.countDocuments(searchFilter);
-//     const totalPages = Math.ceil(totalCampaigns / limit);
-
-//     res.status(200).json({ campaigns, totalPages });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
 const getCampaigns = async (req, res) => {
   try {
     const { page = 1, limit = 6, search = '' } = req.query;
