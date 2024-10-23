@@ -1,27 +1,20 @@
-// components/Sidebar.js
 import React from 'react';
 
 const Sidebar = () => {
   return (
-    <div className="w-1/5 h-full bg-white shadow-lg p-4">
-      <div className="text-xl font-bold text-purple-700 mb-4">Chaatter</div>
+    <div className="w-full h-full bg-white bg-opacity-70 backdrop-blur-md shadow-lg p-4">
+      <div className="text-xl font-bold text-green-700 mb-4">Chaatter</div>
       
       <nav className="flex flex-col space-y-4">
-        <a href="#" className="flex items-center text-gray-700">
-          <span className="material-icons mr-2">home</span> Home
-        </a>
-        <a href="#" className="flex items-center text-gray-700">
-          <span className="material-icons mr-2">message</span> Messages
-        </a>
-        <a href="#" className="flex items-center text-gray-700">
-          <span className="material-icons mr-2">person</span> Profile
-        </a>
-        <a href="#" className="flex items-center text-gray-700">
-          <span className="material-icons mr-2">bookmark</span> Saved Posts
-        </a>
-        <a href="#" className="flex items-center text-gray-700">
-          <span className="material-icons mr-2">settings</span> Settings
-        </a>
+        {['Home', 'Messages', 'Profile', 'Saved Posts', 'Settings'].map((item, idx) => (
+          <a 
+            key={idx}
+            href="#" 
+            className="flex items-center text-gray-700 hover:text-green-600 transition duration-200 ease-in-out"
+          >
+            <span className="material-icons mr-2">{item.toLowerCase()}</span> {item}
+          </a>
+        ))}
       </nav>
 
       <div className="mt-10">
@@ -36,7 +29,7 @@ const Sidebar = () => {
       </div>
 
       <div className="mt-6">
-        <a href="#" className="block bg-purple-600 text-white text-center py-2 rounded-lg">
+        <a href="#" className="block bg-green-600 text-white text-center py-2 rounded-lg hover:bg-green-700 transition duration-200">
           Get Cofeed on App Store
         </a>
       </div>

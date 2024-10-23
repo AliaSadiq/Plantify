@@ -159,7 +159,8 @@
 // export default App;
 
 // App.js
-// import React from 'react';
+
+// import React from 'react'; 
 // import Sidebar from './components/social-media-components/side-bar';
 // import StoryBar from './components/social-media-components/story-bar';
 // import PostFeed from './components/social-media-components/post-feed';
@@ -167,36 +168,37 @@
 
 // function App() {
 //   return (
-//     <div className="flex h-screen ">
-//       {/* Sidebar */}
-//       <Sidebar />
-      
-//       {/* Main Content */}
-//       <div className="flex flex-col w-full">
-//         {/* Top Story Avatars */}
-//         <StoryBar />
+//     <div className="flex h-screen">
+//       {/* Sidebar: Left part, remains static */}
+//       <div className="">
+//         <Sidebar />
+//       </div>
+
+//       {/* Main Content: Center part, includes StoryBar and PostFeed, becomes scrollable */}
+//       <div className="flex flex-col w-3/5 h-full overflow-y-auto">
         
-//         {/* Main Content Area with a separator */}
-//         <div className="flex w-full px-4 mt-6">
-//           {/* Post Feed Section */}
-//           <div className="w-3/4 bg-blue-100 p-4 rounded-lg">
-//             <PostFeed />
-//           </div>
+//         {/* Story Bar: Fixed height, scrollable horizontally */}
+       
 
-//           {/* Vertical separator line */}
-//           <div className="w-1 border-l border-gray-300 mx-4"></div>
-
-//           {/* Suggestions Section */}
-//           <div className="w-1/4">
-//             <Suggestions />
-//           </div>
+//         {/* Post Feed: Scrollable vertically if posts overflow */}
+//         <div className="flex-grow mt-4 px-6">
+//           <PostFeed />
 //         </div>
+//       </div>
+
+//       {/* Suggestions: Right part, remains static */}
+//       <div className="w-1/5 px-4">
+//         <Suggestions />
 //       </div>
 //     </div>
 //   );
 // }
 
 // export default App;
+
+
+
+
 
 import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
