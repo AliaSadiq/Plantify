@@ -135,10 +135,10 @@ export default function PlantDiaryPage () {
             <h3 className="text-2xl font-bold mb-4">Diaries</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {/* Placeholder diary posts */}
+                {/* <DiaryCard/>
                 <DiaryCard/>
                 <DiaryCard/>
-                <DiaryCard/>
-                <DiaryCard/>
+                <DiaryCard/> */}
                 {/* <div className="border rounded-lg p-4 bg-white shadow-md mb-4">
                     <div className="flex items-center mb-2">
                         <img src="/assets/products/plant-1.jpeg" alt="plant img" className="w-20 h-20 object-cover rounded-lg mr-4"/>
@@ -151,6 +151,70 @@ export default function PlantDiaryPage () {
                     <a href="#" className="text-blue-500 hover:underline">Read more...</a>
                 </div> */}
                 {/* Add more placeholders if needed */}
+                <div className="w-full max-w-sm bg-[#f3f7e6] p-4 rounded-2xl shadow-md">
+                    <div className="overflow-hidden rounded-2xl">
+                        <img
+                        className="w-full h-60 object-cover"
+                        src='/assets/products/plant-1.jpeg'
+                        alt="Diary Plant"
+                        />
+                    </div>
+                    <div className="py-4">
+                        <p className="text-xs font-medium text-gray-500">20-3-24</p>
+                        <p className="text-sm text-gray-700 mt-2">
+                        description
+                        <span className="text-blue-500 cursor-pointer">Read more...</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="w-full max-w-sm bg-[#f3f7e6] p-4 rounded-2xl shadow-md">
+                    <div className="overflow-hidden rounded-2xl">
+                        <img
+                        className="w-full h-60 object-cover"
+                        src='/assets/products/plant-1.jpeg'
+                        alt="Diary Plant"
+                        />
+                    </div>
+                    <div className="py-4">
+                        <p className="text-xs font-medium text-gray-500">20-3-24</p>
+                        <p className="text-sm text-gray-700 mt-2">
+                        description
+                        <span className="text-blue-500 cursor-pointer">Read more...</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="w-full max-w-sm bg-[#f3f7e6] p-4 rounded-2xl shadow-md">
+                    <div className="overflow-hidden rounded-2xl">
+                        <img
+                        className="w-full h-60 object-cover"
+                        src='/assets/products/plant-1.jpeg'
+                        alt="Diary Plant"
+                        />
+                    </div>
+                    <div className="py-4">
+                        <p className="text-xs font-medium text-gray-500">20-3-24</p>
+                        <p className="text-sm text-gray-700 mt-2">
+                        description
+                        <span className="text-blue-500 cursor-pointer">Read more...</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="w-full max-w-sm bg-[#f3f7e6] p-4 rounded-2xl shadow-md">
+                    <div className="overflow-hidden rounded-2xl">
+                        <img
+                        className="w-full h-60 object-cover"
+                        src='/assets/products/plant-1.jpeg'
+                        alt="Diary Plant"
+                        />
+                    </div>
+                    <div className="py-4">
+                        <p className="text-xs font-medium text-gray-500">20-3-24</p>
+                        <p className="text-sm text-gray-700 mt-2">
+                        description
+                        <span className="text-blue-500 cursor-pointer">Read more...</span>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     );

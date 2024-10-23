@@ -262,7 +262,7 @@ export default function CampaignDetailsPage() {
                                     <h2 className="text-xl font-semibold mb-4">Trees to be Planted</h2>
                                     <p>Details about trees to be planted...</p>
                                     <div className="flex flex-row justify-center">
-                                        <div className="mt-10 p-8 rounded-pl bg-navygreen-100 w-1/2">
+                                        <div className="justify-items-center mt-10 p-8 rounded-pl bg-navygreen-100 w-1/2">
                                             <CarouselDefault trees={campaign.trees}/>
                                             {/* <img src={`/assets/${campaign.trees[0].image}`}/> */}
                                         </div>
