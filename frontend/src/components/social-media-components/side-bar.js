@@ -3,7 +3,7 @@ import React from 'react';
 const Sidebar = () => {
   return (
     <div className="w-full h-full bg-white bg-opacity-70 backdrop-blur-md shadow-lg p-4">
-      <div className="text-xl font-bold text-green-700 mb-4">Chaatter</div>
+ 
       
       <nav className="flex flex-col space-y-4">
         {['Home', 'Messages', 'Profile', 'Saved Posts', 'Settings'].map((item, idx) => (

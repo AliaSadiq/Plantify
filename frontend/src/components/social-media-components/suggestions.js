@@ -1,9 +1,10 @@
 import React from 'react';
+import Button from '../../components/button';
 
 const SuggestionsBox = () => {
   return (
     <div className="w-full bg-white bg-opacity-90 backdrop-blur-md shadow-lg p-4 rounded-lg">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 mb-10">
         <input 
           type="text" 
           placeholder="Search..." 
@@ -13,9 +14,11 @@ const SuggestionsBox = () => {
           <button className="text-gray-600 hover:text-green-600">
             <span className="material-icons">notifications</span>
           </button>
-          <button className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200">
-            Post
-          </button>
+          <Button
+                                        text="Login"
+                                        type="submit"
+                                        className="shadow-md w-full bg-gray-100 text-white py-2"
+                                    />
         </div>
       </div>
 

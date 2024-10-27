@@ -63,7 +63,7 @@ const editSocialGroup = async (req, res) => {
 const getAllSocialGroups = async (req, res) => {
   try {
     // Find all social groups and populate the reviews field
-    const socialGroups = await SocialGroup.find().populate('reviews').populate('users');
+    const socialGroups = await SocialGroup.find().populate('reviews').populate('user');
 
     if (!socialGroups || socialGroups.length === 0) {
       return res.status(404).json({ message: 'No social groups found' });
