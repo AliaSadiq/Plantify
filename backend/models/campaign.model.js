@@ -64,10 +64,16 @@ const CampaignSchema = mongoose.Schema(
       default:"true",
       // enum: ['active', 'completed', 'pending'] 
     },
-    volunteers: {
+    total_volunteers_count: {
       type: Number,
       default: 0
     },
+    volunteers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User', 
+      }
+    ],
     trees: [
       {
         name: { type: String, required: true },

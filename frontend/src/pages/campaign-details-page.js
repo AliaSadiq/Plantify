@@ -17,6 +17,7 @@ export default function CampaignDetailsPage() {
     const user = useUser();
     const [campaign, setCampaign] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isVModalOpen, setIsVModalOpen] = useState(false);
     // const [isReportModalOpen, setIsReportModalOpen] = useState(false);
     const [comments, setComments] = useState([]);
     const { donations, loading, error } = useDonationsByCampaign(id);
@@ -55,6 +56,14 @@ export default function CampaignDetailsPage() {
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
+    };
+    //volunteers popup
+    const handleOpenVModal = () => {
+        setIsVModalOpen(true);
+    };
+
+    const handleCloseVModal = () => {
+        setIsVModalOpen(false);
     };
 
     //volunteers popup
@@ -128,7 +137,7 @@ export default function CampaignDetailsPage() {
                 <h1 className="font-bold text-2xl">{campaign.name}</h1>
                 <p className="font-semibold text-mini mb-10 flex items-center justify-center gap-2">
                     a campaign by
-                    <div className="flex items-center bg-navygreen-100 hover:bg-navygreen-200 p-2 rounded-[20px] gap-2">
+                    <div className="flex items-center bg-navygreen-100 hover:bg-navygreen-200 p-2 rounded-[20px] gap-2 cursor-pointer">
                         <img src={`/assets/${campaign.socialGroup.image}`} className="w-8 h-8 rounded-full" alt="Social Group Logo" />
                         <Link to={`/campaign/social-group/${campaign.socialGroup._id}`} className="">
                             {campaign.socialGroup.name}
@@ -197,7 +206,7 @@ export default function CampaignDetailsPage() {
                                     >
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                                     </svg>
-                                    <span className="text-sm">12.06.2024</span>
+                                    <span className="text-sm">{campaign.start_date}</span>
                                 </div>
                                 <div className="flex items-center mb-2">
                                     <svg
@@ -262,7 +271,7 @@ export default function CampaignDetailsPage() {
                                     <h2 className="text-xl font-semibold mb-4">Trees to be Planted</h2>
                                     <p>Details about trees to be planted...</p>
                                     <div className="flex flex-row justify-center">
-                                        <div className="justify-items-center mt-10 p-8 rounded-pl bg-navygreen-100 w-1/2">
+                                        <div className="mt-10 p-8 rounded-pl bg-navygreen-100 w-1/2">
                                             <CarouselDefault trees={campaign.trees}/>
                                             {/* <img src={`/assets/${campaign.trees[0].image}`}/> */}
                                         </div>
@@ -291,7 +300,7 @@ export default function CampaignDetailsPage() {
                         </p>
                         <div className="flex gap-4 items-center justify-center mt-4">
                             <Button text="Follow Campaign" className="py-2"/>
-                            <Button text="Volunteer in Campaign" onClick={handleOpenModal} className="py-2"/>
+                            <Button text="Volunteer in Campaign" onClick={handleOpenVModal} className="py-2"/>
                         </div>
                     </div>
                     {/* Comments Div */}
@@ -373,7 +382,7 @@ export default function CampaignDetailsPage() {
                     </div>
                 </div>
             </div>
-            <VolunteeringModal showModal={isModalOpen} closeModal={handleCloseModal} campaign={campaign} />
+            <VolunteeringModal showModal={isVModalOpen} closeModal={handleCloseVModal} campaign={campaign} />
             <ReportModal showModal={isModalOpen} closeModal={handleCloseModal} campaign={campaign}/>
             <DonationModal showModal={isModalOpen} closeModal={handleCloseModal} campaignId={campaign._id} userId={user._id}/>
         </div>
