@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function DiaryCard () {
     return (
-        <div className="relative flex items-center gap-4 bg-neutral max-w-fit p-2 rounded-pl shadow-lg">
+        <div className="relative flex items-center gap-4 bg-navygreen-100 max-w-fit p-2 rounded-pl shadow-lg">
             <button className='absolute top-2 right-2'>
                 <svg 
                     xmlns="http://www.w3.org/2000/svg" 
