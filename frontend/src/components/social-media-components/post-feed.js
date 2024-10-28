@@ -12,9 +12,9 @@ const PostFeed = () => {
   const [filter, setFilter] = useState('all');
 
   return (
-    <div className="w-full">
+    <div className="w-11/12 max-w-lg mx-auto"> {/* Adjusted width */}
       {/* Filter bar */}
-      <div className="flex justify-center space-x-8 bg-transparent p-4 ">
+      <div className="flex justify-center space-x-8 bg-transparent p-4">
         {['All', 'Following', 'Newest', 'Popular'].map((option) => (
           <button
             key={option}
