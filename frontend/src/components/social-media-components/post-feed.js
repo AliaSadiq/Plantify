@@ -8,7 +8,7 @@ const posts = [
   // More posts
 ];
 
-const PostFeed = () => {
+const PostFeed = ({ onProfileClick }) => {
   const [filter, setFilter] = useState('all');
 
   return (
@@ -28,10 +28,18 @@ const PostFeed = () => {
         ))}
       </div>
 
+  
       {/* Post grid */}
       <div className="grid grid-cols-1 gap-4 mt-6">
         {posts.map((post, idx) => (
-          <PostCard key={idx} image={post.image} likes={post.likes} comments={post.comments} author={post.author} />
+          <PostCard
+            key={idx}
+            image={post.image}
+            likes={post.likes}
+            comments={post.comments}
+            author={post.author}
+            onProfileClick={() => onProfileClick(post.author)}
+          />
         ))}
       </div>
     </div>
