@@ -18,6 +18,7 @@ import AboutUsPage from './pages/about-us-page';
 import VerificationCheck from './pages/verification-check';
 import DashboardLayout from './Layout/dashboard-layout';
 import AuthLayout from './Layout/auth-layout';
+import PlantDiaryDetailPage from './pages/diary-detail-page';
 
 const AppContent = () => {
   const location = useLocation();
@@ -34,6 +35,7 @@ const AppContent = () => {
         <Route path="campaign-details/:id" element={<CampaignDetailsPage />} />
         <Route path="campaign/social-group/:id" element={<Profile />} />
         <Route path="plant-diary" element={<PlantDiaryPage />} />
+        <Route path="plant-diary-detail" element={<PlantDiaryDetailPage />} />
         <Route path="shop" element={<Shop />} />
         <Route path="logout" element={<Logout />} />
         <Route path="plantify-network" element={<PlantifyNetwork />} />

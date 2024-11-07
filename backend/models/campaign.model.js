@@ -1,6 +1,5 @@
-const {mongoose, Schema, trusted} = require("mongoose");
-const { type } = require("os");
-const CampaignSchema = mongoose.Schema(
+const {mongoose, Schema} = require("mongoose");
+const CampaignSchema = Schema(
   {
     name: {
       type: String,
@@ -70,8 +69,14 @@ const CampaignSchema = mongoose.Schema(
     },
     volunteers: [
       {
-        type: Schema.Types.ObjectId,
-        ref: 'User', 
+          user: {
+              type: Schema.Types.ObjectId,
+              ref: 'User'
+          },
+          contact: {
+              type: String,
+              required: true
+          }
       }
     ],
     trees: [

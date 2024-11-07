@@ -26,17 +26,17 @@ export default function PlantDiaryPage () {
                         <div className="flex justify-center mb-4 space-x-2">
                             {wateredDays.map((watered, index) => (
                                 <svg
-                                key={index}
-                                onClick={() => toggleWatered(index)}
-                                className="w-6 h-6 cursor-pointer transition-colors"
-                                viewBox="0 0 24 24"
-                                fill={watered ? "#00BFFF" : "none"}
-                                stroke="#00BFFF"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                onMouseEnter={(e) => !watered && (e.currentTarget.style.fill = "#b3e5fc")}
-                                onMouseLeave={(e) => !watered && (e.currentTarget.style.fill = "none")}
+                                    key={index}
+                                    onClick={() => toggleWatered(index)}
+                                    className="w-6 h-6 cursor-pointer transition-colors"
+                                    viewBox="0 0 24 24"
+                                    fill={watered ? "#00BFFF" : "none"}
+                                    stroke="#00BFFF"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    onMouseEnter={(e) => !watered && (e.currentTarget.style.fill = "#b3e5fc")}
+                                    onMouseLeave={(e) => !watered && (e.currentTarget.style.fill = "none")}
                                 >
                                 <path d="M12 21c-4.97 0-9-4.03-9-9 0-4 9-11 9-11s9 7 9 11c0 4.97-4.03 9-9 9z" />
                                 </svg>

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Button from '../components/button';
 // import backgroundImage from '../images/about-us-bg.jpeg'; // Add a background image for the hero section
 
 const AboutUsPage = () => {
@@ -75,16 +77,16 @@ const AboutUsPage = () => {
       {/* Call to Action */}
       <div className="bg-white py-16">
         <div className="container mx-auto text-center px-8 lg:px-20">
-          <h2 className="text-3xl font-bold mb-6">Join Us on Our Journey</h2>
-          <p className="text-lg mb-8">
+          <h2 className="text-xl font-bold mb-6">Join Us on Our Journey</h2>
+          <p className="text-md mb-8">
             Whether you're an individual, organization, or business, there's a place for you in the Plantify community. Together, we can make a lasting impact.
           </p>
-          <a
-            href="/login"
-            className="bg-navygreen-200 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-navygreen-300 transition duration-300"
-          >
-            Get Involved
-          </a>
+          <Link to="/login">
+            <Button
+              text="Get Involved"
+              className="py-2 bg-gray-100 text-white shadow-lg"
+            />
+          </Link>
         </div>
       </div>
     </div>
