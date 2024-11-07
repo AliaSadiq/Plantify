@@ -90,8 +90,14 @@ const CreatePostForm = ({ onClose }) => {
 
         {/* Buttons */}
         <div className="flex justify-end space-x-2 mt-4">
-          <Button text="Cancel" type="button" onClick={onClose} className="py-2 px-4 bg-black text-white rounded-md" />
-          <Button text="Post" type="submit" className="py-2 px-4 bg-black text-white rounded-md" />
+          <Button text="Cancel" type="button"  onClick={onClose} className="py-2 px-4 text-black rounded-md" />
+          <Button
+          text="Post"
+          type="submit"
+        // Specify the background color
+          className="py-2 px-4 w-20 text-white rounded-md bg-black"  // Add text color class or style
+         />
+
         </div>
       </div>
     </div>

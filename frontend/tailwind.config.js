@@ -17,6 +17,7 @@ module.exports = withMT({
           "300": "#dcf4a9",
           "400": "#b7ce6e",
           "500": "#a0bf40",
+          "254": "#abf600",
           
         },
         forest: {
@@ -104,4 +105,19 @@ module.exports = withMT({
       'extra-tall': '1.5', // You can adjust this value as needed
     },
   },
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.no-scrollbar': {
+          /* Hide scrollbar for Chrome, Safari, and Opera */
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+          /* Hide scrollbar for IE, Edge, and Firefox */
+          '-ms-overflow-style': 'none', // IE and Edge
+          'scrollbar-width': 'none',    // Firefox
+        },
+      });
+    },
+  ],
 });
