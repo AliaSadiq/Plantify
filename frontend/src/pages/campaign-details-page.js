@@ -12,7 +12,7 @@ import DonationModal from "../popups/donation-modal";
 import Tabs from "../components/tabs";
 import { CarouselDefault } from "../carousels/trees-to-be-planted-carousel";
 import ProgressBar from "../components/progress-bar";
-import CampaignMap from "../components/campaign-map";
+// import CampaignMap from "../components/campaign-map";
 
 export default function CampaignDetailsPage() {
     const { id } = useParams();
