@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../components/button';
 import useCreateSeller from '../hooks/useCreateSeller';
+import { Link } from 'react-router-dom';
 
 
 const SellerSignup = () => {
@@ -282,9 +283,11 @@ const SellerSignup = () => {
                 {/* Left Section */}
                 <div className="hidden rounded-pl md:flex md:w-1/2 flex-col justify-between bg-cover bg-center p-8" style={{ backgroundImage: `url('/assets/products/plant-1.jpeg')` }}>
                     <div className="text-white">
-                        <button className="bg-transparent border border-white px-3 py-1 rounded-md mb-6 hover:bg-white hover:text-[#1a1523] transition duration-300">
-                        Back to website →
-                        </button>
+                        <Link to="/">
+                            <button className="bg-transparent border border-white px-3 py-1 rounded-md mb-6 hover:bg-white hover:text-[#1a1523] transition duration-300">
+                                Back to website →
+                            </button>
+                        </Link>
                     </div>
                     <div className="text-white text-md font-semibold mb-4">
                         Capturing Moments, Creating Memories

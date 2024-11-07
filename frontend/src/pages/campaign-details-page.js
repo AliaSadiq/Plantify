@@ -1,5 +1,6 @@
 import useUser from "../hooks/useFetchUserLocalStorage";
 import useDonationsByCampaign from "../hooks/useDonationsByCampaign";
+import useModal from "../hooks/useModal";
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import axios from "axios";
@@ -11,18 +12,30 @@ import DonationModal from "../popups/donation-modal";
 import Tabs from "../components/tabs";
 import { CarouselDefault } from "../carousels/trees-to-be-planted-carousel";
 import ProgressBar from "../components/progress-bar";
+import CampaignMap from "../components/campaign-map";
 
 export default function CampaignDetailsPage() {
     const { id } = useParams();
     const user = useUser();
     const [campaign, setCampaign] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [isModalOpen, setIsModalOpen] = useState(false);
+    const { openModal, closeModal, isModalOpen } = useModal();
     const [isVModalOpen, setIsVModalOpen] = useState(false);
     // const [isReportModalOpen, setIsReportModalOpen] = useState(false);
     const [comments, setComments] = useState([]);
     const { donations, loading, error } = useDonationsByCampaign(id);
     const [newComment, setNewComment] = useState("");
     const [activeStage, setActiveStage] = useState(0); // State for managing active stage
+
+    //for campaign followers
+    const [isFollowing, setIsFollowing] = useState(false);
+
+    // location
+    const campaignLocation = {
+        lat: 33.6169, // Replace with the actual latitude
+        lng: 72.9720, // Replace with the actual longitude
+        name: "Central Park, New York City",
+    };
 
     // Define stages and descriptions
     const stages = [
@@ -49,30 +62,21 @@ export default function CampaignDetailsPage() {
     ];
 
 
-    //volunteers popup
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
-    //volunteers popup
-    const handleOpenVModal = () => {
-        setIsVModalOpen(true);
-    };
-
-    const handleCloseVModal = () => {
-        setIsVModalOpen(false);
-    };
-
-    //volunteers popup
-    // const handleReportModalOpen = () => {
-    //     setIsReportModalOpen(true);
+    // //donation popup
+    // const handleOpenModal = () => {
+    //     setIsModalOpen(true);
     // };
 
-    // const handleReportModalClose = () => {
-    //     setIsReportModalOpen(false);
+    // const handleCloseModal = () => {
+    //     setIsModalOpen(false);
+    // };
+    // //volunteers popup
+    // const handleOpenVModal = () => {
+    //     setIsVModalOpen(true);
+    // };
+
+    // const handleCloseVModal = () => {
+    //     setIsVModalOpen(false);
     // };
 
     //fetching the campaign and the campaign commments
@@ -127,6 +131,23 @@ export default function CampaignDetailsPage() {
         });
     };
 
+    const handleFollowClick = async () => {
+        if (!user || !user._id) {
+          return alert("You need to be logged in to follow this campaign.");
+        }
+    
+        try {
+          const response = await axios.post(`http://localhost:5000/api/campaigns/${id}/follow`, {
+            userId: user._id
+          });
+          setIsFollowing((prev) => !prev); // Toggle follow/unfollow state
+          alert(response.data.message); // Show follow/unfollow success message
+        } catch (error) {
+          console.error("Error following/unfollowing the campaign:", error);
+          alert("Something went wrong. Please try again.");
+        }
+    };
+
     if (!campaign) {
         return <div>Loading...</div>; // Add a loading state while campaign data is being fetched
     }
@@ -176,7 +197,7 @@ export default function CampaignDetailsPage() {
                                 </svg>
                             </button>
                             {/* Report button */}
-                            <button onClick={handleOpenModal} className="p-2 rounded-full hover:bg-navygreen-200">
+                            <button onClick={() => openModal('report')} className="p-2 rounded-full hover:bg-navygreen-200">
                                 <svg 
                                     xmlns="http://www.w3.org/2000/svg" 
                                     fill="none" 
@@ -206,7 +227,7 @@ export default function CampaignDetailsPage() {
                                     >
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                                     </svg>
-                                    <span className="text-sm">{campaign.start_date}</span>
+                                    <span className="text-sm">{new Date(campaign.createdAt).toLocaleDateString()}</span>
                                 </div>
                                 <div className="flex items-center mb-2">
                                     <svg
@@ -222,25 +243,29 @@ export default function CampaignDetailsPage() {
                                     <span className="text-sm">11:00 pm</span>
                                 </div>
                             </div>
-                            <div className="flex items-center mb-2">
+                            <div className="flex items-center gap-1 mb-2">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="w-4 h-4 mr-1"
+                                    className="w-4 h-4"
                                 >
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                                 </svg>
-                                <span className="text-sm">Location</span>
+                                <p className="text-sm">{campaign.location}</p>
                             </div>
-                            <img
+                            {/* <img
                                 className="w-full h-[200px] object-cover rounded-[20px]"
                                 src="/assets/map.jpeg"
                                 alt="Map"
-                            />
+                            /> */}
+                            {/* CampaignMap component */}
+                            <div className="w-full h-[200px] rounded-[20px] overflow-hidden">
+                                <CampaignMap />
+                            </div>
                         </div>
                     </div>
                      <div className="mt-4 p-2 rounded-pl border border-2 border-neutral">
@@ -289,7 +314,11 @@ export default function CampaignDetailsPage() {
                         <h1 className="font-bold text-md text-center">{campaign.collected_donation} PKR raised off {campaign.target_donation} PKR</h1>
                         <ProgressBar width={80} className="mt-4 mx-10"/>
                         <div className="flex items-center justify-center mt-8">
-                            <Button text="Donate" onClick={handleOpenModal} className="bg-gray-100 text-white py-2 shadow-md"/>
+                            <Button 
+                                text="Donate" 
+                                onClick={() => openModal('donation')}
+                                className="bg-gray-100 text-white py-2 shadow-md"
+                            />
                         </div>
                     </div>
                     {/* About Div */}
@@ -299,8 +328,16 @@ export default function CampaignDetailsPage() {
                             {campaign.description}
                         </p>
                         <div className="flex gap-4 items-center justify-center mt-4">
-                            <Button text="Follow Campaign" className="py-2"/>
-                            <Button text="Volunteer in Campaign" onClick={handleOpenVModal} className="py-2"/>
+                            <Button 
+                                text={isFollowing ? "Unfollow Campaign" : "Follow Campaign"}
+                                className="py-2" 
+                                onClick={handleFollowClick}
+                            />
+                            <Button 
+                                text="Volunteer in Campaign" 
+                                onClick={() => openModal('volunteer')} 
+                                className="py-2"
+                            />
                         </div>
                     </div>
                     {/* Comments Div */}
@@ -382,9 +419,28 @@ export default function CampaignDetailsPage() {
                     </div>
                 </div>
             </div>
-            <VolunteeringModal showModal={isVModalOpen} closeModal={handleCloseVModal} campaign={campaign} />
+            {/* <VolunteeringModal showModal={isVModalOpen} closeModal={handleCloseVModal} campaign={campaign} />
             <ReportModal showModal={isModalOpen} closeModal={handleCloseModal} campaign={campaign}/>
-            <DonationModal showModal={isModalOpen} closeModal={handleCloseModal} campaignId={campaign._id} userId={user._id}/>
+            <DonationModal showModal={isModalOpen} closeModal={handleCloseModal} campaignId={campaign._id} userId={user._id}/> */}
+            <VolunteeringModal 
+                showModal={isModalOpen('volunteer')} 
+                closeModal={() => closeModal('volunteer')} 
+                campaignId={campaign._id} 
+                userId={user._id} 
+            />
+
+            <ReportModal 
+                showModal={isModalOpen('report')} 
+                closeModal={() => closeModal('report')} 
+                campaign={campaign} 
+            />
+
+            <DonationModal 
+                showModal={isModalOpen('donation')} 
+                closeModal={() => closeModal('donation')} 
+                campaignId={campaign._id} 
+                userId={user._id} 
+            />
         </div>
     );        
 }

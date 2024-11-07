@@ -35,7 +35,8 @@ module.exports = withMT({
           "100": "#DDE6D6",
           "200": "#CBD9C1",
           "300": "#99BC85",
-          "400": "#9EB79E"
+          "400": "#9EB79E",
+          "trial": "#C7D8B7"
         },
         tadpol: {
           "500": "#7F7F43",
@@ -53,6 +54,7 @@ module.exports = withMT({
         glass:"#F5F6EF",
         ivory: "#F2F3E6",
         neutral: "#F5F5F5",
+        surmai: "#EEEEEE",
         niga: "#e8ede7",
         lightgray: "#d0d7c3",
         black: "#000",
@@ -68,6 +70,8 @@ module.exports = withMT({
         dbhover:"#768c67",
         prom:"#8ba25d",
         text:"#8FB081",
+        danger: "#e45c5d",
+        neon: "#DAFF8C",
       },
       scrollbar: {
         thumb: '#DDE6D6',
@@ -94,6 +98,7 @@ module.exports = withMT({
       md: "20px",
       lg: "25px",
       xl: "28px",
+      "lil2xl": "30px",
       "2xl": "40px",
       "lilxl": "50px",
       "3xl": "60px",
