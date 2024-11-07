@@ -8,13 +8,13 @@ const posts = [
   // More posts
 ];
 
-const PostFeed = () => {
+const PostFeed = ({ onProfileClick }) => {
   const [filter, setFilter] = useState('all');
 
   return (
-    <div className="w-full">
+    <div className="w-11/12 max-w-lg mx-auto"> {/* Adjusted width */}
       {/* Filter bar */}
-      <div className="flex justify-center space-x-8 bg-transparent p-4 ">
+      <div className="flex justify-center space-x-8 bg-transparent p-4">
         {['All', 'Following', 'Newest', 'Popular'].map((option) => (
           <button
             key={option}
@@ -28,10 +28,18 @@ const PostFeed = () => {
         ))}
       </div>
 
+  
       {/* Post grid */}
       <div className="grid grid-cols-1 gap-4 mt-6">
         {posts.map((post, idx) => (
-          <PostCard key={idx} image={post.image} likes={post.likes} comments={post.comments} author={post.author} />
+          <PostCard
+            key={idx}
+            image={post.image}
+            likes={post.likes}
+            comments={post.comments}
+            author={post.author}
+            onProfileClick={() => onProfileClick(post.author)}
+          />
         ))}
       </div>
     </div>

@@ -19,6 +19,8 @@ import VerificationCheck from './pages/verification-check';
 import DashboardLayout from './Layout/dashboard-layout';
 import AuthLayout from './Layout/auth-layout';
 import PlantDiaryDetailPage from './pages/diary-detail-page';
+import MediaProfile from './components/social-media-components/profile-page';
+import ExplorePage from './components/social-media-components/explore';
 
 const AppContent = () => {
   const location = useLocation();
@@ -45,7 +47,7 @@ const AppContent = () => {
         <Route path="settings" element={<SettingsPage />} />
         <Route path='auth-check' element={<AuthCheck />} />
         <Route path='verification-check' element={<VerificationCheck />} />
-        
+        <Route path="explore" element={<ExplorePage />} />
         {/* Auth routes */}
         {isAuthRoute && <Route path="/*" element={<AuthLayout />} />}
 
