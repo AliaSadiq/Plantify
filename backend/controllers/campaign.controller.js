@@ -200,13 +200,17 @@ const followCampaign = async (req, res) => {
 
     if (isFollowing) {
       // If already following, remove the user from followers (unfollow)
-      campaign.followers.pull(userId);
-      await campaign.save();
+      await Campaign.updateOne(
+        { _id: campaignId },
+        { $pull: { followers: userId } }
+      );
       return res.status(200).json({ message: "You have unfollowed the campaign.", following: false });
     } else {
       // If not following, add the user to followers
-      campaign.followers.push(userId);
-      await campaign.save();
+      await Campaign.updateOne(
+        { _id: campaignId },
+        { $push: { followers: userId } }
+      );
       return res.status(200).json({ message: "You are now following the campaign.", following: true });
     }
   } catch (error) {
@@ -214,6 +218,7 @@ const followCampaign = async (req, res) => {
     res.status(500).json({ message: "Something went wrong. Please try again later." });
   }
 };
+
 
 // const addVolunteer = async (req, res) => {
 //   try {

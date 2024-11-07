@@ -11,7 +11,7 @@ router.get("/:id", getCampaign);
 router.get('/socialgroup/:socialId', socialgroupCampaigns);
 router.post("/", createCampaign);
 router.get("/insights/:id", getCampaignInsights);
-// router.post("/:id/follow",followCampaign);
+router.post("/:id/follow",followCampaign);
 // router.post('/:id/volunteers', addVolunteer);
 
 module.exports = router;
