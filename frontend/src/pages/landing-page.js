@@ -1,7 +1,5 @@
 import {React, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
-import landing from '../images/landing.jpeg';
 import TestimonialCarousel from '../carousels/testimonial-carousel';
 import ProductCarousel from '../carousels/product-carousel';
 import {GlobeAsiaAustraliaIcon, SunIcon, UserGroupIcon} from '@heroicons/react/24/solid';
@@ -173,10 +171,16 @@ const LandingPage = () => {
                     </div>
                     <div className='basis-1/2 flex flex-col px-4'>
                         <div className='flex flex-col items-center gap-y-2 mt-4'>
-                            <button className='max-w-fit bg-neon py-[10px] px-8 rounded-full text-sm font-normal'>
+                            <button 
+                                onClick={handleInitiateCampaign}
+                                className='max-w-fit bg-neon py-[10px] px-8 rounded-full text-sm font-normal'
+                            >
                                 Initiate Campaign
                             </button>
-                            <button className='max-w-fit bg-surmai py-[10px] px-8 rounded-full text-sm font-normal'>
+                            <button 
+                                onClick={openModal}
+                                className='max-w-fit bg-surmai py-[10px] px-8 rounded-full text-sm font-normal'
+                            >
                                 Start Donating
                             </button>
                             

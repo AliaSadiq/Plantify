@@ -2,27 +2,48 @@ const Donation = require('../models/donation.model');
 const Campaign = require('../models/campaign.model'); // importing the campaign model to update campaigdonation amount
 const mongoose = require('mongoose');
 
-// Create a new donation
 const createDonation = async (req, res) => {
     try {
         const { amount, user, campaign } = req.body;
 
         // Check if all required fields are present
-        if (!user || !campaign || !amount ) {
+        if (!user || !campaign || !amount) {
             console.log('Missing required fields:', { user, campaign, amount });
             return res.status(400).json({ message: "Missing required fields" });
         }
 
+        // Find the campaign
+        const campaignDoc = await Campaign.findById(campaign);
+
+        if (!campaignDoc) {
+            return res.status(404).json({ message: "Campaign not found" });
+        }
+
+        // Calculate the allowable donation amount
+        const remainingAmount = campaignDoc.target_donation - campaignDoc.collected_donation;
+
+        if (amount > remainingAmount) {
+            return res.status(400).json({ message: "Donation exceeds target amount" });
+        }
+
+        // Create a new donation
         const donation = new Donation({
             amount,
             user,
             campaign
         });
 
-        campaign.collected_donation += amount;
-
+        // Save the new donation
         await donation.save();
-        res.status(201).json(donation);
+
+        // Update the campaign's collected donation amount
+        campaignDoc.collected_donation += amount;
+        await campaignDoc.save();
+
+        res.status(201).json({
+            donation,
+            updatedCampaign: campaignDoc
+        });
     } catch (error) {
         console.error("Error creating donation:", error);
         res.status(500).json({ message: "Internal server error" });

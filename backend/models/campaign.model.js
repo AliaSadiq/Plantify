@@ -67,25 +67,31 @@ const CampaignSchema = Schema(
       type: Number,
       default: 0
     },
-    volunteers: [
-      {
-          user: {
-              type: Schema.Types.ObjectId,
-              ref: 'User'
-          },
-          contact: {
-              type: String,
-              required: true
-          }
-      }
-    ],
+    // volunteers: [
+    //   {
+    //       user: {
+    //           type: Schema.Types.ObjectId,
+    //           ref: 'User'
+    //       },
+    //       contact: {
+    //           type: String,
+    //           required: true
+    //       }
+    //   }
+    // ],
     trees: [
       {
         name: { type: String, required: true },
         price: { type: Number, required: true, min: 1 },
         image: { type: String, required: true }
       }
-    ]
+    ],
+    stage: 
+    { 
+      type: String, 
+      enum: ['Fundraising', 'Buying Plants', 'Plantation'], 
+      default: 'Fundraising'
+    }
   },
   {
     timestamps: true
