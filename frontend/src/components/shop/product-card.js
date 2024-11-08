@@ -1,6 +1,7 @@
 // src/components/ProductCard.js
-import Button from './button';
+// import Button from './button';
 import React, {useState} from 'react';
+import Button from '../button';
 
 const ProductCard = ({ image, title, price }) => {
   const [isLiked, setIsLiked] = useState(false);

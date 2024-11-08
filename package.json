@@ -10,6 +10,7 @@
     "cors": "^2.8.5",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
+    "nodemon": "^3.1.7",
     "react-vis": "^1.12.1",
     "react-wavify": "^1.11.1",
     "sweetalert2": "^11.14.3"

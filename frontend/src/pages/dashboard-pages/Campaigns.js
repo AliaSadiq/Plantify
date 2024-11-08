@@ -306,7 +306,7 @@ const Campaigns = () => {
         setCampaigns(formattedCampaigns);
       } catch (error) {
         console.error('Error fetching campaigns:', error);
-        setError('Failed to fetch campaigns.');
+        setError('No campaign exists.');
       } finally {
         setLoading(false);
       }
