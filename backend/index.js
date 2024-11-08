@@ -5,6 +5,7 @@ const cors = require('cors');
 const socialgroupRouter = require("./routes/socialgroup.route.js");
 const campaignRoute = require("./routes/campaign.route.js");
 const userRoute = require("./routes/user.route.js");
+const adminRoute = require("./routes/admin.route.js");
 const testimonialRoute = require("./routes/testimonial.route.js");
 const campaignCommentRoute = require("./routes/campaign-comment.route.js");
 const userMessageRoute = require("./routes/user-message.route.js");
@@ -46,6 +47,7 @@ app.use("/api/teams",teamRoute);
 app.use("/api/sellers",sellerRoute);
 app.use("/api/socialgroup-review", reviewRoutes);
 app.use("/api/socialgroup-question", questionRoutes);
+app.use("/api/admin", adminRoute);
 // app.use("/api/socialteams", teamroute);
 //connection
 mongoose

@@ -1,5 +1,6 @@
 import useUser from "../hooks/useFetchUserLocalStorage";
 import useDonationsByCampaign from "../hooks/useDonationsByCampaign";
+import useModal from "../hooks/useModal";
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import axios from "axios";
@@ -11,30 +12,44 @@ import DonationModal from "../popups/donation-modal";
 import Tabs from "../components/tabs";
 import { CarouselDefault } from "../carousels/trees-to-be-planted-carousel";
 import ProgressBar from "../components/progress-bar";
+import CampaignMap from "../components/campaign-map";
 
 export default function CampaignDetailsPage() {
     const { id } = useParams();
     const user = useUser();
     const [campaign, setCampaign] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    // const [isReportModalOpen, setIsReportModalOpen] = useState(false);
+    // const [isModalOpen, setIsModalOpen] = useState(false);
+    const { openModal, closeModal, isModalOpen } = useModal();
     const [comments, setComments] = useState([]);
     const { donations, loading, error } = useDonationsByCampaign(id);
     const [newComment, setNewComment] = useState("");
     const [activeStage, setActiveStage] = useState(0); // State for managing active stage
 
+    //for campaign followers
+    const [isFollowing, setIsFollowing] = useState(false);
+
+    // location
+    const campaignLocation = {
+        lat: 33.6169, // Replace with the actual latitude
+        lng: 72.9720, // Replace with the actual longitude
+        name: "Central Park, New York City",
+    };
+
     // Define stages and descriptions
     const stages = [
         { 
             title: 'Fundraising', 
+            image: 'fundraising.png',
             description: 'We are currently in the fundraising phase of our campaign. This is a crucial stage where every contribution, no matter how small, brings us closer to our goal. Your donations will help us acquire the necessary resources to make this campaign a success. With your support, we can transform our vision into reality. Join us in this journey of hope and growth, and be a part of something truly impactful. Together, we can make a difference and leave a lasting legacy for future generations.' 
         },
         { 
-            title: 'Buying Plants', 
+            title: 'Buying Plants',
+            image: 'buying.png', 
             description: 'We are now entering the exciting phase of buying plants for our campaign. The funds raised are being used to procure a diverse range of trees and plants that are not only beautiful but also beneficial to the environment. This stage marks the beginning of tangible progress, as we prepare to bring greenery and life to our community. Your contributions are making it possible for us to select the best species that will thrive and make a lasting impact. Stay tuned as we move closer to the plantation phase, where your support will bloom into a greener future.' 
         },
         { 
             title: 'Plantation', 
+            image: 'plantation.png',
             description: 'We are thrilled to announce that we have reached the plantation phase of our campaign. This is the moment where all our collective efforts come to fruition. Volunteers are actively planting the trees, ensuring they are carefully placed and nurtured to grow strong and healthy. This stage is not just about planting trees; it\'s about planting hope, sustainability, and a better future. Your support has been instrumental in reaching this milestone, and we are grateful for your commitment to our cause. Let\'s continue to work together to create a greener, more vibrant community.' 
         },
     ];
@@ -46,25 +61,6 @@ export default function CampaignDetailsPage() {
         { value: 'progress', label: 'Campaign Progress' },
         { value: 'trees', label: 'Trees to be Planted' }
     ];
-
-
-    //volunteers popup
-    const handleOpenModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
-
-    //volunteers popup
-    // const handleReportModalOpen = () => {
-    //     setIsReportModalOpen(true);
-    // };
-
-    // const handleReportModalClose = () => {
-    //     setIsReportModalOpen(false);
-    // };
 
     //fetching the campaign and the campaign commments
     useEffect(() => {
@@ -82,6 +78,10 @@ export default function CampaignDetailsPage() {
     
         fetchCampaignDetails();
     }, [id]);
+
+    const updateCampaign = (updatedCampaign) => {
+        setCampaign(updatedCampaign); 
+    };
 
     const handleAddComment = async (e) => {
         e.preventDefault();
@@ -118,9 +118,28 @@ export default function CampaignDetailsPage() {
         });
     };
 
+    const handleFollowClick = async () => {
+        if (!user || !user._id) {
+          return alert("You need to be logged in to follow this campaign.");
+        }
+    
+        try {
+          const response = await axios.post(`http://localhost:5000/api/campaigns/${id}/follow`, {
+            userId: user._id
+          });
+          setIsFollowing((prev) => !prev); // Toggle follow/unfollow state
+          alert(response.data.message); // Show follow/unfollow success message
+        } catch (error) {
+          console.error("Error following/unfollowing the campaign:", error);
+          alert("Something went wrong. Please try again.");
+        }
+    };
+
     if (!campaign) {
         return <div>Loading...</div>; // Add a loading state while campaign data is being fetched
     }
+
+    const isDonationComplete = campaign.collected_donation >= campaign.target_donation;
 
     return (
         <div className="min-h-screen bg-white"> 
@@ -128,7 +147,7 @@ export default function CampaignDetailsPage() {
                 <h1 className="font-bold text-2xl">{campaign.name}</h1>
                 <p className="font-semibold text-mini mb-10 flex items-center justify-center gap-2">
                     a campaign by
-                    <div className="flex items-center bg-navygreen-100 hover:bg-navygreen-200 p-2 rounded-[20px] gap-2">
+                    <div className="flex items-center bg-navygreen-100 hover:bg-navygreen-200 p-2 rounded-[20px] gap-2 cursor-pointer">
                         <img src={`/assets/${campaign.socialGroup.image}`} className="w-8 h-8 rounded-full" alt="Social Group Logo" />
                         <Link to={`/campaign/social-group/${campaign.socialGroup._id}`} className="">
                             {campaign.socialGroup.name}
@@ -167,7 +186,7 @@ export default function CampaignDetailsPage() {
                                 </svg>
                             </button>
                             {/* Report button */}
-                            <button onClick={handleOpenModal} className="p-2 rounded-full hover:bg-navygreen-200">
+                            <button onClick={() => openModal('report')} className="p-2 rounded-full hover:bg-navygreen-200">
                                 <svg 
                                     xmlns="http://www.w3.org/2000/svg" 
                                     fill="none" 
@@ -197,7 +216,7 @@ export default function CampaignDetailsPage() {
                                     >
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
                                     </svg>
-                                    <span className="text-sm">12.06.2024</span>
+                                    <span className="text-sm">{new Date(campaign.createdAt).toLocaleDateString()}</span>
                                 </div>
                                 <div className="flex items-center mb-2">
                                     <svg
@@ -213,25 +232,29 @@ export default function CampaignDetailsPage() {
                                     <span className="text-sm">11:00 pm</span>
                                 </div>
                             </div>
-                            <div className="flex items-center mb-2">
+                            <div className="flex items-center gap-1 mb-2">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     strokeWidth="1.5"
                                     stroke="currentColor"
-                                    className="w-4 h-4 mr-1"
+                                    className="w-4 h-4"
                                 >
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                                 </svg>
-                                <span className="text-sm">Location</span>
+                                <p className="text-sm">{campaign.location}</p>
                             </div>
-                            <img
+                            {/* <img
                                 className="w-full h-[200px] object-cover rounded-[20px]"
                                 src="/assets/map.jpeg"
                                 alt="Map"
-                            />
+                            /> */}
+                            {/* CampaignMap component */}
+                            <div className="w-full h-[200px] rounded-[20px] overflow-hidden">
+                                <CampaignMap />
+                            </div>
                         </div>
                     </div>
                      <div className="mt-4 p-2 rounded-pl border border-2 border-neutral">
@@ -240,31 +263,31 @@ export default function CampaignDetailsPage() {
                             {activeTab === 'progress' && (
                                 <div>
                                     <h2 className="text-xl font-semibold mb-4">Campaign Progress</h2>
-                                    <p>Details about campaign progress...</p>
                                     <div className="flex flex-row gap-2 justify-center px-8 mt-8">
                                         {stages.map((stage, index) => (
                                             <div
                                                 key={index}
-                                                className={`flex items-center justify-center rounded-pl bg-navygreen-100 h-12 transition-all duration-300 ${activeStage === index ? 'flex-grow p-4' : 'w-40'}`}
+                                                className={`flex items-center justify-center rounded-pl cursor-pointer bg-navygreen-100 h-12 transition-all duration-300 ${activeStage === index ? 'flex-grow p-4 bg-navygreen-300' : 'w-40'}`}
                                                 onClick={() => setActiveStage(index)}
                                             >
-                                                <p className={`text-center ${activeStage === index ? 'text-white' : 'text-gray-500'}`}>{stage.title}</p>
+                                                <p className={`text-center ${activeStage === index ? 'text-gray-100' : 'text-gray-500'}`}>{stage.title}</p>
                                             </div>
                                         ))}
                                     </div>
-                                    <p className="text-center text-justify mt-4">
-                                        {stages[activeStage].description}
-                                    </p>
+                                    <div className="place-self-center mt-4">
+                                        <img 
+                                            src={`/assets/stages/${stages[activeStage].image}`} 
+                                            className="object-cover w-60 text-center"
+                                        />
+                                    </div>
                                 </div>
                             )}
                             {activeTab === 'trees' && (
                                 <div>
                                     <h2 className="text-xl font-semibold mb-4">Trees to be Planted</h2>
-                                    <p>Details about trees to be planted...</p>
                                     <div className="flex flex-row justify-center">
                                         <div className="mt-10 p-8 rounded-pl bg-navygreen-100 w-1/2">
                                             <CarouselDefault trees={campaign.trees}/>
-                                            {/* <img src={`/assets/${campaign.trees[0].image}`}/> */}
                                         </div>
                                     </div>
                                 </div>
@@ -278,9 +301,23 @@ export default function CampaignDetailsPage() {
                     {/* Donation Bar Div */}
                     <div className="bg-inherit w-full h-auto rounded-[20px] p-4 border-neutral border-2">
                         <h1 className="font-bold text-md text-center">{campaign.collected_donation} PKR raised off {campaign.target_donation} PKR</h1>
-                        <ProgressBar width={80} className="mt-4 mx-10"/>
+                        <ProgressBar collected={campaign.collected_donation} target={campaign.target_donation} className="mt-4 mx-10"/>
                         <div className="flex items-center justify-center mt-8">
-                            <Button text="Donate" onClick={handleOpenModal} className="bg-gray-100 text-white py-2 shadow-md"/>
+                        {!isDonationComplete ? (
+                            <Button 
+                                text="Donate" 
+                                onClick={() => openModal('donation')}
+                                className="bg-gray-100 text-white py-2 shadow-md"
+                            />
+                        ) : ( 
+                            <div className="flex items-center justify-center">
+                                <p className="text-mini text-gray-100 px-4 py-2 bg-neon rounded-full">Donations completed</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                </svg>
+                            </div>
+                        )}
+                            
                         </div>
                     </div>
                     {/* About Div */}
@@ -290,8 +327,16 @@ export default function CampaignDetailsPage() {
                             {campaign.description}
                         </p>
                         <div className="flex gap-4 items-center justify-center mt-4">
-                            <Button text="Follow Campaign" className="py-2"/>
-                            <Button text="Volunteer in Campaign" onClick={handleOpenModal} className="py-2"/>
+                            <Button 
+                                text={isFollowing ? "Unfollow Campaign" : "Follow Campaign"}
+                                className="py-2" 
+                                onClick={handleFollowClick}
+                            />
+                            <Button 
+                                text="Volunteer in Campaign" 
+                                onClick={() => openModal('volunteer')} 
+                                className="py-2"
+                            />
                         </div>
                     </div>
                     {/* Comments Div */}
@@ -301,7 +346,7 @@ export default function CampaignDetailsPage() {
                             {comments.map((comment) => (
                                 <li className="relative w-full p-2 border-b-2 border-neutral">
                                     <div className="w-full flex flex-row items-center">
-                                        <img src="/assets/testimonial-2.jpeg" className="w-10 h-10 object-cover rounded-full" alt="user avatar"/>
+                                        <img src={`/assets/avatars/${comment.user.avatar}`} className="w-10 h-10 object-cover rounded-full" alt="user avatar"/>
                                         <div className="ml-2 w-full text-sm flow-root">
                                             <p className="float-left font-semibold ml-2">{comment.user.username}</p>
                                             <p className="float-right text-gray-500">{new Date(comment.date).toLocaleDateString()}</p>
@@ -346,7 +391,7 @@ export default function CampaignDetailsPage() {
                     {/* donors div */}
                     <div className="bg-navygreen-100 w-full p-2 rounded-[20px] mt-4">
                         <h2 className="font-semibold text-md text-center py-2">Donors</h2>
-                        <ul className="flex flex-col gap-y-2">
+                        <ul className="flex flex-col gap-y-2 max-h-48 overflow-y-auto ">
                             {/* Display the donations */}
                             {donations.length > 0 ? (
                                 donations.map((donation, index) => (
@@ -357,11 +402,11 @@ export default function CampaignDetailsPage() {
                                     <div className="flex items-center justify-start rounded-pl">
                                     {/* Donor's avatar and name */}
                                     <img
-                                        src={`/assets/avatars/${donation.user.avatar}`} // Use a default image if donor doesn't have an avatar
+                                        src={`/assets/avatars/${donation.avatar}`} // Use a default image if donor doesn't have an avatar
                                         className="w-8 rounded-full"
                                         alt="user avatar"
                                     />
-                                    <p className="mx-2">{donation.user.username} donated</p>
+                                    <p className="mx-2">{donation.username} donated</p>
                                     </div>
                                     <img className="w-6 h-6" src="/assets/leaves.png" alt="leaves" />
                                 </div>
@@ -373,9 +418,26 @@ export default function CampaignDetailsPage() {
                     </div>
                 </div>
             </div>
-            <VolunteeringModal showModal={isModalOpen} closeModal={handleCloseModal} campaign={campaign} />
-            <ReportModal showModal={isModalOpen} closeModal={handleCloseModal} campaign={campaign}/>
-            <DonationModal showModal={isModalOpen} closeModal={handleCloseModal} campaignId={campaign._id} userId={user._id}/>
+            <VolunteeringModal 
+                showModal={isModalOpen('volunteer')} 
+                closeModal={() => closeModal('volunteer')} 
+                campaignId={campaign._id} 
+                userId={user._id} 
+            />
+
+            <ReportModal 
+                showModal={isModalOpen('report')} 
+                closeModal={() => closeModal('report')} 
+                campaign={campaign} 
+            />
+
+            <DonationModal 
+                showModal={isModalOpen('donation')} 
+                closeModal={() => closeModal('donation')} 
+                campaignId={campaign._id} 
+                userId={user._id}
+                updateCampaign={updateCampaign} 
+            />
         </div>
     );        
 }

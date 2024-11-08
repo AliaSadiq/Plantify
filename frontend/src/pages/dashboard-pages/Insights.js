@@ -144,7 +144,7 @@ const Insights = () => {
     <div className="bg-cover bg-center min-h-screen" style={{ backgroundImage: `url(${dashboardbg})` }}>
       <div className="px-20 py-4 mx-auto max-w-screen-xl">
         <h1 className="text-2xl font-bold mb-6">Campaign Insights</h1>
-        <ProgressBar width={80} className="mt-4 mx-10 mb-6" />
+        <ProgressBar collected={3} target={33} className="mt-4 mx-10 mb-6" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {metrics.map((metric, index) => (
             <MetricCard

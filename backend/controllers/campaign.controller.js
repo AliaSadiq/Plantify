@@ -1,30 +1,6 @@
 const Campaign = require("../models/campaign.model");
 const mongoose = require('mongoose');
 
-// const getCampaigns = async (req, res) => {
-//   try {
-//     const { page = 1, limit = 6, search = '' } = req.query;
-//     const skip = (page - 1) * limit;
-
-//     // Search filter
-//     const searchFilter = search
-//       ? { name: { $regex: search, $options: 'i' } } // Case-insensitive search
-//       : {};
-
-//     const campaigns = await Campaign.find(searchFilter)
-//       .populate('socialGroup')
-//       .skip(skip)
-//       .limit(Number(limit));
-
-//     const totalCampaigns = await Campaign.countDocuments(searchFilter);
-//     const totalPages = Math.ceil(totalCampaigns / limit);
-
-//     res.status(200).json({ campaigns, totalPages });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
 const getCampaigns = async (req, res) => {
   try {
     const { page = 1, limit = 6, search = '' } = req.query;
@@ -170,6 +146,26 @@ const getCampaignCount = async (req, res) => {
   }
 };
 
+// Get campaigns count by month 
+const getCampaignsByMonth = async (req, res) => { 
+  try { 
+    const campaigns = await Campaign.aggregate([ 
+      { 
+        $group: { 
+          _id: { $month: "$createdAt" }, 
+          count: { $sum: 1 } 
+        } 
+      }, 
+      { 
+        $sort: { _id: 1 } 
+      } 
+    ]); 
+    res.status(200).json(campaigns); 
+  } catch (error) { 
+    res.status(500).json({ message: error.message }); 
+  } 
+};
+
 const getCampaignInsights = async (req, res) => {
   try {
     const { id } = req.params;
@@ -202,6 +198,87 @@ const getCampaignInsights = async (req, res) => {
   }
 };
 
+
+const followCampaign = async (req, res) => {
+  try {
+    const { userId } = req.body; // Extract userId from request body
+    const { id: campaignId } = req.params; // Extract campaign ID from URL parameters
+
+    // Check if userId is provided
+    if (!userId) {
+      return res.status(400).json({ message: "User ID is required to follow the campaign." });
+    }
+
+    // Find the campaign by ID
+    const campaign = await Campaign.findById(campaignId);
+    if (!campaign) {
+      return res.status(404).json({ message: "Campaign not found." });
+    }
+
+    // Check if the user is already a follower
+    const isFollowing = campaign.followers.includes(userId);
+
+    if (isFollowing) {
+      // If already following, remove the user from followers (unfollow)
+      campaign.followers.pull(userId);
+      await campaign.save();
+      return res.status(200).json({ message: "You have unfollowed the campaign.", following: false });
+    } else {
+      // If not following, add the user to followers
+      campaign.followers.push(userId);
+      await campaign.save();
+      return res.status(200).json({ message: "You are now following the campaign.", following: true });
+    }
+  } catch (error) {
+    console.error("Error in followCampaign:", error);
+    res.status(500).json({ message: "Something went wrong. Please try again later." });
+  }
+};
+
+// const addVolunteer = async (req, res) => {
+//   try {
+//       const { id } = req.params;
+//       const { user, contact } = req.body;
+
+//       // Find the campaign
+//       const campaign = await Campaign.findById(id);
+//       if (!campaign) {
+//           return res.status(404).json({ message: 'Campaign not found' });
+//       }
+
+//       // Check if volunteer limit is reached
+//       if (campaign.volunteers.length >= campaign.total_volunteers_count) {
+//           return res.status(400).json({ message: 'Volunteer limit reached' });
+//       }
+
+//       // Add volunteer to the campaign
+//       campaign.volunteers.push({ user, contact });
+//       await campaign.save();
+
+//       return res.status(200).json({ message: 'Volunteer added successfully', campaign });
+//   } catch (error) {
+//       return res.status(500).json({ message: 'Error adding volunteer', error });
+//   }
+// };
+
+const updateStage = async (req, res) => {
+  try { 
+    const campaign = await Campaign.findById(req.params.id); 
+    if (!campaign) { 
+      return res.status(404).send('Campaign not found'); 
+    }
+
+    if (campaign.collected_donation >= campaign.target_donation) { 
+      campaign.stage = 'Buying Plants'; 
+    } 
+    await campaign.save(); 
+    res.send(campaign); 
+  } catch (error) { 
+    res.status(500).send(error.message);
+  }
+};
+
+
 module.exports = {
     getCampaign,
     getCampaigns,
@@ -212,4 +289,8 @@ module.exports = {
     getAllCampaigns,
     getRecentCampaigns,
     searchCampaigns,
+    followCampaign,
+    updateStage,
+    getCampaignsByMonth,
+    // addVolunteer,
 };

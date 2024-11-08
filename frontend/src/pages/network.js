@@ -1,14 +1,158 @@
-import {React, useS} from 'react';
-import { Link } from 'react-router-dom';
-import bees from '../images/bees.png';
+// import React from 'react';
+// import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+// import Sidebar from '../components/social-media-components/side-bar';
+// import PostFeed from '../components/social-media-components/post-feed';
+// import Suggestions from '../components/social-media-components/suggestions';
+// import ProfilePage from '../components/social-media-components/profile-page';
+// import ExplorePage from '../components/social-media-components/explore';
+
+// const PlantifyLayout = () => {
+//   const location = useLocation();
+
+//   return (
+//     <div className="flex h-screen pt-20 mb-11">
+//       {/* Sidebar remains fixed */}
+//       <Sidebar />
+
+//       {/* Main Content Area */}
+//       <div className="flex-grow flex">
+//         <Routes>
+//           {/* Route for Main Feed and Suggestions */}
+//           <Route
+//             path="/plantify-network"
+//             element={
+//               <div className="flex w-full">
+//                 <div className="w-4/6 h-full overflow-y-auto px-4">
+//                   <h1>Post Feed</h1> {/* Temporary text for debugging */}
+//                   <PostFeed />
+//                 </div>
+//                 <div className="w-1/3 h-full">
+//                   <h1>Suggestions</h1> {/* Temporary text for debugging */}
+//                   <Suggestions />
+//                 </div>
+//               </div>
+//             }
+//           />
+
+//           {/* Explore Page */}
+//           <Route
+//             path="/explore"
+//             element={
+//               <div className="flex w-full">
+//                 <h1>Explore Page</h1> {/* Temporary text for debugging */}
+//                 <ExplorePage />
+//               </div>
+//             }
+//           />
+
+//           {/* Profile Page */}
+//           <Route
+//             path="/profile-socialmedia"
+//             element={
+//               <div className="flex w-full">
+//                 <h1>Profile Page</h1> {/* Temporary text for debugging */}
+//                 <ProfilePage />
+//               </div>
+//             }
+//           />
+
+//           {/* Redirect to Main Feed if Path Not Found */}
+//           <Route path="*" element={<Navigate to="/plantify-network" replace />} />
+//         </Routes>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default PlantifyLayout;
+// 
+import React from 'react';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import Sidebar from '../components/social-media-components/side-bar';
+import PostFeed from '../components/social-media-components/post-feed';
+import Suggestions from '../components/social-media-components/suggestions';
+import ExplorePage from '../components/social-media-components/explore';
+import ProfilePage from '../components/social-media-components/profile-page';
+
+const PlantifyLayout = () => {
+  return (
+    <div className="flex h-screen pt-20 mb-11">
+      <Sidebar />
+
+      <div className="flex-grow flex">
+        <Routes>
+          {/* Main Feed Route */}
+          <Route
+            path=""
+            element={
+              <div className="flex w-full">
+                <div className="w-4/6 h-full overflow-y-auto px-4">
+                  <PostFeed />
+                </div>
+                <div className="w-1/3 h-full">
+                  <Suggestions />
+                </div>
+              </div>
+            }
+          />
+
+          {/* Explore Page Route */}
+          <Route
+            path="explore"
+            element={
+              <div className="w-full h-full">
+                <ExplorePage />
+              </div>
+            }
+          />
+
+          {/* Profile Page Route */}
+          <Route
+            path="profile-socialmedia"
+            element={
+              <div className="w-full h-full">
+                <ProfilePage />
+              </div>
+            }
+          />
+
+          {/* Redirect to Main Feed if no other route matches */}
+          <Route path="*" element={<Navigate to="/plantify-network" />} />
+        </Routes>
+      </div>
+    </div>
+  );
+};
+
+export default PlantifyLayout;
 
 
-const PlantifyNetwork = () => {
-    return(
-        <div className='flex items-center justify-center'>
-            <img src={bees}></img>
-        </div>
-    );
-}
+// import React from 'react';
+// import Sidebar from '../components/social-media-components/side-bar';
+// import PostFeed from '../components/social-media-components/post-feed';
+// import Suggestions from '../components/social-media-components/suggestions';
 
-export default PlantifyNetwork;
+// const PlantifyLayout = () => {
+//   return (
+//     <div className="flex h-screen pt-20 mb-11">
+//       {/* Sidebar remains fixed */}
+//       <Sidebar />
+
+//       {/* Main Content Area */}
+//       <div className="flex-grow flex">
+//         <div className="flex w-full">
+//           <div className="w-4/6 h-full overflow-y-auto px-4">
+//             <h1>Post Feed</h1> {/* Debugging text */}
+//             <PostFeed />
+//           </div>
+//           <div className="w-1/3 h-full">
+//             <h1>Suggestions</h1> {/* Debugging text */}
+//             <Suggestions />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default PlantifyLayout;

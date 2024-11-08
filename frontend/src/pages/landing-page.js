@@ -1,7 +1,5 @@
 import {React, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
-import landing from '../images/landing.jpeg';
 import TestimonialCarousel from '../carousels/testimonial-carousel';
 import ProductCarousel from '../carousels/product-carousel';
 import {GlobeAsiaAustraliaIcon, SunIcon, UserGroupIcon} from '@heroicons/react/24/solid';
@@ -47,12 +45,10 @@ const LandingPage = () => {
     }
     return (
         <div mt-0 >
-            <div className="relative">
-                {/* Background image with blurred overlay */}
+            {/* <div className="relative">
                 <div className="absolute inset-0 bg-cover bg-center z-0 pb-40" style={{ backgroundImage: `url(${landing})` }}>
                     <div className="absolute inset-0 backdrop-blur-lg backdrop-filter bg-ivory bg-opacity-50"></div>
                 </div>
-                {/* Content */}
                 <div className="flex flex-row lg:gap-[50px] items:center justify-center lg:justify-between lg:items-start pt-40 pb-20 px-[30px] lg:px-[100px] py-0 relative">
                     <div className="text-center lg:text-left w-1/2 font-josefin-sans text-gray-100 mt-10">
                         <p className="text-lg font-semibold">Welcome to</p>
@@ -64,6 +60,158 @@ const LandingPage = () => {
                         </div>
                         <p className="font-josefin-sans mt-20 text-2xl font-bold">50,000,867</p>
                         <p className="mt-2 text-mini font-semibold">trees planted and counting...</p>
+                    </div>
+                </div>
+            </div> */}
+            {/* <div className="relative bg-ivory min-h-screen flex flex-col items-center justify-center px-6 lg:px-32 py-12">
+                
+                <div className="text-center mb-12">
+                    <h1 className="text-3xl lg:text-5xl font-bold text-gray-900">Managerial optimization for your company</h1>
+                    <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+                        Choose efficiency or flexibility for your organization. Reconstruction of your team will lead to improved productivity, collaboration, and higher business results.
+                    </p>
+                </div>
+            
+                
+                <div className="flex flex-col lg:flex-row gap-4 mb-12">
+                    <button className="bg-lime-500 text-white font-semibold py-3 px-8 rounded-lg hover:bg-lime-600 transition">Get Started</button>
+                    <button className="bg-gray-100 text-gray-900 font-semibold py-3 px-8 rounded-lg hover:bg-gray-200 transition">Try demo</button>
+                </div>
+            
+                
+                <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+                    
+                    <div className="bg-green-100 p-6 rounded-lg text-center w-full lg:w-1/5">
+                        <div className="mb-4 text-lg font-semibold text-gray-800">
+                            Our mission is to make your team efficient and flexible to achieve great results
+                        </div>
+                    </div>
+            
+                    <div className="bg-gray-100 p-6 rounded-lg text-center w-full lg:w-1/5">
+                        <p className="text-2xl font-bold text-gray-900">350%</p>
+                        <p className="text-sm text-gray-600 mt-2">Average annual growth rate among our clients</p>
+                    </div>
+            
+                    
+                    <div className="relative bg-gray-200 rounded-lg overflow-hidden w-full lg:w-1/5">
+                        <img src="/assets/landing/landing.jpeg" alt="Team Collaboration" className="object-cover w-full h-full" />
+                        <div className="absolute inset-0 bg-black opacity-50 flex items-center justify-center text-white font-semibold">Show the results</div>
+                    </div>
+            
+                    
+                    <div className="bg-lime-100 p-6 rounded-lg text-center w-full lg:w-1/5">
+                        <p className="text-2xl font-bold text-gray-900">95%</p>
+                        <p className="text-sm text-gray-600 mt-2">ROAS has increased prior to funding</p>
+                    </div>
+            
+                    
+                    <div className="relative bg-gray-200 rounded-lg overflow-hidden w-full lg:w-1/5">
+                        <img src="/assets/landing/landing.jpeg" alt="Working Professional" className="object-cover w-full h-full" />
+                    </div>
+                </div>
+            </div> */}
+            <div className='relative bg-white min-h-screen flex flex-col gap-y-2 items-center justify-center px-6 lg:px-28 pb-12 pt-44'>
+                {/* absolute round divs for floating icons */}
+                <div className='absolute left-20 bg-gradient-to-b from-neon top-1/4 rounded-full p-2'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </div>
+                <div className='absolute left-40 top-72 rounded-full p-2 border-2 border-green-900'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </div>
+                <div className='absolute right-20 bg-gray-100 top-1/4 rounded-full p-2'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#FFFFFF" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </div>
+                <div className='absolute right-40 top-56 rounded-full p-2 bg-green-900'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#FFFFFF" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                    </svg>
+                </div>
+                <div className='absolute right-60 top-64 rounded-full p-2 bg-neon'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                    </svg>
+                </div>
+                {/* Text Div */}
+                <div className='w-full'>
+                    <p className='text-2xl font-semibold text-center'>
+                        Empowering You to Make a Difference
+                    </p>
+                    <p className='w-1/2 text-mini opacity-60 text-center mt-4 place-self-center'>
+                        At Plantify, 
+                        we’re committed to fostering green spaces, revitalizing 
+                        biodiversity, and building communities that thrive 
+                        alongside nature. Your involvement today is a step 
+                        toward a brighter, greener tomorrow.
+                    </p>
+                </div>
+                <div className='flex flex-row gap-6 w-full h-[400px]'>
+                    <div className='flex flex-col-reverse basis-1/3 py-10 px-8 bg-navygreen-trial rounded-pl'>
+                        <p className='text-green-900'>
+                            Our mission is to make a green future a reality by empowering communities to take sustainable actions.
+                        </p>
+                    </div>
+                    <div className='flex flex-col justify-between'>
+                        <div className='h-1/2 bg-transparent'>
+
+                        </div>
+                        <div className='place-content-center text-center h-full p-8 rounded-pl bg-surmai'>
+                            <p className='text-xl font-bold'>
+                                300,000+
+                            </p>
+                            <p className='text-sm text-gray-600'>
+                                trees planted in the last year alone.
+                            </p>
+                        </div>
+                    </div>
+                    <div className='basis-1/2 flex flex-col px-4'>
+                        <div className='flex flex-col items-center gap-y-2 mt-4'>
+                            <button 
+                                onClick={handleInitiateCampaign}
+                                className='max-w-fit bg-neon py-[10px] px-8 rounded-full text-sm font-normal'
+                            >
+                                Initiate Campaign
+                            </button>
+                            <button 
+                                onClick={openModal}
+                                className='max-w-fit bg-surmai py-[10px] px-8 rounded-full text-sm font-normal'
+                            >
+                                Start Donating
+                            </button>
+                            
+                            {/* <Button 
+                                text="Get Started"
+                                className="py-2 bg-lime-300"
+                            />
+                            <Button 
+                                text="Initiate Campaign"
+                                className="py-2 bg-gray-100 hover:bg-lime-300 hover:shadow-lg text-white hover:text-gray-100"
+                            /> */}
+                        </div>
+                        <div className='mt-20'>
+                            <img src='/assets/landing/landing.jpeg' className='w-full h-[213px] object-cover rounded-pl' />
+                        </div>
+                    </div>
+                    <div className='flex flex-col justify-between'>
+                        <div className='h-1/2 bg-transparent'>
+
+                        </div>
+                        <div className='place-content-center text-center h-full p-8 rounded-pl bg-navygreen-trial'>
+                            {/* <p className='text-lg font-bold'>
+                                300,000+
+                            </p> */}
+                            <p className='text-sm text-gray-600'>
+                                Sustainable impact backed by measurable results.
+                            </p>
+                        </div>
+                    </div>
+                    <div className='basis-1/3 rounded-pl bg-navygreen-trial'>
+                        <img src="/assets/landing/landing.jpeg" className='object-cover w-full h-full rounded-pl'/>
                     </div>
                 </div>
             </div>

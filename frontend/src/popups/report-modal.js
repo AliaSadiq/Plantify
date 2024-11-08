@@ -32,10 +32,10 @@ export default function ReportModal({ campaign, showModal, closeModal }) {
     <>
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center z-30">
-          <div className="absolute inset-0 flex items-center justify-center bg-opacity-40">
-            <div className="backdrop-blur-sm backdrop-filter relative bg-navygreen-100 rounded-lg p-8 max-w-md z-10 bg-opacity-100">
-              <button className="absolute top-2 right-2 text-gray-100" onClick={closeModal}>
-                <XMarkIcon className="h-6 w-6" />
+          <div className="absolute inset-0 flex items-center bg-navygreen-100 justify-center bg-opacity-40">
+            <div className="relative w-full max-w-md mx-4 sm:mx-6 lg:mx-8 bg-navygreen-100 rounded-pl p-8 z-10">
+              <button className="absolute top-2 right-2 p-2 hover:bg-navygreen-200 rounded-pl text-gray-100" onClick={closeModal}>
+                  <XMarkIcon className="h-6 w-6"/>
               </button>
               <h2 className="font-josefin-sans text-center text-xl font-bold mb-4">Report Campaign</h2>
               <p className="font-josefin-sans text-center text-sm mb-4">Want to report this campaign? Write your reason, and we will consider your complaint.</p>
