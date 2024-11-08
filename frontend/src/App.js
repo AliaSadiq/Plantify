@@ -40,14 +40,15 @@ const AppContent = () => {
         <Route path="plant-diary-detail" element={<PlantDiaryDetailPage />} />
         <Route path="shop" element={<Shop />} />
         <Route path="logout" element={<Logout />} />
-        <Route path="plantify-network" element={<PlantifyNetwork />} />
+        {/* <Route path="plantify-network" element={<PlantifyNetwork />} /> */}
         <Route path="contact-us" element={<ContactUsPage />} />
         <Route path="about-us" element={<AboutUsPage />} />
-        <Route path="about-us" element={<PlantifyNetwork />} />
+  
         <Route path="settings" element={<SettingsPage />} />
         <Route path='auth-check' element={<AuthCheck />} />
         <Route path='verification-check' element={<VerificationCheck />} />
-        <Route path="explore" element={<ExplorePage />} />
+        {/* <Route path="explore" element={<ExplorePage />} /> */}
+        <Route path="/plantify-network/*" element={<PlantifyNetwork />}  />
         {/* Auth routes */}
         {isAuthRoute && <Route path="/*" element={<AuthLayout />} />}
 

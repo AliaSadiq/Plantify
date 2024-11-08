@@ -4,16 +4,14 @@ import PostCard from './post-card';
 const posts = [
   { image: "https://via.placeholder.com/400", likes: 632, comments: 64, author: { name: "Dean Winchester", avatar: "https://via.placeholder.com/150" } },
   { image: "https://via.placeholder.com/400", likes: 72, comments: 24, author: { name: "Jesse Pinkman", avatar: "https://via.placeholder.com/150" } },
-  { image: "https://via.placeholder.com/400", likes: 72, comments: 24, author: { name: "Jesse Pinkman", avatar: "https://via.placeholder.com/150" } },
-  // More posts
+  // More posts...
 ];
 
-const PostFeed = ({ onProfileClick }) => {
+const PostFeed = () => {
   const [filter, setFilter] = useState('all');
 
   return (
-    <div className="w-11/12 max-w-lg mx-auto"> {/* Adjusted width */}
-      {/* Filter bar */}
+    <div className="w-11/12 max-w-lg mx-auto">
       <div className="flex justify-center space-x-8 bg-transparent p-4">
         {['All', 'Following', 'Newest', 'Popular'].map((option) => (
           <button
@@ -28,8 +26,6 @@ const PostFeed = ({ onProfileClick }) => {
         ))}
       </div>
 
-  
-      {/* Post grid */}
       <div className="grid grid-cols-1 gap-4 mt-6">
         {posts.map((post, idx) => (
           <PostCard
@@ -38,7 +34,6 @@ const PostFeed = ({ onProfileClick }) => {
             likes={post.likes}
             comments={post.comments}
             author={post.author}
-            onProfileClick={() => onProfileClick(post.author)}
           />
         ))}
       </div>
