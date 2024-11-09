@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {getCampaign, getCampaigns, createCampaign,socialgroupCampaigns, getCampaignCount, getCampaignInsights, getAllCampaigns, getRecentCampaigns, followCampaign, updateStage, getCampaignsByMonth} = require( '../controllers/campaign.controller.js');
+const {getCampaign, getCampaigns, createCampaign,socialgroupCampaigns, getCampaignCount, getCampaignInsights, getAllCampaigns, getRecentCampaigns, followCampaign, updateStage, getCampaignsByMonth, updateCampaign, deleteCampaign} = require( '../controllers/campaign.controller.js');
 
 
 router.get('/', getCampaigns);
@@ -12,6 +12,8 @@ router.get("/:id", getCampaign);
 router.get('/socialgroup/:socialId', socialgroupCampaigns);
 router.post("/", createCampaign);
 router.get("/insights/:id", getCampaignInsights);
+router.put("/:campaignId", updateCampaign);
+router.delete("/:campaignId", deleteCampaign);
 router.put("/:id", updateStage);
 
 // router.post("/:id/follow",followCampaign);
