@@ -109,14 +109,14 @@ export default function CampaignDetailsPage() {
         });
     };
 
-    const handleReport = () => {
-        const shareUrl = `${window.location.origin}/campaign-details/${id}`;
-        navigator.clipboard.writeText(shareUrl).then(() => {
-            alert("Link copied to clipboard!");
-        }).catch((err) => {
-            console.error("Failed to copy the link: ", err);
-        });
-    };
+    // const handleReport = () => {
+    //     const shareUrl = `${window.location.origin}/campaign-details/${id}`;
+    //     navigator.clipboard.writeText(shareUrl).then(() => {
+    //         alert("Link copied to clipboard!");
+    //     }).catch((err) => {
+    //         console.error("Failed to copy the link: ", err);
+    //     });
+    // };
 
     const handleFollowClick = async () => {
         if (!user || !user._id) {

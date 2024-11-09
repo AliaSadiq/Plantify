@@ -261,6 +261,32 @@ const followCampaign = async (req, res) => {
 //   }
 // };
 
+const updateCampaign = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedCampaign = await Campaign.findByIdAndUpdate(id, req.body);
+    if (!updatedCampaign) {
+      return res.status(404).json({ message: "Campaign not found" });
+    }
+    res.status(200).json(updatedCampaign);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const deleteCampaign = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedCampaign = await Campaign.findByIdAndDelete(id);
+    if (!deletedCampaign) {
+      return res.status(404).json({ message: "Campaign not found" });
+    }
+    res.status(200).json(deletedCampaign);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const updateStage = async (req, res) => {
   try { 
     const campaign = await Campaign.findById(req.params.id); 
@@ -292,5 +318,7 @@ module.exports = {
     followCampaign,
     updateStage,
     getCampaignsByMonth,
+    updateCampaign,
+    deleteCampaign,
     // addVolunteer,
 };

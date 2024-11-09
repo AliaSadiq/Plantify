@@ -11,7 +11,7 @@ const createCampaignReport = async (req, res) => {
 
 const getCampaignReports = async (req, res) => {
   try {
-      const reports = await CampaignReport.find();
+      const reports = await CampaignReport.find().populate('campaign');
       res.status(200).json(reports);
   } catch (error) {
       res.status(500).json({ message: error.message });

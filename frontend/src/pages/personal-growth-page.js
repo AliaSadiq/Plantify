@@ -144,15 +144,6 @@ export default function PersonalGrowth() {
                                 <h1 className="font-semibold text-xmini">String of Pearls</h1>
                                 <p className="text-sm">Type: Succulent</p>
                             </div>
-                            <div className="max-w-fit flex">
-                                <StarIcon className="w-4 hover:text-blue-300"/>
-                                <StarIcon className="w-4 hover:text-blue-300"/>
-                                <StarIcon className="w-4 hover:text-blue-300"/>
-                                <StarIcon className="w-4 hover:text-blue-300"/>
-                                <StarIcon className="w-4 hover:text-blue-300"/>
-                                <StarIcon className="w-4 hover:text-blue-300"/>
-                                <StarIcon className="w-4 hover:text-blue-300"/>
-                            </div>
                         </li>
                     </ul>
                 </div>
