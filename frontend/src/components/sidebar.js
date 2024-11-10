@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import useCount from '../hooks/useCount';
 
-const Sidebar = () => {
+const Sidebar = ( ) => {
   const [isOpen, setIsOpen] = useState(false);
   const url = {
     socialGroupsOnWait: "http://localhost:5000/api/socialgroup/count-on-wait",
@@ -182,7 +182,7 @@ const Sidebar = () => {
             </svg>
             <p>Contact Us</p>
           </NavLink>
-          <NavLink to="/" className={({ isActive }) =>
+          <NavLink to="/logout-plantify-admin" className={({ isActive }) =>
             `flex flex-row items-center gap-2 p-4 rounded rounded-pl ${
               isActive ? 'bg-navygreen-200 bg-opacity-30' : 'hover:bg-navygreen-200 dark:hover:bg-opacity-30'
             }`
