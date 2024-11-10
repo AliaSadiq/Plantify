@@ -1,19 +1,12 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import EditGroupModal from "../modals/edit-group-modal";
 
 export default function SocialGroupTable({ socialGroups, setSocialGroups }) {
     // navigate object
     const navigate = useNavigate();
 
     const [selectedGroup, setSelectedGroup] = useState(null); // For editing modal
-    const [showModal, setShowModal] = useState(false); // Control modal visibility
-
-    const handleEdit = (socialGroup) => {
-        setSelectedGroup(socialGroup); // Set the selected group for editing
-        setShowModal(true); // Show the modal
-    };
 
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this group?")) {
@@ -41,7 +34,6 @@ export default function SocialGroupTable({ socialGroups, setSocialGroups }) {
                         <th>Group Name</th>
                         <th>CNIC</th>
                         <th>Face Image</th>
-                        <th>Edit</th>
                         <th className="rounded-tr-pl">Delete</th>
                     </tr>
                 </thead>
@@ -50,35 +42,18 @@ export default function SocialGroupTable({ socialGroups, setSocialGroups }) {
                         <tr 
                             key={socialGroup.id} 
                             className="border-b-[0.5px] dark:border-gray-400 border-gray-100 hover:bg-navygreen-100 hover:bg-opacity-50 hover:text-gray-100"
-                            onClick={() => handleNavigate(socialGroup._id)}
                         >
-                            <td className="px-4 py-2">
+                            <td className="px-4 py-2 cursor-pointer" onClick={() => handleNavigate(socialGroup._id)}>
                                 <img src={`assets/${socialGroup.image}`} alt="group image" className="w-14 h-14 object-cover rounded-full" />
                             </td>
-                            <td>
+                            <td className="cursor-pointer" onClick={() => handleNavigate(socialGroup._id)}>
                                 {socialGroup.name}
                             </td>
-                            <td>
+                            <td className="cursor-pointer" onClick={() => handleNavigate(socialGroup._id)}>
                                 {socialGroup.cnic}
                             </td>
-                            <td>
+                            <td className="cursor-pointer" onClick={() => handleNavigate(socialGroup._id)}>
                                 <img src={`assets/${socialGroup.faceImage}`} alt="group image" className="w-14 h-14 object-cover rounded-full" />
-                            </td>
-                            <td>
-                                <button 
-                                    onClick={() => handleEdit(socialGroup._id)} 
-                                    className="text-gray-100 dark:text-navygreen-100 hover:text-navygreen-300"
-                                >
-                                    <svg 
-                                        xmlns="http://www.w3.org/2000/svg" 
-                                        fill="none" viewBox="0 0 24 24" 
-                                        strokeWidth={1.5} 
-                                        stroke="currentColor" 
-                                        className="size-6"
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                                    </svg>
-                                </button>
                             </td>
                             <td>
                                 <button 
@@ -101,21 +76,6 @@ export default function SocialGroupTable({ socialGroups, setSocialGroups }) {
                     ))}
                 </tbody>
             </table>
-            {/* Edit Modal */}
-            {showModal && (
-                <EditGroupModal
-                    socialGroup={selectedGroup}
-                    onClose={() => setShowModal(false)}
-                    onUpdate={(updatedGroup) => {
-                        setSocialGroups((prevGroups) =>
-                            prevGroups.map((group) =>
-                                group._id === updatedGroup._id ? updatedGroup : group
-                            )
-                        );
-                        setShowModal(false);
-                    }}
-                />
-            )}
         </div>
     );
 }

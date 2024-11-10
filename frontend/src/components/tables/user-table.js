@@ -37,7 +37,6 @@ export default function UserTable({ users }) {
                         <th className="p-4 rounded-tl-pl">Avatar</th>
                         <th>Username</th>
                         <th>Email</th>
-                        <th>Edit</th>
                         <th className="rounded-tr-pl">Delete</th>
                     </tr>
                 </thead>
@@ -46,25 +45,24 @@ export default function UserTable({ users }) {
                         <tr 
                             key={user._id} 
                             className="border-b-[0.5px] dark:border-gray-400 border-gray-100 hover:bg-navygreen-100 hover:bg-opacity-50 hover:text-gray-100"
-                            onClick={() => handleOpenModal(user)}
                         >
-                            <td className="px-4 py-2">
+                            <td 
+                                onClick={() => handleOpenModal(user)}
+                                className="px-4 py-2 cursor-pointer"
+                            >
                                 <img src={`assets/avatars/${user.avatar}`} alt="group image" className="w-14 h-14 object-cover rounded-full" />
                             </td>
-                            <td>{user.username}</td>
-                            <td>{user.email}</td>
-                            <td>
-                                <button className="text-gray-100 dark:text-navygreen-100 hover:text-navygreen-300">
-                                    <svg 
-                                        xmlns="http://www.w3.org/2000/svg" 
-                                        fill="none" viewBox="0 0 24 24" 
-                                        strokeWidth={1.5} 
-                                        stroke="currentColor" 
-                                        className="size-6"
-                                    >
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                                    </svg>
-                                </button>
+                            <td 
+                                className="cursor-pointer"
+                                onClick={() => handleOpenModal(user)}
+                            >
+                                {user.username}
+                            </td>
+                            <td 
+                                className="cursor-pointer"
+                                onClick={() => handleOpenModal(user)}
+                            >
+                                {user.email}
                             </td>
                             <td>
                                 <button 

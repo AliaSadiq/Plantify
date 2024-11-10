@@ -86,7 +86,7 @@ const Signup = () => {
 
     return (
         <div className="min-h-screen bg-navygreen-100 dark:bg-forest-200 flex items-center dark:text-white dark:text-opacity-60 justify-center">
-            <div className="ml-[245px] dark:bg-forest-100 rounded-pl p-8 max-h-fit w-[450px]">
+            <div className="lg:ml-[245px] dark:bg-forest-100 rounded-pl p-8 max-h-fit w-[450px]">
                 <h1 className="text-center text-md">Admin Signup</h1>
 
                 <Formik

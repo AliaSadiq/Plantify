@@ -48,6 +48,7 @@ module.exports = {
         yolk: "#FEC467",
         pinky: "#DEADBB",
         darkbrown: '#2C0000',
+        danger: "#e45c5d",
       },
       spacing: {},
       fontFamily: {

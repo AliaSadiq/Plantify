@@ -20,7 +20,7 @@ export default function SocialGroupverificationPage () {
     }, []);
 
     return(
-        <div className='min-h-screen ml-[245px] p-4'> 
+        <div className='min-h-screen lg:ml-[245px] p-4'> 
             <div className='min-h-screen p-8 rounded-pl bg-neutral'>
                 <h1 className='mb-6 text-lg font-semibold'>Social Groups to be Verified</h1>
                 <VerificationTable socialGroups={socialGroups}/>

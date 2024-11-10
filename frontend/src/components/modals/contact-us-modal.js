@@ -4,7 +4,7 @@ import Button from "../button";
 export default function ContactModal({ message, onClose }) {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 font-josefin-sans">
-            <div className="relative rounded-pl bg-neutral p-8 rounded shadow-lg w-[600px] max-h-[700px] overflow-y-auto">
+            <div className="relative rounded-pl bg-neutral p-8 shadow-lg w-full max-w-[600px] max-h-[700px] overflow-y-auto md:p-4">
                 <button 
                     onClick={onClose}
                     className="absolute right-4 top-4 p-2 rounded-md hover:bg-navygreen-100"
@@ -36,7 +36,6 @@ export default function ContactModal({ message, onClose }) {
                     />
                     <Button text="Reply" className="absolute bottom-4 right-2 py-2"/>
                 </div>
-                
             </div>
         </div>
     );

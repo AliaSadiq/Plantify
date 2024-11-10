@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import ContactModal from "../modals/contact-us-modal";
+import formatDate from "../../functions/format-date";
 
 export default function ContactUsTable({ messages }) {
 
@@ -25,15 +26,6 @@ export default function ContactUsTable({ messages }) {
             return messageText;
         }
         return words.slice(0, 3).join(" ") + "...";
-    };
-
-    // Function to format date as dd-mm-yyyy
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() is zero-based
-        const year = date.getFullYear();
-        return `${day}-${month}-${year}`;
     };
 
     return (
