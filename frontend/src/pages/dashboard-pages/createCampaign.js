@@ -88,7 +88,7 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
         setFileState(file.name); // To display the file name in the UI, if needed
         setFormData(prevState => ({
             ...prevState,
-            [fieldName]: file // Store the actual file object in the form data
+            [fieldName]: file.name // Store the actual file object in the form data
         }));
     } else {
         alert("Please select a valid image file.");
@@ -445,7 +445,12 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
                 <input
                   type="file"
                   id="image"
-                  onChange={handleImageChange}
+                  onChange={(e) =>
+                    handleFileInputChange(
+                      e,
+                      setImageFileName,
+                      "image"
+                    )}
                   className="bg-inherit pl-2 w-60 outline-none border-none"
                   accept="image/*"
                   required
