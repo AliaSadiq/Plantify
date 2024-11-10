@@ -73,50 +73,6 @@ const deleteUser = async (req, res) => {
   }
 };
 
-// const deleteUser = async (req, res) => {
-//   try {
-//     const userId = req.params.id;
-
-//     // Find the user by ID
-//     const user = await User.findById(userId);
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-
-//     // Check if the user is a social user
-//     if (user.isSocial) {
-//       // Find and delete the corresponding social group
-//       const socialGroup = await SocialGroup.findOne({ user: user._id });
-//       if (socialGroup) {
-//         await socialGroup.remove();
-//       }
-//     }
-
-//     // Delete the user
-//     await user.remove();
-
-//     res.status(200).json({ message: "User and corresponding social group deleted successfully" });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
-// const deleteUser = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-
-//     const user = await User.findByIdAndDelete(id);
-
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-
-//     res.status(200).json({ message: "User deleted successfully" });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
 const loginUser = async (req, res) => {
   try {
       const { email, password } = req.body;

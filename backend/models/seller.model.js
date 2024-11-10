@@ -17,10 +17,6 @@ const SellerSchema = mongoose.Schema(
         type: String,
         required: [true, "Please enter your store's name"],
     },
-    storeLocation: {
-        type: String,
-        required: [true, "Please enter your store's name"],
-    },
     businessCertificate: {
         type: String,
         required: true,
