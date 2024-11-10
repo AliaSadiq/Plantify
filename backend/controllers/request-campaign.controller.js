@@ -11,12 +11,33 @@ const getRequests = async (req, res) => {
 
 const addRequest = async (req, res) => {
   try {
-    const request = await Request.create(req.body);
-    res.status(200).json(request);
+    // Ensure all fields are present
+    const { socialGroup, name, location, contactNumber, issue, attachedImage } = req.body;
+
+    if (!socialGroup || !name || !location || !contactNumber || !issue || !attachedImage) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
+
+    // Log the incoming data for debugging
+    console.log('Received Request Body:', req.body);
+
+    // Create the request in the database (you can adjust this based on your schema)
+    const request = await Request.create({
+      socialGroup,
+      name,
+      location,
+      contactNumber,
+      issue,
+      attachedImage, // Filename, not the actual file
+    });
+
+    res.status(200).json(request);  // Respond with the created request
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error('Error creating request:', error.message);
+    res.status(500).json({ message: 'Internal Server Error', error: error.message });
   }
 };
+
 
 const getRequest = async (req, res) => {
   try {
