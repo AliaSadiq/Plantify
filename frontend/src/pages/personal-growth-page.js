@@ -1,60 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "../components/calendar";
 import UserProfile from "../components/user-profile";
-import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
 import MyPlantModal from "../popups/add-myplant-modal";
 import AddGoalModal from "../popups/add-goal-modal";
 import DonationsChart from "../components/donations-chart";
 import useFetchUserLocalStorage from "../hooks/useFetchUserLocalStorage";
-
-ChartJS.register(
-    LineElement,
-    CategoryScale,
-    LinearScale,
-    PointElement
-)
+import useFetch from "../hooks/useFetch";
 
 export default function PersonalGrowth() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isGoalModalOpen, setIsGoalModalOpen] = useState(false);
     const user = useFetchUserLocalStorage();
-
-    const data = {
-        labels: ["May 12", "", "May 13", "", "May 14", "", "May 15", "", "May 16", ""],
-        datasets: [{
-            data: [8, 9, 7.8, 7.9, 6, 7, 8, 6, 5, 7.8, 5, 8, 6]
-        }],
-        backgroundColor: 'transparent',
-        borderColor: '#f26c6d',
-        pointBorderColor: 'transparent',
-        pointBorderWidth: 4,
-        tension: 0.4
-    };
-
-    const options = {
-        plugins: {
-            legend: false
-        },
-        scales: {
-            x: {
-                grid: {
-                    display: false
-                }
-            },
-            y: {
-                min: 2,
-                max: 10,
-                ticks: {
-                    stepSize: 2,
-                    callback: (value) => value + 'K'
-                },
-                grid: {
-                    borderDash: [10]
-                }
-            }
-        }
-    };
+    const url = `http://localhost:5000/api/my-plants/user/${user?._id}`;
+    const {data: plants, loading, error} = useFetch(url);
 
     //add myplant popup
     const handleOpenModal = () => {
@@ -106,14 +64,20 @@ export default function PersonalGrowth() {
                             </svg>
                         </button>
                     </div>
-                    <ul className="flex flex-col gap-4 overflow-y-auto max-h-[260px]">
-                        <li className="flex gap-2 items-center p-2 rounded-pl border border-navygreen-100 shadow-sm bg-navygreen-50 transition-colors duration-200">
-                            <img src="/assets/products/plant-3.jpeg" alt="plant img" className="w-20 h-20 object-cover rounded-pl"/> 
-                            <div className="max-w-fit flex flex-col p-2">
-                                <h1 className="font-semibold text-xmini">String of Pearls</h1>
-                                <p className="text-sm">Type: Succulent</p>
-                            </div>
-                        </li>
+                    <ul className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
+                        {plants.length > 0 ? (
+                            plants.map((plant, index) => (
+                                <li key={index} className="flex gap-2 items-center p-2 rounded-pl border border-navygreen-100 shadow-sm bg-navygreen-50 transition-colors duration-200">
+                                    <img src="/assets/products/plant-3.jpeg" alt="plant img" className="w-20 h-20 object-cover rounded-pl"/> 
+                                    <div className="max-w-fit flex flex-col p-2">
+                                        <h1 className="font-semibold text-xmini">{plant.name}</h1>
+                                        <p className="text-sm">Type: {plant.type}</p>
+                                    </div>
+                                </li>
+                            ))
+                        ) : (
+                            <p className="text-center">No plants yet. Click on the plus icon to add some.</p>
+                        )}
                     </ul>
                 </div>
 

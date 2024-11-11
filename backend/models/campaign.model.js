@@ -69,17 +69,17 @@ const CampaignSchema = Schema(
     },
     volunteers: [
       {
-          user: {
-              type: Schema.Types.ObjectId,
-              ref: 'User',
-              required: true
-          },
-          contact: {
-              type: String,
-              required: false // Set to false to make it optional
-          }
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
+        contact: {
+            type: String,
+            required: false // Set to false to make it optional
+        }
       }
-  ],  
+    ],  
     trees: [
       {
         name: { type: String, required: true },
