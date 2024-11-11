@@ -7,7 +7,6 @@ import CampaignPage from './pages/campaign-page';
 import HomePage from './pages/personal-growth-page';
 import CampaignDetailsPage from './pages/campaign-details-page';
 import PlantDiaryPage from './pages/plant-diary-page';
-import Shop from './pages/shop';
 import ProductDetailsPage from './pages/product-detail-page';
 import Cart from './pages/cart.page';
 import Shop from './pages/shop/landing';

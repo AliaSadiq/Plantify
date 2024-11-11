@@ -1,5 +1,6 @@
 import useUser from "../hooks/useFetchUserLocalStorage";
-import useDonationsByCampaign from "../hooks/useDonationsByCampaign";
+// import useDonationsByCampaign from "../hooks/useDonationsByCampaign";
+import useFetch from "../hooks/useFetch";
 import useModal from "../hooks/useModal";
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
@@ -13,15 +14,16 @@ import Tabs from "../components/tabs";
 import { CarouselDefault } from "../carousels/trees-to-be-planted-carousel";
 import ProgressBar from "../components/progress-bar";
 import CampaignMap from "../components/campaign-map";
+import DonationBoard from "../components/donations-board";
 
 export default function CampaignDetailsPage() {
     const { id } = useParams();
     const user = useUser();
     const [campaign, setCampaign] = useState(null);
-    // const [isModalOpen, setIsModalOpen] = useState(false);
     const { openModal, closeModal, isModalOpen } = useModal();
     const [comments, setComments] = useState([]);
-    const { donations, loading, error } = useDonationsByCampaign(id);
+    const url = `http://localhost:5000/api/donations/campaign/${id}`;
+    const {data: donations, loading, error} = useFetch(url);
     const [newComment, setNewComment] = useState("");
     const [activeStage, setActiveStage] = useState(0); // State for managing active stage
 
@@ -109,15 +111,6 @@ export default function CampaignDetailsPage() {
         });
     };
 
-    // const handleReport = () => {
-    //     const shareUrl = `${window.location.origin}/campaign-details/${id}`;
-    //     navigator.clipboard.writeText(shareUrl).then(() => {
-    //         alert("Link copied to clipboard!");
-    //     }).catch((err) => {
-    //         console.error("Failed to copy the link: ", err);
-    //     });
-    // };
-
     const handleFollowClick = async () => {
         if (!user || !user._id) {
           return alert("You need to be logged in to follow this campaign.");
@@ -144,7 +137,7 @@ export default function CampaignDetailsPage() {
     return (
         <div className="min-h-screen bg-white"> 
             <div className="flex flex-col items-center justify-center pt-40">
-                <h1 className="font-bold text-2xl">{campaign.name}</h1>
+                <h1 className="font-bold text-xl lg:text-2xl">{campaign.name}</h1>
                 <p className="font-semibold text-mini mb-10 flex items-center justify-center gap-2">
                     a campaign by
                     <div className="flex items-center bg-navygreen-100 hover:bg-navygreen-200 p-2 rounded-[20px] gap-2 cursor-pointer">
@@ -202,9 +195,9 @@ export default function CampaignDetailsPage() {
 
 
                         <img className="w-full h-[500px] object-cover rounded-[20px]" src={`/assets/${campaign.image}`} alt="campaign image"/>
-                        <div className="absolute left-4 bottom-4 w-[40%] p-4 bg-white rounded-[20px]">
+                        <div className="absolute left-4 bottom-4 w-54% lg:w-[40%] p-4 bg-white rounded-[20px]">
                             <h1 className="font-semibold text-md">Campaign Details</h1>
-                            <div className="flex gap-2 mt-2">
+                            <div className="flex flex-col lg:flex-row gap-2 mt-2">
                                 <div className="flex items-center mb-2">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -339,6 +332,8 @@ export default function CampaignDetailsPage() {
                             />
                         </div>
                     </div>
+                    {/* donors div */}
+                    <DonationBoard donations={donations} />
                     {/* Comments Div */}
                     <div className="bg-inherit w-full p-2 border-neutral border-2 rounded-[20px] mt-4">
                         <h2 className="font-semibold text-md text-center py-2">Comments</h2>
@@ -388,41 +383,13 @@ export default function CampaignDetailsPage() {
                             </button>
                         </div>
                     </div>
-                    {/* donors div */}
-                    <div className="bg-navygreen-100 w-full p-2 rounded-[20px] mt-4">
-                        <h2 className="font-semibold text-md text-center py-2">Donors</h2>
-                        <ul className="flex flex-col gap-y-2 max-h-48 overflow-y-auto ">
-                            {/* Display the donations */}
-                            {donations.length > 0 ? (
-                                donations.map((donation, index) => (
-                                <div
-                                    key={index}
-                                    className="flex justify-between items-center border-2 p-2 border-neutral rounded-pl bg-opacity-40"
-                                >
-                                    <div className="flex items-center justify-start rounded-pl">
-                                    {/* Donor's avatar and name */}
-                                    <img
-                                        src={`/assets/avatars/${donation.avatar}`} // Use a default image if donor doesn't have an avatar
-                                        className="w-8 rounded-full"
-                                        alt="user avatar"
-                                    />
-                                    <p className="mx-2">{donation.username} donated</p>
-                                    </div>
-                                    <img className="w-6 h-6" src="/assets/leaves.png" alt="leaves" />
-                                </div>
-                                ))
-                            ) : (
-                                <p className="text-center">No donations yet.</p>
-                            )}
-                        </ul>                        
-                    </div>
                 </div>
             </div>
             <VolunteeringModal 
                 showModal={isModalOpen('volunteer')} 
                 closeModal={() => closeModal('volunteer')} 
                 campaignId={campaign._id} 
-                userId={user._id} 
+                userId={user?._id} 
             />
 
             <ReportModal 
@@ -435,7 +402,7 @@ export default function CampaignDetailsPage() {
                 showModal={isModalOpen('donation')} 
                 closeModal={() => closeModal('donation')} 
                 campaignId={campaign._id} 
-                userId={user._id}
+                userId={user?._id}
                 updateCampaign={updateCampaign} 
             />
         </div>

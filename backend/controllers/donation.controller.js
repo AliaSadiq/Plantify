@@ -50,6 +50,23 @@ const createDonation = async (req, res) => {
     }
 };
 
+// Get all donations by a specific user with the 'user' populated
+const getAllDonationsByUser = async (req, res) => {
+    try {
+        const userId = req.params.userId; // Get the user ID from request parameters
+
+        // Find all donations for the specified user and populate user details
+        const donations = await Donation.find({ user: userId }).populate('user').populate('campaign');
+
+        if (!donations.length) {
+            return res.status(404).json({ message: 'No donations found for this user.' });
+        }
+
+        res.status(200).json(donations); // Return all donations for the user
+    } catch (error) {
+        res.status(500).json({ message: 'Server Error', error: error.message }); // Handle server errors
+    }
+};
 
 // Get all donations
 const getAllDonations = async (req, res) => {
@@ -60,22 +77,6 @@ const getAllDonations = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-
-// Get all donations by campaign id
-// const getAllDonationsByCampaign = async (req, res) => {
-//     try {
-//         const campaignId = req.params.id; // Get the campaign ID from request parameters
-//         const donations = await Donation.find({ campaign: campaignId }).populate('user').populate('campaign'); // Fetch donations and populate user details
-
-//         if (!donations.length) {
-//             return res.status(404).json({ message: 'No donations found for this campaign.' });
-//         }
-
-//         res.status(200).json(donations); // Return the found donations
-//     } catch (error) {
-//         res.status(500).json({ message: 'Server Error', error: error.message }); // Handle server errors
-//     }
-// };
 
 const getAllDonationsByCampaign = async (req, res) => {
     try {
@@ -172,5 +173,6 @@ module.exports = {
     getAllDonations,
     createDonation,
     getLeaderboard,
-    getAllDonationsByCampaign   
+    getAllDonationsByCampaign,
+    getAllDonationsByUser,
 };

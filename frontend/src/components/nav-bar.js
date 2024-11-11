@@ -43,11 +43,6 @@ const NavBar = () => {
         }
     }, [user]);
 
-    const listItemStyle = {
-        transition: 'color 1s ease-in-out',
-        color: isScrolled ? '#ffffff' : '#222'
-    };
-
     //for the popup
     const [showModal, setShowModal] = useState(false);
 
