@@ -32,6 +32,7 @@ const AppContent = () => {
   const location = useLocation();
   const isDashboardRoute = location.pathname.startsWith("/social-dashboard");
   const isAuthRoute = location.pathname.startsWith("/login") || location.pathname.startsWith("/social-signup") || location.pathname.startsWith("/seller-signup");
+  const isPlantifyNetworkRoute = location.pathname.includes('/plantify-network');
 
   return (
     <>
@@ -49,11 +50,13 @@ const AppContent = () => {
         <Route path="soils" element={<Soils />} />
         <Route path="tools" element={<Tools />} />
         <Route path="logout" element={<Logout />} />
-        {/* <Route path="plantify-network" element={<PlantifyNetwork />} /> */}
         <Route path="contact-us" element={<ContactUsPage />} />
         <Route path="about-us" element={<AboutUsPage />} />
-  
         <Route path="settings" element={<SettingsPage />} />
+        <Route path="auth-check" element={<AuthCheck />} />
+        <Route path="verification-check" element={<VerificationCheck />} />
+        <Route path="/plantify-network/*" element={<PlantifyNetwork />} />
+        
         <Route path='auth-check' element={<AuthCheck />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} />
         <Route path="Cart" element={<Cart />}/>
@@ -67,7 +70,7 @@ const AppContent = () => {
         {/* Dashboard routes */}
         {isDashboardRoute && <Route path="social-dashboard/:id/*" element={<DashboardLayout />} />}
       </Routes>
-      {!isDashboardRoute && !isAuthRoute && <Footer />}
+      {!isDashboardRoute && !isAuthRoute && !isPlantifyNetworkRoute && <Footer />}
     </>
   );
 };

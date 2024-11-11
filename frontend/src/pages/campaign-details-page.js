@@ -13,6 +13,7 @@ import DonationModal from "../popups/donation-modal";
 import Tabs from "../components/tabs";
 import { CarouselDefault } from "../carousels/trees-to-be-planted-carousel";
 import ProgressBar from "../components/progress-bar";
+// import CampaignMap from "../components/campaign-map";
 import CampaignMap from "../components/campaign-map";
 import DonationBoard from "../components/donations-board";
 
@@ -26,7 +27,7 @@ export default function CampaignDetailsPage() {
     const {data: donations, loading, error} = useFetch(url);
     const [newComment, setNewComment] = useState("");
     const [activeStage, setActiveStage] = useState(0); // State for managing active stage
-
+    const userId = user ? user._id : null;
     //for campaign followers
     const [isFollowing, setIsFollowing] = useState(false);
 
@@ -67,19 +68,38 @@ export default function CampaignDetailsPage() {
     //fetching the campaign and the campaign commments
     useEffect(() => {
         const fetchCampaignDetails = async () => {
-            try {
-                const campaignResponse = await axios.get(`http://localhost:5000/api/campaigns/${id}`);
-                setCampaign(campaignResponse.data);
+          try {
+            const campaignResponse = await axios.get(`http://localhost:5000/api/campaigns/${id}`);
+            setCampaign(campaignResponse.data);
     
-                const commentsResponse = await axios.get(`http://localhost:5000/api/campaign-comment/campaign/${id}`);
-                setComments(commentsResponse.data);
-            } catch (error) {
-                console.error("Error fetching campaign details or comments:", error);
-            }
+            // Check if the user is following this campaign
+            const isUserFollowing = campaignResponse.data.followers?.includes(userId);
+            setIsFollowing(isUserFollowing);
+    
+            const commentsResponse = await axios.get(`http://localhost:5000/api/campaign-comment/campaign/${id}`);
+            setComments(commentsResponse.data);
+          } catch (error) {
+            console.error("Error fetching campaign details or comments:", error);
+          }
         };
     
         fetchCampaignDetails();
-    }, [id]);
+      }, [id, userId]);
+    // useEffect(() => {
+    //     const fetchCampaignDetails = async () => {
+    //         try {
+    //             const campaignResponse = await axios.get(`http://localhost:5000/api/campaigns/${id}`);
+    //             setCampaign(campaignResponse.data);
+    
+    //             const commentsResponse = await axios.get(`http://localhost:5000/api/campaign-comment/campaign/${id}`);
+    //             setComments(commentsResponse.data);
+    //         } catch (error) {
+    //             console.error("Error fetching campaign details or comments:", error);
+    //         }
+    //     };
+    
+    //     fetchCampaignDetails();
+    // }, [id]);
 
     const updateCampaign = (updatedCampaign) => {
         setCampaign(updatedCampaign); 
@@ -112,22 +132,20 @@ export default function CampaignDetailsPage() {
     };
 
     const handleFollowClick = async () => {
-        if (!user || !user._id) {
-          return alert("You need to be logged in to follow this campaign.");
+        if (!userId) {
+          alert("You need to be logged in to follow this campaign.");
+          return;
         }
     
         try {
-          const response = await axios.post(`http://localhost:5000/api/campaigns/${id}/follow`, {
-            userId: user._id
-          });
+          const response = await axios.post(`http://localhost:5000/api/campaigns/${id}/follow`, { userId });
           setIsFollowing((prev) => !prev); // Toggle follow/unfollow state
-          alert(response.data.message); // Show follow/unfollow success message
+          alert(response.data.message);
         } catch (error) {
           console.error("Error following/unfollowing the campaign:", error);
           alert("Something went wrong. Please try again.");
         }
-    };
-
+      };
     if (!campaign) {
         return <div>Loading...</div>; // Add a loading state while campaign data is being fetched
     }
@@ -245,9 +263,9 @@ export default function CampaignDetailsPage() {
                                 alt="Map"
                             /> */}
                             {/* CampaignMap component */}
-                            <div className="w-full h-[200px] rounded-[20px] overflow-hidden">
+                            {/* <div className="w-full h-[200px] rounded-[20px] overflow-hidden">
                                 <CampaignMap />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                      <div className="mt-4 p-2 rounded-pl border border-2 border-neutral">
@@ -332,8 +350,16 @@ export default function CampaignDetailsPage() {
                             />
                         </div>
                     </div>
-                    {/* donors div */}
-                    <DonationBoard donations={donations} />
+
+
+
+
+
+
+
+
+
+
                     {/* Comments Div */}
                     <div className="bg-inherit w-full p-2 border-neutral border-2 rounded-[20px] mt-4">
                         <h2 className="font-semibold text-md text-center py-2">Comments</h2>

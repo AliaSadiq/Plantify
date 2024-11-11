@@ -217,13 +217,17 @@ const followCampaign = async (req, res) => {
 
     if (isFollowing) {
       // If already following, remove the user from followers (unfollow)
-      campaign.followers.pull(userId);
-      await campaign.save();
+      await Campaign.updateOne(
+        { _id: campaignId },
+        { $pull: { followers: userId } }
+      );
       return res.status(200).json({ message: "You have unfollowed the campaign.", following: false });
     } else {
       // If not following, add the user to followers
-      campaign.followers.push(userId);
-      await campaign.save();
+      await Campaign.updateOne(
+        { _id: campaignId },
+        { $push: { followers: userId } }
+      );
       return res.status(200).json({ message: "You are now following the campaign.", following: true });
     }
   } catch (error) {
@@ -231,6 +235,7 @@ const followCampaign = async (req, res) => {
     res.status(500).json({ message: "Something went wrong. Please try again later." });
   }
 };
+
 
 // const addVolunteer = async (req, res) => {
 //   try {
@@ -257,6 +262,48 @@ const followCampaign = async (req, res) => {
 //       return res.status(500).json({ message: 'Error adding volunteer', error });
 //   }
 // };
+const addVolunteer = async (req, res) => {
+  try {
+      const { id } = req.params;
+      const { user, contact } = req.body;
+
+      // Find the campaign
+      const campaign = await Campaign.findById(id);
+      if (!campaign) {
+          return res.status(404).json({ message: 'Campaign not found' });
+      }
+
+      // Check if the volunteer limit is reached
+      if (campaign.volunteers.length >= 10) {
+          return res.status(400).json({ message: 'Volunteer limit reached' });
+      }
+
+      // Check if the user has already volunteered
+      const isAlreadyVolunteered = campaign.volunteers.some(volunteer => 
+          volunteer.user && volunteer.user.toString() === user.toString()
+      );
+
+      if (isAlreadyVolunteered) {
+          return res.status(400).json({ message: 'You have already volunteered for this campaign' });
+      }
+
+      // Add the volunteer and increment the total volunteer count
+      await Campaign.updateOne(
+          { _id: id },
+          { 
+              $push: { volunteers: { user, contact } },
+              $inc: { total_volunteers_count: 1 } // Increment volunteer count
+          }
+      );
+
+      return res.status(200).json({ message: 'Volunteer added successfully' });
+  } catch (error) {
+      console.error("Error in addVolunteer:", error);
+      return res.status(500).json({ message: 'Error adding volunteer', error });
+  }
+};
+
+
 
 const updateCampaign = async (req, res) => {
   try {
@@ -313,6 +360,7 @@ module.exports = {
     getRecentCampaigns,
     searchCampaigns,
     followCampaign,
+    addVolunteer,
     updateStage,
     getCampaignsByMonth,
     updateCampaign,

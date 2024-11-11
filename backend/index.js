@@ -17,6 +17,7 @@ const questionRoutes = require("./routes/social-question.route.js");
 // const myPlantRoute = require("./routes/my-plant.route.js")
 const teamRoute = require("./routes/team.route.js");
 const requestCampaignRoute = require("./routes/request-campaign.route.js");
+const socialMediaProfileRoute = require("./routes/social-media-profile.router.js");
 const app = express();
 const rateLimit = require('express-rate-limit');
 //rate-limiting (checking)
@@ -50,6 +51,7 @@ app.use("/api/socialgroup-review", reviewRoutes);
 app.use("/api/socialgroup-question", questionRoutes);
 app.use("/api/admin", adminRoute);
 // app.use("/api/my-plants", myPlantRoute);
+app.use("/api/social-media", socialMediaProfileRoute);
 // app.use("/api/socialteams", teamroute);
 //connection
 mongoose

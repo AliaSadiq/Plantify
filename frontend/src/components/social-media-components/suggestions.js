@@ -24,14 +24,7 @@ const SuggestionsBox = () => {
         <button className="text-gray-600 hover:text-green-600">
           <BellIcon className="w-6 h-6" />
         </button>
-        {/* <Button
-          text="+"
-          type="submit"
-          onClick={handleOpenCreatePost}
-   // Specify the background color
-          className="shadow-md  text-xl text-black  rounded-full flex items-center justify-center w-10 h-10"// Add text color class or style
-         /> */}
-        {/* Create Post Button with Plus Icon */}
+     
         <button  
           className="shadow-md bg-black text-white p-2 rounded-full flex items-center justify-center w-10 h-10"
           onClick={handleOpenCreatePost}
