@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require('cors');
-// require('dotenv').config();
+require('dotenv').config();
 const socialgroupRouter = require("./routes/socialgroup.route.js");
 const campaignRoute = require("./routes/campaign.route.js");
 const userRoute = require("./routes/user.route.js");
@@ -14,6 +14,7 @@ const sellerRoute = require("./routes/seller.route.js");
 const donationRoutes = require('./routes/donation.route.js')
 const reviewRoutes = require("./routes/social-review.route.js");
 const questionRoutes = require("./routes/social-question.route.js");
+// const myPlantRoute = require("./routes/my-plant.route.js")
 const teamRoute = require("./routes/team.route.js");
 const requestCampaignRoute = require("./routes/request-campaign.route.js");
 const socialMediaProfileRoute = require("./routes/social-media-profile.router.js");
@@ -30,7 +31,7 @@ const limiter = rateLimit({
 app.use('/api/user', limiter);
 
 // middleware
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cors());
 
@@ -49,11 +50,12 @@ app.use("/api/sellers",sellerRoute);
 app.use("/api/socialgroup-review", reviewRoutes);
 app.use("/api/socialgroup-question", questionRoutes);
 app.use("/api/admin", adminRoute);
+// app.use("/api/my-plants", myPlantRoute);
 app.use("/api/social-media", socialMediaProfileRoute);
 // app.use("/api/socialteams", teamroute);
 //connection
 mongoose
-  .connect('mongodb://farwa:006OyU1ZCZhowFSt@ac-o9umohz-shard-00-00.uhcz40u.mongodb.net:27017,ac-o9umohz-shard-00-01.uhcz40u.mongodb.net:27017,ac-o9umohz-shard-00-02.uhcz40u.mongodb.net:27017/Plantify?ssl=true&replicaSet=atlas-jvykwq-shard-0&authSource=admin&retryWrites=true&w=majority&appName=BackendDB')
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Connected to database!");
     app.listen(5000, () => {

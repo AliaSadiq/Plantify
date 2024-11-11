@@ -86,7 +86,13 @@ const CampaignSchema = Schema(
         price: { type: Number, required: true, min: 1 },
         image: { type: String, required: true }
       }
-    ]
+    ],
+    stage: 
+    { 
+      type: String, 
+      enum: ['Fundraising', 'Buying Plants', 'Plantation'], 
+      default: 'Fundraising'
+    }
   },
   {
     timestamps: true

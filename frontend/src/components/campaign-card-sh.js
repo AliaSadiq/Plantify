@@ -4,8 +4,12 @@ import { UserGroupIcon, HeartIcon } from "@heroicons/react/24/solid";
 import Button from "./button";
 import DonationModal from "../popups/donation-modal";
 import SignUpModal from "../popups/signup-modal";
+import useFetch from "../hooks/useFetch";
 
-const CampaignCardSh = ({ campaign}) => {
+const CampaignCardSh = ({ campaign }) => {
+
+  const url = `http://localhost:5000/api/donations/campaign/${campaign._id}`;
+  const {data: donations, loading, error} = useFetch(url);
 
   const navigate = useNavigate();
 
@@ -114,7 +118,7 @@ const CampaignCardSh = ({ campaign}) => {
         <div className="flex justify-between items-center">
           <div className="flex items-center text-gray-500">
             <UserGroupIcon className="h-4 w-4 mr-1" />
-            <p className="text-sm">{campaign.total_volunteers_count} Donations</p>
+            <p className="text-sm">{donations.length} Donations</p>
           </div>
         </div>
       </div>

@@ -146,6 +146,26 @@ const getCampaignCount = async (req, res) => {
   }
 };
 
+// Get campaigns count by month 
+const getCampaignsByMonth = async (req, res) => { 
+  try { 
+    const campaigns = await Campaign.aggregate([ 
+      { 
+        $group: { 
+          _id: { $month: "$createdAt" }, 
+          count: { $sum: 1 } 
+        } 
+      }, 
+      { 
+        $sort: { _id: 1 } 
+      } 
+    ]); 
+    res.status(200).json(campaigns); 
+  } catch (error) { 
+    res.status(500).json({ message: error.message }); 
+  } 
+};
+
 const getCampaignInsights = async (req, res) => {
   try {
     const { id } = req.params;
@@ -288,6 +308,49 @@ const addVolunteer = async (req, res) => {
 
 
 
+const updateCampaign = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedCampaign = await Campaign.findByIdAndUpdate(id, req.body);
+    if (!updatedCampaign) {
+      return res.status(404).json({ message: "Campaign not found" });
+    }
+    res.status(200).json(updatedCampaign);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const deleteCampaign = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedCampaign = await Campaign.findByIdAndDelete(id);
+    if (!deletedCampaign) {
+      return res.status(404).json({ message: "Campaign not found" });
+    }
+    res.status(200).json(deletedCampaign);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const updateStage = async (req, res) => {
+  try { 
+    const campaign = await Campaign.findById(req.params.id); 
+    if (!campaign) { 
+      return res.status(404).send('Campaign not found'); 
+    }
+
+    if (campaign.collected_donation >= campaign.target_donation) { 
+      campaign.stage = 'Buying Plants'; 
+    } 
+    await campaign.save(); 
+    res.send(campaign); 
+  } catch (error) { 
+    res.status(500).send(error.message);
+  }
+};
+
 
 module.exports = {
     getCampaign,
@@ -301,4 +364,9 @@ module.exports = {
     searchCampaigns,
     followCampaign,
     addVolunteer,
+    updateStage,
+    getCampaignsByMonth,
+    updateCampaign,
+    deleteCampaign,
+    // addVolunteer,
 };

@@ -7,7 +7,13 @@ import CampaignPage from './pages/campaign-page';
 import HomePage from './pages/personal-growth-page';
 import CampaignDetailsPage from './pages/campaign-details-page';
 import PlantDiaryPage from './pages/plant-diary-page';
-import Shop from './pages/shop';
+import ProductDetailsPage from './pages/product-detail-page';
+import Cart from './pages/cart.page';
+import Shop from './pages/shop/landing';
+import Plants from './pages/shop/plants';
+import Soils from './pages/shop/soils';
+import Tools from './pages/shop/tools';
+import StorePage from './pages/shop/store-page';
 import Logout from './pages/logout';
 import PlantifyNetwork from './pages/network';
 import ContactUsPage from './pages/contact-us-page';
@@ -40,6 +46,9 @@ const AppContent = () => {
         <Route path="plant-diary" element={<PlantDiaryPage />} />
         <Route path="plant-diary-detail" element={<PlantDiaryDetailPage />} />
         <Route path="shop" element={<Shop />} />
+        <Route path="plants" element={<Plants />} />
+        <Route path="soils" element={<Soils />} />
+        <Route path="tools" element={<Tools />} />
         <Route path="logout" element={<Logout />} />
         <Route path="contact-us" element={<ContactUsPage />} />
         <Route path="about-us" element={<AboutUsPage />} />
@@ -48,6 +57,13 @@ const AppContent = () => {
         <Route path="verification-check" element={<VerificationCheck />} />
         <Route path="/plantify-network/*" element={<PlantifyNetwork />} />
         
+        <Route path='auth-check' element={<AuthCheck />} />
+        <Route path="/products/:id" element={<ProductDetailsPage />} />
+        <Route path="Cart" element={<Cart />}/>
+        <Route path='verification-check' element={<VerificationCheck />} />
+        {/* <Route path="explore" element={<ExplorePage />} /> */}
+        <Route path="/plantify-network/*" element={<PlantifyNetwork />}  />
+        <Route path="store-page" element={<StorePage/>}/>
         {/* Auth routes */}
         {isAuthRoute && <Route path="/*" element={<AuthLayout />} />}
 

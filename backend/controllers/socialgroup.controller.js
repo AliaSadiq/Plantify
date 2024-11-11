@@ -134,6 +134,15 @@ const getSocialGroupsOnWait = async (req, res) => {
   }
 };
 
+const getSocialGroupsCountOnWait = async (req, res) => {
+  try {
+    const count = await SocialGroup.countDocuments({ status: 'on wait' });
+    res.status(200).json({ count });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const updateSocialGroup = async (req, res) => {
   try {
     const { id } = req.params;
@@ -236,5 +245,6 @@ module.exports = {
   getSocialGroupCount,
   followSocialGroup,
   getAllSocialGroups,
-  editSocialGroup
+  editSocialGroup,
+  getSocialGroupsCountOnWait,
 };
