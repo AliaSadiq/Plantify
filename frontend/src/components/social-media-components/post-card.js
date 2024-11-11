@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const PostCard = ({ image, likes, comments, author }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden relative max-w-lg mx-auto">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden relative max-w-lg mb-11 mx-auto">
       <img src={image} alt="Post" className="w-full h-96 object-cover" />
       
       <div className="p-4">
@@ -12,7 +12,7 @@ const PostCard = ({ image, likes, comments, author }) => {
           <div className="flex items-center">
             <img className="w-14 h-14 rounded-full" src={author.avatar} alt={author.name} />
             <Link 
-              to="/profile-socialmedia" 
+              to="/plantify-network/profile-socialmedia" 
               className="ml-2 text-gray-700 font-semibold text-base cursor-pointer"
             >
               {author.name}
