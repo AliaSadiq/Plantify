@@ -5,6 +5,8 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
 import MyPlantModal from "../popups/add-myplant-modal";
 import AddGoalModal from "../popups/add-goal-modal";
+import DonationsChart from "../components/donations-chart";
+import useFetchUserLocalStorage from "../hooks/useFetchUserLocalStorage";
 
 ChartJS.register(
     LineElement,
@@ -16,6 +18,7 @@ ChartJS.register(
 export default function PersonalGrowth() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isGoalModalOpen, setIsGoalModalOpen] = useState(false);
+    const user = useFetchUserLocalStorage();
 
     const data = {
         labels: ["May 12", "", "May 13", "", "May 14", "", "May 15", "", "May 16", ""],
@@ -116,7 +119,7 @@ export default function PersonalGrowth() {
 
                 {/* Line Chart */}
                 <div className="col-span-1 md:col-span-6 rounded-pl p-8 border-2 border-navygreen-100 w-full text-center place-self-center mb-4 md:mb-0">            
-                    <Line data={data} options={options}/>
+                    <DonationsChart userId={user?._id}/>{/* <Line data={data} options={options}/> */}
                 </div>
                 
                 {/* Goals List */}

@@ -113,8 +113,6 @@ const createCampaign = async (req, res) => {
   }
 };
 
-
-
 const socialgroupCampaigns = async (req, res) => {
   try {
     const { socialId } = req.params; // Correctly destructure the parameter from req.params
@@ -197,7 +195,6 @@ const getCampaignInsights = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
 
 const followCampaign = async (req, res) => {
   try {
