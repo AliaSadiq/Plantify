@@ -15,7 +15,6 @@ router.get("/insights/:id", getCampaignInsights);
 router.put("/:campaignId", updateCampaign);
 router.delete("/:campaignId", deleteCampaign);
 router.put("/:id", updateStage);
-
 router.post("/:id/follow",followCampaign);
 router.post('/:id/volunteers', addVolunteer);
 

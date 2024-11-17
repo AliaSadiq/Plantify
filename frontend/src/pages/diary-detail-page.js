@@ -9,7 +9,6 @@ const PlantDiaryDetailPage = () => {
         type: "Ficus lyrata",
         location: "Living Room",
         dateAdded: "2024-10-28",
-        lastWatered: "2024-10-25",
         growthStage: "Mature",
         mainImage: "https://via.placeholder.com/600x400", // Placeholder image
         additionalImages: [
@@ -17,12 +16,6 @@ const PlantDiaryDetailPage = () => {
             "https://via.placeholder.com/150",
             "https://via.placeholder.com/150"
         ],
-        notes: "This plant has been growing well with bright, indirect sunlight. Water every 10 days.",
-        careLog: [
-            { date: "2024-10-20", action: "Watered" },
-            { date: "2024-10-15", action: "Fertilized" },
-            { date: "2024-10-10", action: "Pruned" }
-        ]
     };
     return (
         <div className="container mx-auto px-6 pb-10 pt-28">

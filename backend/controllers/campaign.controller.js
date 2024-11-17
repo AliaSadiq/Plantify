@@ -66,37 +66,6 @@ const getRecentCampaigns = async (req, res) => {
   }
 };
 
-const searchCampaigns = async (req, res) => {
-  try {
-    const keyword = req.query.keyword ? {
-      title: {
-        $regex: req.query.keyword,
-        $options: 'i',
-      },
-    } : {};
-
-    const category = req.query.category ? { category: req.query.category } : {};
-    const location = req.query.location ? { location: req.query.location } : {};
-
-    const campaigns = await Campaign.find({
-      ...keyword,
-      ...category,
-      ...location,
-    });
-
-    res.status(200).json({
-      success: true,
-      results: campaigns.length,
-      data: campaigns,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Server Error',
-    });
-  }
-};
-
 const createCampaign = async (req, res) => {
   try {
     // Create the campaign with the request body
@@ -112,8 +81,6 @@ const createCampaign = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-
 
 const socialgroupCampaigns = async (req, res) => {
   try {
@@ -198,7 +165,6 @@ const getCampaignInsights = async (req, res) => {
   }
 };
 
-
 const followCampaign = async (req, res) => {
   try {
     const { userId } = req.body; // Extract userId from request body
@@ -239,32 +205,6 @@ const followCampaign = async (req, res) => {
   }
 };
 
-
-// const addVolunteer = async (req, res) => {
-//   try {
-//       const { id } = req.params;
-//       const { user, contact } = req.body;
-
-//       // Find the campaign
-//       const campaign = await Campaign.findById(id);
-//       if (!campaign) {
-//           return res.status(404).json({ message: 'Campaign not found' });
-//       }
-
-//       // Check if volunteer limit is reached
-//       if (campaign.volunteers.length >= campaign.total_volunteers_count) {
-//           return res.status(400).json({ message: 'Volunteer limit reached' });
-//       }
-
-//       // Add volunteer to the campaign
-//       campaign.volunteers.push({ user, contact });
-//       await campaign.save();
-
-//       return res.status(200).json({ message: 'Volunteer added successfully', campaign });
-//   } catch (error) {
-//       return res.status(500).json({ message: 'Error adding volunteer', error });
-//   }
-// };
 const addVolunteer = async (req, res) => {
   try {
       const { id } = req.params;
@@ -361,12 +301,10 @@ module.exports = {
     getCampaignInsights,
     getAllCampaigns,
     getRecentCampaigns,
-    searchCampaigns,
     followCampaign,
     addVolunteer,
     updateStage,
     getCampaignsByMonth,
     updateCampaign,
     deleteCampaign,
-    // addVolunteer,
 };

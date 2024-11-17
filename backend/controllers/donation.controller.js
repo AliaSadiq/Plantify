@@ -53,7 +53,7 @@ const createDonation = async (req, res) => {
 // Get all donations by a specific user with the 'user' populated
 const getAllDonationsByUser = async (req, res) => {
     try {
-        const userId = req.params.userId; // Get the user ID from request parameters
+        const userId = req.params.id; // Get the user ID from request parameters
 
         // Find all donations for the specified user and populate user details
         const donations = await Donation.find({ user: userId }).populate('user').populate('campaign');
