@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const SocialMediaSchema = new Schema({
+const SocialMediaSchema = mongoose.Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -36,4 +36,5 @@ const SocialMediaSchema = new Schema({
 }, { timestamps: true });
 
 const SocialMedia = mongoose.model("SocialMedia", SocialMediaSchema);
+
 module.exports = SocialMedia;
