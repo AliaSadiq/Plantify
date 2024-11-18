@@ -101,7 +101,7 @@ const Onboard = () => {
     },
     { 
       title: "Followers", 
-      value: "1,500",
+      value: socialGroup.followers.length,
       chartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [

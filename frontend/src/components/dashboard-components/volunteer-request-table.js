@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function VolunteerRequestTable() {
+export default function VolunteerRequestTable({ volunteers }) {
 
     return (
         <div className="rounded-pl bg-navygreen-100 overflow-x-auto shadow-md">
@@ -15,9 +15,9 @@ export default function VolunteerRequestTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {updatedUsers.map((user) => ( */}
+                    {volunteers.map((volunteer) => (
                         <tr 
-                            ///key={user._id} 
+                            key={volunteer._id} 
                             className="border-b-[0.5px] dark:border-gray-400 border-gray-100 hover:bg-navygreen-100 hover:bg-opacity-50 hover:text-gray-100"
                         >
                             <td 
@@ -42,7 +42,7 @@ export default function VolunteerRequestTable() {
                                 className="cursor-pointer"
                                 // onClick={() => handleOpenModal(user)}
                             >
-                                kjh
+                                {volunteer.contact}
                             </td>
                             <td>
                                 <button 
@@ -62,7 +62,7 @@ export default function VolunteerRequestTable() {
                                 </button>
                             </td>
                         </tr>
-                    {/* ))} */}
+                    ))}
                 </tbody>
             </table>
             

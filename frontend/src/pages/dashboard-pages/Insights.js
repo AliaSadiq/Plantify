@@ -57,9 +57,13 @@ export default function Insights () {
             <DonationBoard donations={donations}/>
           </div>
         </div>
-        <div className='mt-4 w-full border-2 border-gray-300 p-4 rounded-pl'>
-          <VolunteerRequestTable/>
-        </div>
+        {campaign?.volunteers && campaign.volunteers.length > 0 ? (
+          <div className='mt-4 w-full border-2 border-gray-300 p-4 rounded-pl'>
+            <VolunteerRequestTable volunteers={campaign?.volunteers}/>
+          </div>
+        ):(
+          <p>no volunteers</p>
+        )}
       </div>
     </div>
   );
