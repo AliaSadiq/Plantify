@@ -76,7 +76,7 @@ export default function UserProfile({ plantCount }) {
       <div className="flex flex-col md:flex-row gap-4">
         {/* Profile Picture */}
         <img
-          src={`/assets/${profile?.socialMedia.profileImg}`}
+          src={`/assets/avatars/${profile?.user.avatar}`}
           alt="profile picture"
           className="border-2 border-gray-100 w-28 h-28 rounded-full mx-auto md:mx-0"
         />

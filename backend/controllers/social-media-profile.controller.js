@@ -58,7 +58,7 @@ const getProfile = async (req, res) => {
 
     // Fetch user details including bio
     const user = await User.findById(userId)
-      .select('username email bio') // Now bio is retrieved from User
+      .select('username email bio avatar') // Now bio is retrieved from User
       .lean();
 
     if (!user) {
@@ -144,7 +144,7 @@ const editProfile = async (req, res) => {
     const userUpdate = {};
     if (username) userUpdate.username = username;
     if (bio) userUpdate.bio = bio;
-
+  
     const user = await User.findByIdAndUpdate(
       userId,
       { $set: userUpdate },
