@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { UserGroupIcon, HeartIcon } from "@heroicons/react/24/solid";
-import Button from "./button";
 import DonationModal from "../popups/donation-modal";
 import SignUpModal from "../popups/signup-modal";
 import useFetch from "../hooks/useFetch";
@@ -9,7 +8,7 @@ import useFetch from "../hooks/useFetch";
 const CampaignCardSh = ({ campaign }) => {
 
   const url = `http://localhost:5000/api/donations/campaign/${campaign._id}`;
-  const {data: donations, loading, error} = useFetch(url);
+  const {data: donations, loading, error, refetch} = useFetch(url);
 
   const navigate = useNavigate();
 
@@ -107,7 +106,7 @@ const CampaignCardSh = ({ campaign }) => {
         </div>
 
         {/* Progress Bar */}
-        <div className="w-full bg-gray-200 h-2 rounded-full mb-4">
+        <div className="w-full bg-gray-100 h-2 rounded-full mb-4">
           <div
             className="bg-navygreen-300 h-full rounded-full"
             style={{

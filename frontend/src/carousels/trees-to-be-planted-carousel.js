@@ -12,7 +12,7 @@ export function CarouselDefault({ trees = [] }) {
           <img
             src={`/assets/${tree.image}`}
             alt={`${tree.name} image`}
-            className="w-64 h-64 object-cover rounded-lg"
+            className="w-full h-64 object-cover rounded-lg"
           />
           <p className="text-center font-semibold">Name: {tree.name}</p>
           <p className="text-center">Price: Rs.{tree.price}</p>

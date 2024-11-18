@@ -2,8 +2,8 @@ import React from "react";
 
 export default function DonationBoard ({ donations }) {
     return (
-        <div className="bg-navygreen-100 w-full p-2 rounded-[20px] mt-4">
-            <h2 className="font-semibold text-md text-center py-2">Donors</h2>
+        <div className="bg-navygreen-100 w-full p-2 rounded-[20px]">
+            <h2 className="font-semibold text-md text-center py-2">Donation Board</h2>
             <ul className="flex flex-col gap-y-2 max-h-48 overflow-y-auto ">
                 {/* Display the donations */}
                 {donations.length > 0 ? (

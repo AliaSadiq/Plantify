@@ -28,7 +28,7 @@ const SellerSchema = mongoose.Schema(
     },
     businessAddress: {
         type: String,
-        // required: [true, "Please enter your store's address"],
+        required: [true, "Please enter your store's address"],
     },
     businessContact: {
         type: String,

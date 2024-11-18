@@ -23,7 +23,7 @@ export default function CampaignDetailsPage() {
     const { openModal, closeModal, isModalOpen } = useModal();
     const [comments, setComments] = useState([]);
     const url = `http://localhost:5000/api/donations/campaign/${id}`;
-    const {data: donations, loading, error} = useFetch(url);
+    const {data: donations, loading, error, refetch} = useFetch(url);
     const [newComment, setNewComment] = useState("");
     const [activeStage, setActiveStage] = useState(0); // State for managing active stage
 
@@ -314,7 +314,7 @@ export default function CampaignDetailsPage() {
                         </div>
                     </div>
                     {/* About Div */}
-                    <div className="bg-inherit w-full h-auto rounded-[20px] p-4 mt-4 border-neutral border-2">
+                    <div className="bg-inherit w-full h-auto rounded-[20px] p-4 mt-4 border-neutral border-2 mb-4">
                         <h1 className="font-bold text-md text-center mt-6">About the Campaign</h1>
                         <p className="mx-10 text-center mt-4 text-sm">
                             {campaign.description}

@@ -1,25 +1,25 @@
 const mongoose = require("mongoose");
 
-const WateringHistorySchema = new mongoose.Schema(
-  {
-    date: {
-        type: Date,
-        required: true,
-    },
-    watered: {
-        type: Boolean,
-        required: false,
-        default: false,
-    },
-    dayOfWeek: {
-        type: String, // "Monday", "Tuesday", etc.
-        required: false,
-    }
-  },
-  {
-    timestamps: true,
-  }
-);
+// const WateringHistorySchema = new mongoose.Schema(
+//   {
+//     date: {
+//         type: Date,
+//         required: false,
+//     },
+//     watered: {
+//         type: Boolean,
+//         required: false,
+//         default: false,
+//     },
+//     dayOfWeek: {
+//         type: String, // "Monday", "Tuesday", etc.
+//         required: false,
+//     }
+//   },
+//   {
+//     timestamps: true,
+//   }
+// );
 
 const MyPlantSchema = new mongoose.Schema(
   {
@@ -45,7 +45,7 @@ const MyPlantSchema = new mongoose.Schema(
         required: false,
         default: "my personal plant",
     },
-    waterHistory: [WateringHistorySchema],  // Using the new WateringHistorySchema
+    // waterHistory: [WateringHistorySchema],  // Using the new WateringHistorySchema
     plantationDate: {
         type: Date,
         required: true,
