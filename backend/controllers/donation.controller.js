@@ -1,7 +1,6 @@
 const Donation = require('../models/donation.model');
 const Campaign = require('../models/campaign.model'); // importing the campaign model to update campaigdonation amount
 const mongoose = require('mongoose');
-
 const createDonation = async (req, res) => {
     try {
         const { amount, user, campaign } = req.body;
@@ -12,16 +11,13 @@ const createDonation = async (req, res) => {
             return res.status(400).json({ message: "Missing required fields" });
         }
 
-        // Find the campaign
+        // Find the campaign to check its existence and calculate the allowable donation
         const campaignDoc = await Campaign.findById(campaign);
-
         if (!campaignDoc) {
             return res.status(404).json({ message: "Campaign not found" });
         }
 
-        // Calculate the allowable donation amount
         const remainingAmount = campaignDoc.target_donation - campaignDoc.collected_donation;
-
         if (amount > remainingAmount) {
             return res.status(400).json({ message: "Donation exceeds target amount" });
         }
@@ -30,25 +26,79 @@ const createDonation = async (req, res) => {
         const donation = new Donation({
             amount,
             user,
-            campaign
+            campaign,
         });
 
         // Save the new donation
         await donation.save();
 
-        // Update the campaign's collected donation amount
-        campaignDoc.collected_donation += amount;
-        await campaignDoc.save();
+        // Update the campaign's collected donation amount using $inc
+        const updatedCampaign = await Campaign.updateOne(
+            { _id: campaign }, // Find the campaign by its _id
+            { $inc: { collected_donation: amount } } // Increment collected_donation by the donation amount
+        );
+
+        if (updatedCampaign.modifiedCount === 0) {
+            return res.status(500).json({ message: "Failed to update campaign donation amount" });
+        }
 
         res.status(201).json({
             donation,
-            updatedCampaign: campaignDoc
+            message: "Donation created and campaign updated successfully",
         });
     } catch (error) {
         console.error("Error creating donation:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 };
+
+// const createDonation = async (req, res) => {
+//     try {
+//         const { amount, user, campaign } = req.body;
+
+//         // Check if all required fields are present
+//         if (!user || !campaign || !amount) {
+//             console.log('Missing required fields:', { user, campaign, amount });
+//             return res.status(400).json({ message: "Missing required fields" });
+//         }
+
+//         // Find the campaign
+//         const campaignDoc = await Campaign.findById(campaign);
+
+//         if (!campaignDoc) {
+//             return res.status(404).json({ message: "Campaign not found" });
+//         }
+
+//         // Calculate the allowable donation amount
+//         const remainingAmount = campaignDoc.target_donation - campaignDoc.collected_donation;
+
+//         if (amount > remainingAmount) {
+//             return res.status(400).json({ message: "Donation exceeds target amount" });
+//         }
+
+//         // Create a new donation
+//         const donation = new Donation({
+//             amount,
+//             user,
+//             campaign
+//         });
+
+//         // Save the new donation
+//         await donation.save();
+
+//         // Update the campaign's collected donation amount
+//         campaignDoc.collected_donation += amount;
+//         await campaignDoc.save();
+
+//         res.status(201).json({
+//             donation,
+//             updatedCampaign: campaignDoc
+//         });
+//     } catch (error) {
+//         console.error("Error creating donation:", error);
+//         res.status(500).json({ message: "Internal server error" });
+//     }
+// };
 
 // Get all donations by a specific user with the 'user' populated
 const getAllDonationsByUser = async (req, res) => {
