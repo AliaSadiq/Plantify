@@ -1,140 +1,101 @@
-// const MyPlant = require("../models/my-plant.model");
+const MyPlant = require("../models/my-plant.model");
 
-// // Get all plants for a user
-// const getAllPlants = async (req, res) => {
-//   try {
-//     const userId = req.user._id; // Assuming user ID is available in req.user
-//     const plants = await MyPlant.find({ user: userId });
-//     res.status(200).json(plants);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
 
-// // Create a new plant
-// const createPlant = async (req, res) => {
-//   try {
-//     const { name, type, description, plantationDate } = req.body;
-//     const userId = req.user._id; // Assuming user ID is available in req.user
+const createMyPlant = async (req, res) => {
+  const { user, name, image, type, description, plantationDate } = req.body;
 
-//     const newPlant = new MyPlant({
-//       user: userId,
-//       name,
-//       type,
-//       description,
-//       plantationDate,
-//     });
+  try {
+      const plant = new MyPlant({
+          user,
+          name,
+          image, // Storing the image name directly
+          type,
+          description,
+          plantationDate
+      });
+      
+      await plant.save();
+      res.status(201).json({ message: "Plant added successfully", plant });
+  } catch (error) {
+      res.status(500).json({ message: "Failed to add plant", error: error.message });
+  }
+};
 
-//     await newPlant.save();
-//     res.status(201).json(newPlant);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+const getMyPlant = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const plant = await MyPlant.findById(id);
+      res.status(200).json(plant);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+};
 
-// // Delete a plant
-// const deletePlant = async (req, res) => {
-//   try {
-//     const plantId = req.params.id;
-//     const userId = req.user._id; // Assuming user ID is available in req.user
+const getPlantsByUser = async (req, res) => {
+    try {
+        const { userId } = req.params; 
+        const plants = await MyPlant.find({ user: userId });  
+        if (!plants) {
+            return res.status(404).json({ message: "No plants found for this user." });
+        }
+        res.status(200).json(plants);  // Return the plants found
+    } catch (error) {
+        res.status(500).json({ message: error.message });  // Return error if any
+    }
+};
 
-//     const plant = await MyPlant.findOneAndDelete({ _id: plantId, user: userId });
-//     if (!plant) {
-//       return res.status(404).json({ message: "Plant not found" });
-//     }
+const deleteMyPlant = async (req, res) => {
+  try {
+    const { id } = req.params;
 
-//     res.status(200).json({ message: "Plant deleted successfully" });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+    const plant = await MyPlant.findByIdAndDelete(id);
 
-// // Edit a plant
-// const editPlant = async (req, res) => {
-//   try {
-//     const plantId = req.params.id;
-//     const userId = req.user._id; // Assuming user ID is available in req.user
-//     const { name, type, description, plantationDate } = req.body;
+    if (!plant) {
+      return res.status(404).json({ message: "plant not found" });
+    }
 
-//     const updatedPlant = await MyPlant.findOneAndUpdate(
-//       { _id: plantId, user: userId },
-//       { name, type, description, plantationDate },
-//       { new: true }
-//     );
+    res.status(200).json({ message: "plant deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
-//     if (!updatedPlant) {
-//       return res.status(404).json({ message: "Plant not found" });
-//     }
+// Update Plant
+const updateMyPlant = async (req, res) => {
+  const { id } = req.params;
 
-//     res.status(200).json(updatedPlant);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
+  try {
+      // Find the plant by ID
+      const plant = await MyPlant.findById(id);
 
-// // Water a plant
-// const waterPlant = async (req, res) => {
-//   try {
-//     const plantId = req.params.id;
-//     const userId = req.user._id; // Assuming user ID is available in req.user
+      if (!plant) {
+          return res.status(404).json({ message: "Plant not found" });
+      }
 
-//     const plant = await MyPlant.findOne({ _id: plantId, user: userId });
-//     if (!plant) {
-//       return res.status(404).json({ message: "Plant not found" });
-//     }
+      // Update the plant
+      const updatedPlant = await MyPlant.findByIdAndUpdate(
+          id,
+          {
+              name: req.body.name || plant.name,
+              image: req.body.image || plant.image,
+              type: req.body.type || plant.type,
+              description: req.body.description || plant.description,
+              plantationDate: req.body.plantationDate || plant.plantationDate,
+          },
+          { new: true } // Return the updated plant
+      );
 
-//     plant.waterHistory.push({ date: new Date() });
-//     await plant.save();
+      return res.status(200).json(updatedPlant);
+  } catch (error) {
+      console.error("Error updating plant:", error.message);
+      return res.status(500).json({ message: "Server error" });
+  }
+};
 
-//     res.status(200).json({ message: "Plant watered successfully", plant });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
-// // Get watering status for the current week
-// const getWateringStatus = async (req, res) => {
-//   try {
-//     const plantId = req.params.id;
-//     const userId = req.user._id; // Assuming user ID is available in req.user
-
-//     const plant = await MyPlant.findOne({ _id: plantId, user: userId });
-//     if (!plant) {
-//       return res.status(404).json({ message: "Plant not found" });
-//     }
-
-//     const weekStatus = getCurrentWeekWateringStatus(plant.waterHistory);
-
-//     res.status(200).json({ weekStatus });
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
-// // Helper function to get current week's watering status
-// const getCurrentWeekWateringStatus = (waterHistory) => {
-//   const currentDate = new Date();
-//   const startOfWeek = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay()));
-//   const endOfWeek = new Date(currentDate.setDate(startOfWeek.getDate() + 6));
-  
-//   let weekStatus = Array(7).fill(false);
-
-//   waterHistory.forEach((entry) => {
-//     const wateringDate = new Date(entry.date);
-//     if (wateringDate >= startOfWeek && wateringDate <= endOfWeek) {
-//       const dayOfWeek = wateringDate.getDay();
-//       weekStatus[dayOfWeek] = true;
-//     }
-//   });
-
-//   return weekStatus;
-// };
-
-// module.exports = {
-//   getAllPlants,
-//   createPlant,
-//   deletePlant,
-//   editPlant,
-//   waterPlant,
-//   getWateringStatus,
-// };
+module.exports = {
+    createMyPlant,
+    getPlantsByUser,
+    getMyPlant,
+    deleteMyPlant,
+    updateMyPlant,
+};

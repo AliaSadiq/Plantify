@@ -17,10 +17,6 @@ const SellerSchema = mongoose.Schema(
         type: String,
         required: [true, "Please enter your store's name"],
     },
-    storeLocation: {
-        type: String,
-        required: [true, "Please enter your store's name"],
-    },
     businessCertificate: {
         type: String,
         required: true,
@@ -32,7 +28,7 @@ const SellerSchema = mongoose.Schema(
     },
     businessAddress: {
         type: String,
-        // required: [true, "Please enter your store's address"],
+        required: [true, "Please enter your store's address"],
     },
     businessContact: {
         type: String,

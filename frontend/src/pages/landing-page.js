@@ -43,6 +43,7 @@ const LandingPage = () => {
     const closeModal = () => {
         setShowModal(false);
     }
+
     return (
         <div mt-0 >
             {/* <div className="relative">
@@ -112,37 +113,37 @@ const LandingPage = () => {
             </div> */}
             <div className='relative bg-white min-h-screen flex flex-col gap-y-2 items-center justify-center px-6 lg:px-28 pb-12 pt-44'>
                 {/* absolute round divs for floating icons */}
-                <div className='absolute left-20 bg-gradient-to-b from-neon top-1/4 rounded-full p-2'>
+                <div className='hidden lg:block absolute left-20 bg-gradient-to-b from-neon top-1/4 rounded-full p-2'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                 </div>
-                <div className='absolute left-40 top-72 rounded-full p-2 border-2 border-green-900'>
+                <div className='hidden lg:block absolute left-40 top-72 rounded-full p-2 border-2 border-green-900'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                 </div>
-                <div className='absolute right-20 bg-gray-100 top-1/4 rounded-full p-2'>
+                <div className='hidden lg:block absolute right-20 bg-gray-100 top-1/4 rounded-full p-2'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#FFFFFF" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                 </div>
-                <div className='absolute right-40 top-56 rounded-full p-2 bg-green-900'>
+                <div className='hidden lg:block absolute right-40 top-56 rounded-full p-2 bg-green-900'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#FFFFFF" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                     </svg>
                 </div>
-                <div className='absolute right-60 top-64 rounded-full p-2 bg-neon'>
+                <div className='hidden lg:block absolute right-60 top-64 rounded-full p-2 bg-neon'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                     </svg>
                 </div>
                 {/* Text Div */}
                 <div className='w-full'>
-                    <p className='text-2xl font-semibold text-center'>
+                    <p className='text-xl lg:text-2xl font-semibold text-center'>
                         Empowering You to Make a Difference
                     </p>
-                    <p className='w-1/2 text-mini opacity-60 text-center mt-4 place-self-center'>
+                    <p className='w-1/2 text-sm lg:text-mini opacity-60 text-center mt-4 place-self-center'>
                         At Plantify, 
                         we’re committed to fostering green spaces, revitalizing 
                         biodiversity, and building communities that thrive 
@@ -150,7 +151,7 @@ const LandingPage = () => {
                         toward a brighter, greener tomorrow.
                     </p>
                 </div>
-                <div className='flex flex-row gap-6 w-full h-[400px]'>
+                <div className='flex  gap-6 w-full h-[400px]'>
                     <div className='flex flex-col-reverse basis-1/3 py-10 px-8 bg-navygreen-trial rounded-pl'>
                         <p className='text-green-900'>
                             Our mission is to make a green future a reality by empowering communities to take sustainable actions.
@@ -183,15 +184,6 @@ const LandingPage = () => {
                             >
                                 Start Donating
                             </button>
-                            
-                            {/* <Button 
-                                text="Get Started"
-                                className="py-2 bg-lime-300"
-                            />
-                            <Button 
-                                text="Initiate Campaign"
-                                className="py-2 bg-gray-100 hover:bg-lime-300 hover:shadow-lg text-white hover:text-gray-100"
-                            /> */}
                         </div>
                         <div className='mt-20'>
                             <img src='/assets/landing/landing.jpeg' className='w-full h-[213px] object-cover rounded-pl' />
@@ -320,11 +312,9 @@ const LandingPage = () => {
                     <p className='text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                     Join our community to support green campaigns and access exclusive content.
                     </p>
-                    <Link to="/seller-sign-up"> 
-                        <button className='mt-4 opacity-0 group-hover:opacity-100 text-sm bg-gray-100 text-white px-4 py-2 rounded-full transition-opacity duration-300'>
-                            Sign Up as Member
-                        </button>
-                    </Link>
+                    <button className='mt-4 opacity-0 group-hover:opacity-100 text-sm bg-gray-100 text-white px-4 py-2 rounded-full transition-opacity duration-300' onClick={openModal}>
+                        Sign Up as Member
+                    </button>
                 </div>
 
                 {/* Social Group Signup Option */}
@@ -333,16 +323,12 @@ const LandingPage = () => {
                     {/* Hidden description and button initially */}
                     <p className='text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                     Become a social group leader and initiate impactful plant campaigns in your community.
-                    </p>
-                    <Link to="/social-signup"> 
-                        <button className='mt-4 opacity-0 group-hover:opacity-100 text-sm bg-gray-100 text-white px-4 py-2 rounded-full transition-opacity duration-300'>
-                            Sign Up as Social Group
-                        </button>
-                    </Link>
+                    </p> 
+                    <button className='mt-4 opacity-0 group-hover:opacity-100 text-sm bg-gray-100 text-white px-4 py-2 rounded-full transition-opacity duration-300' onClick={handleInitiateCampaign}>
+                        Sign Up as Social Group
+                    </button>
                 </div>
             </div>
-
-
 
             {/* Campaigns showcase */}
             <div className="flex flex-col lg:flex-row gap-10 justify-center lg:justify-between bg-neutral to-white items-center pt-20 pb-10 px-40">

@@ -2,31 +2,11 @@ import React, { useState,useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import axios from 'axios';
 import Button from '../components/button';
+import { Link } from 'react-router-dom';
 
   
 export default function DonationModal({ showModal, closeModal, campaignId, userId, updateCampaign }) {
-    console.log(userId)
-    console.log(campaignId)
     const [amount, setAmount] = useState('');
-    console.log(userId)
-    // const handleSubmit = async () => {
-    //     try {
-    //         const response = await axios.post('http://localhost:5000/api/donations', {
-    //             amount: parseInt(amount),
-    //             user: userId,
-    //             campaign: campaignId
-        
-    //         });
-
-    //         if (response.status === 201) {
-    //             alert('Thank you for your donation!');
-    //             closeModal();
-    //         }
-    //     } catch (error) {
-    //         console.error('Error creating donation:', error);
-    //         alert('There was an error processing your donation. Please try again.');
-    //     }
-    // };
     const handleSubmit = async (e) => { 
         e.preventDefault(); 
         try { 
@@ -53,6 +33,8 @@ export default function DonationModal({ showModal, closeModal, campaignId, userI
                                 <XMarkIcon className="h-6 w-6" />
                             </button>
                             <h2 className="font-josefin-sans text-center text-xl font-bold mb-4">Donate for the cause</h2>
+                            { userId ? (
+                                <>
                             <p className="font-josefin-sans text-center text-sm mb-4">Enter the amount you want to donate in rupees.</p>
                             <form className="flex flex-col space-y-4 text-gray-100" onSubmit={handleSubmit}>
                                 <div className='self-center mb-10 w-40'>
@@ -91,6 +73,18 @@ export default function DonationModal({ showModal, closeModal, campaignId, userI
                                     />
                                 </div>
                             </form>
+                            </>
+                            ) : (
+                                <div className='flex flex-col justify-center w-full'>
+                                    <p className='mb-2 text-center'>Login to Donate</p>
+                                    <Link to="/login" className='place-self-center'>
+                                        <Button
+                                            text="Login"
+                                            className="py-2 bg-gray-100 text-white"
+                                        />
+                                    </Link>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

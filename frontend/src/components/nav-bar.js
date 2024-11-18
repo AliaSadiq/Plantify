@@ -29,24 +29,27 @@ const NavBar = () => {
         const checkSocialGroupStatus = async (userId) => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/socialgroup/${userId}`);
+                console.log('Social group response:', response.data); // Debugging log
                 const socialGroup = response.data;
                 if (socialGroup && socialGroup.status === 'accepted') {
                     setIsSocialAccepted(true);
+                } else {
+                    setIsSocialAccepted(false); // Ensure false if not accepted
                 }
             } catch (error) {
                 console.error('Error fetching social group:', error);
+                setIsSocialAccepted(false); // Prevent issues on API failure
             }
         };
-
+    
         if (user && user.isSocial) {
-            checkSocialGroupStatus(user._id);
+            console.log('User isSocial:', user.isSocial); // Debugging log
+            checkSocialGroupStatus(user?._id);
+        } else {
+            setIsSocialAccepted(false); // Ensure no lingering "true" state
         }
-    }, [user]);
-
-    const listItemStyle = {
-        transition: 'color 1s ease-in-out',
-        color: isScrolled ? '#ffffff' : '#222'
-    };
+    }, [user]); // Ensure useEffect runs when user changes
+    
 
     //for the popup
     const [showModal, setShowModal] = useState(false);
@@ -63,7 +66,7 @@ const NavBar = () => {
         <nav className={`fixed w-full z-30 top-0 start-0 ${isScrolled ? 'bg-gray-100' : 'bg-transparent'} transition-colors duration-1000 ease-in-out`}>
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src={logo} className="h-8" alt="Plantify Logo"></img> <span className='font-josefin-sans text-lg font-semibold text-navygreen-300 '>Plantify</span>
+                    <img src={logo} className="h-6 lg:h-8" alt="Plantify Logo"></img> <span className='font-josefin-sans text-lg font-semibold text-navygreen-300 '>Plantify</span>
                 </Link>
                 <div className="flex gap-4 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     {user ? (

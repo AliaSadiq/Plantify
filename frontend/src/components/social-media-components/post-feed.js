@@ -11,9 +11,9 @@ const PostFeed = () => {
   const [filter, setFilter] = useState('all');
 
   return (
-    <div className="w-11/12 max-w-lg mx-auto">
+    <div className="w-10/12 max-w-lg  mx-auto">
       <div className="flex justify-center space-x-8 bg-transparent p-4">
-        {['All', 'Following', 'Newest', 'Popular'].map((option) => (
+        {['Following', 'Adoption', 'Social'].map((option) => (
           <button
             key={option}
             className={`px-4 py-2 text-sm font-semibold ${filter === option.toLowerCase() 

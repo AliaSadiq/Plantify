@@ -4,26 +4,30 @@ import { Link } from 'react-router-dom';
 
 const PostCard = ({ image, likes, comments, author }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden relative max-w-lg mx-auto">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden relative max-w-lg mb-11 mx-auto">
       <img src={image} alt="Post" className="w-full h-96 object-cover" />
       
       <div className="p-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <img className="w-14 h-14 rounded-full" src={author.avatar} alt={author.name} />
+            <img 
+              className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full" 
+              src={author.avatar} 
+              alt={author.name} 
+            />
             <Link 
-              to="/profile-socialmedia" 
-              className="ml-2 text-gray-700 font-semibold text-base cursor-pointer"
+              to="/plantify-network/profile-socialmedia" 
+              className="ml-2 text-gray-700 font-semibold text-sm sm:text-base cursor-pointer"
             >
               {author.name}
             </Link>
           </div>
           <div className="flex space-x-4">
-            <span className="flex items-center text-gray-600 text-sm">
-              <AiOutlineHeart className="mr-1 text-lg" /> {likes}
+            <span className="flex items-center text-gray-600 text-xs sm:text-sm">
+              <AiOutlineHeart className="mr-1 text-base sm:text-lg" /> {likes}
             </span>
-            <span className="flex items-center text-gray-600 text-sm">
-              <AiOutlineComment className="mr-1 text-lg" /> {comments}
+            <span className="flex items-center text-gray-600 text-xs sm:text-sm">
+              <AiOutlineComment className="mr-1 text-base sm:text-lg" /> {comments}
             </span>
           </div>
         </div>

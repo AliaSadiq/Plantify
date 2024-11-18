@@ -330,30 +330,14 @@ const Campaigns = () => {
   };
 
   return (
-    <div
-      className="bg-cover bg-ivory flex flex-col items-center bg-center min-h-screen"
-      style={{ backgroundImage: `url(${dashboardbg})` }}
-    >
-      <div className="ml-64 mt-8">
-        <div className="flex flex-col justify-center w-auto rounded-lg bg-[rgba(255, 255, 255, 0.1)] backdrop-blur-md ml-4 pt-4 mr-4">
-          <h1 className="text-xl  font-josefin-sans font-bold">Campaign List</h1>
-        </div>
-        <div className="max-h-fit w-full">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center w-[450px] gap-2">
-               {/* <Input
-                label="Search"
-                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className="w-80 rounded-md bg-navygreen-100"
-              />
-               */}
-                 <SearchBar onSearch={handleSearch} placeholder={"Search Campaigns"} />
-            </div>  
-          
-            <Button onClick={handleCreateCampaign} type="button" text="Create Campaign" className="py-2 bg-gray-100 text-white" />
-          
+    <div className='min-h-screen lg:ml-[245px] p-4'> 
+      <div className='min-h-screen p-8 rounded-pl bg-neutral'>
+          <div className='mb-6 flex flex-col lg:flex-row items-center lg:justify-between'>
+              <div className='w-full text-lg font-bold '>Campaigns List</div>
+              <div className="w-full flex flex-col lg:flex-row items-center gap-2">
+                <SearchBar onSearch={handleSearch} placeholder={"Search Campaigns"} />
+                <Button onClick={handleCreateCampaign} type="button" text="Create Campaign" className="py-2 bg-gray-100 text-white" />
+              </div>
           </div>
           <div className="w-full font-josefin-sans">
             {loading ? (
@@ -370,7 +354,6 @@ const Campaigns = () => {
               />
             )}
           </div>
-        </div>
       </div>
     </div>
   );

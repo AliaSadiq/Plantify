@@ -5,13 +5,13 @@ import { useParams } from "react-router-dom";
 import MetricCard from '../../components/dashboard-components/KeyMetricCard';
 import { Bar } from 'react-chartjs-2'; // Import Bar chart
 import PieChartGraph from "../../components/dashboard-components/Piechart.js";
-
-import dashboardbg from "../../images/dashboardbg.png";
+import useCount from "../../hooks/useCount.js";
 
 const Onboard = () => {
   const { id: socialGroupId } = useParams();
   const [socialGroup, setSocialGroup] = useState(null);
   const [user, setUser] = useState("");
+  const {count: campaignCount} = useCount(`http://localhost:5000/api/campaigns/social-campaign-count/${socialGroupId}`);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -53,7 +53,7 @@ const Onboard = () => {
   const metrics = [
     { 
       title: "Total Campaigns", 
-      value: "$100,000", 
+      value: campaignCount, 
       chartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [
@@ -69,7 +69,7 @@ const Onboard = () => {
     },
     { 
       title: "Completed campaigns", 
-      value: "$75,000",
+      value: "0",
       chartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [
@@ -132,69 +132,57 @@ const Onboard = () => {
   };
 
   return (
-    <div
-      className="bg-cover ml bg-ivory flex flex-col bg-center min-h-screen"
-      // style={{ backgroundImage: `url(${dashboardbg})` }}
-    >
-      <div className="flex ml-64 flex-row">
-        <div className="flex flex-col justify-center w-auto rounded-lg bg-[rgba(255, 255, 255, 0.1)] backdrop-blur-md p-4 mr-4">
-          <span className="text-md mt-5 text-left font-josefin-sans font-bold">
-            Welcome back, {socialGroup.name} 👋
-          </span>
-          <h1 className="text-xl text-left font-josefin-sans font-bold">
-            Dashboard
-          </h1>
-        </div>
-      
-      </div>
+      <div className='min-h-screen lg:ml-[245px] p-4'>
+        <div className='bg-neutral p-4 rounded-pl'>
+            <h2 className='text-lg font-bold mb-10'>Hello {socialGroup.name}</h2>
+            <div className="gap-1 p-2 bg-[rgba(255, 255, 255, 0.1)] rounded-lg">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                {metrics.map((metric, index) => (
+                  <MetricCard 
+                    key={index} 
+                    title={metric.title} 
+                    value={metric.value}
+                    chartData={metric.chartData}
+                  />
+                ))}
+              </div>
 
-      <div className=" ml-64 justify-between gap-1 p-2 bg-[rgba(255, 255, 255, 0.1)] rounded-lg  mr-80">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          {metrics.map((metric, index) => (
-            <MetricCard 
-              key={index} 
-              title={metric.title} 
-              value={metric.value}
-              chartData={metric.chartData}
-            />
-          ))}
-        </div>
+              <div className="flex flex-col lg:flex-row gap-6 mt-8">
+                <div className='flex-1 rounded-lg h-[330px] shadow-md p-4'>
+                  <h2 className="text-xl font-josefin-sans font-bold text-left mb-4">Campaigns Count</h2>
+                  <div className="relative font-josefin-sans h-[250px]">
+                    <Bar
+                      data={barChartData}
+                      options={{
+                        maintainAspectRatio: false, // Allow chart to fit its container
+                        responsive: true,
+                        scales: {
+                          x: {
+                            title: {
+                              display: true,
+                              text: 'Year',
+                            },
+                          },
+                          y: {
+                            title: {
+                              display: true,
+                              text: 'Number of Campaigns',
+                            },
+                            beginAtZero: true,
+                          },
+                        },
+                      }}
+                    />
+                  </div>
+                </div>
 
-        <div className="flex flex-col lg:flex-row gap-6 mt-8">
-          <div className='flex-1 rounded-lg h-[330px] shadow-md p-4'>
-            <h2 className="text-xl font-josefin-sans font-bold text-left mb-4">Campaigns Count</h2>
-            <div className="relative font-josefin-sans h-[250px]">
-              <Bar
-                data={barChartData}
-                options={{
-                  maintainAspectRatio: false, // Allow chart to fit its container
-                  responsive: true,
-                  scales: {
-                    x: {
-                      title: {
-                        display: true,
-                        text: 'Year',
-                      },
-                    },
-                    y: {
-                      title: {
-                        display: true,
-                        text: 'Number of Campaigns',
-                      },
-                      beginAtZero: true,
-                    },
-                  },
-                }}
-              />
+                <div className="flex-1 rounded-lg shadow-md p-4">
+                  <h2 className="text-xl font-bold text-center mb-4">Piechart</h2>
+                  <PieChartGraph />
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div className="flex-1 rounded-lg shadow-md p-4">
-            <h2 className="text-xl font-bold text-center mb-4">Piechart</h2>
-            <PieChartGraph />
-          </div>
         </div>
-      </div>
     </div>
   );
 };

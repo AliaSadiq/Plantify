@@ -66,37 +66,6 @@ const getRecentCampaigns = async (req, res) => {
   }
 };
 
-const searchCampaigns = async (req, res) => {
-  try {
-    const keyword = req.query.keyword ? {
-      title: {
-        $regex: req.query.keyword,
-        $options: 'i',
-      },
-    } : {};
-
-    const category = req.query.category ? { category: req.query.category } : {};
-    const location = req.query.location ? { location: req.query.location } : {};
-
-    const campaigns = await Campaign.find({
-      ...keyword,
-      ...category,
-      ...location,
-    });
-
-    res.status(200).json({
-      success: true,
-      results: campaigns.length,
-      data: campaigns,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Server Error',
-    });
-  }
-};
-
 const createCampaign = async (req, res) => {
   try {
     // Create the campaign with the request body
@@ -112,8 +81,6 @@ const createCampaign = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-
 
 const socialgroupCampaigns = async (req, res) => {
   try {
@@ -133,6 +100,25 @@ const socialgroupCampaigns = async (req, res) => {
       res.status(200).json(userCampaigns);
   } catch (error) {
     console.error('Error fetching campaigns:', error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getSocialGroupCampaignCount = async (req, res) => {
+  try {
+    const { socialId } = req.params;
+
+    // Validate the provided socialId
+    if (!mongoose.Types.ObjectId.isValid(socialId)) {
+      return res.status(400).json({ message: 'Invalid socialId provided' });
+    }
+
+    // Get the count of campaigns for the specific social group
+    const campaignCount = await Campaign.countDocuments({ socialGroup: socialId });
+
+    res.status(200).json({ count: campaignCount });
+  } catch (error) {
+    console.error('Error fetching campaign count:', error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -198,7 +184,6 @@ const getCampaignInsights = async (req, res) => {
   }
 };
 
-
 const followCampaign = async (req, res) => {
   try {
     const { userId } = req.body; // Extract userId from request body
@@ -220,13 +205,17 @@ const followCampaign = async (req, res) => {
 
     if (isFollowing) {
       // If already following, remove the user from followers (unfollow)
-      campaign.followers.pull(userId);
-      await campaign.save();
+      await Campaign.updateOne(
+        { _id: campaignId },
+        { $pull: { followers: userId } }
+      );
       return res.status(200).json({ message: "You have unfollowed the campaign.", following: false });
     } else {
       // If not following, add the user to followers
-      campaign.followers.push(userId);
-      await campaign.save();
+      await Campaign.updateOne(
+        { _id: campaignId },
+        { $push: { followers: userId } }
+      );
       return res.status(200).json({ message: "You are now following the campaign.", following: true });
     }
   } catch (error) {
@@ -235,31 +224,46 @@ const followCampaign = async (req, res) => {
   }
 };
 
-// const addVolunteer = async (req, res) => {
-//   try {
-//       const { id } = req.params;
-//       const { user, contact } = req.body;
+const addVolunteer = async (req, res) => {
+  try {
+      const { id } = req.params;
+      const { user, contact } = req.body;
 
-//       // Find the campaign
-//       const campaign = await Campaign.findById(id);
-//       if (!campaign) {
-//           return res.status(404).json({ message: 'Campaign not found' });
-//       }
+      // Find the campaign
+      const campaign = await Campaign.findById(id);
+      if (!campaign) {
+          return res.status(404).json({ message: 'Campaign not found' });
+      }
 
-//       // Check if volunteer limit is reached
-//       if (campaign.volunteers.length >= campaign.total_volunteers_count) {
-//           return res.status(400).json({ message: 'Volunteer limit reached' });
-//       }
+      // Check if the volunteer limit is reached
+      if (campaign.volunteers.length >= 10) {
+          return res.status(400).json({ message: 'Volunteer limit reached' });
+      }
 
-//       // Add volunteer to the campaign
-//       campaign.volunteers.push({ user, contact });
-//       await campaign.save();
+      // Check if the user has already volunteered
+      const isAlreadyVolunteered = campaign.volunteers.some(volunteer => 
+          volunteer.user && volunteer.user.toString() === user.toString()
+      );
 
-//       return res.status(200).json({ message: 'Volunteer added successfully', campaign });
-//   } catch (error) {
-//       return res.status(500).json({ message: 'Error adding volunteer', error });
-//   }
-// };
+      if (isAlreadyVolunteered) {
+          return res.status(400).json({ message: 'You have already volunteered for this campaign' });
+      }
+
+      // Add the volunteer and increment the total volunteer count
+      await Campaign.updateOne(
+          { _id: id },
+          { 
+              $push: { volunteers: { user, contact } },
+              $inc: { total_volunteers_count: 1 } // Increment volunteer count
+          }
+      );
+
+      return res.status(200).json({ message: 'Volunteer added successfully' });
+  } catch (error) {
+      console.error("Error in addVolunteer:", error);
+      return res.status(500).json({ message: 'Error adding volunteer', error });
+  }
+};
 
 const updateCampaign = async (req, res) => {
   try {
@@ -314,11 +318,11 @@ module.exports = {
     getCampaignInsights,
     getAllCampaigns,
     getRecentCampaigns,
-    searchCampaigns,
     followCampaign,
+    addVolunteer,
     updateStage,
     getCampaignsByMonth,
     updateCampaign,
     deleteCampaign,
-    // addVolunteer,
+    getSocialGroupCampaignCount,
 };

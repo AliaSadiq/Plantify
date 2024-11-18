@@ -46,18 +46,20 @@ const AppContent = () => {
         <Route path="personal-growth" element={<HomePage />} />
         <Route path="campaign-details/:id" element={<CampaignDetailsPage />} />
         <Route path="campaign/social-group/:id" element={<Profile />} />
-        <Route path="plant-diary" element={<PlantDiaryPage />} />
-        <Route path="plant-diary-detail" element={<PlantDiaryDetailPage />} />
+        <Route path="plant-diary/:id" element={<PlantDiaryPage />} />
+        <Route path="plant-diary-detail/:id" element={<PlantDiaryDetailPage />} />
         <Route path="shop" element={<Shop />} />
         <Route path="plants" element={<Plants />} />
         <Route path="soils" element={<Soils />} />
         <Route path="tools" element={<Tools />} />
         <Route path="logout" element={<Logout />} />
-        {/* <Route path="plantify-network" element={<PlantifyNetwork />} /> */}
         <Route path="contact-us" element={<ContactUsPage />} />
         <Route path="about-us" element={<AboutUsPage />} />
-  
         <Route path="settings" element={<SettingsPage />} />
+        <Route path="auth-check" element={<AuthCheck />} />
+        <Route path="verification-check" element={<VerificationCheck />} />
+        <Route path="/plantify-network/*" element={<PlantifyNetwork />} />
+        
         <Route path='auth-check' element={<AuthCheck />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} />
        
