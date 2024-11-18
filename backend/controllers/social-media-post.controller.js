@@ -66,7 +66,7 @@ const getAllPosts = async (req, res) => {
     const posts = await Post.find({})
       .populate({
         path: 'author',
-        select: 'username bio', // Include specific fields from the User schema
+        select: 'username bio avatar', // Include specific fields from the User schema
       });
 
     // Send back the fully populated posts

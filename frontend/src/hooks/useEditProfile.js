@@ -5,7 +5,7 @@ const useEditProfile = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const editProfile = async ({ userId, username, bio, profileImg }) => {
+  const editProfile = async ({ userId, username, bio, avatar }) => {
     setLoading(true);
     setError(null);
 
@@ -13,7 +13,7 @@ const useEditProfile = () => {
       const data = {
         username,
         bio,
-        profileImg: profileImg // Send filename or null
+        avatar, // Send filename or null
       };
 
       console.log("Sending data:", data); // Log data before request

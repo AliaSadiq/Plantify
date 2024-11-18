@@ -124,7 +124,7 @@ const PostModal = ({ post, onClose }) => {
             {/* Right Section: Profile Information */}
             <div className="flex items-center mb-4">
             <img
-              src={`/assets/${post.author.profileImg || 'placeholder-profile.png'}`}
+              src={`/assets/avatars/${post.author.avatar || 'placeholder-profile.png'}`}
               alt="Profile"
               className="w-10 h-10 rounded-full object-cover mr-3"
             />
@@ -144,7 +144,7 @@ const PostModal = ({ post, onClose }) => {
             </div>
           </div>
 
-            <h2 className="text-lg font-semibold mb-4">{post.caption || 'No Caption'}</h2>
+            <h2 className="text-sm mb-4">{post.caption || 'No Caption'}</h2>
             {/* Extra Fields for Adoption */}
             {isAdoptionPost && (
               <div className="mb-4">

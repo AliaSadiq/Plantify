@@ -13,7 +13,7 @@ import {
 } from "@material-tailwind/react";
 import SearchBar from "../../components/search-bar.js";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import dashboardbg from "../../images/dashboardbg.png"; // Importing background image
 
 const TABLE_HEAD = ["#", "Name", "Location", "Issue"];
@@ -23,21 +23,26 @@ const RequestCampaign = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [selectedCampaign, setSelectedCampaign] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-
+  const { id } = useParams();
+console.log("Captured ID from URL:", id);
   const capitalizeFirstLetter = (string) => {
     if (!string) return "";
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   };
 
   useEffect(() => {
+    // Fetch campaign data from the API when the component mounts
     const fetchCampaigns = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/request-campaign");
+        const response = await axios.get("http://localhost:5000/api/request-campaign/get-request", {
+          params: { socialGroup: id },
+        });
         setCampaigns(response.data);
       } catch (error) {
         console.error("Error fetching campaigns:", error);
       }
     };
+    
 
     fetchCampaigns();
   }, []);
@@ -141,7 +146,7 @@ const handleSearch = (query) => {
                 <div className="rounded-t-lg pb-0 pt-0 p-4 flex justify-center">
                   {selectedCampaign.attachedImage ? (
                     <img
-                      src={selectedCampaign.attachedImage}
+                      src={`/assets/${selectedCampaign.attachedImage}`}
                       alt="Attached"
                       className="h-40 w-40 rounded-md object-cover"
                     />
