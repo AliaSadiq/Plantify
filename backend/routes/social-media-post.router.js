@@ -9,5 +9,6 @@ router.get('/getAll', postController.getAllPosts);
 router.get('/posts/adoption', postController.getAdoptionPosts);
 router.get('/posts/social-group', postController.getSocialGroupPosts);
 router.get('/posts/following/:userId', postController.getFollowingPosts);
-
+router.get('/filter', postController.getFilteredPosts);
+router.post('/like', postController.toggleLikePost);
 module.exports = router;

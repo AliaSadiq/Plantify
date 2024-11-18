@@ -58,6 +58,7 @@ const { Schema } = mongoose;
 const PostSchema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   caption: String,
+  likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   images: {
     type: [String],
     validate: {
