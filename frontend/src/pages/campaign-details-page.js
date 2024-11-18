@@ -13,7 +13,7 @@ import DonationModal from "../popups/donation-modal";
 import Tabs from "../components/tabs";
 import { CarouselDefault } from "../carousels/trees-to-be-planted-carousel";
 import ProgressBar from "../components/progress-bar";
-// import CampaignMap from "../components/campaign-map";
+import CampaignMap from "../components/campaign-map";
 import DonationBoard from "../components/donations-board";
 
 export default function CampaignDetailsPage() {
@@ -245,9 +245,9 @@ export default function CampaignDetailsPage() {
                                 alt="Map"
                             /> */}
                             {/* CampaignMap component */}
-                            {/* <div className="w-full h-[200px] rounded-[20px] overflow-hidden">
+                            <div className="w-full h-[200px] rounded-[20px] overflow-hidden">
                                 <CampaignMap />
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                      <div className="mt-4 p-2 rounded-pl border border-2 border-neutral">
