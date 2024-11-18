@@ -74,23 +74,20 @@
 import React from 'react';
 import { HomeIcon, BookmarkIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { MapPinIcon } from "@heroicons/react/24/outline";
-import { Link, useLocation,useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Plant from '../../images/carousel-1.jpeg';
 import useFetchUserLocalStorage from '../../hooks/useFetchUserLocalStorage';
 
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
-  // Retrieve user data from local storage
-  const userData = useFetchUserLocalStorage(); // Assuming user data is saved in localStorage as a JSON string
-  const { username, avatar, email } = userData || {}; // Default to empty if no user data
+  const userData = useFetchUserLocalStorage();
+  const { username, avatar, email } = userData || {};
 
-  // Handle click to navigate to the profile page
   const handleProfileClick = () => {
-    navigate('/plantify-network/profile-socialmedia', { state: { userId: userData._id } });
+    // navigate('/plantify-network/profile-socialmedia', { state: { userId: userData._id } });
+    navigate('/plantify-network/profile-socialmedia');
   };
-  
 
   const menuItems = [
     { name: 'Home', icon: <HomeIcon className="w-6 h-6 mr-2" />, path: '/plantify-network' },
@@ -101,11 +98,10 @@ const Sidebar = () => {
   return (
     <>
       {/* Sidebar for Larger Screens */}
-      <div className="w-72 h-full bg-white bg-opacity-70 backdrop-blur-md border border-gray-50 p-6 hidden sm:block">
+      <div className="w-72 h-full bg-white bg-opacity-70 backdrop-blur-md border border-gray-50 p-6 hidden lg:block sticky top-0 z-10">
         <nav className="flex flex-col">
           {menuItems.map((item, idx) => {
             const isActive = location.pathname === item.path;
-
             return (
               <Link
                 key={idx}
@@ -125,23 +121,22 @@ const Sidebar = () => {
             );
           })}
         </nav>
-
-        {/* Additional Sidebar Content */}
+        {/* Account Section */}
         <div className="mt-10" onClick={handleProfileClick} style={{ cursor: 'pointer' }}>
-      <p className="text-gray-500">Account</p>
-      <div className="flex items-center mt-2">
-        <img 
-          className="w-10 h-10 rounded-full" 
-          src={avatar || "https://via.placeholder.com/150"} 
-          alt="user avatar" 
-        />
-        <div className="ml-2">
-          <p className="text-gray-700">{username || "Guest"}</p>
-          <p className="text-sm text-gray-500">@{email || "guestuser"}</p>
+          <p className="text-gray-500">Account</p>
+          <div className="flex items-center mt-2">
+            <img 
+              className="w-10 h-10 rounded-full" 
+              src={`/assets/avatars/${avatar}`}
+              alt="user avatar" 
+            />
+            <div className="ml-2">
+              <p className="text-gray-700">{username || "Guest"}</p>
+              <p className="text-sm text-gray-500">@{email || "guestuser"}</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-
+        {/* Pinned Plant Section */}
         <div className="mt-6 bg-white border border-gray-200 rounded-lg p-2 relative">
           <img 
             className="w-full h-40 object-cover rounded-md" 
@@ -154,7 +149,7 @@ const Sidebar = () => {
       </div>
 
       {/* Bottom Navigation for Smaller Screens */}
-      <div className="fixed bottom-0 left-0 w-full bg-white shadow-inner border-t border-gray-200 flex justify-around py-2 sm:hidden">
+      <div className="fixed bottom-0 left-0 w-full bg-white shadow-inner border-t border-gray-200 flex justify-around py-2 lg:hidden z-10">
         {menuItems.map((item, idx) => (
           <Link key={idx} to={item.path} className="flex flex-col items-center text-gray-700">
             {item.icon}

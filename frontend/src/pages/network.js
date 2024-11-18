@@ -76,9 +76,10 @@ import ProfilePage from '../components/social-media-components/profile-page';
 
 const PlantifyLayout = () => {
   return (
-    <div className="flex h-screen pt-20 mb-11">
+    <div className="flex flex-col lg:flex-row h-screen pt-20 mb-11">
+    <div className="lg:w-1/5 w-full lg:sticky top-20">
       <Sidebar />
-
+    </div>
       <div className="flex-grow flex">
         <Routes>
           {/* Main Feed Route */}
@@ -86,10 +87,11 @@ const PlantifyLayout = () => {
             path=""
             element={
               <div className="flex w-full">
-                <div className="w-4/6 h-full overflow-y-auto px-4">
-                  <PostFeed />
-                </div>
-                <div className="w-1/3 h-full">
+                <div className="w-4/6 h-full max-h-screen lg:overflow-y-auto no-scrollbar px-4">
+  <PostFeed />
+</div>
+
+                <div className="w-1/3 h-full mt-5 ml-2 mr-3">
                   <Suggestions />
                 </div>
               </div>

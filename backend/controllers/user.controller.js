@@ -1,10 +1,23 @@
 const User = require("../models/user.model");
 const SocialGroup = require("../models/socialgroup.model");
 const bcrypt = require("bcrypt");
+const SocialMedia = require('../models/social-media.model'); // Assuming you have this model
 
 const createUser = async (req, res) => {
   try {
     const { username, email, password, avatar } = req.body;
+
+    // Check if the username already exists
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Username already taken' });
+    }
+
+    // Check if the email already exists
+    const existingEmail = await User.findOne({ email });
+    if (existingEmail) {
+      return res.status(400).json({ message: 'Email already registered' });
+    }
 
     // Generate a salt to hash the password
     const saltRounds = 10;
@@ -18,11 +31,24 @@ const createUser = async (req, res) => {
       avatar // This will be either the selected avatar or the default one
     });
 
-    res.status(200).json(user);
+    // Create a default empty social media profile for the user
+    const socialMediaProfile = await SocialMedia.create({
+      user: user._id, // Linking to the newly created user
+      profileImg: avatar || '', // Default profile image (can be empty if none provided)
+      followers: [], // Initial empty followers list
+      following: [], // Initial empty following list
+      posts: [], // Initial empty posts list
+      isPublic: true, // Default visibility is public
+    });
+
+    // Respond with both the user and social media profile
+    res.status(200).json({ user, socialMediaProfile });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
+
 
 const getUser = async (req, res) => {
   try {
