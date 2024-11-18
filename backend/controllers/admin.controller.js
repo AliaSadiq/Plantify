@@ -52,7 +52,6 @@ const adminLogin = async (req, res) => {
   }
 };
 
-// Other admin controller functions...
 const getAdmin = async (req, res) => {
   try {
     const { id } = req.params;
@@ -63,8 +62,18 @@ const getAdmin = async (req, res) => {
   }
 };
 
+const getAdmins = async (req, res) => {
+  try {
+    const admins = await Admin.find();
+    res.status(200).json(admins);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createAdmin,
   adminLogin,
   getAdmin,
+  getAdmins,
 };

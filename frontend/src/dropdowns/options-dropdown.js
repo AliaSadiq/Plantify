@@ -7,7 +7,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function OptionsDropdown() {
+export default function OptionsDropdown({ onDelete, onEdit }) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -29,36 +29,34 @@ export default function OptionsDropdown() {
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right font-josefin-sans rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            <Link to='/settings'>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="submit"
-                    className={classNames(
-                      active ? 'bg-gray-100 text-white' : 'text-gray-700',
-                      'block w-full px-4 py-2 text-left text-sm'
-                    )}
-                  >
-                    Edit
-                  </button>
-                )}
-              </Menu.Item>
-            </Link>
-            <Link to='/logout'>
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="submit"
-                    className={classNames(
-                      active ? 'bg-gray-100 text-white' : 'text-gray-700',
-                      'block w-full px-4 py-2 text-left text-sm'
-                    )}
-                  >
-                    Delete
-                  </button>
-                )}
-              </Menu.Item>
-            </Link>
+            <Menu.Item>
+              {({ active }) => (
+                <button
+                  type="submit"
+                  onClick={onEdit}
+                  className={classNames(
+                    active ? 'bg-gray-100 text-white' : 'text-gray-700',
+                    'block w-full px-4 py-2 text-left text-sm'
+                  )}
+                >
+                  Edit
+                </button>
+              )}
+            </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <button
+                  type="submit"
+                  onClick={onDelete}
+                  className={classNames(
+                    active ? 'bg-gray-100 text-white' : 'text-gray-700',
+                    'block w-full px-4 py-2 text-left text-sm'
+                  )}
+                >
+                  Delete
+                </button>
+              )}
+            </Menu.Item>
           </div>
         </Menu.Items>
       </Transition>

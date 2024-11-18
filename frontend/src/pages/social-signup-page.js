@@ -47,19 +47,6 @@ const SocialSignUpPage = () => {
         status: '',
     });
 
-    // const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
-    //     const file = event.target.files[0];
-    //     if (file && file.type.startsWith("image/")) {
-    //         setFileState(file.name);
-    //         setFormData(prevState => ({
-    //             ...prevState,
-    //             [fieldName]: file.name
-    //         }));
-    //     } else {
-    //         alert("Please select a valid image file.");
-    //     }
-    // };
-
     const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
         const file = event.target.files[0];
         if (file && file.type.startsWith("image/")) {

@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const {getCampaign, getCampaigns, deleteCampaign ,updateStage,addVolunteer,createCampaign,socialgroupCampaigns, getCampaignCount, getCampaignInsights, getAllCampaigns, getRecentCampaigns, followCampaign,getCampaignsByMonth,updateCampaign} = require( '../controllers/campaign.controller.js');
+const {getCampaign, getCampaigns, deleteCampaign ,updateStage,addVolunteer,createCampaign,socialgroupCampaigns, getCampaignCount, getCampaignInsights, getAllCampaigns, getRecentCampaigns, followCampaign,getCampaignsByMonth,updateCampaign, getSocialGroupCampaignCount} = require( '../controllers/campaign.controller.js');
 
 
 router.get('/', getCampaigns);
 router.get('/all', getAllCampaigns);
 router.get("/count", getCampaignCount);
+router.get("/social-campaign-count/:socialId", getSocialGroupCampaignCount);
 router.get("/recent", getRecentCampaigns);
 router.get("/campaigns-by-month", getCampaignsByMonth);
 router.get("/:id", getCampaign);

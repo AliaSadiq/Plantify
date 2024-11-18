@@ -19,6 +19,7 @@
     "date-fns": "^4.1.0",
     "formik": "^2.4.6",
     "leaflet": "^1.9.4",
+    "leaflet-draw": "^1.0.4",
     "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",

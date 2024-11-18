@@ -43,6 +43,7 @@ const LandingPage = () => {
     const closeModal = () => {
         setShowModal(false);
     }
+
     return (
         <div mt-0 >
             {/* <div className="relative">
@@ -311,11 +312,9 @@ const LandingPage = () => {
                     <p className='text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                     Join our community to support green campaigns and access exclusive content.
                     </p>
-                    <Link to="/seller-sign-up"> 
-                        <button className='mt-4 opacity-0 group-hover:opacity-100 text-sm bg-gray-100 text-white px-4 py-2 rounded-full transition-opacity duration-300'>
-                            Sign Up as Member
-                        </button>
-                    </Link>
+                    <button className='mt-4 opacity-0 group-hover:opacity-100 text-sm bg-gray-100 text-white px-4 py-2 rounded-full transition-opacity duration-300' onClick={openModal}>
+                        Sign Up as Member
+                    </button>
                 </div>
 
                 {/* Social Group Signup Option */}
@@ -324,16 +323,12 @@ const LandingPage = () => {
                     {/* Hidden description and button initially */}
                     <p className='text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                     Become a social group leader and initiate impactful plant campaigns in your community.
-                    </p>
-                    <Link to="/social-signup"> 
-                        <button className='mt-4 opacity-0 group-hover:opacity-100 text-sm bg-gray-100 text-white px-4 py-2 rounded-full transition-opacity duration-300'>
-                            Sign Up as Social Group
-                        </button>
-                    </Link>
+                    </p> 
+                    <button className='mt-4 opacity-0 group-hover:opacity-100 text-sm bg-gray-100 text-white px-4 py-2 rounded-full transition-opacity duration-300' onClick={handleInitiateCampaign}>
+                        Sign Up as Social Group
+                    </button>
                 </div>
             </div>
-
-
 
             {/* Campaigns showcase */}
             <div className="flex flex-col lg:flex-row gap-10 justify-center lg:justify-between bg-neutral to-white items-center pt-20 pb-10 px-40">

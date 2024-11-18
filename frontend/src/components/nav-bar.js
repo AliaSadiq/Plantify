@@ -29,19 +29,27 @@ const NavBar = () => {
         const checkSocialGroupStatus = async (userId) => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/socialgroup/${userId}`);
+                console.log('Social group response:', response.data); // Debugging log
                 const socialGroup = response.data;
                 if (socialGroup && socialGroup.status === 'accepted') {
                     setIsSocialAccepted(true);
+                } else {
+                    setIsSocialAccepted(false); // Ensure false if not accepted
                 }
             } catch (error) {
                 console.error('Error fetching social group:', error);
+                setIsSocialAccepted(false); // Prevent issues on API failure
             }
         };
-
+    
         if (user && user.isSocial) {
-            checkSocialGroupStatus(user._id);
+            console.log('User isSocial:', user.isSocial); // Debugging log
+            checkSocialGroupStatus(user?._id);
+        } else {
+            setIsSocialAccepted(false); // Ensure no lingering "true" state
         }
-    }, [user]);
+    }, [user]); // Ensure useEffect runs when user changes
+    
 
     //for the popup
     const [showModal, setShowModal] = useState(false);

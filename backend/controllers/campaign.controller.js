@@ -104,6 +104,25 @@ const socialgroupCampaigns = async (req, res) => {
   }
 };
 
+const getSocialGroupCampaignCount = async (req, res) => {
+  try {
+    const { socialId } = req.params;
+
+    // Validate the provided socialId
+    if (!mongoose.Types.ObjectId.isValid(socialId)) {
+      return res.status(400).json({ message: 'Invalid socialId provided' });
+    }
+
+    // Get the count of campaigns for the specific social group
+    const campaignCount = await Campaign.countDocuments({ socialGroup: socialId });
+
+    res.status(200).json({ count: campaignCount });
+  } catch (error) {
+    console.error('Error fetching campaign count:', error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const getCampaignCount = async (req, res) => {
   try {
     const totalCampaigns = await Campaign.countDocuments();
@@ -246,8 +265,6 @@ const addVolunteer = async (req, res) => {
   }
 };
 
-
-
 const updateCampaign = async (req, res) => {
   try {
     const { id } = req.params;
@@ -307,4 +324,5 @@ module.exports = {
     getCampaignsByMonth,
     updateCampaign,
     deleteCampaign,
+    getSocialGroupCampaignCount,
 };

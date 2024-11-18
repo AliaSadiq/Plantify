@@ -231,9 +231,6 @@ const followSocialGroup = async (req, res) => {
   }
 };
 
-
-
-
 module.exports = {
   createSocialGroup,
   getSocialGroup,

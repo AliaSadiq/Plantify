@@ -1,109 +1,243 @@
-import React from 'react';
+// import React, {useState} from 'react';
+// import { useNavigate, useParams } from 'react-router-dom';
+// import Button from '../components/button';
+// import useFetch from '../hooks/useFetch';
+// import formatDate from '../functions/format-date';
+// import PlantDiaryCarousel from '../carousels/plant-diary-carousel';
+// import useDelete from '../hooks/useDelete';
+// import UpdateDiaryModal from '../popups/update-diary-modal';
+
+// const PlantDiaryDetailPage = () => {
+//     const navigate = useNavigate();
+//     const { id } = useParams();
+//     const url = `http://localhost:5000/api/plant-diaries/${id}`;
+//     const { data: diary, loading, error } = useFetch(url);
+//     const { deleteItem, isLoading, error: deleteError } = useDelete('http://localhost:5000/api/plant-diaries');
+//     const [showModal, setShowModal] = useState(false); // Track modal visibility
+
+//     const handleDelete = (diaryId) => {
+//         deleteItem(diaryId);
+//         navigate(-1);
+//     };
+
+//     const handleEdit = () => {
+//         setShowModal(true); // Open the modal
+//     };
+
+//     const closeModal = () => {
+//         setShowModal(false); // Close the modal
+//     };
+
+//     if (loading) return <div>Loading...</div>;
+//     if (error) return <div>Error loading diary details</div>;
+
+//     return (
+//         <div className="container mx-auto px-6 pb-10 pt-28">
+//             <header className="text-center mb-6">
+//                 <h1 className="text-lil2xl font-bold">{diary.plant ? diary.plant.name : "Unknown Plant"}</h1>
+//                 <p className="text-gray-600">{formatDate(diary.diaryDate)}</p>
+//             </header>
+//             <div className="flex flex-col justify-between gap-4 lg:flex-row h-full p-4 rounded rounded-pl mr-4">
+//                 <div className='w-full'>
+//                     <div className="flex flex-col lg:flex-row gap-6 w-full">
+//                         <div className="p-8 py-4 w-full max-h-fit bg-navygreen-100 rounded-pl shadow-md">
+//                             <h3 className="text-mini font-bold mb-2 z-10">Plant Status:</h3>
+//                             <h1 className='text-md font-semibold'>{diary.plantStatus}</h1>
+//                         </div>
+//                         <div className="p-8 py-4 w-full max-h-fit bg-navygreen-100 rounded-pl shadow-md">
+//                             <h3 className="text-mini font-bold mb-2 z-10">Watering Status:</h3>
+//                             <h1 className='text-md font-semibold'>{diary.watered}</h1>
+//                         </div>
+//                         <div className="p-8 py-4  w-full max-h-fit bg-navygreen-100  rounded-pl shadow-md">
+//                             <h3 className="text-mini font-bold mb-2 z-10">Sunlight Provided:</h3>
+//                             <h1 className='text-md font-semibold'>{diary.sunlight}</h1>
+//                         </div>
+//                         <div className="px-8 py-4 w-full max-h-fit bg-navygreen-100 rounded-pl shadow-md">
+//                             <h3 className="text-mini font-bold mb-2 z-10">Fertilizer:</h3>
+//                             <h1 className='text-md font-semibold'>{diary.fertilizer}</h1>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+
+//             <div className="flex flex-col md:flex-row gap-6">
+//                 <div className="w-full md:w-1/2 rounded-pl border-2 border-navygreen-100 p-6">
+//                     <h3 className="text-lg font-semibold mb-2">Plant Update:</h3>
+//                     <p>{diary.plantUpdate}</p>
+//                 </div>
+
+//                 <div className="w-full md:w-1/2">
+//                     <div className='place-self-center'>
+//                         {diary.plantImages && diary.plantImages.length > 0 ? (
+//                             <PlantDiaryCarousel images={diary.plantImages} />
+//                         ) : (
+//                             <p>No images available</p>
+//                         )}
+//                     </div>
+//                 </div>
+//             </div>
+
+//             <div className='w-full flex flex-col md:flex-row lg:flex-row gap-6'>
+//                 <div className="mt-6 w-full p-6 rounded-pl border-2 border-navygreen-100">
+//                     <h3 className="text-lg font-semibold mb-2">Growth & Development Observations</h3>
+//                     <p>{diary.growthObservation}</p>
+//                 </div>
+//                 <div className="mt-6 w-full p-6 rounded-pl border-2 border-navygreen-100">
+//                     <h3 className="text-lg font-semibold mb-2">Health Issues</h3>
+//                     <p>{diary.healthIssues}</p>
+//                 </div>
+//             </div>
+
+//             <div className="flex justify-end gap-4 mt-6">
+//                 <Button 
+//                     type="submit" 
+//                     text="Edit Entry" 
+//                     className="py-2" 
+//                     onClick={() => handleEdit()}
+//                 />
+//                 <Button
+//                     onClick={() => handleDelete(diary?._id)}
+//                     type="submit"
+//                     text="Delete Entry"
+//                     className="py-2 border-none bg-danger"
+//                 />
+//             </div>
+//             {/* Conditionally render the modal */}
+//             {showModal && (
+//                 <UpdateDiaryModal
+//                     diaryId={id}
+//                     plantId={diary.plantId}
+//                     closeModal={closeModal} // Pass closeModal to handle modal close
+//                 />
+//             )}
+//         </div>
+//     );
+// };
+
+// export default PlantDiaryDetailPage;
+
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../components/button';
+import useFetch from '../hooks/useFetch';
+import formatDate from '../functions/format-date';
+import PlantDiaryCarousel from '../carousels/plant-diary-carousel';
+import useDelete from '../hooks/useDelete';
+import UpdateDiaryModal from '../popups/update-diary-modal';
 
 const PlantDiaryDetailPage = () => {
+    const navigate = useNavigate();
+    const { id } = useParams();
+    const [showModal, setShowModal] = useState(false);
+    const [diaryUpdated, setDiaryUpdated] = useState(false); // Track if the diary has been updated
 
-    // Sample plant object to avoid undefined errors
-    const plant = {
-        name: "Fiddle Leaf Fig",
-        type: "Ficus lyrata",
-        location: "Living Room",
-        dateAdded: "2024-10-28",
-        growthStage: "Mature",
-        mainImage: "https://via.placeholder.com/600x400", // Placeholder image
-        additionalImages: [
-            "https://via.placeholder.com/150",
-            "https://via.placeholder.com/150",
-            "https://via.placeholder.com/150"
-        ],
+    const url = `http://localhost:5000/api/plant-diaries/${id}`;
+    const { data: diary, loading, error, refetch } = useFetch(url); // Destructure refetch from useFetch
+    const { deleteItem, isLoading, error: deleteError } = useDelete('http://localhost:5000/api/plant-diaries');
+
+    const handleDelete = (diaryId) => {
+        deleteItem(diaryId);
+        navigate(-1);
     };
+
+    const handleEdit = () => {
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+        setDiaryUpdated(true); // Set to true to trigger refetch
+    };
+
+    useEffect(() => {
+        if (diaryUpdated) {
+            refetch(); // Refetch diary data
+            setDiaryUpdated(false); // Reset update state
+        }
+    }, [diaryUpdated, refetch]);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error loading diary details</div>;
+
     return (
         <div className="container mx-auto px-6 pb-10 pt-28">
-            {/* Header */}
             <header className="text-center mb-6">
-                <h1 className="text-lil2xl font-bold">{plant.name} ({plant.dateAdded})</h1>
-                <p className="text-gray-600">Plant Status: Thriving</p>
+                <h1 className="text-lil2xl font-bold">{diary.plant ? diary.plant.name : "Unknown Plant"}</h1>
+                <p className="text-gray-600">{formatDate(diary.diaryDate)}</p>
             </header>
-
-            <div className='flex flex-col lg:flex-row md:flex-row items-center gap-8 w-full px-4 py-8 border-y-2 border-gray-600 mb-4'>
-                <div className='flex gap-1 items-center'>
-                    <p className='font-semibold'>Watered</p>
-                    <svg
-                        className="w-4 h-4 cursor-pointer transition-colors"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#00BFFF"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    >
-                    <path d="M12 21c-4.97 0-9-4.03-9-9 0-4 9-11 9-11s9 7 9 11c0 4.97-4.03 9-9 9z" />
-                    </svg>
+            <div className="flex flex-col justify-between gap-4 lg:flex-row h-full p-4 rounded rounded-pl mr-4">
+                <div className='w-full'>
+                    <div className="flex flex-col lg:flex-row gap-6 w-full">
+                        <div className="p-8 py-4 w-full max-h-fit bg-navygreen-100 rounded-pl shadow-md">
+                            <h3 className="text-mini font-bold mb-2 z-10">Plant Status:</h3>
+                            <h1 className='text-md font-semibold'>{diary.plantStatus}</h1>
+                        </div>
+                        <div className="p-8 py-4 w-full max-h-fit bg-navygreen-100 rounded-pl shadow-md">
+                            <h3 className="text-mini font-bold mb-2 z-10">Watering Status:</h3>
+                            <h1 className='text-md font-semibold'>{diary.watered}</h1>
+                        </div>
+                        <div className="p-8 py-4  w-full max-h-fit bg-navygreen-100  rounded-pl shadow-md">
+                            <h3 className="text-mini font-bold mb-2 z-10">Sunlight Provided:</h3>
+                            <h1 className='text-md font-semibold'>{diary.sunlight}</h1>
+                        </div>
+                        <div className="px-8 py-4 w-full max-h-fit bg-navygreen-100 rounded-pl shadow-md">
+                            <h3 className="text-mini font-bold mb-2 z-10">Fertilizer:</h3>
+                            <h1 className='text-md font-semibold'>{diary.fertilizer}</h1>
+                        </div>
+                    </div>
                 </div>
-                <div className='flex gap-1 items-center'>
-                    <p className='font-semibold'>UV Light</p>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#9575CD" viewBox="0 0 24 24" width="30" height="30">
-                        <circle cx="12" cy="12" r="5"/>
-                        <path d="M12 1v3M12 20v3M4.222 4.222l2.121 2.121M16.95 16.95l2.121 2.121M1 12h3M20 12h3M4.222 19.778l2.121-2.121M16.95 7.05l2.121-2.121"/>
-                        <text x="8" y="16" font-size="8" fill="#222222">UV</text>
-                    </svg>
-                </div>
-                <p>Last Watered: 20.6.5</p>
             </div>
 
             <div className="flex flex-col md:flex-row gap-6">
-                {/* Left Column - Plant Info */}
-                <div className="w-full md:w-1/2 bg-white p-6">
-                    <h3 className="text-lg font-semibold mb-2">Diary</h3>
-                    <p>asjkhdkh asjkhdjka hskdhkajshd jka d gsd sjkd hjkah sjdkhak
-                        ahsd askdh kasdjhksj hdjkah skdhaskh djahshdh ahda khdjk ahdjk hsd
-                        shd ksjdh kajshd kajshd kasjhd kahkas djkhajksdh kashdjk djkash 
-                        ajkh
-                    </p>
+                <div className="w-full md:w-1/2 rounded-pl border-2 border-navygreen-100 p-6">
+                    <h3 className="text-lg font-semibold mb-2">Plant Update:</h3>
+                    <p>{diary.plantUpdate}</p>
                 </div>
 
-                {/* Right Column - Plant Image and Gallery */}
                 <div className="w-full md:w-1/2">
-                <img src={plant.mainImage} alt={plant.name} className="w-full h-72 object-cover rounded-lg mb-4" />
-                {/* Optional additional images */}
-                <div className="grid grid-cols-3 gap-2">
-                    {plant.additionalImages.map((image, index) => (
-                    <img key={index} src={image} alt={`Plant ${index + 1}`} className="object-cover rounded-lg h-24 w-full" />
-                    ))}
-                </div>
+                    <div className='place-self-center'>
+                        {diary.plantImages && diary.plantImages.length > 0 ? (
+                            <PlantDiaryCarousel images={diary.plantImages} />
+                        ) : (
+                            <p>No images available</p>
+                        )}
+                    </div>
                 </div>
             </div>
 
-            {/* Notes & Observations */}
-            <div className='w-full flex flex-col md:flex-row lg:flex-row gap-8'>
-                <div className="mt-6 bg-white p-6 rounded-lg shadow">
+            <div className='w-full flex flex-col md:flex-row lg:flex-row gap-6'>
+                <div className="mt-6 w-full p-6 rounded-pl border-2 border-navygreen-100">
                     <h3 className="text-lg font-semibold mb-2">Growth & Development Observations</h3>
-                    <p>{plant.notes}</p>
+                    <p>{diary.growthObservation}</p>
                 </div>
-                <div className="mt-6 bg-white p-6 rounded-lg shadow">
+                <div className="mt-6 w-full p-6 rounded-pl border-2 border-navygreen-100">
                     <h3 className="text-lg font-semibold mb-2">Health Issues</h3>
-                    <p>{plant.notes}</p>
+                    <p>{diary.healthIssues}</p>
                 </div>
             </div>
 
-            {/* Action Buttons */}
             <div className="flex justify-end gap-4 mt-6">
-                <Button
-                    type="submit"
-                    text="Go Back"
-                    className="py-2"
+                <Button 
+                    type="submit" 
+                    text="Edit Entry" 
+                    className="py-2" 
+                    onClick={handleEdit}
                 />
                 <Button
-                    type="submit"
-                    text="Edit Entry"
-                    className="py-2"
-                />
-                <Button
+                    onClick={() => handleDelete(diary?._id)}
                     type="submit"
                     text="Delete Entry"
-                    className="py-2 bg-danger"
+                    className="py-2 border-none bg-danger"
                 />
             </div>
+            {/* Conditionally render the modal */}
+            {showModal && (
+                <UpdateDiaryModal
+                    diaryId={id}
+                    plantId={diary.plantId}
+                    closeModal={closeModal} // Pass closeModal to handle modal close
+                />
+            )}
         </div>
     );
 };
