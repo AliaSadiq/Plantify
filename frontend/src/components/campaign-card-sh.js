@@ -114,7 +114,7 @@ const CampaignCardSh = ({ campaign}) => {
         <div className="flex justify-between items-center">
           <div className="flex items-center text-gray-500">
             <UserGroupIcon className="h-4 w-4 mr-1" />
-            <p className="text-sm">{campaign.volunteers} Donations</p>
+            <p className="text-sm">{campaign.total_volunteers_count} Donations</p>
           </div>
         </div>
       </div>

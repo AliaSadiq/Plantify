@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require('cors');
+const path = require('path');  // Import the path module
+
 // require('dotenv').config();
 const socialgroupRouter = require("./routes/socialgroup.route.js");
 const campaignRoute = require("./routes/campaign.route.js");
@@ -14,7 +16,10 @@ const sellerRoute = require("./routes/seller.route.js");
 const donationRoutes = require('./routes/donation.route.js')
 const reviewRoutes = require("./routes/social-review.route.js");
 const questionRoutes = require("./routes/social-question.route.js");
+const productRoutes = require("./routes/product.route.js");
 // const myPlantRoute = require("./routes/my-plant.route.js")
+const orderRoutes = require("./routes/order.routes.js");
+
 const teamRoute = require("./routes/team.route.js");
 const requestCampaignRoute = require("./routes/request-campaign.route.js");
 const app = express();
@@ -28,8 +33,6 @@ const limiter = rateLimit({
 
 //applying the rate limiting on a route.
 app.use('/api/user', limiter);
-
-// middleware
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cors());
@@ -49,6 +52,9 @@ app.use("/api/sellers",sellerRoute);
 app.use("/api/socialgroup-review", reviewRoutes);
 app.use("/api/socialgroup-question", questionRoutes);
 app.use("/api/admin", adminRoute);
+app.use("/api/products", productRoutes);
+app.use('/api/orders', orderRoutes); 
+
 // app.use("/api/my-plants", myPlantRoute);
 // app.use("/api/socialteams", teamroute);
 //connection

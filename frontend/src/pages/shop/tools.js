@@ -1,113 +1,217 @@
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import SearchBar from "../../components/search-bar";
 
-import React, { useState } from 'react';
+// Placeholder for API URL, you should replace this with your actual API endpoint
+const API_URL = "http://localhost:5000/api/products"; // Example API endpoint for fetching tools data
 
-    
-    const tools = [
-        { id: 1, imageUrl: '/assets/products/plant-1.jpeg', name: 'Green & Purple Cactus', price: 40 ,category: 'Pruners'},
-        { id: 2, imageUrl: '/assets/products/plant-2.jpeg', name: 'Snake Plant', price: 76 ,category: 'Pruners'},
-        { id: 3, imageUrl: '/assets/products/plant-3.jpeg', name: 'Green & Red Cactus', price: 58 ,category: 'HandFork'},
-        { id: 4, imageUrl: '/assets/products/plant-4.jpeg', name: 'Monstera', price: 32 ,category: 'HandFork'},
-        { id: 5, imageUrl: '/assets/products/plant-5.jpeg', name: 'Golden Barrel Cactus', price: 50,category: 'Lawnmowers' },
-        { id: 6, imageUrl: '/assets/products/plant-1.jpeg', name: 'Green & Purple Cactus', price: 40 ,category: 'HedgeCutters'},
-        { id: 7, imageUrl: '/assets/products/plant-2.jpeg', name: 'Snake Plant', price: 76 ,category: 'LeafBlowers'},
-        { id: 8, imageUrl: '/assets/products/plant-3.jpeg', name: 'Green & Red Cactus', price: 58 ,category: 'PressureWashers'},
+function Tools() {
+  const [tools, setTools] = useState([]); // State to store fetched tool data
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedAvailability, setSelectedAvailability] = useState("");
+  const [priceRange, setPriceRange] = useState([0, 100]); // Dual range: [min, max]
+  const [cardsPerView, setCardsPerView] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
 
-        
-        
-      ];
+  // Categories, Sizes, and Availabilities definitions
+  const categories = ['Pruners', 'HandFork', 'Lawnmowers', 'HedgeCutters', 'LeafBlowers', 'PressureWashers'];
+  const sizes = ['small', 'medium', 'large'];
+  const availabilities = ['in-stock', 'out-of-stock'];
 
+  useEffect(() => {
+    const updateCardsPerView = () => {
+      setCardsPerView(
+        window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1
+      );
+    };
 
-const categories = ['All', 'Pruners', 'HandFork', 'Lawnmowers', 'HedgeCutters','LeafBlowers','PressureWashers'];
+    updateCardsPerView();
+    window.addEventListener("resize", updateCardsPerView);
+    return () => window.removeEventListener("resize", updateCardsPerView);
+  }, []);
 
- function Tools() {
-    const [selectedCategory, setSelectedCategory] = useState('All');
+  useEffect(() => {
+    const fetchTools = async () => {
+      try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
 
-    const filteredTools = selectedCategory === 'All'
-        ? tools
-        : tools.filter((tool) => tool.category === selectedCategory);
+        // Check and transform the fetched data as per your logic
+        const transformedData = data
+          .filter((tool) => tool.type === "tools") // Only fetch data with type "tool"
+          .map((tool) => ({
+            ...tool,
+            availability: tool.quantity === 0 ? "out of stock" : "in stock",
+          }));
 
-    return (
-        <div className="max-w-screen mx-auto   mb-20 ">
-        {/* <h2 className="text-3xl font-bold font-josefin-sans text-center mb-6" style={{ backgroundImage: `url(/assets/products/plant-1.jpeg)` }}>Soils</h2> */}
-      
-<div 
-className="relative h-48 sm:h-64 md:h-80 bg-cover bg-black opacity-80 bg-center flex items-center justify-center" 
-style={{ backgroundImage: `url(/assets/tools.jpg)` }}
->
-<h2 className="text-3xl md:text-5xl font-bold font-josefin-sans text-white  px-4 py-2 rounded">
-TOOLS
-</h2>
-</div>          <div className="flex flex-col lg:flex-row">
-                {/* Sidebar */}
-                <div className="w-full lg:w-1/5 ml-10 mb-6 mr-20 mt-20 lg:mb-0">
-                    <div className="bg-white rounded-lg p-4 shadow-md">
-                        <h3 className="font-bold text-lg mb-4">Categories</h3>
-                        <ul className="flex flex-col text-sm text-gray-600 space-y-2">
-                            <li className="cursor-pointer hover:text-green-500">Home Plants (56)</li>
-                            <li className="cursor-pointer hover:text-green-500">Potter Plants (19)</li>
-                            <li className="cursor-pointer hover:text-green-500">Small Plants (32)</li>
-                            <li className="cursor-pointer hover:text-green-500">Big Plants (42)</li>
-                            <li className="cursor-pointer hover:text-green-500">Seeds (73)</li>
-                            <li className="cursor-pointer hover:text-green-500">Succulents (29)</li>
-                            <li className="cursor-pointer hover:text-green-500">Gardening (45)</li>
-                            <li className="cursor-pointer hover:text-green-500">Accessories (16)</li>
-                            <li className="cursor-pointer hover:text-green-500">Terrariums (21)</li>
-                        </ul>
-                    </div>
+        setTools(transformedData);
+      } catch (error) {
+        console.error("Error fetching tool data:", error);
+      }
+    };
 
-                    {/* Price Range Filter */}
-                    <div className="bg-white rounded-lg p-4 shadow-md mt-6">
-                        <h3 className="font-bold text-lg mb-4">Price Range</h3>
-                        <input type="range" min="0" max="100" className="w-full mb-2" />
-                        <div className="flex justify-between text-sm text-gray-600">
-                            <span>$0</span>
-                            <span>$100</span>
-                        </div>
-                    </div>
+    fetchTools();
+  }, []);
 
-                    {/* Size Filter */}
-                    <div className="bg-white rounded-lg p-4 shadow-md mt-6">
-                        <h3 className="font-bold text-lg mb-4">Size</h3>
-                        <ul className="text-sm text-gray-600 space-y-2">
-                            <li className="cursor-pointer hover:text-green-500">Small (142)</li>
-                            <li className="cursor-pointer hover:text-green-500">Medium (95)</li>
-                            <li className="cursor-pointer hover:text-green-500">Large (72)</li>
-                        </ul>
-                    </div>
-                </div>
+  const handleSearch = (term) => setSearchTerm(term);
 
-                {/* Main Content */}
-                <div className="w-full mr-10 mb-20 mt-10 lg:w-3/4">
-                    {/* Category Filters */}
-                    <div className="flex justify-center space-x-4 mb-8">
-                        {categories.map((category) => (
-                            <button
-                                key={category}
-                                className={`px-4 py-2 font-semibold font-josefin-sans text-gray-700 hover:text-green-500 ${
-                                    selectedCategory === category ? 'text-green-500 border-b-2 border-green-500' : ''
-                                }`}
-                                onClick={() => setSelectedCategory(category)}
-                            >
-                                {category}
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* Plant Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-44 gap-x-10">
-                        {filteredTools.map((tool) => (
-                            <div key={tool.id} className="bg-white rounded-lg shadow text-center">
-                                <img src={tool.imageUrl} alt={tool.name} className="w-full h-full object-cover mb-4 rounded-md" />
-                                <h3 className="text-lg font-semibold">{tool.name}</h3>
-                                <p className="text-gray-600">${tool.price.toFixed(2)}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </div>
+  const handleCategoryChange = (category) => {
+    setSelectedCategories((prevCategories) =>
+      prevCategories.includes(category)
+        ? prevCategories.filter((cat) => cat !== category)
+        : [...prevCategories, category]
     );
-}
+  };
 
+  const handlePriceRangeChange = (event, index) => {
+    const value = parseInt(event.target.value);
+    setPriceRange((prevRange) => {
+      const newRange = [...prevRange];
+      newRange[index] = value;
+      return newRange;
+    });
+  };
+
+  const filteredTools = tools
+    .filter((tool) =>
+      selectedCategories.length > 0
+        ? selectedCategories.includes(tool.category)
+        : true
+    )
+    .filter((tool) => (selectedSize ? tool.size === selectedSize : true))
+    .filter((tool) =>
+      selectedAvailability ? tool.availability === selectedAvailability : true
+    )
+    // Apply price filter only if the range is not the default [0, 100]
+    .filter((tool) =>
+      priceRange[0] === 0 && priceRange[1] === 100
+        ? true
+        : tool.price >= priceRange[0] && tool.price <= priceRange[1]
+    )
+    .filter((tool) =>
+      tool.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+  return (
+    <div className="max-w-screen mx-auto mb-20">
+      {/* Header Section */}
+      <div
+        className="relative h-48 sm:h-64 md:h-80 bg-cover bg-black opacity-80 bg-center flex items-center justify-center"
+        style={{ backgroundImage: `url(/assets/tools.jpg)` }}
+      >
+        <h2 className="text-3xl md:text-5xl font-bold font-josefin-sans text-white px-4 py-2 rounded">
+          TOOLS
+        </h2>
+      </div>
+
+      {/* Search Bar */}
+      <div className="w-full mt-10 items-center text-gray-100 mb-4">
+        <SearchBar onSearch={handleSearch} placeholder="Search tools" />
+      </div>
+
+      <div className="flex flex-col lg:flex-row">
+        {/* Sidebar */}
+        <div className="w-full lg:w-1/5 lg:ml-5 mb-6 mr-10 mt-10 lg:mb-0">
+          {/* Category Filter */}
+          <div className="bg-white rounded-lg p-4 shadow-md">
+            <h3 className="font-bold text-lg mb-4">Categories</h3>
+            <ul className="flex flex-col text-sm text-gray-600 space-y-2">
+              {categories.map((category) => (
+                <li key={category} className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    checked={selectedCategories.includes(category)}
+                    onChange={() => handleCategoryChange(category)}
+                    className="cursor-pointer"
+                  />
+                  <label
+                    onClick={() => handleCategoryChange(category)}
+                    className={`cursor-pointer ${
+                      selectedCategories.includes(category)
+                        ? "text-green-500 font-semibold"
+                        : ""
+                    }`}
+                  >
+                    {category}
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Size Filter */}
+          <div className="bg-white rounded-lg p-4 mt-4 shadow-md">
+            <h3 className="font-bold text-lg mt-4 mb-4">Sizes</h3>
+            <ul className="flex flex-col text-sm text-gray-600 space-y-2">
+              {sizes.map((size) => (
+                <li key={size} className="flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={selectedSize === size}
+                    onChange={() =>
+                      setSelectedSize(selectedSize === size ? "" : size)
+                    }
+                    className="mr-2"
+                  />
+                  <label className="cursor-pointer">{size}</label>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Price Range Filter */}
+          <div className="bg-white rounded-lg p-4 mt-4 shadow-md">
+            <h3 className="font-bold text-lg mt-4 mb-4">Price Range</h3>
+            <div className="flex items-center space-x-4">
+              <input
+                type="range"
+                min="100"
+                max="5000"
+                color="#99BC85"
+                value={priceRange[0]}
+                onChange={(e) => handlePriceRangeChange(e, 0)}
+                className="w-full"
+              />
+              <input
+                type="range"
+                min="100"
+                max="5000"
+                color="#99BC85"
+                value={priceRange[1]}
+                onChange={(e) => handlePriceRangeChange(e, 1)}
+                className="w-full"
+              />
+            </div>
+            <p className="text-sm text-gray-600 mt-2">
+              PKR {priceRange[0]} - PKR {priceRange[1]}
+            </p>
+          </div>
+        </div>
+
+        {/* Tools Grid */}
+        <div className="w-full mr-20 mb-20 mt-10 lg:w-3/4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredTools.map((tool) => (
+              <Link
+                to={`/products/${tool._id}`} // Dynamically linking to the product details page using the product ID
+                key={tool.id || `${tool.name}-${tool.price}`}
+                className="shadow-none text-center p-4 hover:shadow-lg transition-shadow duration-300"
+              >
+                <img
+                  src={`/assets/${tool.images[0]}`}
+                  alt={tool.name}
+                  className="w-full h-96 object-cover mb-4 rounded-md"
+                />
+                <h3 className="text-md font-semibold font-josefin-sans mb-2">{tool.name}</h3>
+                <p className="font-semibold text-lg text-green-500 mt-2">Rs.{tool.price}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default Tools;

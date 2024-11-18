@@ -7,10 +7,12 @@ import CampaignPage from './pages/campaign-page';
 import HomePage from './pages/personal-growth-page';
 import CampaignDetailsPage from './pages/campaign-details-page';
 import PlantDiaryPage from './pages/plant-diary-page';
-import Shop from './pages/shop';
-import ProductDetailsPage from './pages/product-detail-page';
-import Cart from './pages/cart.page';
+// import Shop from './pages/shop';
+import ProductDetailsPage from './pages/shop/product-detail-page';
+import Cart from './pages/shop/cart';
+import Checkout from './pages/shop/checkout';
 import Shop from './pages/shop/landing';
+import Layout from './Layout/Seller'
 import Plants from './pages/shop/plants';
 import Soils from './pages/shop/soils';
 import Tools from './pages/shop/tools';
@@ -33,10 +35,11 @@ const AppContent = () => {
   const location = useLocation();
   const isDashboardRoute = location.pathname.startsWith("/social-dashboard");
   const isAuthRoute = location.pathname.startsWith("/login") || location.pathname.startsWith("/social-signup") || location.pathname.startsWith("/seller-signup");
+  const isSellerRoute = location.pathname.startsWith("/seller"); // New check for seller route
 
   return (
     <>
-      {!isDashboardRoute && !isAuthRoute && <NavBar />}
+      {!isDashboardRoute && !isAuthRoute  && !isSellerRoute &&  <NavBar />}
       <Routes>
         <Route index element={<LandingPage />} />
         <Route path="campaign" element={<CampaignPage />} />
@@ -57,7 +60,9 @@ const AppContent = () => {
         <Route path="settings" element={<SettingsPage />} />
         <Route path='auth-check' element={<AuthCheck />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} />
+       
         <Route path="Cart" element={<Cart />}/>
+        <Route path="Checkout" element={<Checkout />}/>
         <Route path='verification-check' element={<VerificationCheck />} />
         {/* <Route path="explore" element={<ExplorePage />} /> */}
         <Route path="/plantify-network/*" element={<PlantifyNetwork />}  />
@@ -65,10 +70,15 @@ const AppContent = () => {
         {/* Auth routes */}
         {isAuthRoute && <Route path="/*" element={<AuthLayout />} />}
 
+        {/* Seller route */}
+        {isSellerRoute && <Route path="seller/*" element={<Layout />} />}
+
         {/* Dashboard routes */}
         {isDashboardRoute && <Route path="social-dashboard/:id/*" element={<DashboardLayout />} />}
+        <Route path="seller" element={<Layout/>}/>
       </Routes>
-      {!isDashboardRoute && !isAuthRoute && <Footer />}
+      {!isDashboardRoute && !isAuthRoute && !isSellerRoute && <Footer />}
+      
     </>
   );
 };
