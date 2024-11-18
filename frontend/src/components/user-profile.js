@@ -5,7 +5,7 @@ import useProfile from "../hooks/useSocialmediaProfile";
 import useEditProfile from "../hooks/useEditProfile";
 import { FaPencilAlt } from "react-icons/fa"; // For the pencil icon
 
-export default function UserProfile() {
+export default function UserProfile({ plantCount }) {
   const user = useFetchUserLocalStorage();
   const { profile, loading, error } = useProfile(user?._id);
   const { editProfile } = useEditProfile();
@@ -119,7 +119,7 @@ export default function UserProfile() {
                 <p>{profile?.socialMedia.followingCount} following</p>
                 <div className="flex gap-2 items-center">
                   <img src="assets/plants.png" alt="plant" className="w-6 h-6" />
-                  <p>19 plants</p>
+                  <p>{plantCount} plants</p>
                 </div>
               </div>
             </>

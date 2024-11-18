@@ -21,7 +21,7 @@ export default function PersonalGrowth() {
     return (
         <div className="min-h-screen bg-neutral pt-20 px-4 md:px-40">
             <div className="place-self-start w-full md:w-1/2 rounded-pl text-center mb-8 md:mb-0">            
-                <UserProfile/>
+                <UserProfile plantCount={plants.length}/>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-4 py-4">
                 {/* Event Calendar */}
@@ -41,7 +41,6 @@ export default function PersonalGrowth() {
                 {/* Goals List */}
                 <GoalsList userId={userId} />
             </div>
-            
         </div>
     );
 }

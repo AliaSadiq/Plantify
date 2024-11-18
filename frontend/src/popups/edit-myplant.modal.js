@@ -1,248 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import { XMarkIcon } from '@heroicons/react/24/solid';
-// import Button from '../components/button';
-
-// export default function EditMyPlantModal({ showModal, closeModal, plant }) {
-//     const [formData, setFormData] = useState({
-//         plantName: '',
-//         plantationDate: '',
-//         plantType: '',
-//         plantDescription: '',
-//     });
-
-//     useEffect(() => {
-//         if (plant) {
-//             setFormData({
-//                 plantName: plant.name || '',
-//                 plantationDate: plant.plantationDate || '',
-//                 plantType: plant.type || '',
-//                 plantDescription: plant.description || '',
-//             });
-//         }
-//     }, [plant]);
-
-//     const handleChange = (e) => {
-//         const { name, value } = e.target;
-//         setFormData((prev) => ({ ...prev, [name]: value }));
-//     };
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         console.log('Updated plant data:', formData);
-//         closeModal(); // Close modal after submission
-//     };
-
-//     return (
-//         <>
-//             {showModal && (
-//                 <div className="fixed inset-0 flex items-center justify-center z-30">
-//                     <div className="absolute inset-0 flex items-center bg-navygreen-100 justify-center bg-opacity-40">
-//                         <div className="relative w-full max-w-md mx-4 sm:mx-6 lg:mx-8 bg-navygreen-100 rounded-pl p-8 z-10">
-//                             <button className="absolute top-2 right-2 p-2 hover:bg-navygreen-200 rounded-pl text-gray-100" onClick={closeModal}>
-//                                 <XMarkIcon className="h-6 w-6" />
-//                             </button>
-//                             <h2 className="text-lg font-bold mb-4">Edit your Plant</h2>
-//                             <form onSubmit={handleSubmit}>
-//                                 <div className='mb-4'>
-//                                     <label htmlFor="plantName" className="block text-sm font-medium">Plant Name</label>
-//                                     <input
-//                                         type='text'
-//                                         name="plantName"
-//                                         value={formData.plantName}
-//                                         onChange={handleChange}
-//                                         className="w-full p-2 border border-lightgray rounded-lg focus:outline-none focus:ring focus:ring-palegreen-300"
-//                                         placeholder="Plant Name"
-//                                     />
-//                                 </div>
-//                                 <div className='mb-4'>
-//                                     <label htmlFor="plantationDate" className="block text-sm font-medium">Plantation Date</label>
-//                                     <input
-//                                         type='date'
-//                                         name="plantationDate"
-//                                         value={formData.plantationDate}
-//                                         onChange={handleChange}
-//                                         className="w-full p-2 border border-lightgray rounded-lg focus:outline-none focus:ring focus:ring-palegreen-300"
-//                                         placeholder="Plantation Date"
-//                                     />
-//                                 </div>
-//                                 <div className='mb-4'>
-//                                     <label htmlFor="plantType" className="block text-sm font-medium">Plant Type</label>
-//                                     <select
-//                                         id="plantType"
-//                                         name="plantType"
-//                                         value={formData.plantType}
-//                                         onChange={handleChange}
-//                                         className="w-full p-2 border border-lightgray rounded-lg focus:outline-none focus:ring focus:ring-palegreen-300"
-//                                     >
-//                                         <option value="" disabled>Select The Plant</option>
-//                                         <option value="Indoor">Indoor</option>
-//                                         <option value="Outdoor">Outdoor</option>
-//                                         <option value="Succulent">Succulent</option>
-//                                         {/* Add more options here */}
-//                                     </select>
-//                                 </div>
-//                                 <div className='mb-4'>
-//                                     <label htmlFor="plantDescription" className="block text-sm font-medium">Plant Description</label>
-//                                     <textarea
-//                                         name="plantDescription"
-//                                         value={formData.plantDescription}
-//                                         onChange={handleChange}
-//                                         className="w-full p-2 border border-lightgray rounded-lg focus:outline-none focus:ring focus:ring-palegreen-300"
-//                                         placeholder="Write about your plant"
-//                                         resize="none"
-//                                     />
-//                                 </div>
-//                                 <Button
-//                                     text="Save"
-//                                     type="submit"
-//                                     className="w-full mt-2 py-2 bg-gray-100 text-white shadow-md"
-//                                 />
-//                             </form>
-//                         </div>
-//                     </div>
-//                 </div>
-//             )}
-//         </>
-//     );
-// }
-
-// import React, { useState, useEffect } from 'react';
-// import { XMarkIcon } from '@heroicons/react/24/solid';
-// import Button from '../components/button';
-
-// export default function EditMyPlantModal({ showModal, closeModal, plant }) {
-//     const [formData, setFormData] = useState({
-//         plantName: '',
-//         plantationDate: '',
-//         plantType: '',
-//         plantDescription: '',
-//     });
-//     const [isLoading, setIsLoading] = useState(false);
-
-//     useEffect(() => {
-//         if (plant) {
-//             setFormData({
-//                 plantName: plant.name || '',
-//                 plantationDate: plant.plantationDate || '',
-//                 plantType: plant.type || '',
-//                 plantDescription: plant.description || '',
-//             });
-//         }
-//     }, [plant]);
-
-//     const handleChange = (e) => {
-//         const { name, value } = e.target;
-//         setFormData((prev) => ({ ...prev, [name]: value }));
-//     };
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         setIsLoading(true);
-
-//         try {
-//             const response = await fetch(`http://localhost:5000/api/my-plants/${plant._id}`, {
-//                 method: 'PUT',
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                 },
-//                 body: JSON.stringify({
-//                     name: formData.plantName,
-//                     plantationDate: formData.plantationDate,
-//                     type: formData.plantType,
-//                     description: formData.plantDescription,
-//                 }),
-//             });
-
-//             if (!response.ok) {
-//                 throw new Error(`Error: ${response.statusText}`);
-//             }
-
-//             const data = await response.json();
-//             console.log('Plant updated successfully:', data);
-//             closeModal(); // Close modal after successful submission
-//         } catch (error) {
-//             console.error('Failed to update plant:', error);
-//         } finally {
-//             setIsLoading(false);
-//         }
-//     };
-
-//     return (
-//         <>
-//             {showModal && (
-//                 <div className="fixed inset-0 flex items-center justify-center z-30">
-//                     <div className="absolute inset-0 flex items-center bg-navygreen-100 justify-center bg-opacity-40">
-//                         <div className="relative w-full max-w-md mx-4 sm:mx-6 lg:mx-8 bg-navygreen-100 rounded-pl p-8 z-10">
-//                             <button
-//                                 className="absolute top-2 right-2 p-2 hover:bg-navygreen-200 rounded-pl text-gray-100"
-//                                 onClick={closeModal}
-//                             >
-//                                 <XMarkIcon className="h-6 w-6" />
-//                             </button>
-//                             <h2 className="text-lg font-bold mb-4">Edit your Plant</h2>
-//                             <form onSubmit={handleSubmit}>
-//                                 <div className="mb-4">
-//                                     <label htmlFor="plantName" className="block text-sm font-medium">Plant Name</label>
-//                                     <input
-//                                         type="text"
-//                                         name="plantName"
-//                                         value={formData.plantName}
-//                                         onChange={handleChange}
-//                                         className="w-full p-2 border border-lightgray rounded-lg focus:outline-none focus:ring focus:ring-palegreen-300"
-//                                         placeholder="Plant Name"
-//                                     />
-//                                 </div>
-//                                 <div className="mb-4">
-//                                     <label htmlFor="plantationDate" className="block text-sm font-medium">Plantation Date</label>
-//                                     <input
-//                                         type="date"
-//                                         name="plantationDate"
-//                                         value={formData.plantationDate}
-//                                         onChange={handleChange}
-//                                         className="w-full p-2 border border-lightgray rounded-lg focus:outline-none focus:ring focus:ring-palegreen-300"
-//                                         placeholder="Plantation Date"
-//                                     />
-//                                 </div>
-//                                 <div className="mb-4">
-//                                     <label htmlFor="plantType" className="block text-sm font-medium">Plant Type</label>
-//                                     <select
-//                                         id="plantType"
-//                                         name="plantType"
-//                                         value={formData.plantType}
-//                                         onChange={handleChange}
-//                                         className="w-full p-2 border border-lightgray rounded-lg focus:outline-none focus:ring focus:ring-palegreen-300"
-//                                     >
-//                                         <option value="" disabled>Select The Plant</option>
-//                                         <option value="Indoor">Indoor</option>
-//                                         <option value="Outdoor">Outdoor</option>
-//                                         <option value="Succulent">Succulent</option>
-//                                     </select>
-//                                 </div>
-//                                 <div className="mb-4">
-//                                     <label htmlFor="plantDescription" className="block text-sm font-medium">Plant Description</label>
-//                                     <textarea
-//                                         name="plantDescription"
-//                                         value={formData.plantDescription}
-//                                         onChange={handleChange}
-//                                         className="w-full p-2 border border-lightgray rounded-lg focus:outline-none focus:ring focus:ring-palegreen-300"
-//                                         placeholder="Write about your plant"
-//                                     />
-//                                 </div>
-//                                 <Button
-//                                     text={isLoading ? 'Saving...' : 'Save'}
-//                                     type="submit"
-//                                     className="w-full mt-2 py-2 bg-gray-100 text-white shadow-md"
-//                                     disabled={isLoading}
-//                                 />
-//                             </form>
-//                         </div>
-//                     </div>
-//                 </div>
-//             )}
-//         </>
-//     );
-// }
-
 import React, { useState, useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import Button from '../components/button';
@@ -261,7 +16,9 @@ export default function EditMyPlantModal({ showModal, closeModal, plant }) {
         if (plant) {
             setFormData({
                 plantName: plant.name || '',
-                plantationDate: plant.plantationDate || '',
+                plantationDate: plant.plantationDate 
+                    ? new Date(plant.plantationDate).toISOString().split('T')[0] // Format to YYYY-MM-DD
+                    : '',
                 plantType: plant.type || '',
                 plantDescription: plant.description || '',
             });
@@ -378,6 +135,7 @@ export default function EditMyPlantModal({ showModal, closeModal, plant }) {
                                         onChange={handleChange}
                                         className="w-full p-2 border border-lightgray rounded-lg focus:outline-none focus:ring focus:ring-palegreen-300"
                                         placeholder="Plant Name"
+                                        required
                                     />
                                 </div>
                                 <div className="mb-4">
@@ -389,6 +147,7 @@ export default function EditMyPlantModal({ showModal, closeModal, plant }) {
                                         onChange={handleChange}
                                         className="w-full p-2 border border-lightgray rounded-lg focus:outline-none focus:ring focus:ring-palegreen-300"
                                         placeholder="Plantation Date"
+                                        required
                                     />
                                 </div>
                                 <div className="mb-4">
@@ -399,6 +158,7 @@ export default function EditMyPlantModal({ showModal, closeModal, plant }) {
                                         value={formData.plantType}
                                         onChange={handleChange}
                                         className="w-full p-2 border border-lightgray rounded-lg focus:outline-none focus:ring focus:ring-palegreen-300"
+                                        required
                                     >
                                         <option value="" disabled>Select The Plant</option>
                                         <option value="Indoor">Indoor</option>
@@ -414,6 +174,7 @@ export default function EditMyPlantModal({ showModal, closeModal, plant }) {
                                         onChange={handleChange}
                                         className="w-full p-2 border border-lightgray rounded-lg focus:outline-none focus:ring focus:ring-palegreen-300"
                                         placeholder="Write about your plant"
+                                        required
                                     />
                                 </div>
                                 <Button
