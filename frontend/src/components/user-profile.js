@@ -4,6 +4,7 @@ import useFetchUserLocalStorage from "../hooks/useFetchUserLocalStorage";
 import useProfile from "../hooks/useSocialmediaProfile";
 import useEditProfile from "../hooks/useEditProfile";
 import { FaPencilAlt } from "react-icons/fa"; // For the pencil icon
+import useFetch from "../hooks/useFetch";
 
 export default function UserProfile({ plantCount }) {
   const user = useFetchUserLocalStorage();

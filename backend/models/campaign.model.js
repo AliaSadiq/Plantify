@@ -77,6 +77,12 @@ const CampaignSchema = Schema(
         contact: {
             type: String,
             required: false // Set to false to make it optional
+        },
+        status: {
+            type: String,
+            enum: ['accepted', 'pending'], 
+            default: 'pending',
+            required: false // Set to false to make it optional
         }
       }
     ],  

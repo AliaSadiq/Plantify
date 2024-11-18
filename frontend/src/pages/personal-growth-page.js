@@ -16,8 +16,6 @@ export default function PersonalGrowth() {
     const {data: plants, loading, error, refetch} = useFetch(url);
     const {data: goals} = useFetch(`http://localhost:5000/api/goals/user/${userId}`);
 
-    
-
     return (
         <div className="min-h-screen bg-neutral pt-20 px-4 md:px-40">
             <div className="place-self-start w-full md:w-1/2 rounded-pl text-center mb-8 md:mb-0">            

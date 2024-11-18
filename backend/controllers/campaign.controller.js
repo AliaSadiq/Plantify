@@ -36,7 +36,8 @@ const getCampaign = async (req, res) => {
   try {
     const { id } = req.params;
     const campaign = await Campaign.findById(id)
-      .populate('socialGroup') // Populate the socialGroup field
+      .populate('socialGroup')
+      .populate('volunteers.user');
     res.status(200).json(campaign);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -308,36 +309,6 @@ const updateStage = async (req, res) => {
   }
 };
 
-const getVolunteersByCampaign = async (req, res) => {
-  const { campaignId } = req.params;
-
-  try {
-    // Fetch the campaign and populate the volunteers
-    const campaign = await Campaign.findById(campaignId).populate("volunteers.user", "name email"); // Adjust fields to populate if needed
-
-    if (!campaign) {
-      return res.status(404).json({ success: false, message: "Campaign not found" });
-    }
-
-    // Extract volunteers
-    const volunteers = campaign.volunteers.map(volunteer => ({
-      userId: volunteer.user._id,
-      name: volunteer.user.name,
-      email: volunteer.user.email,
-      contact: volunteer.contact || "Not provided"
-    }));
-
-    res.status(200).json({
-      success: true,
-      data: volunteers
-    });
-  } catch (error) {
-    console.error("Error fetching volunteers:", error);
-    res.status(500).json({ success: false, message: "Server error", error: error.message });
-  }
-};
-
-
 module.exports = {
     getCampaign,
     getCampaigns,
@@ -354,5 +325,4 @@ module.exports = {
     updateCampaign,
     deleteCampaign,
     getSocialGroupCampaignCount,
-    getVolunteersByCampaign,
 };
