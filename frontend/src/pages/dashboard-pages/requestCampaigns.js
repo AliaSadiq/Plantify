@@ -16,7 +16,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import dashboardbg from "../../images/dashboardbg.png"; // Importing background image
 
-const TABLE_HEAD = ["#", "Title", "Location", "Issue"];
+const TABLE_HEAD = ["#", "Name", "Location", "Issue"];
 
 const RequestCampaign = () => {
   const navigate = useNavigate();
@@ -120,7 +120,7 @@ const handleSearch = (query) => {
                       <tr key={campaign._id} onClick={() => handleRowClick(campaign)} className={rowClasses}>
                         <td className="px-6 py-4">{index + 1}</td>
                       
-                        <td className="px-6 py-4"> {campaign.title}</td> 
+                        <td className="px-6 py-4"> {campaign.name}</td> 
                         <td className="px-6 py-4">{campaign.location}</td>
                         <td className="px-6 py-4">{campaign.issue.split(" ").slice(0, 30).join(" ")}...</td>
                       </tr>

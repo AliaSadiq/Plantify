@@ -120,7 +120,7 @@ const ProfilePage = ({ onClose }) => {
   }
 
   const { user, socialMedia, posts } = updatedProfile;
-  const avatar = socialMedia.profileImg || 'path_to_default_avatar.jpg';
+  const avatar = user.avatar || 'path_to_default_avatar.jpg';
   const name = user.username || 'Unknown User';
 
   return (
@@ -128,7 +128,7 @@ const ProfilePage = ({ onClose }) => {
       <div className="flex mb-6 w-full items-center">
         <div className="w-1/3 h-40 flex-shrink-0 flex items-center justify-center mr-6">
           <div className="w-36 h-36 bg-gray-200 rounded-full overflow-hidden border-4 border-gradient-to-r from-yellow-400 to-red-500">
-            <img src={`/assets/${avatar}`} alt={name} className="object-cover w-full h-full" />
+            <img src={`/assets/avatars/${avatar}`} alt={name} className="object-cover w-full h-full" />
           </div>
         </div>
         <div className="w-2/3">

@@ -147,7 +147,7 @@ const PostFeed = () => {
   
 
   return (
-    <div className="w-10/12 max-w-lg mx-auto">
+    <div className="lg:w-10/12 w-full  mx-10">
       {/* Filter Buttons */}
       <div className="flex justify-center space-x-8 bg-transparent p-4">
         {/* {['Following', 'Adoption', 'Social'].map((option) => ( */}
