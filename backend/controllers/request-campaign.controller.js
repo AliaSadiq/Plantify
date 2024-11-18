@@ -1,13 +1,13 @@
 const Request = require("../models/request-campaign.model");
 
-const getRequests = async (req, res) => {
-  try {
-    const requests = await Request.find({});
-    res.status(200).json(requests);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+// const getRequests = async (req, res) => {
+//   try {
+//     const requests = await Request.find({});
+//     res.status(200).json(requests);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
 
 const addRequest = async (req, res) => {
   try {
@@ -41,10 +41,18 @@ const addRequest = async (req, res) => {
 
 const getRequest = async (req, res) => {
   try {
-    const { id } = req.params;
-    const request = await Request.findById(id);
-    res.status(200).json(request);
+    const { socialGroup } = req.query; // Use query parameters
+    let requests;
+    if (socialGroup) {
+      // Filter by socialGroup if provided
+      requests = await Request.find({ socialGroup }).populate("socialGroup");
+    } else {
+      // Fetch all requests if no filter
+      requests = await Request.find().populate("socialGroup");
+    }
+    res.status(200).json(requests);
   } catch (error) {
+    console.error("Error fetching requests:", error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -76,7 +84,7 @@ const deleteRequest = async (req, res) => {
 };
 
 module.exports = {
-  getRequests,
+  // getRequests,
   getRequest,
   addRequest,
   updateRequest,

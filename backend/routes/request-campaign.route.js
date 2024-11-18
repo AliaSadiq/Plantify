@@ -10,8 +10,8 @@ const {
 } = require("../controllers/request-campaign.controller");
 
 // Define your routes
-routes.get("/", getRequests);
-routes.get("/:id", getRequest);
+// routes.get("/", getRequests);
+routes.get('/get-request', getRequest);
 routes.put("/:id", updateRequest);
 routes.delete("/:id", deleteRequest);
 routes.post("/", addRequest);

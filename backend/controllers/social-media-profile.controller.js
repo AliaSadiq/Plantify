@@ -97,54 +97,27 @@ const getProfile = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
-
-// controllers/profileController.js
-// const editProfile = async (req, res) => {
-//   try {
-//     const { userId } = req.params;
-//     const { username, bio } = req.body;
-//     const profileImg = req.file ? req.file.filename : null;
-
-//     // Update User schema
-//     const user = await User.findByIdAndUpdate(userId, { username, bio }, { new: true });
-//     if (!user) return res.status(404).json({ error: 'User not found' });
-
-//     // Update SocialMedia schema if there’s a profile image
-//     const socialMediaUpdate = profileImg ? { profileImg } : {};
-//     const socialMedia = await SocialMedia.findOneAndUpdate(
-//       { user: userId },
-//       socialMediaUpdate,
-//       { new: true }
-//     );
-
-//     if (!socialMedia) return res.status(404).json({ error: 'Social media profile not found' });
-
-//     res.json({ message: 'Profile updated successfully', user, socialMedia });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal server error' });
-//   }
-// };
 const editProfile = async (req, res) => {
   try {
     const { userId } = req.params;
-    const { username, bio, profileImg } = req.body;
+    const { username, bio, avatar } = req.body;
 
     // Check for required fields and log missing fields
     if (!userId) {
       console.log("Missing userId in request params");
       return res.status(400).json({ error: 'User ID is required' });
     }
-    if (!username && !bio && !profileImg) {
+    if (!username && !bio && !avatar) {
       console.log("No update fields provided in request body");
       return res.status(400).json({ error: 'Nothing to update. Provide at least one field.' });
     }
 
-    // Update user document (username and bio)
+    // Update user document (username, bio, avatar)
     const userUpdate = {};
     if (username) userUpdate.username = username;
     if (bio) userUpdate.bio = bio;
-  
+    if (avatar) userUpdate.avatar = avatar;
+
     const user = await User.findByIdAndUpdate(
       userId,
       { $set: userUpdate },
@@ -155,31 +128,73 @@ const editProfile = async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Update social media profile image if provided
-    let socialMedia = null;
-    if (profileImg) {
-      socialMedia = await SocialMedia.findOneAndUpdate(
-        { user: userId },
-        { profileImg },
-        { new: true } // Return the updated document
-      );
-
-      if (!socialMedia) {
-        return res.status(404).json({ error: 'Social media profile not found' });
-      }
-    }
-
-    // Respond with success message and updated documents
+    // Respond with success message and updated document
     res.json({
       message: 'Profile updated successfully',
       user,
-      socialMedia: socialMedia || 'No social media update was required'
     });
   } catch (error) {
     console.error("Error in editProfile:", error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+
+// const editProfile = async (req, res) => {
+//   try {
+//     const { userId } = req.params;
+//     const { username, bio, profileImg } = req.body;
+
+//     // Check for required fields and log missing fields
+//     if (!userId) {
+//       console.log("Missing userId in request params");
+//       return res.status(400).json({ error: 'User ID is required' });
+//     }
+//     if (!username && !bio && !profileImg) {
+//       console.log("No update fields provided in request body");
+//       return res.status(400).json({ error: 'Nothing to update. Provide at least one field.' });
+//     }
+
+//     // Update user document (username and bio)
+//     const userUpdate = {};
+//     if (username) userUpdate.username = username;
+//     if (bio) userUpdate.bio = bio;
+  
+//     const user = await User.findByIdAndUpdate(
+//       userId,
+//       { $set: userUpdate },
+//       { new: true } // Return the updated document
+//     );
+
+//     if (!user) {
+//       return res.status(404).json({ error: 'User not found' });
+//     }
+
+//     // Update social media profile image if provided
+//     let socialMedia = null;
+//     if (profileImg) {
+//       socialMedia = await SocialMedia.findOneAndUpdate(
+//         { user: userId },
+//         { profileImg },
+//         { new: true } // Return the updated document
+//       );
+
+//       if (!socialMedia) {
+//         return res.status(404).json({ error: 'Social media profile not found' });
+//       }
+//     }
+
+//     // Respond with success message and updated documents
+//     res.json({
+//       message: 'Profile updated successfully',
+//       user,
+//       socialMedia: socialMedia || 'No social media update was required'
+//     });
+//   } catch (error) {
+//     console.error("Error in editProfile:", error);
+//     res.status(500).json({ error: 'Internal server error' });
+//   }
+// };
 
 
 

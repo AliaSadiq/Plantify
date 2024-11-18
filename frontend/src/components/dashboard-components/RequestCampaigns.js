@@ -1146,7 +1146,7 @@ import {
 } from "@material-tailwind/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 
 const TABLE_HEAD = ["#", "Name", "Location", "Description"];
 
@@ -1155,6 +1155,9 @@ const RequestCampaign = () => {
   const [campaigns, setCampaigns] = useState([]);
   const [selectedCampaign, setSelectedCampaign] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const { id } = useParams();
+console.log("Captured ID from URL:", id);
+
 // Capitalize first letter utility function
 const capitalizeFirstLetter = (string) => {
   if (!string) return "";
@@ -1164,12 +1167,15 @@ const capitalizeFirstLetter = (string) => {
     // Fetch campaign data from the API when the component mounts
     const fetchCampaigns = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/request-campaign"); // Update API URL for requests
+        const response = await axios.get("http://localhost:5000/api/request-campaign/get-request", {
+          params: { socialGroup: id },
+        });
         setCampaigns(response.data);
       } catch (error) {
         console.error("Error fetching campaigns:", error);
       }
     };
+    
 
     fetchCampaigns();
   }, []);

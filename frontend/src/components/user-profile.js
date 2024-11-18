@@ -14,7 +14,7 @@ export default function UserProfile({ plantCount }) {
   const [formData, setFormData] = useState({
     username: "",
     bio: "",
-    profileImg: null,
+    avatar: null,
   });
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function UserProfile({ plantCount }) {
       setFormData({
         username: profile.user.username || "",
         bio: profile.user.bio || "",
-        profileImg: null,
+        avatar: null,
       });
     }
   }, [profile]);
@@ -39,14 +39,13 @@ export default function UserProfile({ plantCount }) {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    
+
     if (file && file.type.startsWith("image/")) {
-      setFormData((prevData) => ({ ...prevData, profileImg: file.name })); // Store only the filename
+      setFormData((prevData) => ({ ...prevData, avatar: file.name })); // Store only the filename
     } else {
       alert("Only image files (JPEG, PNG, etc.) are allowed.");
     }
   };
-  
 
   const handleSave = async () => {
     console.log("Form data before sending:", formData); // Log form data
