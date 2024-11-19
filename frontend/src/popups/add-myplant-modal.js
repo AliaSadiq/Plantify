@@ -219,6 +219,7 @@ export default function MyPlantModal({ showModal, closeModal }) {
                                         className="hidden"
                                         accept="image/*"
                                         onChange={handleImageChange}
+                                        required
                                     />
                                 </div>
                                 <div className="mb-4">

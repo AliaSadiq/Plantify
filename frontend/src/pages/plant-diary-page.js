@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import DiaryCard from "../components/diary-card";
 import useFetch from "../hooks/useFetch";
 import PlantDiaryForm from "../forms/plant-diary-form";
+import formatDate from "../functions/format-date";
 
 export default function PlantDiaryPage () {
     const {id} = useParams();
@@ -28,6 +29,7 @@ export default function PlantDiaryPage () {
                     <div className="bg-lightgreen p-6 rounded-xl flex flex-col items-center w-full lg:w-1/3">
                         <img src={`/assets/products/${plant.image}`} alt="Plant Image" className="w-32 h-32 rounded-pl mb-4 object-cover" />
                         <div className="text-center">
+                            <p className="text-sm text-gray-600 mb-2">Planted on: {formatDate(plant.plantationDate)}</p>
                             <h2 className="text-2xl font-bold mb-2">{plant.name}</h2>
                             <p className="text-sm text-gray-600 mb-2">{plant.type}</p>
                             {/* Watering mechanism :) */}

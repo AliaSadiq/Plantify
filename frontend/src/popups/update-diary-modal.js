@@ -24,7 +24,7 @@ export default function UpdateDiaryModal ({ diaryId, plantId, closeModal }) {
                 setWatered(data.watered || "");
                 setSunlight(data.sunlight || "");
                 setPlantStatus(data.plantStatus || "");
-                setDiaryDate(data.diaryDate || "");
+                setDiaryDate(data.diaryDate ? new Date(data.diaryDate).toISOString().split('T')[0] : '');
                 setFertilizer(data.fertilizer || "");
                 setPlantUpdate(data.plantUpdate || "");
                 setGrowthObservation(data.growthObservation || "");

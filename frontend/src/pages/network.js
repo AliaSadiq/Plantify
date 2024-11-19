@@ -87,7 +87,7 @@ const PlantifyLayout = () => {
             path=""
             element={
               <div className="flex w-full">
-                <div className="w-4/6 h-full max-h-screen lg:overflow-y-auto no-scrollbar px-4">
+                <div className="w-4/6 h-full max-h-screen lg:overflow-y-auto no-scrollbar">
   <PostFeed />
 </div>
 

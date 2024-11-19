@@ -66,7 +66,7 @@ const getAllPosts = async (req, res) => {
     const posts = await Post.find({})
       .populate({
         path: 'author',
-        select: 'username bio', // Include specific fields from the User schema
+        select: 'username bio avatar', // Include specific fields from the User schema
       });
 
     // Send back the fully populated posts
@@ -150,6 +150,136 @@ const getFollowingPosts = async (req, res) => {
   }
 };
 
+const getFilteredPosts = async (req, res) => {
+  try {
+    const { userId, filter } = req.query; // Get filter and userId from query params
+    let posts = [];
+
+    if (filter === 'adoption') {
+      posts = await Post.find({ postType: 'adoption' }).populate('author', 'username avatar');
+    } else if (filter === 'social') {
+      posts = await Post.find({ isSocialGroupPost: true }).populate('author', 'username avatar');
+    } else if (filter === 'following') {
+      const socialMedia = await SocialMedia.findOne({ user: userId }).populate('following');
+      const followingIds = socialMedia.following.map((user) => user._id); // Get IDs of following users
+      posts = await Post.find({ author: { $in: followingIds } }).populate('author', 'username avatar');
+    } else {
+      posts = await Post.find().populate('author', 'username avatar'); // Default to fetch all posts
+    }
+
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// const toggleLikePost = async (req, res) => {
+//   try {
+//     console.log("Request body:", req.body); // Debug request body
+//     const { postId, userId } = req.body; // Get `postId` and `userId` from request body
+
+//     // Validate userId
+//     if (!userId) {
+//       console.log("Missing userId in the request body.");
+//       return res.status(400).json({ error: 'User ID is required' });
+//     }
+
+//     console.log("Fetching post with ID:", postId);
+//     const post = await Post.findById(postId); // Find the post by `postId`
+
+//     if (!post) {
+//       console.log("Post not found for ID:", postId);
+//       return res.status(404).json({ message: 'Post not found' });
+//     }
+
+//     console.log("Post found:", post);
+
+//     // Validate and initialize the `likes` field
+//     if (!Array.isArray(post.likes)) {
+//       console.log("Initializing likes array as it is not defined.");
+//       post.likes = [];
+//     }
+
+//     console.log("Current likes array:", post.likes);
+
+//     // Check if the user has already liked the post
+//     const hasLiked = post.likes.includes(userId);
+//     console.log("Has the user liked the post already?", hasLiked);
+
+//     if (hasLiked) {
+//       // Unlike the post
+//       post.likes = post.likes.filter((id) => id !== userId);
+//       console.log("User unliked the post. Updated likes array:", post.likes);
+//       await post.save();
+//       return res.status(200).json({ message: 'Post unliked', likesCount: post.likes.length });
+//     } else {
+//       // Like the post
+//       post.likes.push(userId);
+//       console.log("User liked the post. Updated likes array:", post.likes);
+//       await post.save();
+//       return res.status(200).json({ message: 'Post liked', likesCount: post.likes.length });
+//     }
+//   } catch (error) {
+//     console.error("Error in toggleLikePost:", error);
+//     res.status(500).json({ error: 'An error occurred while toggling the like' });
+//   }
+// };
+
+
+const toggleLikePost = async (req, res) => {
+  try {
+    console.log("Request body:", req.body); // Debug request body
+    const { postId, userId } = req.body; // Get `postId` and `userId` from request body
+
+    // Validate userId
+    if (!userId) {
+      console.log("Missing userId in the request body.");
+      return res.status(400).json({ error: 'User ID is required' });
+    }
+
+    console.log("Fetching post with ID:", postId);
+    const post = await Post.findById(postId); // Find the post by `postId`
+
+    if (!post) {
+      console.log("Post not found for ID:", postId);
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    console.log("Post found:", post);
+
+    // Validate and initialize the `likes` field
+    if (!Array.isArray(post.likes)) {
+      console.log("Initializing likes array as it is not defined.");
+      post.likes = [];
+    }
+
+    console.log("Current likes array:", post.likes);
+
+    // Check if the user has already liked the post
+    const hasLiked = post.likes.includes(userId);
+    console.log("Has the user liked the post already?", hasLiked);
+
+    if (hasLiked) {
+      // Unlike the post
+      post.likes = post.likes.filter((id) => id !== userId);
+      console.log("User unliked the post. Updated likes array:", post.likes);
+      await post.save();
+      // Return updated post with likes count
+      return res.status(200).json({ message: 'Post unliked', likes: post.likes });
+    } else {
+      // Like the post
+      post.likes.push(userId);
+      console.log("User liked the post. Updated likes array:", post.likes);
+      await post.save();
+      // Return updated post with likes count
+      return res.status(200).json({ message: 'Post liked', likes: post.likes });
+    }
+  } catch (error) {
+    console.error("Error in toggleLikePost:", error);
+    res.status(500).json({ error: 'An error occurred while toggling the like' });
+  }
+}
+
 module.exports = {
     createPost,
     deletePost,
@@ -157,5 +287,7 @@ module.exports = {
     getAllPosts ,
     getAdoptionPosts,
     getSocialGroupPosts,
-    getFollowingPosts
+    getFollowingPosts,
+    getFilteredPosts,
+    toggleLikePost
   };

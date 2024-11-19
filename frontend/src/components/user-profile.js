@@ -4,8 +4,9 @@ import useFetchUserLocalStorage from "../hooks/useFetchUserLocalStorage";
 import useProfile from "../hooks/useSocialmediaProfile";
 import useEditProfile from "../hooks/useEditProfile";
 import { FaPencilAlt } from "react-icons/fa"; // For the pencil icon
+import useFetch from "../hooks/useFetch";
 
-export default function UserProfile() {
+export default function UserProfile({ plantCount }) {
   const user = useFetchUserLocalStorage();
   const { profile, loading, error } = useProfile(user?._id);
   const { editProfile } = useEditProfile();
@@ -14,7 +15,7 @@ export default function UserProfile() {
   const [formData, setFormData] = useState({
     username: "",
     bio: "",
-    profileImg: null,
+    avatar: null,
   });
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function UserProfile() {
       setFormData({
         username: profile.user.username || "",
         bio: profile.user.bio || "",
-        profileImg: null,
+        avatar: null,
       });
     }
   }, [profile]);
@@ -39,14 +40,13 @@ export default function UserProfile() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    
+
     if (file && file.type.startsWith("image/")) {
-      setFormData((prevData) => ({ ...prevData, profileImg: file.name })); // Store only the filename
+      setFormData((prevData) => ({ ...prevData, avatar: file.name })); // Store only the filename
     } else {
       alert("Only image files (JPEG, PNG, etc.) are allowed.");
     }
   };
-  
 
   const handleSave = async () => {
     console.log("Form data before sending:", formData); // Log form data
@@ -76,7 +76,7 @@ export default function UserProfile() {
       <div className="flex flex-col md:flex-row gap-4">
         {/* Profile Picture */}
         <img
-          src={`/assets/${profile?.socialMedia.profileImg}`}
+          src={`/assets/avatars/${profile?.user.avatar}`}
           alt="profile picture"
           className="border-2 border-gray-100 w-28 h-28 rounded-full mx-auto md:mx-0"
         />
@@ -119,7 +119,7 @@ export default function UserProfile() {
                 <p>{profile?.socialMedia.followingCount} following</p>
                 <div className="flex gap-2 items-center">
                   <img src="assets/plants.png" alt="plant" className="w-6 h-6" />
-                  <p>19 plants</p>
+                  <p>{plantCount} plants</p>
                 </div>
               </div>
             </>

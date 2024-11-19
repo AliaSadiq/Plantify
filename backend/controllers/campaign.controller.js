@@ -36,7 +36,8 @@ const getCampaign = async (req, res) => {
   try {
     const { id } = req.params;
     const campaign = await Campaign.findById(id)
-      .populate('socialGroup') // Populate the socialGroup field
+      .populate('socialGroup')
+      .populate('volunteers.user');
     res.status(200).json(campaign);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -307,7 +308,6 @@ const updateStage = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
-
 
 module.exports = {
     getCampaign,

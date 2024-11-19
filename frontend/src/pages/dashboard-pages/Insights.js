@@ -5,6 +5,7 @@ import DonationBoard from '../../components/donations-board';
 import useFetch from '../../hooks/useFetch';
 import formatDate from '../../functions/format-date';
 import VolunteerRequestTable from '../../components/dashboard-components/volunteer-request-table';
+import Button from '../../components/button';
 
 export default function Insights () {
   const { id } = useParams();
@@ -57,9 +58,22 @@ export default function Insights () {
             <DonationBoard donations={donations}/>
           </div>
         </div>
-        <div className='mt-4 w-full border-2 border-gray-300 p-4 rounded-pl'>
-          <VolunteerRequestTable/>
-        </div>
+        {campaign?.volunteers && campaign.volunteers.length > 0 ? (
+          <div className='mt-4 w-full p-4 rounded-pl'>
+            <div className='flex items-center justify-between mb-2'>
+              <h3 className="text-md font-semibold mb-2">Volunteering Requests</h3>
+              <Button
+                text="Accepted Volunteers"
+                type="button"
+                className="py-2"
+                // onClick={}
+              />
+            </div>
+            <VolunteerRequestTable volunteers={campaign?.volunteers}/>
+          </div>
+        ):(
+          <p className='text-center mt-4 text-gray-700 hidden'>no volunteers</p>
+        )}
       </div>
     </div>
   );
