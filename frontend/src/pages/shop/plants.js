@@ -191,20 +191,20 @@ function Plants() {
 
         {/* Plant Grid */}
         <div className="w-full mr-20 mb-20 mt-10 lg:w-3/4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 h-80  md:grid-cols-2 lg:grid-cols-4 gap-8">
             {filteredPlants.map((plant) => (
               <Link
                 to={`/products/${plant._id}`} // Dynamically linking to the product details page using the product ID
                 key={plant.id || `${plant.name}-${plant.price}`}
-                className="shadow-none text-center p-4 hover:shadow-lg transition-shadow duration-300"
+                className=" text-center  transition-shadow duration-300"
               >
                 <img
                   src={`/assets/${plant.images[0]}`}
                   alt={plant.name}
-                  className="w-full h-96 object-cover mb-4 rounded-md"
+                  className="w-full h-80 object-cover mb-4 rounded-md"
                 />
                 <h3 className="text-md font-semibold font-josefin-sans mb-2">{plant.name}</h3>
-                <p className="font-semibold text-lg text-green-500 mt-2">Rs.{plant.price}</p>
+                {/* <p className="font-semibold text-start text-sm text-black mt-2">Rs.{plant.price}</p> */}
               </Link>
             ))}
           </div>

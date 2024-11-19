@@ -547,10 +547,10 @@ const Checkout = () => {
                 />
                 <div>
                   <h3 className="text-md font-josefin-sans font-semibold">{item.name}</h3>
-                  <span className="text-gray-600">₹{item.price}</span>
+                  <span className="text-gray-600">Rs.{item.price}</span>
                 </div>
               </div>
-              <span className="text-gray-600">₹{item.price * item.quantity}</span>
+              <span className="text-gray-600">Rs.{item.price * item.quantity}</span>
             </div>
           ))}
 
@@ -561,7 +561,7 @@ const Checkout = () => {
             </div>
             <div className="flex justify-between mb-2">
               <span className="text-gray-600 font-josefin-sans">Shipping</span>
-              <span className="text-gray-600 font-josefin-sans">₹Rs.200</span>
+              <span className="text-gray-600 font-josefin-sans">Rs.200</span>
             </div>
             <div className="flex justify-between mt-4 pt-4 border-t border-gray-300">
               <span className="text-lg font-semibold font-josefin-sans">Total</span>

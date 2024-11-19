@@ -78,7 +78,7 @@ const ProductDetailsPage = () => {
         </div>
 
         <div className="lg:w-2/3 mt-6 lg:mt-0">
-          <h1 className="text-2xl font-josefin-sans font-bold mt-5 text-gray-800">
+          <h1 className="text-2xl font-josefin-sans font-bold  text-gray-800">
             {product.name}
           </h1>
           <p className="text-gray-700 font-josefin-sans mt-4">{product.description}</p>
@@ -89,7 +89,7 @@ const ProductDetailsPage = () => {
               <li key={index} className="list-disc ml-6">{spec.trim()}</li>
             ))}
           </ul>
-          <p className="text-xl font-semibold font-josefin-sans text-green-600 mt-2">
+          <p className="text-lg font-semibold font-josefin-sans text-black mt-2">
             Rs.{product.price}
           </p>
           <span className="text-gray-500 font-josefin-sans">In stock ({product.quantity})</span>

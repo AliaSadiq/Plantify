@@ -22,6 +22,8 @@ const requestCampaignRoute = require("./routes/request-campaign.route.js");
 const socialMediaProfileRoute = require("./routes/social-media-profile.router.js");
 const goalRoute = require("./routes/goal.route.js");
 const socialPost = require("./routes/social-media-post.router.js");
+const productRoute=require("./routes/product.route.js");
+const orderRoute=require("./routes/order.routes.js");
 
 const app = express();
 const rateLimit = require('express-rate-limit');
@@ -53,6 +55,9 @@ app.use("/api/sellers",sellerRoute);
 app.use("/api/socialgroup-review", reviewRoutes);
 app.use("/api/socialgroup-question", questionRoutes);
 app.use("/api/admin", adminRoute);
+app.use("/api/products", productRoute);
+app.use("/api/orders", orderRoute);
+
 // app.use("/api/my-plants", myPlantRoute);
 // app.use("/api/socialteams", teamroute);
 //connection
