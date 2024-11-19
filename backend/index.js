@@ -16,8 +16,10 @@ const sellerRoute = require("./routes/seller.route.js");
 const donationRoutes = require('./routes/donation.route.js')
 const reviewRoutes = require("./routes/social-review.route.js");
 const questionRoutes = require("./routes/social-question.route.js");
-// const myPlantRoute = require("./routes/my-plant.route.js")
+const myPlantRoute = require("./routes/my-plant.route.js")
 const teamRoute = require("./routes/team.route.js");
+const plantDiaryRoute = require("./routes/plant-diary.route.js")
+
 const requestCampaignRoute = require("./routes/request-campaign.route.js");
 const socialMediaProfileRoute = require("./routes/social-media-profile.router.js");
 const goalRoute = require("./routes/goal.route.js");
@@ -57,9 +59,12 @@ app.use("/api/socialgroup-question", questionRoutes);
 app.use("/api/admin", adminRoute);
 app.use("/api/products", productRoute);
 app.use("/api/orders", orderRoute);
+app.use("/api/my-plants", myPlantRoute);
+app.use("/api/plant-diaries", plantDiaryRoute);
+app.use("/api/social-media", socialMediaProfileRoute);
+app.use("/api/goals", goalRoute);
+app.use("/api/post", socialPost);
 
-// app.use("/api/my-plants", myPlantRoute);
-// app.use("/api/socialteams", teamroute);
 //connection
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -72,3 +77,7 @@ mongoose
   .catch(() => {
     console.log("Connection failed!");
   });
+
+
+
+  
