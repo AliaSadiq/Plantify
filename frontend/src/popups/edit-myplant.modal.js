@@ -33,33 +33,45 @@ export default function EditMyPlantModal({ showModal, closeModal, plant }) {
 
     const handleImageChange = (e) => {
         if (e.target.files && e.target.files[0]) {
-            setPlantImage(e.target.files[0]); // Store the image file
+            const file = e.target.files[0];
+            const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    
+            if (!validImageTypes.includes(file.type)) {
+                alert('Please select a valid image file (JPEG, PNG, or GIF).');
+                return;
+            }
+    
+            setPlantImage(file); // Store the image file
         }
     };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-
-        const formDataToSubmit = new FormData();
-        formDataToSubmit.append('name', formData.plantName);
-        formDataToSubmit.append('plantationDate', formData.plantationDate);
-        formDataToSubmit.append('type', formData.plantType);
-        formDataToSubmit.append('description', formData.plantDescription);
-        if (plantImage instanceof File) {
-            formDataToSubmit.append('image', plantImage); // Only append if it's a new file
-        }
-
+    
+        // Prepare the data to send as JSON (no FormData)
+        const dataToSubmit = {
+            name: formData.plantName,
+            plantationDate: formData.plantationDate,
+            type: formData.plantType,
+            description: formData.plantDescription,
+            image: plantImage instanceof File ? plantImage.name : plantImage, // send the image filename
+        };
+    
         try {
             const response = await fetch(`http://localhost:5000/api/my-plants/${plant._id}`, {
                 method: 'PUT',
-                body: formDataToSubmit,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataToSubmit),
             });
-
+    
             if (!response.ok) {
                 throw new Error(`Error: ${response.statusText}`);
             }
-
+    
             const data = await response.json();
             console.log('Plant updated successfully:', data);
             closeModal(); // Close modal after successful submission
@@ -69,7 +81,7 @@ export default function EditMyPlantModal({ showModal, closeModal, plant }) {
             setIsLoading(false);
         }
     };
-
+    
     return (
         <>
             {showModal && (

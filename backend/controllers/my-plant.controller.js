@@ -63,6 +63,7 @@ const deleteMyPlant = async (req, res) => {
 // Update Plant
 const updateMyPlant = async (req, res) => {
   const { id } = req.params;
+  const { name, plantationDate, type, description, image } = req.body; // Get data from JSON body
 
   try {
       // Find the plant by ID
@@ -72,15 +73,15 @@ const updateMyPlant = async (req, res) => {
           return res.status(404).json({ message: "Plant not found" });
       }
 
-      // Update the plant
+      // Update the plant with the new data
       const updatedPlant = await MyPlant.findByIdAndUpdate(
           id,
           {
-              name: req.body.name || plant.name,
-              image: req.body.image || plant.image,
-              type: req.body.type || plant.type,
-              description: req.body.description || plant.description,
-              plantationDate: req.body.plantationDate || plant.plantationDate,
+              name: name || plant.name,
+              image: image || plant.image,  // Assuming image is just a filename
+              type: type || plant.type,
+              description: description || plant.description,
+              plantationDate: plantationDate || plant.plantationDate,
           },
           { new: true } // Return the updated plant
       );
