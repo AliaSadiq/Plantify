@@ -21,6 +21,7 @@ const requestCampaignRoute = require("./routes/request-campaign.route.js");
 const socialMediaProfileRoute = require("./routes/social-media-profile.router.js");
 const goalRoute = require("./routes/goal.route.js");
 const socialPost = require("./routes/social-media-post.router.js");
+const postComments = require("./routes/post-comments.route.js");
 
 const app = express();
 const rateLimit = require('express-rate-limit');
@@ -59,6 +60,7 @@ app.use("/api/plant-diaries", plantDiaryRoute);
 app.use("/api/social-media", socialMediaProfileRoute);
 app.use("/api/goals", goalRoute);
 app.use("/api/post", socialPost);
+app.use("/api/post-comment", postComments);
 // app.use("/api/socialteams", teamroute);
 //connection
 mongoose
