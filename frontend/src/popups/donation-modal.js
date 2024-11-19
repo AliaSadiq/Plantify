@@ -5,7 +5,7 @@ import Button from '../components/button';
 import { Link } from 'react-router-dom';
 
   
-export default function DonationModal({ showModal, closeModal, campaignId, userId, updateCampaign }) {
+export default function DonationModal({ showModal, closeModal, campaignId, userId }) {
     const [amount, setAmount] = useState('');
     const handleSubmit = async (e) => { 
         e.preventDefault(); 
@@ -13,9 +13,10 @@ export default function DonationModal({ showModal, closeModal, campaignId, userI
             const response = await axios.post('http://localhost:5000/api/donations', { amount: parseInt(amount), user: userId, campaign: campaignId }); 
             if (response.status === 201) { 
                 alert('Thank you for your donation!'); 
-                updateCampaign(response.data.updatedCampaign); 
+                //updateCampaign(response.data.updatedCampaign); 
                 // Update the parent component with the new campaign data 
                 closeModal(); 
+                window.location.reload();
             } 
         } catch (error) { 
             console.error('Error creating donation:', error); 

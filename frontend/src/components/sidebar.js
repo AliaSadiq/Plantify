@@ -11,7 +11,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="fixed bg-greent w-10 h-72 flex flex-col bg-gg rounded-r-full justify-between items-center top-40 bottom-30 overflow-auto">
+    <div className="fixed bg-greent w-10 h-62 flex flex-col bg-gg rounded-r-full justify-between items-center top-40 bottom-30 overflow-auto">
       <ul className="mt-8">
         <li className="mb-4">
           <Link className="nav-link" to="/onboard" onClick={() => handleIconClick('chart')}>

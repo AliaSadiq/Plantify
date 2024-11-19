@@ -336,7 +336,7 @@ const Sidebar = ( ) => {
           </li>
           <NavLink to="campaigns" className={({ isActive }) =>
             `flex flex-row items-center gap-2 p-4 rounded rounded-pl ${
-              isActive ? 'bg-navygreen-200 bg-opacity-30' : 'hover:bg-navygreen-200 dark:hover:bg-opacity-30'
+              isActive ? 'bg-navygreen-200 dark:bg-opacity-30' : 'hover:bg-navygreen-200 hover:bg-opacity-30'
             }`
           }>
             <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#222222" stroke={0.5}>
@@ -345,8 +345,8 @@ const Sidebar = ( ) => {
             <p>Campaigns</p>
           </NavLink>
           <NavLink to="requestCampaigns" className={({ isActive }) =>
-            `flex flex-row items-center gap-2 p-4 rounded rounded-pl ${
-              isActive ? 'bg-navygreen-200 bg-opacity-30' : 'hover:bg-navygreen-200 dark:hover:bg-opacity-30'
+            `flex flex-row items-center gap-2 p-4 rounded-pl ${
+              isActive ? 'bg-navygreen-200 dark:bg-opacity-30' : 'hover:bg-navygreen-200 hover:bg-opacity-30'
             }`
           }>
             <svg 
@@ -363,7 +363,7 @@ const Sidebar = ( ) => {
           </NavLink>
           <NavLink to="profile" className={({ isActive }) =>
             `flex flex-row items-center gap-2 p-4 rounded rounded-pl ${
-              isActive ? 'bg-navygreen-200 bg-opacity-30' : 'hover:bg-navygreen-200 dark:hover:bg-opacity-30'
+              isActive ? 'bg-navygreen-200 dark:bg-opacity-30' : 'hover:bg-navygreen-200 hover:bg-opacity-30'
             }`
           }>
             <svg
@@ -380,7 +380,7 @@ const Sidebar = ( ) => {
           </NavLink>
           <NavLink to="/" className={({ isActive }) =>
             `flex flex-row items-center gap-2 p-4 rounded rounded-pl ${
-              isActive ? 'bg-navygreen-200 bg-opacity-30' : 'hover:bg-navygreen-200 dark:hover:bg-opacity-30'
+              isActive ? 'bg-navygreen-200 dark:bg-opacity-30' : 'hover:bg-navygreen-200 hover:bg-opacity-30'
             }`
           }>
             <svg 
