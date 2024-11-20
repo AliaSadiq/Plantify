@@ -249,7 +249,7 @@ const MainPage = () => {
               <div className="absolute inset-0 bg-black opacity-50"></div>
             </div>
             <div className="absolute top-40 left-6 w-[120px] h-[120px] bg-white rounded-full overflow-hidden border-4 border-white">
-              <img src={`/assets/${profileData.image}`} alt="Profile" className="w-full h-full object-cover" />
+              <img src={`/assets/avatars/${profileData.image}`} alt="Profile" className="w-full h-full object-cover" />
             </div>
             <div className="p-6">
               <div className="mt-16 flex space-x-2">

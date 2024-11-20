@@ -30,7 +30,7 @@ export default function ProfileDropdown({avatar}) {
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right font-josefin-sans rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            <Link to='/settings'>
+            {/* <Link to='/settings'>
               <Menu.Item>
                 {({ active }) => (
                   <a
@@ -44,7 +44,7 @@ export default function ProfileDropdown({avatar}) {
                   </a>
                 )}
               </Menu.Item>
-            </Link>
+            </Link> */}
             <Link to='/logout'>
               <Menu.Item>
                 {({ active }) => (
