@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import useFetchCampaignCount from '../hooks/campaign-count';
 import useFetchSocialGroupCount from '../hooks/socialgroup-count';
-import TodoDropdown from '../components/dropdowns.js/todo-dropdown';
 import CampaignByMonthChart from '../components/charts/campaign-by-month-chart';
+import {jwtDecode} from 'jwt-decode';
 import useCount from '../hooks/useCount';
+import useFetch from '../hooks/useFetch';
 
 export default function Dashboard () {
+    const [adminName, setAdminName] = useState('');
+    const [loadingAdmin, setLoadingAdmin] = useState(true);
+    const [errorAdmin, setErrorAdmin] = useState(null);
+
     const {count, loading, error} = useFetchCampaignCount();
     const {scount, sloading, serror} = useFetchSocialGroupCount();
+    const adminsUrl = 'http://localhost:5000/api/admin';
+    const {data: admins, loading:adminsLoading, error: adminsError} = useFetch(adminsUrl);
     const formatDate = (date) => { 
         const day = String(date.getDate()).padStart(2, '0'); 
         const month = String(date.getMonth() + 1).padStart(2, '0'); 
@@ -28,13 +35,52 @@ export default function Dashboard () {
       };
     const {count: onWaitSocialGroupsCount, loading: soloading , error: soerror} = useCount(url.socialGroupsOnWait);
     const {count: onWaitSellersCount, loading: slloading, error: slerror} = useCount(url.sellersOnWait);
+
+    useEffect(() => {
+        // Extract admin ID from JWT
+        const token = localStorage.getItem('adminToken');
+        if (token) {
+            try {
+                const decodedToken = jwtDecode(token);
+                console.log("decoded: " + decodedToken._id);
+                const adminId = decodedToken._id; // Assumes token has an `id` field
+                fetch(`http://localhost:5000/api/admin/${adminId}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Include the token here
+                    },
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch admin details');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        setAdminName(data.fullname);
+                        setLoadingAdmin(false);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        setErrorAdmin(error.message);
+                        setLoadingAdmin(false);
+                    });
+            } catch (err) {
+                console.error('Error decoding token:', err);
+                setErrorAdmin('Invalid token');
+                setLoadingAdmin(false);
+            }
+        } else {
+            setErrorAdmin('No token found');
+            setLoadingAdmin(false);
+        }
+    }, []);
     return(
         <div className='min-h-screen lg:ml-[245px] p-4'>
             <div className='bg-neutral p-4 rounded-pl'>
                 <h2 className='text-lg font-bold mb-10'>Admin Dashboard</h2>
                 <div className='flex flex-col lg:flex-row gap-4 w-full py-2 pl-4 pr-8'>
                     <div className='lg:relative basis-3/4 w-full p-4 rounded-pl border-2 border-gray-300'>
-                        <p className='text-md font-semibold mb-4'>Hello {admin.fullname}!</p>
+                        <p className='text-md font-semibold mb-4'>Hello {loadingAdmin ? 'Loading...' : errorAdmin ? 'Error fetching name' : adminName}!</p>
                         <p>Get the website insights on the Plantify's admin dashboard</p>
                         <img src='/assets/admin/man.png' alt='a man holding a plant' className='w-48 hidden lg:block absolute right-8 -top-4'/>
                         <div className='lg:absolute bottom-4 left-4 flex gap-2 items-center'>
@@ -72,7 +118,7 @@ export default function Dashboard () {
                             </div>
                             <div className="p-8 py-4 w-full max-h-fit bg-navygreen-100 rounded-pl shadow-md">
                                 <h3 className="text-md font-bold mb-2 z-10">Plant Stores</h3>
-                                <p className='mt-4 mb-2 text-sm'>Unverified Plant Stores</p>
+                                <p className='mt-4 mb-2 text-sm'>Unverified Plant Stores/Sellers</p>
                                 <h1 className='text-lg font-bold'>{onWaitSellersCount}</h1>
                             </div>
                         </div>
@@ -86,38 +132,21 @@ export default function Dashboard () {
                     <div className="flex flex-col h-fit gap-y-4">
                         <div className="bg-navygreen-100 p-4 rounded-pl min-w-60">
                             <div className='mb-6 flex items-center justify-between'>
-                                <div className='text-md font-bold '>To-do List</div>
-                                <button 
-                                    className='flex gap-2 dark:bg-forest-200 dark:text-gray-400 bg-navygreen-100 hover:bg-navygreen-200 dark:hover:bg-forest-100 text-gray-100 p-2 rounded-pl'
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                    </svg>
-
-                                </button>
+                                <div className='text-md font-bold '>Admins List</div>
                             </div>
                             {/* list */}
                             <ul className='flex flex-col gap-2'>
                                 {/* list item */}
-                                <div className='flex items-center justify-between gap-2 p-4 bg-neutral w-full rounded-pl text-sm'>
-                                    <div><p>xyz v.imp</p></div>
-                                    <TodoDropdown/>
-                                </div>
-                                {/* list item */}
-                                <div className='flex items-center justify-between gap-2 p-4 bg-neutral w-full rounded-pl text-sm'>
-                                    <div><p>xyz v.imp</p></div>
-                                    <TodoDropdown/>
-                                </div>
-                                {/* list item */}
-                                <div className='flex items-center justify-between gap-2 p-4 bg-neutral w-full rounded-pl text-sm'>
-                                    <div><p>xyz today v.imp</p></div>
-                                    <TodoDropdown/>
-                                </div>
-                                {/* list item */}
-                                <div className='flex items-center justify-between gap-2 p-4 bg-neutral w-full rounded-pl text-sm'>
-                                    <div><p>xyz today v.imp</p></div>
-                                    <TodoDropdown/>
-                                </div>
+                                {admins.length > 0 ? (
+                                    admins.map((admin, index) => (
+                                        <li key={index} className='flex items-center justify-between gap-2 p-4 bg-neutral w-full rounded-pl text-sm'>
+                                            <div><p>{admin.fullname}</p></div>
+                                            {/* <TodoDropdown/> */}
+                                        </li>
+                                    ))
+                                ):(
+                                    <p>No admins yet.</p>
+                                )}
                             </ul>
                         </div>
                     </div>

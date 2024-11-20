@@ -75,11 +75,11 @@ export default function SellerVerificationDetailPage() {
                         <div className="flex gap-4 items-center justify-between flex-wrap">
                             <div className="w-full lg:w-1/2">
                                 <p><span className="font-bold">Store Name: </span>{seller.storeName}</p>
-                                <p><span className="font-bold">Store Email: </span>{seller.businessAddress}</p>
-                                <p><span className="font-bold">Store Contact: </span>{seller.businessAddress}</p>
-                                <p><span className="font-bold">Store Location: </span>{seller.taxID}</p>
-                                <p><span className="font-bold">Tax ID: </span>{seller.businessAddress}</p>
-                                <p><span className="font-bold">Initiative: </span>{seller.storeDescription}</p>
+                                <p><span className="font-bold">Store Email: </span>{seller.businessEmail}</p>
+                                <p><span className="font-bold">Store Contact: </span>{seller.businessContact}</p>
+                                <p><span className="font-bold">Store Location: </span>{seller.businessAddress}</p>
+                                <p><span className="font-bold">Tax ID: </span>{seller.taxID}</p>
+                                <p><span className="font-bold">Store Description: </span>{seller.storeDescription}</p>
                             </div>
                         </div>
                     </div>

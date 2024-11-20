@@ -28,6 +28,7 @@ export default function ReportsTable({ reports, setReports }) {
             // Remove the deleted report from the list
             setReports((prevReports) => prevReports.filter((report) => report._id !== id));
         });
+        window.location.reload();
     };
 
     return (
