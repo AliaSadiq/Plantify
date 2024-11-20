@@ -135,7 +135,6 @@ export default function CampaignDetailsPage() {
     const isDonationComplete = campaign.collected_donation >= campaign.target_donation;
 
     const isCreator = user?._id === campaign?.socialGroup?.user?._id;
-    // console.log('baby i m playing with you: ' + campaign?.socialGroup?.user?._id);
     return (
         <div className="min-h-screen bg-white"> 
             <div className="flex flex-col items-center justify-center pt-40">
@@ -321,22 +320,25 @@ export default function CampaignDetailsPage() {
                         <p className="mx-10 text-center mt-4 text-sm">
                             {campaign.description}
                         </p>
-                        <div className="flex gap-4 items-center justify-center mt-4">
-                            <Button 
-                                text={isFollowing ? "Unfollow Campaign" : "Follow Campaign"}
-                                className="py-2" 
-                                onClick={handleFollowClick}
-                            />
-                            {campaign?.volunteers && campaign.total_volunteers_count > 0 ? (
+                        {!isCreator && (
+                            <div className="flex gap-4 items-center justify-center mt-4">
                                 <Button 
-                                    text="Volunteer in Campaign" 
-                                    onClick={() => openModal('volunteer')} 
-                                    className="py-2"
+                                    text={isFollowing ? "Unfollow Campaign" : "Follow Campaign"}
+                                    className="py-2" 
+                                    onClick={handleFollowClick}
                                 />
-                            ): (
-                                <p className="hidden">no volunteers</p>
-                            )}
-                        </div>
+                                {campaign?.volunteers && campaign.total_volunteers_count > 0 ? (
+                                    <Button 
+                                        text="Volunteer in Campaign" 
+                                        onClick={() => openModal('volunteer')} 
+                                        className="py-2"
+                                    />
+                                ): (
+                                    <p className="hidden">no volunteers</p>
+                                )}
+                            </div>
+                        )}
+                        
                     </div>
                     {/* donors div */}
                     <DonationBoard donations={donations} />

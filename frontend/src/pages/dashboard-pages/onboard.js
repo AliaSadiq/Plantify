@@ -1,17 +1,18 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import MetricCard from '../../components/dashboard-components/KeyMetricCard';
-import { Bar } from 'react-chartjs-2'; // Import Bar chart
+// import { Bar } from 'react-chartjs-2'; // Import Bar chart
 import PieChartGraph from "../../components/dashboard-components/Piechart.js";
 import useCount from "../../hooks/useCount.js";
+import SocialCampaigns from "../../components/charts/social-campaigns-by-month.js";
 
 const Onboard = () => {
   const { id: socialGroupId } = useParams();
   const [socialGroup, setSocialGroup] = useState(null);
   const [user, setUser] = useState("");
   const {count: campaignCount} = useCount(`http://localhost:5000/api/campaigns/social-campaign-count/${socialGroupId}`);
+  const {count: activeCampaignCount} = useCount(`http://localhost:5000/api/campaigns/active-count/${socialGroupId}`);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -53,7 +54,7 @@ const Onboard = () => {
   const metrics = [
     { 
       title: "Total Campaigns", 
-      value: campaignCount, 
+      value: campaignCount || 0, 
       chartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [
@@ -85,7 +86,7 @@ const Onboard = () => {
     },
     { 
       title: "Active", 
-      value: "2,000", 
+      value: activeCampaignCount || 0, 
       chartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [
@@ -101,7 +102,7 @@ const Onboard = () => {
     },
     { 
       title: "Followers", 
-      value: socialGroup.followers.length,
+      value: socialGroup.followers?.length || 0,
       chartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
         datasets: [
@@ -137,7 +138,7 @@ const Onboard = () => {
             <h2 className='text-lg font-bold mb-10'>Hello {socialGroup.name}</h2>
             <div className="gap-1 p-2 bg-[rgba(255, 255, 255, 0.1)] rounded-lg">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                {metrics.map((metric, index) => (
+                {metrics?.map((metric, index) => (
                   <MetricCard 
                     key={index} 
                     title={metric.title} 
@@ -150,29 +151,12 @@ const Onboard = () => {
               <div className="flex flex-col lg:flex-row gap-6 mt-8">
                 <div className='flex-1 rounded-lg h-[330px] shadow-md p-4'>
                   <h2 className="text-xl font-josefin-sans font-bold text-left mb-4">Campaigns Count</h2>
-                  <div className="relative font-josefin-sans h-[250px]">
-                    <Bar
-                      data={barChartData}
-                      options={{
-                        maintainAspectRatio: false, // Allow chart to fit its container
-                        responsive: true,
-                        scales: {
-                          x: {
-                            title: {
-                              display: true,
-                              text: 'Year',
-                            },
-                          },
-                          y: {
-                            title: {
-                              display: true,
-                              text: 'Number of Campaigns',
-                            },
-                            beginAtZero: true,
-                          },
-                        },
-                      }}
-                    />
+                  <div className="font-josefin-sans h-[250px]">
+                  {socialGroupId && campaignCount > 0 ? (
+                    <SocialCampaigns socialGroupId={socialGroupId} />
+                  ) : (
+                    <p>No campaign data available</p>
+                  )}
                   </div>
                 </div>
 

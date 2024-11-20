@@ -31,7 +31,6 @@ export default function Insights () {
     }
   };
 
-
   // useEffect(() => { 
   //   // Check if the collected donations have reached the target donation 
   //   if (campaign && campaign.collected_donation >= campaign.target_donation && campaign.stage === 'Fundraising') { 
@@ -104,6 +103,26 @@ export default function Insights () {
     } 
   };
 
+  useEffect(() => {
+    const updateCampaignStatus = async () => {
+      if (!campaign) return;
+  
+      const today = new Date().toISOString().split('T')[0]; // Current date in yyyy-mm-dd format
+      const campaignEndDate = new Date(campaign.end_date).toISOString().split('T')[0];
+  
+      if (campaign.status === 'active' && today > campaignEndDate) {
+        try {
+          await axios.put(`http://localhost:5000/api/campaigns/${id}`, { status: 'closed' });
+          refetch(); // Refetch the campaign data to get the updated status
+        } catch (error) {
+          console.error("Error updating campaign status:", error);
+        }
+      }
+    };
+  
+    updateCampaignStatus();
+  }, [campaign]);  
+
   // Filter accepted volunteers
   const acceptedVolunteers =
     campaign?.volunteers?.filter((volunteer) => volunteer.status === 'accepted') || [];
@@ -136,9 +155,9 @@ export default function Insights () {
                     <h1 className='text-lg font-bold'>{campaign?.followers?.length || 0}</h1>
                 </div>
                 <div className="px-8 py-4 w-full max-h-fit bg-navygreen-100 rounded-pl shadow-md">
-                    <h3 className="text-md font-bold mb-2 z-10">Likes</h3>
-                    <p className='mt-4 mb-2 text-sm'>Total Campaign Likes</p>
-                    <h1 className='text-lg font-bold'>{campaign?.likes || 0}</h1>
+                    <h3 className="text-md font-bold mb-2 z-10">Target</h3>
+                    <p className='mt-4 mb-2 text-sm'>Target Amount</p>
+                    <h1 className='text-lg font-bold'>{campaign?.target_donation || 0} PKR</h1>
                 </div>
                 <div className="p-8 py-4 w-full max-h-fit bg-navygreen-100 rounded-pl shadow-md">
                     <h3 className="text-md font-bold mb-2 z-10">Collected</h3>

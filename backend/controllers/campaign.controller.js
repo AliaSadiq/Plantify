@@ -355,6 +355,30 @@ const deleteVolunteer = async (req, res) => {
   }
 }
 
+// Controller to get active campaign count for a specific social group
+const getActiveCampaignCount = async (req, res) => {
+  const { socialGroupId } = req.params;
+
+  try {
+      // Validate socialGroupId
+      if (!socialGroupId) {
+          return res.status(400).json({ error: 'Social group ID is required' });
+      }
+
+      // Query the database
+      const activeCampaignCount = await Campaign.countDocuments({
+          socialGroup: socialGroupId,
+          status: 'active', // Adjust based on your schema
+      });
+
+      // Respond with the count
+      res.status(200).json({ count: activeCampaignCount });
+  } catch (error) {
+      console.error('Error fetching active campaign count:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 module.exports = {
     getCampaign,
     getCampaigns,
@@ -373,4 +397,5 @@ module.exports = {
     getSocialGroupCampaignCount,
     updateVolunteerStatus,
     deleteVolunteer,
+    getActiveCampaignCount,
 };
