@@ -77,8 +77,15 @@ const getProfile = async (req, res) => {
 
     // Fetch user's posts
     const posts = await Post.find({ author: userId })
-      .select('caption image likes comments postType species size diseases fertilizerUsed')
-      .lean();
+    .select('caption likes comments postType species size diseases fertilizerUsed images video author')
+    .populate({
+      path: 'author',
+      select: 'username bio avatar', // Include specific fields from the User schema
+    })
+    .lean();
+    // const posts = await Post.find({ author: userId })
+    //   .select('caption likes comments postType species size diseases fertilizerUsed images video author')
+    //   .lean();
 
     // Send the combined profile data
     res.json({
@@ -97,6 +104,7 @@ const getProfile = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
 const editProfile = async (req, res) => {
   try {
     const { userId } = req.params;

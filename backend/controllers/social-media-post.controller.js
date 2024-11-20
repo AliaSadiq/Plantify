@@ -2,7 +2,7 @@ const mongoose = require('mongoose'); // Add mongoose import
 const User = require('../models/user.model'); // User schema
 const SocialMedia = require('../models/social-media.model'); // SocialMedia schema
 const Post = require('../models/social-post.model'); // Post schema
-
+const SocialGroup=require('../models/socialgroup.model');
 // // Create a new post
 // const createPost = async (req, res) => {
 //   try {
@@ -16,7 +16,19 @@ const Post = require('../models/social-post.model'); // Post schema
 // Create a new post
 const createPost = async (req, res) => {
   try {
-    const { userId, textContent, offerForAdoption, images, video, species, size, name, fertilizer, postType } = req.body;
+    const {
+      userId,
+      textContent,
+      offerForAdoption,
+      images,
+      video,
+      species,
+      size,
+      name,
+      fertilizer,
+      postType,
+      isSocialGroupPost,
+    } = req.body;
 
     const postData = {
       author: userId,
@@ -24,6 +36,7 @@ const createPost = async (req, res) => {
       images: images || [],
       video: video || null,
       postType,
+      isSocialGroupPost: isSocialGroupPost || false, // Defaults to false if not provided
       species: postType === 'adoption' ? species : undefined,
       size: postType === 'adoption' ? size : undefined,
       name: postType === 'adoption' ? name : undefined,
@@ -38,6 +51,31 @@ const createPost = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while creating the post', details: error.message });
   }
 };
+
+// const createPost = async (req, res) => {
+//   try {
+//     const { userId, textContent, offerForAdoption, images, video, species, size, name, fertilizer, postType } = req.body;
+
+//     const postData = {
+//       author: userId,
+//       caption: textContent,
+//       images: images || [],
+//       video: video || null,
+//       postType,
+//       species: postType === 'adoption' ? species : undefined,
+//       size: postType === 'adoption' ? size : undefined,
+//       name: postType === 'adoption' ? name : undefined,
+//       fertilizerUsed: postType === 'adoption' ? fertilizer : undefined,
+//     };
+
+//     const newPost = new Post(postData);
+//     await newPost.save();
+
+//     res.status(201).json({ message: 'Post created successfully', post: newPost });
+//   } catch (error) {
+//     res.status(500).json({ error: 'An error occurred while creating the post', details: error.message });
+//   }
+// };
 
 
 // Delete a post
@@ -117,39 +155,49 @@ const getAllPosts = async (req, res) => {
 
 
 
-// Get only adoption posts
-const getAdoptionPosts = async (req, res) => {
-  try {
-    const posts = await Post.find({ postType: 'adoption' });
-    res.status(200).json(posts);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
 
 // Get posts from social group
 const getSocialGroupPosts = async (req, res) => {
+  const userId = req.headers['x-user-id']; // Extract userId from custom headers
+ console.log(userId);
+  if (!userId) {
+    return res.status(400).json({ error: 'User ID is required.' });
+  }
+
   try {
-    const posts = await Post.find({ isSocialGroupPost: true });
+    const posts = await Post.find({  author: userId, isSocialGroupPost: true });
     res.status(200).json(posts);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-// Get posts of users that the given user is following
-const getFollowingPosts = async (req, res) => {
-  try {
-    const userId = req.params.userId;
-    const socialMedia = await SocialMedia.findOne({ user: userId }).populate('following');
-    const followingIds = socialMedia.following.map(f => f._id);
-    const posts = await Post.find({ author: { $in: followingIds } });
-    res.status(200).json(posts);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
 
+
+
+
+// const getFilteredPosts = async (req, res) => {
+//   try {
+//     const { userId, filter } = req.query; // Get filter and userId from query params
+//     let posts = [];
+
+//     if (filter === 'adoption') {
+//       posts = await Post.find({ postType: 'adoption' }).populate('author', 'username avatar');
+//     } else if (filter === 'social') {
+//       posts = await Post.find({ isSocialGroupPost: true }).populate('author', 'username avatar');
+//     } else if (filter === 'following') {
+//       const socialMedia = await SocialMedia.findOne({ user: userId }).populate('following');
+//       const followingIds = socialMedia.following.map((user) => user._id); // Get IDs of following users
+//       posts = await Post.find({ author: { $in: followingIds } }).populate('author', 'username avatar');
+//     } else {
+//       posts = await Post.find().populate('author', 'username avatar'); // Default to fetch all posts
+//     }
+
+//     res.status(200).json(posts);
+//   } catch (error) {
+//     res.status(400).json({ error: error.message });
+//   }
+// };
 const getFilteredPosts = async (req, res) => {
   try {
     const { userId, filter } = req.query; // Get filter and userId from query params
@@ -158,7 +206,30 @@ const getFilteredPosts = async (req, res) => {
     if (filter === 'adoption') {
       posts = await Post.find({ postType: 'adoption' }).populate('author', 'username avatar');
     } else if (filter === 'social') {
-      posts = await Post.find({ isSocialGroupPost: true }).populate('author', 'username avatar');
+      // Fetch posts with `isSocialGroupPost` set to true
+      posts = await Post.find({ isSocialGroupPost: true }).populate('author', 'username avatar').lean();
+
+      // For each post, fetch the related social group details
+      posts = await Promise.all(
+        posts.map(async (post) => {
+          const socialGroup = await SocialGroup.findOne({ user: post.author._id })
+            .select('name image')
+            .lean();
+
+          if (socialGroup) {
+            // Override the author's avatar and username with social group details
+            return {
+              ...post, // Spread the existing post data
+              author: {
+                username: socialGroup.name,
+                avatar: socialGroup.image,
+              },
+            };
+          }
+
+          return post; // Return the original post if no social group is found
+        })
+      );
     } else if (filter === 'following') {
       const socialMedia = await SocialMedia.findOne({ user: userId }).populate('following');
       const followingIds = socialMedia.following.map((user) => user._id); // Get IDs of following users
@@ -285,9 +356,9 @@ module.exports = {
     deletePost,
     getUserPosts,
     getAllPosts ,
-    getAdoptionPosts,
+
     getSocialGroupPosts,
-    getFollowingPosts,
+  
     getFilteredPosts,
     toggleLikePost
   };

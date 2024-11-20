@@ -3,7 +3,7 @@ import Sidebar from '../components/shop/dashboard/sidebar';
 // import SocialGroupverificationPage from './pages/social-group-verification-page';
 // import SocialGroupPage from './pages/social-groups-page';
 // import Profile from './profileComp/profile-full';
-import Reports from '../pages/shop/dashboard/Reports';
+// import Reports from '../pages/shop/dashboard/Reports';
 import Dashboard from '../pages/shop/dashboard/dashboard';
 import CreateProduct from '../pages/shop/dashboard/create-product';
 import ManageOrders from '../pages/shop/dashboard/manage-orders';

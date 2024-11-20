@@ -164,6 +164,7 @@ import ImpactComponent from './impact-profile';
 import CampaignCardSh from '../components/campaign-card-sh';
 import { useParams } from 'react-router-dom';
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import ExplorePage from '../components/social-media-components/profile-post-explore';
 
 const MainPage = () => {
   const [activeTab, setActiveTab] = useState('campaign');
@@ -324,12 +325,13 @@ const MainPage = () => {
         </div>
       </div>
     )}
-    {activeTab === 'social-media' && (
-      <div id="social-media" className="p-4 max-w-full md:max-w-3xl mx-auto">
-        <h2 className="text-xl font-bold">Social Media</h2>
-        <p>Social media details here...</p>
-      </div>
-    )}
+   {activeTab === 'social-media' && (
+        <div  className="p-4 max-w-full md:max-w-3xl mx-auto">
+          <h2 className="text-xl font-bold">Social Media</h2>
+          {/* Render ExplorePage when 'social-media' tab is active */}
+          <ExplorePage profileId={profileData.user._id} />
+        </div>
+      )}
     {activeTab === 'impact' && (
       <div className="p-4 max-w-full md:max-w-3xl mx-auto">
         <ImpactComponent />

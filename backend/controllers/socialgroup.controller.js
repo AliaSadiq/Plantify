@@ -26,6 +26,26 @@ const createSocialGroup = async (req, res) => {
     console.log('ye hogaya');
   }
 };
+const addTeamMembers = async (req, res) => {
+  try {
+    const { id } = req.params; // SocialGroup ID
+    const teamMember = req.body; // New team member data
+
+    const updatedGroup = await SocialGroup.findByIdAndUpdate(
+      id,
+      { $push: { teamMembers: teamMember } }, // Add the new member
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedGroup) {
+      return res.status(404).json({ message: 'Social Group not found' });
+    }
+
+    res.status(200).json(updatedGroup);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 //edit 
 const editSocialGroup = async (req, res) => {
   try {
@@ -244,4 +264,5 @@ module.exports = {
   getAllSocialGroups,
   editSocialGroup,
   getSocialGroupsCountOnWait,
+  addTeamMembers,
 };
