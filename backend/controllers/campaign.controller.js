@@ -31,12 +31,11 @@ const getCampaigns = async (req, res) => {
   }
 };
 
-
 const getCampaign = async (req, res) => {
   try {
     const { id } = req.params;
     const campaign = await Campaign.findById(id)
-      .populate('socialGroup')
+      .populate({ path: 'socialGroup', populate: { path: 'user', model: 'User' } })
       .populate('volunteers.user');
     res.status(200).json(campaign);
   } catch (error) {
@@ -292,20 +291,91 @@ const deleteCampaign = async (req, res) => {
   }
 };
 
-const updateStage = async (req, res) => {
-  try { 
-    const campaign = await Campaign.findById(req.params.id); 
-    if (!campaign) { 
-      return res.status(404).send('Campaign not found'); 
-    }
+// const updateStage = async (req, res) => {
+//   try { 
+//     const campaign = await Campaign.findById(req.params.id); 
+//     if (!campaign) { 
+//       return res.status(404).send('Campaign not found'); 
+//     }
 
-    if (campaign.collected_donation >= campaign.target_donation) { 
-      campaign.stage = 'Buying Plants'; 
-    } 
-    await campaign.save(); 
-    res.send(campaign); 
-  } catch (error) { 
-    res.status(500).send(error.message);
+//     if (campaign.collected_donation >= campaign.target_donation) { 
+//       campaign.stage = 'Buying Plants'; 
+//     } 
+//     await campaign.save(); 
+//     res.send(campaign); 
+//   } catch (error) { 
+//     res.status(500).send(error.message);
+//   }
+// };
+
+const updateVolunteerStatus = async (req, res) => {
+  const { campaignId, volunteerId } = req.params;
+  const { status } = req.body;
+
+  try {
+      const campaign = await Campaign.findById(campaignId);
+      if (!campaign) {
+          return res.status(404).json({ message: "Campaign not found" });
+      }
+
+      const volunteer = campaign.volunteers.find(
+          volunteer => volunteer.user.toString() === volunteerId
+      );
+
+      if (!volunteer) {
+          return res.status(404).json({ message: "Volunteer not found" });
+      }
+
+      volunteer.status = status;
+
+      await campaign.save();
+      res.status(200).json({ message: "Volunteer status updated successfully" });
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+};
+
+const deleteVolunteer = async (req, res) => {
+  const { campaignId, volunteerId } = req.params;
+
+  try {
+      const campaign = await Campaign.findById(campaignId);
+      if (!campaign) {
+          return res.status(404).json({ message: "Campaign not found" });
+      }
+
+      campaign.volunteers = campaign.volunteers.filter(
+          volunteer => volunteer.user.toString() !== volunteerId
+      );
+
+      await campaign.save();
+      res.status(200).json({ message: "Volunteer removed successfully" });
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+}
+
+// Controller to get active campaign count for a specific social group
+const getActiveCampaignCount = async (req, res) => {
+  const { socialGroupId } = req.params;
+
+  try {
+      // Validate socialGroupId
+      if (!socialGroupId) {
+          return res.status(400).json({ error: 'Social group ID is required' });
+      }
+
+      // Query the database
+      const activeCampaignCount = await Campaign.countDocuments({
+          socialGroup: socialGroupId,
+          status: 'active', // Adjust based on your schema
+      });
+
+      // Respond with the count
+      res.status(200).json({ count: activeCampaignCount });
+  } catch (error) {
+      console.error('Error fetching active campaign count:', error);
+      res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -320,9 +390,12 @@ module.exports = {
     getRecentCampaigns,
     followCampaign,
     addVolunteer,
-    updateStage,
+    // updateStage,
     getCampaignsByMonth,
     updateCampaign,
     deleteCampaign,
     getSocialGroupCampaignCount,
+    updateVolunteerStatus,
+    deleteVolunteer,
+    getActiveCampaignCount,
 };

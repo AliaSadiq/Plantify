@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {getCampaign, getCampaigns, deleteCampaign ,updateStage,addVolunteer,createCampaign,socialgroupCampaigns, getCampaignCount, getCampaignInsights, getAllCampaigns, getRecentCampaigns, followCampaign,getCampaignsByMonth,updateCampaign, getSocialGroupCampaignCount} = require( '../controllers/campaign.controller.js');
+const {getCampaign, getCampaigns, deleteCampaign, addVolunteer, createCampaign,socialgroupCampaigns, getCampaignCount, getCampaignInsights, getAllCampaigns, getRecentCampaigns, followCampaign,getCampaignsByMonth,updateCampaign, getSocialGroupCampaignCount, updateVolunteerStatus, deleteVolunteer, getActiveCampaignCount } = require( '../controllers/campaign.controller.js');
 
 
 router.get('/', getCampaigns);
@@ -13,9 +13,12 @@ router.get("/:id", getCampaign);
 router.get('/socialgroup/:socialId', socialgroupCampaigns);
 router.post("/", createCampaign);
 router.get("/insights/:id", getCampaignInsights);
-router.put("/:campaignId", updateCampaign);
-router.delete("/:campaignId", deleteCampaign);
-router.put("/:id", updateStage);
+router.get('/active-count/:socialGroupId', getActiveCampaignCount);
+router.put("/:id", updateCampaign);
+router.delete("/:id", deleteCampaign);
+router.delete("/:campaignId/volunteers/:volunteerId", deleteVolunteer);
+router.put('/:campaignId/volunteers/:volunteerId', updateVolunteerStatus);
+// router.put("/:id", updateStage);
 router.post("/:id/follow",followCampaign);
 router.post('/:id/volunteers', addVolunteer);
 

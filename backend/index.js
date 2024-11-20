@@ -19,7 +19,6 @@ const questionRoutes = require("./routes/social-question.route.js");
 const myPlantRoute = require("./routes/my-plant.route.js")
 const teamRoute = require("./routes/team.route.js");
 const plantDiaryRoute = require("./routes/plant-diary.route.js")
-
 const requestCampaignRoute = require("./routes/request-campaign.route.js");
 const socialMediaProfileRoute = require("./routes/social-media-profile.router.js");
 const goalRoute = require("./routes/goal.route.js");
@@ -80,7 +79,3 @@ mongoose
   .catch(() => {
     console.log("Connection failed!");
   });
-
-
-
-  

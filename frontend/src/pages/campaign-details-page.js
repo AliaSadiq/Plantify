@@ -81,9 +81,9 @@ export default function CampaignDetailsPage() {
         fetchCampaignDetails();
     }, [id]);
 
-    const updateCampaign = (updatedCampaign) => {
-        setCampaign(updatedCampaign); 
-    };
+    // const updateCampaign = (updatedCampaign) => {
+    //     setCampaign(updatedCampaign); 
+    // };
 
     const handleAddComment = async (e) => {
         e.preventDefault();
@@ -134,6 +134,7 @@ export default function CampaignDetailsPage() {
 
     const isDonationComplete = campaign.collected_donation >= campaign.target_donation;
 
+    const isCreator = user?._id === campaign?.socialGroup?.user?._id;
     return (
         <div className="min-h-screen bg-white"> 
             <div className="flex flex-col items-center justify-center pt-40">
@@ -319,18 +320,25 @@ export default function CampaignDetailsPage() {
                         <p className="mx-10 text-center mt-4 text-sm">
                             {campaign.description}
                         </p>
-                        <div className="flex gap-4 items-center justify-center mt-4">
-                            <Button 
-                                text={isFollowing ? "Unfollow Campaign" : "Follow Campaign"}
-                                className="py-2" 
-                                onClick={handleFollowClick}
-                            />
-                            <Button 
-                                text="Volunteer in Campaign" 
-                                onClick={() => openModal('volunteer')} 
-                                className="py-2"
-                            />
-                        </div>
+                        {!isCreator && (
+                            <div className="flex gap-4 items-center justify-center mt-4">
+                                <Button 
+                                    text={isFollowing ? "Unfollow Campaign" : "Follow Campaign"}
+                                    className="py-2" 
+                                    onClick={handleFollowClick}
+                                />
+                                {campaign?.volunteers && campaign.total_volunteers_count > 0 ? (
+                                    <Button 
+                                        text="Volunteer in Campaign" 
+                                        onClick={() => openModal('volunteer')} 
+                                        className="py-2"
+                                    />
+                                ): (
+                                    <p className="hidden">no volunteers</p>
+                                )}
+                            </div>
+                        )}
+                        
                     </div>
                     {/* donors div */}
                     <DonationBoard donations={donations} />
@@ -341,48 +349,51 @@ export default function CampaignDetailsPage() {
                             {comments.map((comment) => (
                                 <li className="relative w-full p-2 border-b-2 border-neutral">
                                     <div className="w-full flex flex-row items-center">
-                                        <img src={`/assets/avatars/${comment.user.avatar}`} className="w-10 h-10 object-cover rounded-full" alt="user avatar"/>
+                                        <img src={`/assets/avatars/${comment.user?.avatar || 'user.jpeg'}`} className="w-10 h-10 object-cover rounded-full" alt="user avatar"/>
                                         <div className="ml-2 w-full text-sm flow-root">
-                                            <p className="float-left font-semibold ml-2">{comment.user.username}</p>
+                                            <p className="float-left font-semibold ml-2">{comment.user?.username || 'plantify_user'}</p>
                                             <p className="float-right text-gray-500">{new Date(comment.date).toLocaleDateString()}</p>
                                         </div>
                                     </div>
                                     <p className="mt-2 mr-4 text-justify text-sm">{comment.comment}</p>
-                                    <p className="text-right text-sm">Reply</p>
+                                    {/* <p className="text-right text-sm">Reply</p> */}
                                 </li>
                             ))}
                         </ul>
-                        <div className="mt-4 flex items-center bg-neutral py-2 px-3 rounded-2xl">
-                            <textarea 
-                                id="comment" 
-                                className="bg-inherit pl-2 w-full outline-none border-none"
-                                style={{ resize: "none" }}
-                                name="comment" 
-                                placeholder="Add a comment..." 
-                                value={newComment}
-                                onChange={(e) => setNewComment(e.target.value)}
-                                required
-                            />
-                            <button 
-                                className="p-2 rounded-2xl ml-2 hover:bg-navygreen-200"
-                                onClick={handleAddComment}
-                            >
-                                <svg 
-                                    xmlns="http://www.w3.org/2000/svg" 
-                                    fill="none" viewBox="0 0 24 24" 
-                                    strokeWidth={1.5} 
-                                    stroke="currentColor" 
-                                    className="size-6"
+                        {!isCreator && (
+                            <div className="mt-4 flex items-center bg-neutral py-2 px-3 rounded-2xl">
+                                <textarea 
+                                    id="comment" 
+                                    className="bg-inherit pl-2 w-full outline-none border-none"
+                                    style={{ resize: "none" }}
+                                    name="comment" 
+                                    placeholder="Add a comment..." 
+                                    value={newComment}
+                                    onChange={(e) => setNewComment(e.target.value)}
+                                    required
+                                />
+                                <button 
+                                    className="p-2 rounded-2xl ml-2 hover:bg-navygreen-200"
+                                    onClick={handleAddComment}
                                 >
-                                    <path 
-                                        strokeLinecap="round" 
-                                        strokeLinejoin="round" 
-                                        d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" 
-                                    />
-                                </svg>
-                            </button>
-                        </div>
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        fill="none" viewBox="0 0 24 24" 
+                                        strokeWidth={1.5} 
+                                        stroke="currentColor" 
+                                        className="size-6"
+                                    >
+                                        <path 
+                                            strokeLinecap="round" 
+                                            strokeLinejoin="round" 
+                                            d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" 
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                        )}
                     </div>
+                    {/* <CommentBox campaignId={id} user={user}/> */}
                 </div>
             </div>
             <VolunteeringModal 
@@ -403,7 +414,7 @@ export default function CampaignDetailsPage() {
                 closeModal={() => closeModal('donation')} 
                 campaignId={campaign._id} 
                 userId={user?._id}
-                updateCampaign={updateCampaign} 
+                // updateCampaign={updateCampaign} 
             />
         </div>
     );        

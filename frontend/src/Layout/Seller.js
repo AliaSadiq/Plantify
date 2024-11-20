@@ -25,8 +25,7 @@ function Layout() {
           <Route path="edit-product/:productId" element={<EditProduct/>}/>
           <Route path="manage-orders" element={<ManageOrders/>} />
           <Route path="orders-detail/:id" element={<OrderDetail />} />
-          
-      </Routes>
+        </Routes>
     </>
   );
 }
