@@ -92,7 +92,7 @@ const Sidebar = () => {
   const menuItems = [
     { name: 'Home', icon: <HomeIcon className="w-6 h-6 mr-2" />, path: '/plantify-network' },
     { name: 'Explore', icon: <UserCircleIcon className="w-6 h-6 mr-2" />, path: '/plantify-network/explore' },
-    { name: 'Saved Posts', icon: <BookmarkIcon className="w-6 h-6 mr-2" />, path: '/plantify-network/saved' },
+  
   ];
 
   return (

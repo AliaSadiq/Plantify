@@ -6,7 +6,7 @@ const PostCard = ({ images, video, isAdoption, onClick }) => {
   };
 
   return (
-    <div className="w-88 h-80 overflow-hidden bg-gray-100 cursor-pointer" onClick={onClick}>
+    <div className="w-88 h-60 overflow-hidden bg-gray-100 cursor-pointer rounded-pl shadow-sm" onClick={onClick}>
       {/* Check if the post has a video based on file extension */}
       {video && isVideo(video) ? (
         <video

@@ -114,113 +114,16 @@ const PostModal = ({ post, onClose }) => {
           </div>
 
           {/* Right Section: Caption and Comments */}
-          <div className="w-1/3 p-4 flex flex-col">
+          <div className="w-1/2 p-4 flex flex-col">
             {/* Profile Information */}
-            <div className="flex items-center mb-4">
-              <img
-                src={`/assets/avatars/${post.author?.avatar || "placeholder-profile.png"}`}
-                alt="Profile"
-                className="w-10 h-10 rounded-full object-cover mr-3"
-              />
-              <div>
-                <h3
-                  className="font-medium ml-2 text-sm text-blue-600 cursor-pointer hover:underline"
-                  onClick={() =>
-                    navigate("/plantify-network/profile-socialmedia", {
-                      state: { profileData: post.author },
-                    })
-                  }
-                >
-                  {post.author?.username || "Unknown User"}
-                </h3>
-              </div>
-            </div>
+         
 
             <h2 className="text-sm mb-4">{post.caption || "No Caption"}</h2>
 
-            {/* Extra Fields for Adoption */}
-            {isAdoptionPost && (
-              <div className="mb-4">
-                <h3 className="text-md font-bold mb-2">Adoption Details:</h3>
-                {post.species && (
-                  <p className="text-sm text-gray-700 mb-1">
-                    <strong>Species:</strong> {post.species}
-                  </p>
-                )}
-                {post.size && (
-                  <p className="text-sm text-gray-700 mb-1">
-                    <strong>Size:</strong> {post.size}
-                  </p>
-                )}
-                {post.fertilizerUsed && (
-                  <p className="text-sm text-gray-700 mb-1">
-                    <strong>Fertilizer Used:</strong> {post.fertilizerUsed}
-                  </p>
-                )}
-                {post.isAdopted !== undefined && (
-                  <p className="text-sm text-gray-700 mb-1">
-                    <strong>Adopted:</strong> {post.isAdopted ? "Yes" : "No"}
-                  </p>
-                )}
-              </div>
-            )}
+            
 
             {/* Comments Section */}
             <div className="bg-inherit w-full p-2 border-neutral border-2 rounded-[20px] mt-4">
-  <h2 className="font-semibold text-md text-center py-2">Comments</h2>
-  <ul className="flex flex-col items-start overflow-y-auto max-h-80">
-    {comments.map((comment) => (
-      <li className="relative w-full p-2 border-b-2 border-neutral" key={comment._id}>
-        <div className="w-full flex flex-row items-center">
-          <img
-            src={`/assets/avatars/${comment.userId?.avatar || "placeholder-profile.png"}`}
-            className="w-10 h-10 object-cover rounded-full"
-            alt="user avatar"
-          />
-          <div className="ml-2 w-full text-sm flow-root">
-            <p className="float-left font-semibold ml-2">{comment.userId?.username}</p>
-            <p className="float-right text-gray-500">{new Date(comment.createdAt).toLocaleDateString()}</p>
-          </div>
-        </div>
-        <p className="mt-2 mr-4 text-justify text-sm">{comment.comment}</p>
-      </li>
-    ))}
-  </ul>
-
-  {/* Conditional Rendering of Comment Input */}
-  {post.author._id !== currentUser?._id && (
-    <div className="mt-4 flex items-center bg-neutral py-2 px-3 rounded-2xl">
-      <textarea
-        id="comment"
-        className="bg-inherit pl-2 w-full outline-none border-none"
-        style={{ resize: "none" }}
-        name="comment"
-        placeholder="Add a comment..."
-        value={newComment}
-        onChange={(e) => setNewComment(e.target.value)}
-        required
-      />
-      <button className="p-2 rounded-2xl ml-2 hover:bg-navygreen-200" onClick={handleAddComment}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="size-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M6 12L3.269 3.125A59.769 59.769 0 0121.485 12 59.768 59.768 0 013.27 20.875L5.999 12Zm0 0h7.5"
-          />
-        </svg>
-      </button>
-    </div>
-  )}
-</div>
-
-            {/* <div className="bg-inherit w-full p-2 border-neutral border-2 rounded-[20px] mt-4">
       <h2 className="font-semibold text-md text-center py-2">Comments</h2>
       <ul className="flex flex-col items-start overflow-y-auto max-h-80">
         {comments.map((comment) => (
@@ -269,7 +172,7 @@ const PostModal = ({ post, onClose }) => {
           </svg>
         </button>
       </div>
-    </div> */}
+    </div>
           </div>
         </div>
       </div>

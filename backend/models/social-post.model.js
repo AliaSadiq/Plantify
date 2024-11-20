@@ -81,6 +81,7 @@ const PostSchema = new Schema({
   species: { type: String, required: function() { return this.postType === 'adoption'; } },
   size: { type: String, required: function() { return this.postType === 'adoption'; } },
   fertilizerUsed: String,
+  isSocialGroupPost: { type: Boolean, default: false },
   isAdopted: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now }
 }, { timestamps: true });

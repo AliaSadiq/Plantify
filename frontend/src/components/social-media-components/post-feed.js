@@ -46,7 +46,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PostCard from './post-card';
 import useFetchUserLocalStorage from '../../hooks/useFetchUserLocalStorage';
-
+import PostModal from './post-modal';
 const PostFeed = () => {
   const [filter, setFilter] = useState('following');
   const [posts, setPosts] = useState([]);
@@ -54,9 +54,13 @@ const PostFeed = () => {
   const [error, setError] = useState(null);
   const currentUserId = useFetchUserLocalStorage();
   const userId = currentUserId?._id;
+  const [selectedPost, setSelectedPost] = useState(null);
+
 
   useEffect(() => {
     const fetchPosts = async () => {
+      if (!userId) return; // Wait until userId is available
+  
       setLoading(true);
       setError(null);
       try {
@@ -71,9 +75,10 @@ const PostFeed = () => {
         setLoading(false);
       }
     };
-
+  
     fetchPosts();
   }, [filter, userId]);
+  
 
   // Function to handle like requests
   const handleLike = async (postId) => {
@@ -109,49 +114,16 @@ const PostFeed = () => {
       console.error('Failed to like the post:', err);
     }
   };
+  const handlePostClick = (post) => {
+    setSelectedPost(post);
+  };
   
-  // const handleLike = async (postId) => {
-  //   if (!userId) {
-  //     console.error('User is not logged in.');
-  //     return;
-  //   }
-  //   console.log("Liking post with ID:", postId, "by user:", userId); 
-    
-  //   try {
-  //     // Send a like request to the backend
-  //     const response = await axios.post('http://localhost:5000/api/post/like', {
-  //       postId,
-  //       userId,
-  //     });
-  
-  //     if (response.status === 200) {
-  //       // Assuming the backend returns the updated post object with the new likes array
-  //       const updatedPost = response.data; // Or however the backend returns the post
-  
-  //       // Optimistically update the likes count in local state
-  //       setPosts((prevPosts) =>
-  //         prevPosts.map((post) =>
-  //           post._id === postId
-  //             ? {
-  //                 ...post,
-  //                 likes: updatedPost.likes, // Use the updated likes array or count from the backend
-  //               }
-  //             : post
-  //         )
-  //       );
-  //     }
-  //   } catch (err) {
-  //     console.error('Failed to like the post:', err);
-  //   }
-  // };
-  
-
   return (
     <div className="lg:w-10/12 w-full  mx-10">
       {/* Filter Buttons */}
       <div className="flex justify-center space-x-8 bg-transparent p-4">
-        {/* {['Following', 'Adoption', 'Social'].map((option) => ( */}
-        {['Following', 'Adoption'].map((option) => (
+        {['Following', 'Adoption', 'Social'].map((option) => (
+     
           <button
             key={option}
             className={`px-4 py-2 text-sm font-semibold ${
@@ -186,10 +158,19 @@ const PostFeed = () => {
             size={post.size}
             isVideo={!!post.video} // Convert to boolean
             onLike={() => handleLike(post._id)}
-            userId // Pass the like handler
+            userId
+            onClick={() => handlePostClick(post)}
+ // Pass the like handler
           />
         ))}
       </div>
+        {/* Post Modal */}
+        {selectedPost && (
+        <PostModal
+          post={selectedPost}
+          onClose={() => setSelectedPost(null)} // Close modal
+        />
+      )}
     </div>
   );
 };
