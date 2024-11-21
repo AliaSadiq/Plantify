@@ -81,8 +81,8 @@ const CreateProduct = () => {
     if (!productType) newErrors.productType = "Product Type is required";
     if (!productCategory)
       newErrors.productCategory = "Product Category is required";
-    if (!price) newErrors.price = "Price is required";
-    if (!quantity) newErrors.quantity = "Quantity is required";
+    if (!price  ) newErrors.price = "Enter valid Price value.";
+    if (!quantity ) newErrors.quantity = "Enter valid Quantity value";
     if (!description) newErrors.description = "Description is required";
     if (!specifications)
       newErrors.specifications = "Specifications are required";
@@ -252,7 +252,7 @@ const CreateProduct = () => {
                       setPrice(value);
                     }
                   }}
-                  min="0" // Prevents negative values
+                  min="1" // Prevents negative values
                 />
                 {errors.price && (
                   <p className="text-red-500 text-sm">{errors.price}</p>
@@ -275,7 +275,7 @@ const CreateProduct = () => {
                       setQuantity(value);
                     }
                   }}
-                  min="0" // Prevents negative values
+                  min="1" // Prevents negative values
                 />
                 {errors.quantity && (
                   <p className="text-red-500 text-sm">{errors.quantity}</p>

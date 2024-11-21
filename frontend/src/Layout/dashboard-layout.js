@@ -39,7 +39,7 @@ import Campaigns from '../pages/dashboard-pages/Campaigns';
 import RequestCampaign from '../pages/dashboard-pages/requestCampaigns';
 import Message from '../pages/dashboard-pages/Messages';
 import Insight from '../pages/dashboard-pages/Insights';
-import CreateCampaignForm from '../pages/dashboard-pages/createCampaign';
+import CreateCampaignForm from '../pages/dashboard-pages/createCampaign.js';
 import Footer from '../components/footer';
 import Sidebar from '../components/dashboard-components/sidebar';
 import EditCampaignForm from '../pages/dashboard-pages/editCampaign';
