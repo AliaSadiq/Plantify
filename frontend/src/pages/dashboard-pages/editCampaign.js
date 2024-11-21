@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import SeedingBro from "../../images/Seeding-bro.png";
+import Reforestation from "../../images/Reforestation-bro.png";
 import { useParams } from 'react-router-dom';
 
 const EditCampaignForm = () => {
@@ -8,6 +10,14 @@ const EditCampaignForm = () => {
   const [step, setStep] = useState(1);
   const [volunteerToggle, setVolunteerToggle] = useState(false);
   const [bannerFileName, setBannerFileName] = useState('');
+  const [trees, setTrees] = useState([]);
+  const [imageFile, setImageFile] = useState(null);
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [showFields, setShowFields] = useState(false);
+  const [fileState, setFileState] = useState(null);
+  const [formData, setFormData] = useState({});
 
   const [formDataStep1, setFormDataStep1] = useState({
     user: '',
@@ -21,7 +31,8 @@ const EditCampaignForm = () => {
   const [formDataStep2, setFormDataStep2] = useState({
     targetDonation: '',
     volunteer: 0,
-    location: ''
+    location: '',
+    trees: [],
   });
 
   useEffect(() => {
@@ -57,7 +68,8 @@ const EditCampaignForm = () => {
           });
           setFormDataStep2({
             targetDonation: campaign.target_donation || '',
-            volunteers: campaign.volunteers || 0,
+            total_volunteers_count: campaign.total_volunteers_count || 0,
+            trees:campaign.trees|| [],
             location: campaign.location || ''
           });
           setVolunteerToggle(campaign.volunteers > 0);
@@ -97,7 +109,50 @@ const EditCampaignForm = () => {
       }));
     }
   };
+  const handleAddTree = (e) => {
+    e.preventDefault();
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const newTree = {
+          name,
+          price,
+          image: reader.result,
+          quantity,
+        };
+        setTrees([...trees, newTree]);
+        resetForm();
+      };
+      reader.readAsDataURL(imageFile);
+    }
+  };
 
+  const resetForm = () => {
+    // setShowFields(false);
+    setImageFile(null);
+    setName("");
+    setPrice("");
+    setQuantity("");
+  };
+
+  const handleRemoveTree = (index) => {
+    const newTrees = trees.filter((_, i) => i !== index);
+    setTrees(newTrees);
+  };
+  const handleRemoveplant = () => {
+    setImageFile=(null);
+  };
+
+  const handlePriceKeyPress = (e) => {
+    if (!/[0-9]/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+  const handlequantityKeyPress = (e) => {
+    if (!/[0-9]/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
   const handleStep1Submit = (e) => {
     e.preventDefault();
     setStep(2);
@@ -145,7 +200,7 @@ const EditCampaignForm = () => {
           onChange={(e) => handleFileInputChange(e, setBannerFileName, setFormDataStep1, 'image')}
         />
         {formDataStep1.image && (
-          <img className="mt-2 w-12 h-12 rounded-full object-cover" src={`/assest/${formDataStep1.image}`} alt="Campaign Banner" />
+          <img className="mt-2 w-12 h-12 rounded-full object-cover" src={`/assets/${formDataStep1.image}`} alt="Campaign Banner" />
         )}
       </div>
       <label htmlFor="name" className="block font-mini font-josefin-sans mb-1">Title</label>
@@ -243,20 +298,151 @@ const EditCampaignForm = () => {
       </div>
       {volunteerToggle && (
         <div>
-          <label htmlFor="volunteers" className="block font-mini font-josefin-sans mb-1">Volunteers Needed</label>
+          <label htmlFor="total_volunteers_count" className="block font-mini font-josefin-sans mb-1">Volunteers Needed</label>
           <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
             <input
-              id="volunteers"
+              id="total_volunteers_count"
               className="bg-inherit pl-2 w-full outline-none border-none"
               type="number"
-              name="volunteers"
+              name="total_volunteers_count"
               placeholder="Enter the number of volunteers needed"
-              value={formDataStep2.volunteers || 0}
+              value={formDataStep2.total_volunteers_count || 0}
               onChange={(e) => handleNumberInputChange(e, setFormDataStep2)}
             />
           </div>
         </div>
       )}
+       {/* <label
+          htmlFor="Trees Details"
+          className="block font-bold font-josefin-sans mb-1"
+        >
+          Trees Details
+        </label>
+
+       
+          <form onSubmit={handleAddTree} className="space-y-4">
+            <div>
+              <label
+                htmlFor="Trees Name"
+                className="block font-mini font-josefin-sans mb-1"
+              >
+                Trees Name
+              </label>
+              <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Enter the tree name"
+                  value={formDataStep2.trees.name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="bg-inherit pl-2 w-full outline-none border-none"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="Upload Image"
+                className="block font-mini font-josefin-sans mb-1"
+              >
+                Upload Image
+              </label>
+              <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
+                <input
+                  type="file"
+                  id="image"
+                  onChange={(event) => handleFileInputChange(event, setFileState, setFormData, "image"
+
+                  // onChange={(e) =>
+                  //   handleFileInputChange(
+                  //     e,
+                  //     setImageFileName,
+                  //     "image"
+                    )}
+                  className="bg-inherit pl-2 w-60 outline-none border-none"
+                  accept="image/*"
+                  required
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="Price"
+                className="block font-mini font-josefin-sans mb-1"
+              >
+                Price
+              </label>
+              <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
+                <input
+                  type="number"
+                  id="price"
+                  placeholder="Enter the tree price"
+                  max={99999}
+                  min={10}
+                  value={formDataStep2.trees.price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  onKeyPress={handlePriceKeyPress}
+                  className="bg-inherit pl-2 w-full outline-none border-none"
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="Price"
+                className="block font-mini font-josefin-sans mb-1"
+              >
+                Quantity
+              </label>
+              <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
+                <input
+                  type="number"
+                  id="quantity"
+                  placeholder="Enter the tree quantity"
+                  max={99999}
+                  min={10}
+                  value={formDataStep2.trees.quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                  onKeyPress={handlequantityKeyPress}
+                  className="bg-inherit pl-2 w-full outline-none border-none"
+                  required
+                />
+              </div>
+            </div>
+            <div className="flex justify-end">
+              <button
+                onClick={handleAddTree}
+                type="submit"
+                className="mt-1 px-6 py-1 text-white rounded hover:rounded-full border-2 border-gray-100 bg-dashboard"
+              >
+                Add
+              </button>
+            </div>
+          </form>
+          <div className="mt-4 flex flex-row space-x-4">
+          {trees.map((tree, index) => (
+            <div key={index} className="relative">
+              <img
+                src={tree.image}
+                alt={`Tree ${index + 1}`}
+                className="w-14 h-14 items-center justify-center rounded-full object-cover border-2 border-gray-300"
+              />
+              <div className="mt-2 text-sm text-center">
+                <p>{tree.name}</p>
+                <p>({tree.price} PKR)</p>
+              </div>
+              <button
+                onClick={() => handleRemoveTree(index)}
+                className="absolute top-0 left-0 w-4 h-4 pb-1 bg-green-600 bg-opacity-40 text-black rounded-full flex items-center justify-center text-sm"
+              >
+                x
+              </button>
+            </div>
+          ))}
+         
+        </div> */}
       <div className="mb-4">
         <label htmlFor="location" className="block font-mini font-josefin-sans mb-1">Location</label>
         <select
@@ -281,23 +467,48 @@ const EditCampaignForm = () => {
   );
 
   return (
-    <div className="flex items-center gap-[100px] justify-center min-h-screen">
-      {step === 1 ? (
-        <>
-          <div className="border border-2 border-gray-100 bg-white p-8 px-5 rounded-lg w-[400px]">
-            {renderStep1Form()}
-          </div>
-          <img src={`${process.env.PUBLIC_URL}/assest/Seeding-bro.png`} alt="leaves illustration" className="w-[500px] mt-8" />
-        </>
-      ) : (
-        <>
-          <img src={`${process.env.PUBLIC_URL}/assest/Reforestation-bro.png`} alt="leaves illustration" className="self-center w-[450px]" />
-          <div className="bg-white p-8 rounded-lg w-[400px] mt-8">
-            {renderStep2Form()}
-          </div>
-        </>
-      )}
-    </div>
+    // <div className="flex items-center gap-[100px] justify-center min-h-screen">
+    //   {step === 1 ? (
+    //     <>
+    //       <div className="border border-2 border-gray-100 bg-white p-8 px-5 rounded-lg w-[400px]">
+    //         {renderStep1Form()}
+    //       </div>
+    //       <img src={`${process.env.PUBLIC_URL}/assest/Seeding-bro.png`} alt="leaves illustration" className="w-[500px] mt-8" />
+    //     </>
+    //   ) : (
+    //     <>
+    //       <img src={`${process.env.PUBLIC_URL}/assest/Reforestation-bro.png`} alt="leaves illustration" className="self-center w-[450px]" />
+    //       <div className="bg-white p-8 rounded-lg w-[400px] mt-8">
+    //         {renderStep2Form()}
+    //       </div>
+    //     </>
+    //   )}
+    // </div>
+    <div className="flex pt-1 pb-1 ml-[250px] lg items-center gap-[100px] justify-center">
+    {step === 1 ? (
+      <>
+        <div className="border-2 m-4 border-gray-100 bg-white p-8 rounded-lg w-[550px]">
+          {renderStep1Form()}
+        </div>
+        <img
+          src={SeedingBro}
+          alt="leaves illustration"
+          className="hidden md:block w-[400px] mt-8"
+        />
+      </>
+    ) : (
+      <>
+        <img
+          src={Reforestation}
+          alt="leaves illustration"
+          className="hidden md:block w-[400px] ml-12 mt-8"
+        />
+        <div className="border-2 border-gray-100 m-4 bg-white p-8 rounded-lg w-[550px]">
+          {renderStep2Form()}
+        </div>
+      </>
+    )}
+  </div>
   );
 };
 export default EditCampaignForm;
