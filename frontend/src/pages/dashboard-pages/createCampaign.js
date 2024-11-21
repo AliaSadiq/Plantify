@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import SeedingBro from "../../images/Seeding-bro.png";
 import Reforestation from "../../images/Reforestation-bro.png";
 import { useParams } from "react-router-dom";
-import CampaignMap from "../../components/location-picker";
+// import CampaignMap from "../../components/location-picker";
 // import SeedingBro from 'path/to/your/Seeding-bro.png';
 const CreateCampaignForm = () => {
   const navigate = useNavigate();
@@ -18,7 +18,11 @@ const CreateCampaignForm = () => {
   const [imageFile, setImageFile] = useState(null);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [image, setImage] = useState(""); 
   const { id } = useParams();
+  const [fileState, setFileState] = useState(null);
+ const [formData, setFormData] = useState({});
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -49,53 +53,19 @@ const CreateCampaignForm = () => {
 
   const [formDataStep2, setFormDataStep2] = useState({
     target_donation: "",
-    volunteers: 0,
+    total_volunteers_count: 0,
     location: "",
     trees: [],
   });
 
-  // const handleFileInputChange = (
-  //   event,
-  //   setFileState,
-  //   setFormData,
-  //   fieldName
-  // ) => {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     setFileState(file.name);
-  //     setFormData((prevState) => ({
-  //       ...prevState,
-  //       [fieldName]: file.name,
-  //     }));
-  //   }
-  // };
-//   const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
-//     const file = event.target.files[0];
-//     if (file && file.type.startsWith("image/")) {
-//         setFileState(file.name);
-//         setFormData(prevState => ({
-//             ...prevState,
-//             [fieldName]: file.name
-//         }));
-//     } else {
-//         alert("Please select a valid image file.");
-//         // Clear the file input field
-//         event.target.value = ""; // Reset the input value
-//     }
-// };
-const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
-    const file = event.target.files[0];
-    if (file && file.type.startsWith("image/")) {
-        setFileState(file.name); // To display the file name in the UI, if needed
-        setFormData(prevState => ({
-            ...prevState,
-            [fieldName]: file.name // Store the actual file object in the form data
-        }));
-    } else {
-        alert("Please select a valid image file.");
-        // Clear the file input field
-        event.target.value = "";
-    }
+
+const handleFileInputChange = (event) => {
+  const file = event.target.files[0];
+  if (file && file.type.startsWith('image/')) {
+    setImageFile(file); // Set the selected image file
+  } else {
+    alert('Please select a valid image file.');
+  }
 };
 
   const handleInputChange = (e, setFormData) => {
@@ -105,7 +75,20 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
       [name]: value,
     }));
   };
-
+  const handleFileChange = (event, setFileState, setFormData, fieldName) => {
+    const file = event.target.files[0];
+    if (file && file.type.startsWith("image/")) {
+        setFileState(file.name);
+        setFormData(prevState => ({
+            ...prevState,
+            [fieldName]: file.name
+        }));
+    } else {
+        alert("Please select a valid image file.");
+        // Clear the file input field
+        event.target.value = ""; // Reset the input value
+    }
+};
   const handleNumberInputChange = (e, setFormData) => {
     const { name, value } = e.target;
     const numberValue = parseInt(value, 10);
@@ -155,7 +138,7 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
       });
       setFormDataStep2({
         target_donation: "",
-        volunteers: 0,
+        total_volunteers_count: 0,
         location: "",
         trees: [],
       });
@@ -178,31 +161,36 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
 
   const handleAddTree = (e) => {
     e.preventDefault();
-    if (imageFile) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
+    // if (imageFile) {
+    //   const reader = new FileReader();
+    //   reader.onloadend = () => {
         const newTree = {
           name,
           price,
-          image: reader.result,
+          image,
+          quantity,
         };
         setTrees([...trees, newTree]);
         resetForm();
       };
-      reader.readAsDataURL(imageFile);
-    }
-  };
+      // reader.readAsDataURL(imageFile);
+    // }
+  // };
 
   const resetForm = () => {
-    setShowFields(false);
-    setImageFile(null);
+    // setShowFields(false);
+    setImage(null);
     setName("");
     setPrice("");
+    setQuantity("");
   };
 
   const handleRemoveTree = (index) => {
     const newTrees = trees.filter((_, i) => i !== index);
     setTrees(newTrees);
+  };
+  const handleRemoveplant = () => {
+    setImageFile=(null);
   };
 
   const handlePriceKeyPress = (e) => {
@@ -210,7 +198,11 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
       e.preventDefault();
     }
   };
-
+  const handlequantityKeyPress = (e) => {
+    if (!/[0-9]/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
   const renderStep1Form = () => {
     return (
       <form onSubmit={handleStep1Submit}>
@@ -218,29 +210,23 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
           Create Campaign
         </h1>
         <label
-          htmlFor="image"
-          className="block font-mini font-josefin-sans mb-1"
-        >
-          Image
-        </label>
-        <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
-          <input
-            id="image"
-            className="bg-inherit pl-2 w-full outline-none border-none"
-            type="file"
-            name="image"
-            accept="image/*"
-            required
-            onChange={(e) =>
-              handleFileInputChange(
-                e,
-                setImageFileName,
-                setFormDataStep1,
-                "image"
-              )
-            }
-          />
-        </div>
+                htmlFor="image"
+                className="block font-mini font-josefin-sans mb-1"
+              >
+                Upload Image
+              </label>
+             < div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
+                    <input 
+                        id="image" 
+                        className="bg-inherit pl-2 w-full outline-none border-none" 
+                        type="file" 
+                        name="image" 
+                        accept="image/*"
+                        required
+                        onChange={(e) => handleFileChange(e, setImageFileName, setFormDataStep1, 'image')}
+                    />
+                </div>
+             
         <label
           htmlFor="name"
           className="block font-mini font-josefin-sans mb-1"
@@ -356,7 +342,7 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
           />
         </div>
         <label
-          htmlFor="volunteer"
+          htmlFor="total_volunteers_count"
           className="block font-mini font-josefin-sans mb-1"
         >
           Volunteers
@@ -380,19 +366,19 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
         {volunteerToggle && (
           <div>
             <label
-              htmlFor="volunteers"
+              htmlFor="total_volunteers_count"
               className="block font-mini font-josefin-sans mb-1"
             >
               Volunteers Needed
             </label>
             <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
               <input
-                id="volunteers"
+                id="total_volunteers_count"
                 className="bg-inherit pl-2 w-full outline-none border-none"
                 type="number"
-                name="volunteers"
+                name="total_volunteers_count"
                 placeholder="Enter the number of volunteers needed"
-                value={formDataStep2.volunteers || ""}
+                value={formDataStep2.total_volunteers_count || ""}
                 onChange={(e) => handleNumberInputChange(e, setFormDataStep2)}
               />
             </div>
@@ -406,14 +392,14 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
           Trees Details
         </label>
 
-        <button
+        {/* <button
           onClick={() => setShowFields(true)}
           className="flex items-center justify-center bg-neutral mb-4 w-full py-2 px-3 rounded-2xl"
         >
           +
-        </button>
+        </button> */}
 
-        {showFields && (
+        {/* {showFields && ( */}
           <form onSubmit={handleAddTree} className="space-y-4">
             <div>
               <label
@@ -446,11 +432,13 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
                 <input
                   type="file"
                   id="image"
-                  onChange={(e) =>
-                    handleFileInputChange(
-                      e,
-                      setImageFileName,
-                      "image"
+                  onChange={(event) => handleFileInputChange(event, setFileState, setFormData, "image"
+
+                  // onChange={(e) =>
+                  //   handleFileInputChange(
+                  //     e,
+                  //     setImageFileName,
+                  //     "image"
                     )}
                   className="bg-inherit pl-2 w-60 outline-none border-none"
                   accept="image/*"
@@ -481,6 +469,28 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
                 />
               </div>
             </div>
+            <div>
+              <label
+                htmlFor="Price"
+                className="block font-mini font-josefin-sans mb-1"
+              >
+                Quantity
+              </label>
+              <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
+                <input
+                  type="number"
+                  id="quantity"
+                  placeholder="Enter the tree quantity"
+                  max={99999}
+                  min={10}
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                  onKeyPress={handlequantityKeyPress}
+                  className="bg-inherit pl-2 w-full outline-none border-none"
+                  required
+                />
+              </div>
+            </div>
             <div className="flex justify-end">
               <button
                 onClick={handleAddTree}
@@ -491,7 +501,7 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
               </button>
             </div>
           </form>
-        )}
+        {/* )} */}
 
         <div className="mt-4 flex flex-row space-x-4">
           {trees.map((tree, index) => (
@@ -513,7 +523,7 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
               </button>
             </div>
           ))}
-          {/* </div> */}
+         
         </div>
 
         <div className="mb-4">
@@ -523,16 +533,20 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
           >
             Location
           </label>
-          {/* <select
+       
+          <div>
+          <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
+          <textarea
             id="location"
+            className="bg-inherit pl-2 w-full outline-none border-none"
             name="location"
-            className="bg-neutral font-josefin-sans block w-full text-mini shadow-sm sm:text-sm rounded-2xl py-4 px-4"
+            placeholder="Enter full address for the campaign location"
+            maxLength="250"
+            required
             value={formDataStep2.location || ""}
             onChange={(e) => handleInputChange(e, setFormDataStep2)}
-          >
-          </select> */}
-          <div>
-            <CampaignMap/>
+          />
+        </div>
           </div>
         </div>
         <div className="flex justify-between mt-4 -mb-3">
@@ -556,31 +570,32 @@ const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
   };
 
   return (
-    <div className="flex pt-1 pb-1 ml-[250px] items-center gap-[100px] justify-center ">
-      {step === 1 ? (
-        <>
-          <div className=" border-2 m-4 border-gray-100 bg-white p-8 rounded-lg w-[550px]">
-            {renderStep1Form()}
-          </div>
-          <img
-            src={SeedingBro}
-            alt="leaves illustration"
-            className="w-[400px] mt-8"
-          />
-        </>
-      ) : (
-        <>
-          <img
-            src={Reforestation}
-            alt="leaves illustration"
-            className="w-[400px] ml-12 mt-8"
-          />
-          <div className=" border-2 border-gray-100  m-4 bg-white p-8 rounded-lg w-[550px] ">
-            {renderStep2Form()}
-          </div>
-        </>
-      )}
-    </div>
+   <div className="flex pt-1 pb-1 ml-[250px] lg items-center gap-[100px] justify-center">
+  {step === 1 ? (
+    <>
+      <div className="border-2 m-4 border-gray-100 bg-white p-8 rounded-lg w-[550px]">
+        {renderStep1Form()}
+      </div>
+      <img
+        src={SeedingBro}
+        alt="leaves illustration"
+        className="hidden md:block w-[400px] mt-8"
+      />
+    </>
+  ) : (
+    <>
+      <img
+        src={Reforestation}
+        alt="leaves illustration"
+        className="hidden md:block w-[400px] ml-12 mt-8"
+      />
+      <div className="border-2 border-gray-100 m-4 bg-white p-8 rounded-lg w-[550px]">
+        {renderStep2Form()}
+      </div>
+    </>
+  )}
+</div>
+
   );
 };
 

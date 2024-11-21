@@ -265,14 +265,50 @@ const addVolunteer = async (req, res) => {
   }
 };
 
+// const updateCampaign = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const updatedCampaign = await Campaign.findByIdAndUpdate(id, req.body);
+//     if (!updatedCampaign) {
+//       return res.status(404).json({ message: "Campaign not found" });
+//     }
+//     res.status(200).json(updatedCampaign);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
 const updateCampaign = async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedCampaign = await Campaign.findByIdAndUpdate(id, req.body);
-    if (!updatedCampaign) {
+
+    // Check if the request body is empty
+    if (Object.keys(req.body).length === 0) {
+      return res.status(400).json({ message: "No data to update" });
+    }
+
+    // Find the campaign by ID
+    const campaign = await Campaign.findById(id);
+    if (!campaign) {
       return res.status(404).json({ message: "Campaign not found" });
     }
+
+    // Check if any fields have changed, if not return the original campaign
+    let isModified = false;
+    Object.keys(req.body).forEach((key) => {
+      if (campaign[key] !== req.body[key]) {
+        isModified = true;
+      }
+    });
+
+    // If no modification is made, return the original campaign
+    if (!isModified) {
+      return res.status(200).json(campaign);
+    }
+
+    // Proceed with updating the campaign
+    const updatedCampaign = await Campaign.findByIdAndUpdate(id, req.body, { new: true });
     res.status(200).json(updatedCampaign);
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

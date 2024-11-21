@@ -85,9 +85,11 @@ const Sidebar = () => {
   const { username, avatar, email } = userData || {};
 
   const handleProfileClick = () => {
-    // navigate('/plantify-network/profile-socialmedia', { state: { userId: userData._id } });
-    navigate('/plantify-network/profile-socialmedia');
+    navigate('/plantify-network/profile-socialmedia', {
+      state: { myProfile: true},
+    });
   };
+  
 
   const menuItems = [
     { name: 'Home', icon: <HomeIcon className="w-6 h-6 mr-2" />, path: '/plantify-network' },

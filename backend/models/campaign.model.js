@@ -1,3 +1,4 @@
+const { getUniqueDomId } = require("@fullcalendar/core/internal");
 const {mongoose, Schema} = require("mongoose");
 const CampaignSchema = Schema(
   {
@@ -25,6 +26,7 @@ const CampaignSchema = Schema(
     location: {
       type: String,
       required: [true, "Please provide a location"],
+      maxlength: [100, "Description cannot exceed 500 characters"]
     },
     start_date: {
       type: Date,
@@ -90,9 +92,9 @@ const CampaignSchema = Schema(
     trees: [
       {
         name: { type: String, required: true },
-        price: { type: Number, required: true, min: 1 },
+        price: { type: Number, required: true, min: 10 },
         image: { type: String, required: true },
-        quantity: {type: Number, required: true}
+        quantity: {type: Number, required: true,min:10}
       }
     ],
     stage: 
