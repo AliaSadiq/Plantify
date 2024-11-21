@@ -119,11 +119,10 @@ const PostFeed = () => {
   };
   
   return (
-    <div className="lg:w-10/12 w-full  mx-10">
+    <div className="lg:w-10/12 w-full mx-10">
       {/* Filter Buttons */}
       <div className="flex justify-center space-x-8 bg-transparent p-4">
         {['Following', 'Adoption', 'Social'].map((option) => (
-     
           <button
             key={option}
             className={`px-4 py-2 text-sm font-semibold ${
@@ -137,11 +136,20 @@ const PostFeed = () => {
           </button>
         ))}
       </div>
-
+  
       {/* Error and Loading State */}
       {loading && <div>Loading posts...</div>}
       {error && <div className="text-red-500">{error}</div>}
-
+  
+      {/* No Posts Message */}
+      {!loading && !error && posts.length === 0 && (
+        <div className="text-center text-gray-500 mt-6">
+          {filter === 'following' && "You're not following anyone yet. Follow users to see their posts."}
+          {filter === 'adoption' && 'No posts related to adoption at the moment.'}
+          {filter === 'social' && 'No social posts available right now.'}
+        </div>
+      )}
+  
       {/* Post Cards */}
       <div className="grid grid-cols-1 gap-4 mt-6">
         {posts.map((post) => (
@@ -160,12 +168,12 @@ const PostFeed = () => {
             onLike={() => handleLike(post._id)}
             userId
             onClick={() => handlePostClick(post)}
- // Pass the like handler
           />
         ))}
       </div>
-        {/* Post Modal */}
-        {selectedPost && (
+  
+      {/* Post Modal */}
+      {selectedPost && (
         <PostModal
           post={selectedPost}
           onClose={() => setSelectedPost(null)} // Close modal
@@ -173,6 +181,7 @@ const PostFeed = () => {
       )}
     </div>
   );
+  
 };
 
 export default PostFeed;
