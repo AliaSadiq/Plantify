@@ -128,9 +128,9 @@ const ProfilePage = ({ onClose }) => {
 
   return (
     <div className="w-full p-4 flex flex-col items-start">
-      <div className="flex mb-6 w-full items-center">
+      <div className="flex flex-col lg:flex-row mb-6 w-full items-center">
         <div className="w-1/3 h-40 flex-shrink-0 flex items-center justify-center mr-6">
-          <div className="w-36 h-36 bg-gray-200 rounded-full overflow-hidden border-4 border-gradient-to-r from-yellow-400 to-red-500">
+          <div className="w-36 bg-gray-200 rounded-full overflow-hidden border-4 border-gradient-to-r from-yellow-400 to-red-500">
             <img src={`/assets/avatars/${avatar}`} alt={name} className="object-cover w-full h-full" />
           </div>
         </div>
@@ -158,7 +158,7 @@ const ProfilePage = ({ onClose }) => {
 
       {/* Render Posts */}
       <div className="grid-container mt-6 ml-7 h-[80vh] overflow-y-scroll no-scrollbar ">
-        <div className="grid grid-cols-3 gap-1">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-1">
         {posts.map((post) => (
           <PostCard
             key={post._id}

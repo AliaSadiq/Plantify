@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import MetricCard from '../../components/dashboard-components/KeyMetricCard';
 // import { Bar } from 'react-chartjs-2'; // Import Bar chart
-import PieChartGraph from "../../components/dashboard-components/Piechart.js";
+// import PieChartGraph from "../../components/dashboard-components/Piechart.js";
 import useCount from "../../hooks/useCount.js";
 import SocialCampaigns from "../../components/charts/social-campaigns-by-month.js";
 
@@ -152,18 +152,18 @@ const Onboard = () => {
                 <div className='flex-1 rounded-lg h-[330px] shadow-md p-4'>
                   <h2 className="text-xl font-josefin-sans font-bold text-left mb-4">Campaigns Count</h2>
                   <div className="font-josefin-sans h-[250px]">
-                  {socialGroupId && campaignCount > 0 ? (
-                    <SocialCampaigns socialGroupId={socialGroupId} />
-                  ) : (
-                    <p>No campaign data available</p>
-                  )}
+                    {socialGroupId && campaignCount > 0 ? (
+                      <SocialCampaigns socialGroupId={socialGroupId} />
+                    ) : (
+                      <p>No campaign data available</p>
+                    )}
                   </div>
                 </div>
 
-                <div className="flex-1 rounded-lg shadow-md p-4">
+                {/* <div className="flex-1 rounded-lg shadow-md p-4">
                   <h2 className="text-xl font-bold text-center mb-4">Piechart</h2>
                   <PieChartGraph />
-                </div>
+                </div> */}
               </div>
             </div>
         </div>

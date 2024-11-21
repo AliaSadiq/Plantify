@@ -5,7 +5,8 @@ const CampaignSchema = Schema(
       type: String,
       required: [true, "Please enter campaign name"],
       trim: true, // Removes extra spaces
-      maxlength: [100, "Campaign name cannot exceed 100 characters"]
+      maxlength: [100, "Campaign name cannot exceed 100 characters"],
+      unique: true,
     },
     socialGroup: {
       type: mongoose.Schema.Types.ObjectId,
