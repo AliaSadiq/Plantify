@@ -141,7 +141,7 @@ const MainPage = () => {
           {/* Profile Image */}
           <div className="absolute top-40 left-6 w-[120px] h-[120px] bg-white rounded-full overflow-hidden border-4 border-white">
             <img
-              src={profileData.image ? `/assets/${profileData.image}` : 'default-profile.jpg'}
+              src={profileData.image ? `/assets/avatars/${profileData.image}` : 'default-profile.jpg'}
               alt="Profile"
               className="w-full h-full object-cover cursor-pointer"
             />

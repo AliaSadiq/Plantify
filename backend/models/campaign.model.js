@@ -63,8 +63,8 @@ const CampaignSchema = Schema(
     ],
     status: {
       type: String,
-      default:"true",
-      // enum: ['active', 'completed', 'pending'] 
+      default:'active',
+      enum: ['active', 'closed'] 
     },
     total_volunteers_count: {
       type: Number,

@@ -270,7 +270,9 @@ const QuestionSection = ({ groupId, showReplyOption }) => {
 
   {/* Apply scrollbar and light gray lines as boundaries */}
   <div className="bg-inherit w-full p-2 border-neutral border-2 rounded-[10px] mt-4">
-
+  {questions.length === 0 ? (
+    <div className="text-center text-gray-500 py-4">No questions yet</div>
+  ) : (
     <ul className="flex flex-col items-start overflow-y-auto max-h-80">
       {questions.map((question, index) => (
         <li key={index} className="relative w-full p-2 border-b border-gray-300 mb-2">
@@ -371,9 +373,13 @@ const QuestionSection = ({ groupId, showReplyOption }) => {
         </li>
       ))}
     </ul>
-  </div>
+  )}
 </div>
+</div>
+  );
+};
 
+export default QuestionSection;
     // <div className="p-4 max-w-3xl mx-auto">
     //   <h2 className="text-2xl font-bold">Questions</h2>
 
@@ -517,10 +523,10 @@ const QuestionSection = ({ groupId, showReplyOption }) => {
     //     ))}
     //   </div>
     // </div>
-  );
-};
+//   );
+// };
 
-export default QuestionSection;
+// export default QuestionSection;
 
 
 

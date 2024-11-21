@@ -26,6 +26,26 @@ const createSocialGroup = async (req, res) => {
     console.log('ye hogaya');
   }
 };
+const addTeamMembers = async (req, res) => {
+  try {
+    const { id } = req.params; // SocialGroup ID
+    const teamMember = req.body; // New team member data
+
+    const updatedGroup = await SocialGroup.findByIdAndUpdate(
+      id,
+      { $push: { teamMembers: teamMember } }, // Add the new member
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedGroup) {
+      return res.status(404).json({ message: 'Social Group not found' });
+    }
+
+    res.status(200).json(updatedGroup);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 //edit 
 const editSocialGroup = async (req, res) => {
   try {
@@ -231,6 +251,35 @@ const followSocialGroup = async (req, res) => {
   }
 };
 
+const authorizeSocialGroup = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find the social group
+    const socialGroup = await SocialGroup.findById(id).populate('user');
+
+    if (!socialGroup) {
+      return res.status(404).json({ message: 'Social Group not found' });
+    }
+
+    // Get userId from the request (simulate localStorage)
+    const userId = req.header('x-user-id'); // Frontend will send this header
+
+    if (!userId) {
+      return res.status(403).json({ message: 'Please log in to access this page.' });
+    }
+
+    // Check if the userId matches the group's owner
+    if (socialGroup.user._id.toString() !== userId) {
+      return res.status(403).json({ message: 'Unauthorized access. This group does not belong to you.' });
+    }
+
+    // Send the social group data
+    res.json(socialGroup);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
 module.exports = {
   createSocialGroup,
   getSocialGroup,
@@ -244,4 +293,6 @@ module.exports = {
   getAllSocialGroups,
   editSocialGroup,
   getSocialGroupsCountOnWait,
+  addTeamMembers,
+  authorizeSocialGroup,
 };

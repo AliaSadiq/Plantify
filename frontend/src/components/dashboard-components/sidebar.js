@@ -336,34 +336,27 @@ const Sidebar = ( ) => {
           </li>
           <NavLink to="campaigns" className={({ isActive }) =>
             `flex flex-row items-center gap-2 p-4 rounded rounded-pl ${
-              isActive ? 'bg-navygreen-200 bg-opacity-30' : 'hover:bg-navygreen-200 dark:hover:bg-opacity-30'
+              isActive ? 'bg-navygreen-200 dark:bg-opacity-30' : 'hover:bg-navygreen-200 hover:bg-opacity-30'
             }`
           }>
-            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#222222" stroke={0.5}>
-              <path d="M480-120 352-234q-72-65-123.5-116t-85-96q-33.5-45-49-87T79-621q0-94 63-156.5T299-840q52 0 99 22t82 62q35-40 82-62t99-22q94 0 157 62.5T881-621q0 46-15.5 88t-49 87q-33.5 45-85 96T608-234L480-120ZM171-560h618q6-16 9-31t3-30q0-60-41.5-99.5T661-760q-47 0-86.5 27.5T504-660h-48q-31-45-70.5-72.5T299-760q-57 0-98.5 39.5T159-621q0 15 3 30t9 31Zm102 140h414q16-17 29-31.5t24-28.5H220q11 14 24 28.5t29 31.5Zm207 192q36-32 67.5-59.5T605-340H355q26 25 57.5 52.5T480-228Zm0-332Z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
             </svg>
             <p>Campaigns</p>
           </NavLink>
           <NavLink to="requestCampaigns" className={({ isActive }) =>
-            `flex flex-row items-center gap-2 p-4 rounded rounded-pl ${
-              isActive ? 'bg-navygreen-200 bg-opacity-30' : 'hover:bg-navygreen-200 dark:hover:bg-opacity-30'
+            `flex flex-row items-center gap-2 p-4 rounded-pl ${
+              isActive ? 'bg-navygreen-200 dark:bg-opacity-30' : 'hover:bg-navygreen-200 hover:bg-opacity-30'
             }`
           }>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              strokeWidth={1.5} 
-              stroke="currentColor" 
-              className="size-4"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
             </svg>
             <p>Requests</p>
           </NavLink>
           <NavLink to="profile" className={({ isActive }) =>
             `flex flex-row items-center gap-2 p-4 rounded rounded-pl ${
-              isActive ? 'bg-navygreen-200 bg-opacity-30' : 'hover:bg-navygreen-200 dark:hover:bg-opacity-30'
+              isActive ? 'bg-navygreen-200 dark:bg-opacity-30' : 'hover:bg-navygreen-200 hover:bg-opacity-30'
             }`
           }>
             <svg
@@ -380,7 +373,7 @@ const Sidebar = ( ) => {
           </NavLink>
           <NavLink to="/" className={({ isActive }) =>
             `flex flex-row items-center gap-2 p-4 rounded rounded-pl ${
-              isActive ? 'bg-navygreen-200 bg-opacity-30' : 'hover:bg-navygreen-200 dark:hover:bg-opacity-30'
+              isActive ? 'bg-navygreen-200 dark:bg-opacity-30' : 'hover:bg-navygreen-200 hover:bg-opacity-30'
             }`
           }>
             <svg 
@@ -391,7 +384,7 @@ const Sidebar = ( ) => {
               stroke="currentColor" 
               className="size-4"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
             </svg>
             <p>Back</p>
           </NavLink>

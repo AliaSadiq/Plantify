@@ -6,12 +6,14 @@ import SignUpModal from '../popups/signup-modal';
 import ProfileDropdown from '../dropdowns/profile-dropdown';
 import axios from 'axios';
 import NavbarDropdown from '../dropdowns/navbar-dropdown';
+import useFetch from '../hooks/useFetch';
 
 const NavBar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     // const [user, setUser] = useState(null);
     const user = useFetchUserLocalStorage();
-    const [isSocialAccepted, setIsSocialAccepted] = useState(false);
+    // const [isSocialAccepted, setIsSocialAccepted] = useState(false);
+    const {data: socialGroup} = useFetch(`http://localhost:5000/api/socialgroup/user/${user?._id}`);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -25,30 +27,30 @@ const NavBar = () => {
         };
     }, []);
 
-    useEffect(() => {
-        const checkSocialGroupStatus = async (userId) => {
-            try {
-                const response = await axios.get(`http://localhost:5000/api/socialgroup/${userId}`);
-                console.log('Social group response:', response.data); // Debugging log
-                const socialGroup = response.data;
-                if (socialGroup && socialGroup.status === 'accepted') {
-                    setIsSocialAccepted(true);
-                } else {
-                    setIsSocialAccepted(false); // Ensure false if not accepted
-                }
-            } catch (error) {
-                console.error('Error fetching social group:', error);
-                setIsSocialAccepted(false); // Prevent issues on API failure
-            }
-        };
+    // useEffect(() => {
+    //     const checkSocialGroupStatus = async (userId) => {
+    //         try {
+    //             const response = await axios.get(`http://localhost:5000/api/socialgroup/${userId}`);
+    //             console.log('Social group response:', response.data); // Debugging log
+    //             const socialGroup = response.data;
+    //             if (socialGroup && socialGroup.status === 'accepted') {
+    //                 setIsSocialAccepted(true);
+    //             } else {
+    //                 setIsSocialAccepted(false); // Ensure false if not accepted
+    //             }
+    //         } catch (error) {
+    //             console.error('Error fetching social group:', error);
+    //             setIsSocialAccepted(false); // Prevent issues on API failure
+    //         }
+    //     };
     
-        if (user && user.isSocial) {
-            console.log('User isSocial:', user.isSocial); // Debugging log
-            checkSocialGroupStatus(user?._id);
-        } else {
-            setIsSocialAccepted(false); // Ensure no lingering "true" state
-        }
-    }, [user]); // Ensure useEffect runs when user changes
+    //     if (user && user.isSocial) {
+    //         console.log('User isSocial:', user.isSocial); // Debugging log
+    //         checkSocialGroupStatus(user?._id);
+    //     } else {
+    //         setIsSocialAccepted(false); // Ensure no lingering "true" state
+    //     }
+    // }, [user]); // Ensure useEffect runs when user changes
     
 
     //for the popup
@@ -96,10 +98,12 @@ const NavBar = () => {
                         <li>
                             <Link to="/plantify-network" className="navbar-link py-2 px-3 hover:font-semibold">Plantify Network</Link>
                         </li>
-                        {user && isSocialAccepted && (
+                        {user?.isSocial && socialGroup.status == "accepted" ? (
                             <li>
-                                <Link to="/social-dashboard" className="navbar-link py-2 px-3 hover:font-semibold">Dashboard</Link>
+                                <Link to={`/social-dashboard/${socialGroup?._id}`} className="navbar-link py-2 px-3 hover:font-semibold">Dashboard</Link>
                             </li>
+                        ) : (
+                            <li className='hidden'>no social group</li>
                         )}
                         <li>
                             <Link to="/about-us" className="navbar-link py-2 px-3 hover:font-semibold">About us</Link>

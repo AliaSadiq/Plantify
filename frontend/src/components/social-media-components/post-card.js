@@ -109,9 +109,10 @@
 import React, { useState } from 'react';
 import Slider from 'react-slick';
 import { AiOutlineHeart, AiFillHeart, AiOutlineComment } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
 
 const PostCard = ({
   image,
@@ -125,12 +126,14 @@ const PostCard = ({
   species,
   size,
   onLike,
-  userId // Pass a handler for the like button
+  userId,
+  onClick// Pass a handler for the like button
 }) => {
   const [showMore, setShowMore] = useState(false); // State for "Show More"
   const [likeCount, setLikeCount] = useState(likes.length); // Local like state
   const [liked, setLiked] = useState(likes.includes(userId)); // Track if the user liked the post
-
+  const navigate = useNavigate();
+  
   // Slider settings for the carousel
   const sliderSettings = {
     dots: true,
@@ -154,7 +157,10 @@ const PostCard = ({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden relative w-full max-w-lg mb-11 mx-auto">
+    <div 
+    className="bg-white rounded-lg shadow-md overflow-hidden relative w-full max-w-lg mb-11 mx-auto"
+    onClick={onClick} // Trigger the `onClick` handler when the card is clicked
+  >
       {/* Media Content */}
       <div className="w-full h-96">
         {isVideo ? (
@@ -194,12 +200,16 @@ const PostCard = ({
               src={`/assets/avatars/${author?.avatar || 'default-avatar.jpg'}`} // Fallback avatar
               alt={author?.username || 'Anonymous'}
             />
-            <Link
-              to={`/profile/${author?._id || '#'}`}
-              className="ml-2 text-gray-700 font-semibold text-sm sm:text-base"
-            >
-              {author?.username || 'Anonymous'}
-            </Link>
+              <h3
+                  className="font-medium ml-1 text-sm text-black cursor-pointer hover:underline"
+                  onClick={() =>
+                    navigate("/plantify-network/profile-socialmedia", {
+                      state: { profileData: author },
+                    })
+                  }
+                >
+                  {author.username || "Unknown User"}
+                </h3>
           </div>
 
           {/* Likes and Comments */}

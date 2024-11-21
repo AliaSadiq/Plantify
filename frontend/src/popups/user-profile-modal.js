@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../components/button";
 import useProfile from "../hooks/useSocialmediaProfile";
 
 export default function UserProfileModal({ user, onClose }) {
@@ -11,7 +10,6 @@ export default function UserProfileModal({ user, onClose }) {
                 <button 
                     onClick={onClose}
                     className="absolute right-4 top-4 p-2 rounded-md hover:bg-navygreen-100"
-                    
                 >
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 

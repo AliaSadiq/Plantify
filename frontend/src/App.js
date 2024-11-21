@@ -33,13 +33,15 @@ import ExplorePage from './components/social-media-components/explore';
 
 const AppContent = () => {
   const location = useLocation();
+
   const isDashboardRoute = location.pathname.startsWith("/social-dashboard");
   const isAuthRoute = location.pathname.startsWith("/login") || location.pathname.startsWith("/social-signup") || location.pathname.startsWith("/seller-signup");
-  const isSellerRoute = location.pathname.startsWith("/seller"); // New check for seller route
+  const isSellerRoute = location.pathname.startsWith("/seller");
+  const isPlantifyNetworkRoute = location.pathname.startsWith("/plantify-network"); // New check for plantify network route
 
   return (
     <>
-      {!isDashboardRoute && !isAuthRoute  && !isSellerRoute &&  <NavBar />}
+      {!isDashboardRoute && !isAuthRoute && !isSellerRoute && <NavBar />}
       <Routes>
         <Route index element={<LandingPage />} />
         <Route path="campaign" element={<CampaignPage />} />
@@ -59,16 +61,13 @@ const AppContent = () => {
         <Route path="auth-check" element={<AuthCheck />} />
         <Route path="verification-check" element={<VerificationCheck />} />
         <Route path="/plantify-network/*" element={<PlantifyNetwork />} />
-        
-        <Route path='auth-check' element={<AuthCheck />} />
+        <Route path="auth-check" element={<AuthCheck />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} />
-       
-        <Route path="Cart" element={<Cart />}/>
-        <Route path="Checkout" element={<Checkout />}/>
-        <Route path='verification-check' element={<VerificationCheck />} />
-        {/* <Route path="explore" element={<ExplorePage />} /> */}
-        <Route path="/plantify-network/*" element={<PlantifyNetwork />}  />
-        <Route path="store-page" element={<StorePage/>}/>
+        <Route path="Cart" element={<Cart />} />
+        <Route path="Checkout" element={<Checkout />} />
+        <Route path="verification-check" element={<VerificationCheck />} />
+        <Route path="store-page" element={<StorePage />} />
+        
         {/* Auth routes */}
         {isAuthRoute && <Route path="/*" element={<AuthLayout />} />}
 
@@ -77,13 +76,13 @@ const AppContent = () => {
 
         {/* Dashboard routes */}
         {isDashboardRoute && <Route path="social-dashboard/:id/*" element={<DashboardLayout />} />}
-        <Route path="seller" element={<Layout/>}/>
+        <Route path="seller" element={<Layout />} />
       </Routes>
-      {!isDashboardRoute && !isAuthRoute && !isSellerRoute && <Footer />}
-      
+      {!isDashboardRoute && !isAuthRoute && !isSellerRoute && !isPlantifyNetworkRoute && <Footer />}
     </>
   );
 };
+
 
 function App() {
   return (
