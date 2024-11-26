@@ -41,6 +41,11 @@ const CampaignCardSh = ({ campaign }) => {
     setShowSignupModal(false);
   };
 
+  const truncateMessage = (messageText) => {
+    const words = messageText.split(" ");
+    return words.length <= 3 ? messageText : `${words.slice(0, 3).join(" ")}...`;
+  };
+
   // Fetch user ID from local storage
   const [userId, setUserId] = useState(null);
   useEffect(() => {
@@ -72,7 +77,7 @@ const CampaignCardSh = ({ campaign }) => {
       {/* Text Details Section */}
       <div className="p-4">
         <h2 className="text-mini font-semibold mb-1">{campaign.name}</h2>
-        <div className="flex gap-2">
+        <div className="flex flex-col lg:flex-row gap-2">
           <div className="flex items-center mb-2">
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -85,7 +90,7 @@ const CampaignCardSh = ({ campaign }) => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
             </svg>
-            <span className="text-sm">{campaign.location}</span>
+            <span className="text-sm">{truncateMessage(campaign.location)}</span>
           </div>
           
           <div className="flex items-center mb-2">

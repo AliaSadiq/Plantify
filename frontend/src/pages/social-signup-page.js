@@ -527,8 +527,8 @@ const SocialSignUpPage = () => {
                     />
                 </div>
                 <div className="flex gap-4 mt-4">
-                    <Button onClick={handleBackButton} text='Back'/>
-                    <button type="submit">submit</button>
+                    <Button onClick={handleBackButton} text='Back' className="py-2"/>
+                    <button type="submit" className="py-2">submit</button>
                 </div>
             </form>
         );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import Calendar from "../components/calendar";
+import Calendar from "../components/calendar";
 import UserProfile from "../components/user-profile";
 import AddGoalModal from "../popups/add-goal-modal";
 import DonationsChart from "../components/donations-chart";
@@ -23,10 +23,10 @@ export default function PersonalGrowth() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-4 py-4">
                 {/* Event Calendar */}
-                {/* <div className="col-span-1 md:col-span-6 border-2 border-navygreen-100 p-6 rounded-pl mb-4 md:mb-0">
+                <div className="col-span-1 md:col-span-6 border-2 border-navygreen-100 p-6 rounded-pl mb-4 md:mb-0">
                     <p className="mb-2 font-bold text-md">Event Calendar</p>
                     <Calendar/>
-                </div> */}
+                </div>
 
                 {/* My Plants List */}
                 <MyPlantsList plants={plants} fetchPlants={refetch}/>
