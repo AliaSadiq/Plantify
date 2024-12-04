@@ -40,16 +40,19 @@ const CreateCampaignForm = () => {
     image: "",
     start_date: "",
     end_date: "",
-  });
+    
+  })
+  ;
 
   useEffect(() => {
     if (user) {
-      setFormDataStep1((prevState) => ({
-        ...prevState,
-        user: user._id,
-      }));
+      setFormDataStep1((prevState) => {
+        console.log("Updated formDataStep1:", { ...prevState, user: user._id });
+        return { ...prevState, user: user._id };
+      });
     }
   }, [user]);
+  
 
   const [formDataStep2, setFormDataStep2] = useState({
     target_donation: "",
@@ -59,22 +62,32 @@ const CreateCampaignForm = () => {
   });
 
 
-const handleFileInputChange = (event) => {
-  const file = event.target.files[0];
-  if (file && file.type.startsWith('image/')) {
-    setImageFile(file); // Set the selected image file
-  } else {
-    alert('Please select a valid image file.');
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+    if (file && file.type.startsWith("image/")) {
+      setImage(file.name); // Store only the file name
+    } else {
+      alert("Please select a valid image file.");
+    }
+  };
+  
+
+const handleInputChange = (e, setFormData) => {
+  const { name, value } = e.target;
+  if (name === "end_date") {
+    const start_date = new Date(formDataStep1.start_date);
+    const end_date = new Date(value);
+    if (end_date <= start_date) {
+      alert("End Date cannot be before Start Date");
+      return;
+    }
   }
+  setFormData((prevState) => ({
+    ...prevState,
+    [name]: value,
+  }));
 };
 
-  const handleInputChange = (e, setFormData) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
   const handleFileChange = (event, setFileState, setFormData, fieldName) => {
     const file = event.target.files[0];
     if (file && file.type.startsWith("image/")) {
@@ -116,9 +129,11 @@ const handleFileInputChange = (event) => {
       const formData = {
         ...formDataStep1,
         ...formDataStep2,
-        trees: trees,
+        trees, // Include trees with file names only
       };
       console.log("Submitting data:", formData);
+      console.log("Form data before submission:", formDataStep1);
+
 
       const response = await axios.post(
         "http://localhost:5000/api/campaigns",
@@ -161,18 +176,18 @@ const handleFileInputChange = (event) => {
 
   const handleAddTree = (e) => {
     e.preventDefault();
-    // if (imageFile) {
-    //   const reader = new FileReader();
-    //   reader.onloadend = () => {
-        const newTree = {
-          name,
-          price,
-          image,
-          quantity,
-        };
-        setTrees([...trees, newTree]);
-        resetForm();
-      };
+  
+    const newTree = {
+      name,       // Tree name
+      price,      // Tree price
+      image,      // File name of the image
+      quantity,   // Quantity
+    };
+  
+    setTrees([...trees, newTree]); // Add to trees array
+    resetForm(); // Clear input fields
+  };
+  
       // reader.readAsDataURL(imageFile);
     // }
   // };
@@ -432,7 +447,7 @@ const handleFileInputChange = (event) => {
                 <input
                   type="file"
                   id="image"
-                  onChange={(event) => handleFileInputChange(event, setFileState, setFormData, "image"
+                  onChange={(event) => handleFileInputChange(event, setFileState, setFormData, 
 
                   // onChange={(e) =>
                   //   handleFileInputChange(
@@ -507,7 +522,7 @@ const handleFileInputChange = (event) => {
           {trees.map((tree, index) => (
             <div key={index} className="relative">
               <img
-                src={tree.image}
+                src={`/assets/${tree.image}`}
                 alt={`Tree ${index + 1}`}
                 className="w-14 h-14 items-center justify-center rounded-full object-cover border-2 border-gray-300"
               />

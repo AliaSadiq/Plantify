@@ -566,17 +566,32 @@ const CreateCampaignForm = () => {
         volunteers: 0,
         location: ''
     });
-
     const handleFileInputChange = (event, setFileState, setFormData, fieldName) => {
         const file = event.target.files[0];
         if (file) {
+            // Check if the file is an image
+            const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+            if (!allowedTypes.includes(file.type)) {
+                alert("Please upload a valid image file (JPEG, PNG, GIF).");
+                return;
+            }
+    
+            // Check file size (e.g., max 5 MB)
+            const maxSize = 5 * 1024 * 1024; // 5 MB
+            if (file.size > maxSize) {
+                alert("File size exceeds the maximum limit of 5 MB.");
+                return;
+            }
+    
+            // Set the file name and update the state
             setFileState(file.name);
             setFormData(prevState => ({
                 ...prevState,
-                [fieldName]: file.name
+                [fieldName]: file.name // Only store the filename
             }));
         }
     };
+    
 
     const handleInputChange = (e, setFormData) => {
         const { name, value } = e.target;
@@ -652,7 +667,7 @@ const CreateCampaignForm = () => {
                 <h1 className="font-josefin-sans text-2xl text-black font-bold mb-6">Create Campaign</h1>
                 <label htmlFor="image" className="block font-mini font-josefin-sans mb-1">Image</label>
                 <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
-                    <input
+                    {/* <input
                         id="image"
                         className="bg-inherit pl-2 w-full outline-none border-none"
                         type="file"
@@ -660,7 +675,16 @@ const CreateCampaignForm = () => {
                         accept="image/*"
                         required
                         onChange={(e) => handleFileInputChange(e, setImageFileName, setFormDataStep1, 'image')}
-                    />
+                    /> */}
+                    <input
+                    id="image"
+                    className="bg-inherit pl-2 w-full outline-none border-none"
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    required
+                    onChange={(e) => handleFileInputChange(e, setImageFileName, setFormDataStep1, 'image')}
+                />
                 </div>
                 <label htmlFor="name" className="block font-mini font-josefin-sans mb-1">Title</label>
                 <div className="flex items-center bg-neutral mb-4 py-2 px-3 rounded-2xl">
