@@ -96,11 +96,11 @@ const ProfilePage = ({ onClose }) => {
   const name = user.username || 'Unknown User';
 
   return (
-    <div className="w-full p-4 ml-16 flex flex-col items-start">
+    <div className="w-full flex flex-col items-start">
       {/* Profile Header */}
-      <div className="flex mb-6 w-full items-center">
-        <div className="w-1/3 h-40 flex-shrink-0 flex items-center justify-center mr-6">
-          <div className="w-36 h-36 bg-gray-200 rounded-full overflow-hidden border-4 border-gradient-to-r from-yellow-400 to-red-500">
+      <div className="flex mb-6 mx-4 gap-6 items-center">
+        <div className="h-40 items-center justify-center">
+          <div className="w-36 h-36 rounded-full overflow-hidden border-2">
             <img src={`/assets/avatars/${avatar}`} alt={name} className="object-cover w-full h-full" />
           </div>
         </div>
@@ -127,29 +127,32 @@ const ProfilePage = ({ onClose }) => {
       </div>
 
       {/* Render Posts */}
-      <div className="grid-container mt-6 ml-7 h-[80vh] overflow-y-scroll no-scrollbar">
-  <div className="grid grid-cols-4 gap-2">
-    {posts.map((post) => (
-      <div key={post._id} className="relative group">
-        <PostCard
-          video={post.video}
-          images={post.images}
-          isAdoption={post.postType === 'adoption'}
-          onClick={() => setSelectedPost(post)} // Open post modal
-        />
-        {/* Show delete button only if `myProfile` is true */}
-        {myProfile && (
-          <button
-            onClick={() => handleDeletePost(post._id)}
-            className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-          >
-            &times;
-          </button>
-        )}
+      {/* <div className='p-2 w-[600px] mx-8 border-b-[1px] border-gray-600'></div> */}
+      <div className="place-self-center grid-container mt-6 lg:ml-0 mx-5 h-[80vh] overflow-y-scroll no-scrollbar">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+          {posts.map((post) => (
+            <div key={post._id} className="relative group">
+              <PostCard
+                video={post.video}
+                images={post.images}
+                isAdoption={post.postType === 'adoption'}
+                onClick={() => setSelectedPost(post)} // Open post modal
+              />
+              {/* Show delete button only if `myProfile` is true */}
+              {myProfile && (
+                <button
+                  onClick={() => handleDeletePost(post._id)}
+                  className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                  </svg>
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
-    ))}
-  </div>
-</div>
 
       {/* Post Modal */}
       {selectedPost && (
