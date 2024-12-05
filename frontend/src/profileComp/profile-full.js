@@ -392,7 +392,7 @@ const MainPage = () => {
 
 
       {/* Team Section */}
-      <div className="p-4 bg-white shadow-lg rounded-pl">
+      {/* <div className="p-4 bg-white shadow-lg rounded-pl">
         <h3 className="text-md font-bold text-gray-800">Team</h3>
         <ul className="space-y-4 mt-4">
           {teamMembers.map((member, index) => (
@@ -417,7 +417,7 @@ const MainPage = () => {
             <p className="text-sm text-gray-500">{selectedMember.role}</p>
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   </div>
 </div>

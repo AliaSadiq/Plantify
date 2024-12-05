@@ -16,6 +16,7 @@ export function CarouselDefault({ trees = [] }) {
           />
           <p className="text-center font-semibold">Name: {tree.name}</p>
           <p className="text-center">Price: Rs.{tree.price}</p>
+          <p className="text-center">Quantity: {tree.quantity}</p>
         </div>
       ))}
     </Slider>

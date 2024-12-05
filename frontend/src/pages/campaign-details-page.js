@@ -142,7 +142,7 @@ export default function CampaignDetailsPage() {
                 <p className="font-semibold text-mini mb-10 flex items-center justify-center gap-2">
                     a campaign by
                     <div className="flex items-center bg-navygreen-100 hover:bg-navygreen-200 p-2 rounded-[20px] gap-2 cursor-pointer">
-                        <img src={`/assets/${campaign.socialGroup.image}`} className="w-8 h-8 rounded-full" alt="Social Group Logo" />
+                        <img src={`/assets/avatars/${campaign.socialGroup.image}`} className="w-8 h-8 rounded-full" alt="Social Group Logo" />
                         <Link to={`/campaign/social-group/${campaign.socialGroup._id}`} className="">
                             {campaign.socialGroup.name}
                         </Link>

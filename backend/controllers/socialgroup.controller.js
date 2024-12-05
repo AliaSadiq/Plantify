@@ -1,4 +1,5 @@
 const SocialGroup = require("../models/socialgroup.model");
+const User = require('../models/user.model');
 
 const createSocialGroup = async (req, res) => {
   try {
@@ -189,6 +190,12 @@ const deleteSocialGroup = async (req, res) => {
     if (!socialGroup) {
       return res.status(404).json({ message: "Group not found" });
     }
+
+    // Find the associated user and update their isSocial attribute 
+    const userId = socialGroup.user; // Assuming the user ID is stored in the socialGroup document await 
+    console.log("userId: "+ userId);
+    //User.findByIdAndUpdate(userId, { isSocial: false });
+    await User.findByIdAndUpdate(userId, { isSocial: false });
 
     res.status(200).json({ message: "Group deleted successfully" });
   } catch (error) {

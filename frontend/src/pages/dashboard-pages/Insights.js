@@ -30,69 +30,48 @@ export default function Insights () {
   const handleCloseForm = () => {
     setIsFormOpen(false);
   };
-  const isSameDate = (date1, date2) => {
-    try {
-      // Ensure both dates are valid before comparing
-      const formattedDate1 = new Date(date1).toISOString().slice(0, 10); // YYYY-MM-DD
-      const formattedDate2 = new Date(date2).toISOString().slice(0, 10); // YYYY-MM-DD
-      return formattedDate1 === formattedDate2;
-    } catch (error) {
-      console.error("Error comparing dates:", { date1, date2, error });
-      return false; // Handle gracefully
-    }
-  };
-
-  // useEffect(() => { 
-  //   // Check if the collected donations have reached the target donation 
-  //   if (campaign && campaign.collected_donation >= campaign.target_donation && campaign.stage === 'Fundraising') { 
-  //     updateCampaignStageToBuying(); 
-  //   } 
-
-  //   if (campaign && new Date(campaign.end_date).getTime() === new Date().setHours(0, 0, 0, 0) && campaign.stage === 'Buying Plants') {
-  //     updateCampaignStageToPlantation();
+  // const isSameDate = (date1, date2) => {
+  //   try {
+  //     // Ensure both dates are valid before comparing
+  //     const formattedDate1 = new Date(date1).toISOString().slice(0, 10); // YYYY-MM-DD
+  //     const formattedDate2 = new Date(date2).toISOString().slice(0, 10); // YYYY-MM-DD
+  //     return formattedDate1 === formattedDate2;
+  //   } catch (error) {
+  //     console.error("Error comparing dates:", { date1, date2, error });
+  //     return false; // Handle gracefully
   //   }
+  // };
+  // useEffect(() => {
+  //   const handleCampaignStage = async () => {
+  //     if (!campaign) return;
   
-  //   // Show the complete modal if the stage is "Buying Plants"
-  //   if (campaign && campaign.stage === 'Buying Plants') {
-  //     setShowCompleteModal(true);
-  //   }
-
-  //   // Show the complete modal if the stage is "Plantation"
-  //   if (campaign && campaign.stage === 'Plantation') {
-  //     setShowPostingModal(true);
-  //   }
-  // }, [campaign]); 
-  useEffect(() => {
-    const handleCampaignStage = async () => {
-      if (!campaign) return;
+  //     const today = new Date().toISOString().split('T')[0]; // Get current date in yyyy-mm-dd format
   
-      const today = new Date().toISOString().split('T')[0]; // Get current date in yyyy-mm-dd format
+  //     if (
+  //       campaign.collected_donation >= campaign.target_donation &&
+  //       campaign.stage === 'Fundraising'
+  //     ) {
+  //       await updateCampaignStageToBuying();
+  //     } else if (
+  //       isSameDate(campaign.end_date, today) &&
+  //       campaign.stage === 'Buying Plants'
+  //     ) {
+  //       await updateCampaignStageToPlantation();
+  //     }
   
-      if (
-        campaign.collected_donation >= campaign.target_donation &&
-        campaign.stage === 'Fundraising'
-      ) {
-        await updateCampaignStageToBuying();
-      } else if (
-        isSameDate(campaign.end_date, today) &&
-        campaign.stage === 'Buying Plants'
-      ) {
-        await updateCampaignStageToPlantation();
-      }
+  //     // Show modals based on updated stage
+  //     if (campaign.stage === 'Buying Plants') {
+  //       setShowCompleteModal(true);
+  //     } else if (campaign.stage === 'Plantation') {
+  //       setShowPostingModal(true);
+  //     } else {
+  //       setShowCompleteModal(false);
+  //       setShowPostingModal(false);
+  //     }
+  //   };
   
-      // Show modals based on updated stage
-      if (campaign.stage === 'Buying Plants') {
-        setShowCompleteModal(true);
-      } else if (campaign.stage === 'Plantation') {
-        setShowPostingModal(true);
-      } else {
-        setShowCompleteModal(false);
-        setShowPostingModal(false);
-      }
-    };
-  
-    handleCampaignStage();
-  }, [campaign]);
+  //   handleCampaignStage();
+  // }, [campaign]);
   
   const updateCampaignStageToBuying = async () => { 
     try { 
@@ -114,25 +93,25 @@ export default function Insights () {
     } 
   };
 
-  useEffect(() => {
-    const updateCampaignStatus = async () => {
-      if (!campaign) return;
+  // useEffect(() => {
+  //   const updateCampaignStatus = async () => {
+  //     if (!campaign) return;
   
-      const today = new Date().toISOString().split('T')[0]; // Current date in yyyy-mm-dd format
-      const campaignEndDate = new Date(campaign.end_date).toISOString().split('T')[0];
+  //     const today = new Date().toISOString().split('T')[0]; // Current date in yyyy-mm-dd format
+  //     const campaignEndDate = new Date(campaign.end_date).toISOString().split('T')[0];
   
-      if (campaign.status === 'active' && today > campaignEndDate) {
-        try {
-          await axios.put(`http://localhost:5000/api/campaigns/${id}`, { status: 'closed' });
-          refetch(); // Refetch the campaign data to get the updated status
-        } catch (error) {
-          console.error("Error updating campaign status:", error);
-        }
-      }
-    };
+  //     if (campaign.status === 'active' && today > campaignEndDate) {
+  //       try {
+  //         await axios.put(`http://localhost:5000/api/campaigns/${id}`, { status: 'closed' });
+  //         refetch(); // Refetch the campaign data to get the updated status
+  //       } catch (error) {
+  //         console.error("Error updating campaign status:", error);
+  //       }
+  //     }
+  //   };
   
-    updateCampaignStatus();
-  }, [campaign]);  
+  //   updateCampaignStatus();
+  // }, [campaign]);  
 
   // Filter accepted volunteers
   const acceptedVolunteers =
