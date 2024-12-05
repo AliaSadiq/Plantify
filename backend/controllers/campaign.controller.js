@@ -77,10 +77,31 @@ const createCampaign = async (req, res) => {
     // Return the populated campaign in the response
     res.status(200).json(populatedCampaign);
   } catch (error) {
-    // Handle errors
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
+// const createCampaign = async (req, res) => {
+//   try {
+//       const { name, socialGroup, ...rest } = req.body;
+
+//       // Check for unique campaign name
+//       const existingCampaign = await Campaign.findOne({ name });
+//       if (existingCampaign) {
+//           return res.status(400).json({ message: "Campaign name already exists" });
+//       }
+
+//       // Create and populate campaign
+//       const campaign = await Campaign.create({ name, socialGroup, ...rest });
+//       const populatedCampaign = await Campaign.findById(campaign._id).populate('socialGroup');
+
+//       res.status(201).json(populatedCampaign);
+//   } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ message: "Internal server error" });
+//   }
+// };
+
 
 const socialgroupCampaigns = async (req, res) => {
   try {
