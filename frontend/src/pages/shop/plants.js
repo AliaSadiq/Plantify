@@ -97,10 +97,10 @@ function Plants() {
     <div className="max-w-screen mx-auto mb-20">
       {/* Header Section */}
       <div
-        className="relative h-48 sm:h-64 md:h-80 bg-cover bg-black opacity-80 bg-center flex items-center justify-center"
-        style={{ backgroundImage: `url(/assets/plants.jpg)` }}
+        className="relative h-48 sm:h-64 md:h-80 bg-cover bg-green opacity-60 bg-center flex items-center justify-center"
+        style={{ backgroundImage: `url(/assets/plant.jpg)` }}
       >
-        <h2 className="text-3xl md:text-5xl font-bold font-josefin-sans text-white px-4 py-2 rounded">
+        <h2 className="text-3xl md:text-5xl font-bold font-josefin-sans text-black px-4 py-2 rounded">
           PLANTS
         </h2>
       </div>
@@ -190,8 +190,8 @@ function Plants() {
         </div>
 
         {/* Plant Grid */}
-        <div className="w-full mr-20 mb-20 mt-10 lg:w-3/4">
-          <div className="grid grid-cols-1 h-80  md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="w-full mr-20 sm:pr-10 sm:pl-10 md:pr-10 md:pl-10 mb-20 mt-10 lg:w-3/4">
+          <div className="grid grid-cols-1 h-full  md:grid-cols-2 lg:grid-cols-4 gap-8">
             {filteredPlants.map((plant) => (
               <Link
                 to={`/products/${plant._id}`} // Dynamically linking to the product details page using the product ID

@@ -19,7 +19,7 @@ const Shop = () => {
   ];
 
   return (
-    <div className="max-w-full w-full md:mb-20 mx-auto">
+    <div className="max-w-full w-full md:mb-20 pb-20 mx-auto">
       <div>
         <ShopHeaderCarousel />
       </div>
@@ -74,10 +74,10 @@ const Shop = () => {
     ))}
   </div>
 </div> */}
- <div className="flex items-center sm:mt-[610px] lg:mt-[150px] mx-32 justify-between ">
+ {/* <div className="flex items-center sm:mt-[1010px] lg:mt-[150px] mx-32 justify-between ">
         <h2 className="text-sm lg:text-lg sm:ml-6 md:text-center md:justify-center sm:text-center sm:justify-center font-josefin-sans sm:text-xl md:text-xl font-bold mb-0">
             Featured Products 
-          </h2>
+          </h2> */}
           {/* <div className="flex items-center space-x-4">
             <div className="flex space-x-4">
               <span className="text-red-500 font-semibold cursor-pointer">Winter</span>
@@ -85,10 +85,10 @@ const Shop = () => {
               <span className="text-gray-500 cursor-pointer">Greens</span>
             </div>
             </div> */}
-             </div>
+             {/* </div>
 <div className='mt-2  md:mt-20 max-h-full mb-10 ml-24 mr-24 '>
 <FeaturedProducts />
-</div>
+</div> */}
 {/* <div className="flex items-start bg-navygreen-200 px-4 " style={{ backgroundImage: "url('/assets/csprod.png')" }}>
     {/* Overlay for background image */}
     {/* <div className="bg-black bg-opacity-50 p-8 rounded-lg max-w-md text-white font-josefin-sans italic text-lg mx-auto">
@@ -99,30 +99,30 @@ const Shop = () => {
         <p className="text-right font-semibold">- Customer Name</p>
     </div>
 </div> */}
-<div className="flex flex-row items-center bg-navygreen-200 px-4 text-center">
+{/* <div className="flex flex-row items-center bg-navygreen-200 px-4 text-center">
             {/* Image */}
-            <img 
+            {/* <img 
                 src="/assets/csprod.png" // Replace with actual image URL
                 alt="Customer"
                 className="w-[500px] h-[600px]  object-cover"
             />
             
             {/* Testimonial Text */}
-            <p className="text-black font-josefin-sans italic text-lg max-w-md mx-auto mb-4">
+            {/* <p className="text-black font-josefin-sans italic text-lg max-w-md mx-auto mb-4">
                 "When a beautiful design is combined with powerful technology, it truly is an artwork. 
                 I love how my website operates and looks with this theme. Thank you for the awesome product."
-            </p>
+            </p> */}
             
             {/* Customer Name */}
-        </div>
+        {/* </div>
 <div className="flex items-center sm:mt-10 lg:mt-[50px] mx-32 justify-between ">
 <h2 className="text-sm lg:text-lg sm:ml-14  md:text-center md:justify-center sm:text-center sm:justify-center font-bold font-josefin-sans sm:text-xl md:text-xl  mb-0">
 Hot Products
           </h2>
           </div>
 <div className='mt-10 max-h-full  ml-24 mr-24 '>
-<HotProducts />
-</div>
+<HotProducts /> 
+</div> */}
     </div>
   );
 };

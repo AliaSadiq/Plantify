@@ -6,14 +6,12 @@ const FeaturedProducts = () => {
   const [cardsPerView, setCardsPerView] = useState(1);
 
   const products = [
-    { name: "Evergreen Candytuft", price: "$50.00", image: "/assets/products/plant-1.jpeg" },
-    { name: "Flowers Bouquet Pink", price: "$100.00", image: "/assets/products/plant-2.jpeg" },
-    { name: "Pearly Everlasting", price: "$100.00", image: "/assets/products/plant-3.jpeg" },
-    { name: "Flowers Bouquet Pink", price: "$150.00", image: "/assets/products/plant-4.jpeg" },
-    { name: "Evergreen Candytuft", price: "$50.00", image: "/assets/products/plant-1.jpeg" },
-    { name: "Flowers Bouquet Pink", price: "$100.00", image: "/assets/products/plant-2.jpeg" },
-    { name: "Pearly Everlasting", price: "$100.00", oldPrice: "$120.00", image: "/assets/products/plant-3.jpeg" },
-    { name: "Flowers Bouquet Pink", price: "$150.00", image: "/assets/products/plant-4.jpeg" },
+    { name: "Bougainvillea (Bougainvillea spectabilis)", price: "Rs.1600.00", image: "/assets/products/Bougainvillea (Bougainvillea spectabilis).jpg" },
+    { name: "Rubber Plant (Ficus elastica)", price: "Rs.500.00", image: "/assets/products/Rubber Plant (Ficus elastica).jpg" },
+    { name: "Peace Lily (Spathiphyllum)", price: "Rs.1300.00", image: "/assets/products/Peace Lily (Spathiphyllum).jpg" },
+    { name: "Orchid (Phalaenopsis)", price: "Rs.1200.00", image: "/assets/products/Orchid (Phalaenopsis).jpg" },
+    { name: "Monstera Deliciosa (Swiss Cheese Plant)", price: "Rs.1300.00", image: "/assets/products/Monstera Deliciosa (Swiss Cheese Plant).jpg" },
+    { name: "Jasmine(Jasminum)", price: "Rs.1000.00", image: "/assets/products/jasminee.jpg" },
   ];
 
   // Set cards per view based on screen size

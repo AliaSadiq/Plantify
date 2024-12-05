@@ -121,14 +121,14 @@ import { useNavigate } from "react-router-dom";
 function ShopHeaderCarousel() {
   const navigate = useNavigate();
   const slides = [
-    { image: "/assets/products/carousel-1.jpg" },
-    { image: "/assets/products/carousel-2.jpg" },
+    { image: "/assets/pp.jpg" },
+    { image: "/assets/pg.jpg" },
   ];
 
   const cards = [
-    { name: "PLANTS", image: "/assets/Plants.jpg", link: "/plants" },
-    { name: "SOILS", image: "/assets/soil.jpg", link: "/soils" },
-    { name: "TOOLS", image: "/assets/tools.jpg", link: "/tools" },
+    { name: "SOILS", image: "/assets/sso.jpg", link: "/soils" },
+    { name: "PLANTS", image: "/assets/plant.jpg", link: "/plants" },
+    { name: "TOOLS", image: "/assets/tt.jpg", link: "/tools" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -158,7 +158,7 @@ function ShopHeaderCarousel() {
   };
 
   return (
-    <div className="relative w-full max-w-screen h-[400px] sm:h-[500px] md:h-[600px] m-auto group">
+    <div className="relative w-full max-w-screen  h-[400px] sm:h-[500px] md:h-[600px] m-auto group">
       <div
         style={{ backgroundImage: `url(${slides[currentIndex].image})` }}
         className="w-full h-full bg-center bg-cover duration-500"
@@ -166,10 +166,10 @@ function ShopHeaderCarousel() {
         <div className="flex flex-col md:flex-row items-left w-full px-4 sm:px-8 md:px-16 lg:px-24 py-10 relative">
           <div className="text-left sm:mt-10 md:text-left w-full md:w-1/2 font-josefin-sans text-gray-100 mt-5 md:mt-10">
             <p className="text-sm sm:text-lg font-semibold">
-              Explore Our Unique
+              Explore Our Exclusive
             </p>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-              Plant Collection,
+              Plants Collection,
             </h1>
             <p className="mt-4 sm:mt-6 text-xs sm:text-md">
               Enhance your space with our diverse selection of plants. Choose
@@ -198,7 +198,7 @@ function ShopHeaderCarousel() {
       </div>
 
       {/* Cards Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full px-4 sm:px-10 md:px-16 lg:px-32 sm:-mt-10 md:-mt-10 lg:-mt-28">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full px-4 sm:px-10 md:px-16 lg:px-32 sm:-mt-10 md:-mt-10 lg:-mt-36">
         {cards.map((card) => (
           <div
             key={card.name}
