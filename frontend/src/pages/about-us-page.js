@@ -40,36 +40,28 @@ const AboutUsPage = () => {
           <p className="text-md text-gray-200 mb-8">
             Our team is passionate about sustainability, innovation, and community-driven change.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="place-self-center justify-items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Team Member 1 */}
             <div className="bg-white rounded-pl p-6 shadow-lg">
               <img src="/assets/testimonial-1.jpeg" alt="Team Member 1" className="w-32 h-32 rounded-full mx-auto mb-4" />
-              <h3 className="text-lg font-bold">John Doe</h3>
-              <p className="text-gray-500">Founder & CEO</p>
+              <h3 className="text-lg font-bold">Farwa Tariq</h3>
+              <p className="text-gray-500">Full Stack Developer</p>
               <p className="mt-4 text-sm text-gray-700">John is the visionary behind Plantify, leading our mission with passion and dedication.</p>
             </div>
             {/* Team Member 2 */}
             <div className="bg-white rounded-pl p-6 shadow-lg">
               <img src="/assets/testimonial-1.jpeg" alt="Team Member 2" className="w-32 h-32 rounded-full mx-auto mb-4" />
-              <h3 className="text-lg font-bold">Jane Smith</h3>
-              <p className="text-gray-500">Chief Operations Officer</p>
+              <h3 className="text-lg font-bold">Shabeeh Fatima</h3>
+              <p className="text-gray-500">Full Stack Developer</p>
               <p className="mt-4 text-sm text-gray-700">Jane ensures that all Plantify operations run smoothly, supporting campaigns and initiatives.</p>
             </div>
             {/* Team Member 2 */}
             <div className="bg-white rounded-pl p-6 shadow-lg">
               <img src="/assets/testimonial-1.jpeg" alt="Team Member 2" className="w-32 h-32 rounded-full mx-auto mb-4" />
-              <h3 className="text-lg font-bold">Jane Smith</h3>
-              <p className="text-gray-500">Chief Operations Officer</p>
+              <h3 className="text-lg font-bold">Alia Sadiq</h3>
+              <p className="text-gray-500">Full Stack Developer</p>
               <p className="mt-4 text-sm text-gray-700">Jane ensures that all Plantify operations run smoothly, supporting campaigns and initiatives.</p>
             </div>
-            {/* Team Member 2 */}
-            <div className="bg-white rounded-pl p-6 shadow-lg">
-              <img src="/assets/testimonial-1.jpeg" alt="Team Member 2" className="w-32 h-32 rounded-full mx-auto mb-4" />
-              <h3 className="text-lg font-bold">Jane Smith</h3>
-              <p className="text-gray-500">Chief Operations Officer</p>
-              <p className="mt-4 text-sm text-gray-700">Jane ensures that all Plantify operations run smoothly, supporting campaigns and initiatives.</p>
-            </div>
-            {/* Add more team members as needed */}
           </div>
         </div>
       </div>

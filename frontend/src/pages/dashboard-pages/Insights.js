@@ -41,27 +41,6 @@ export default function Insights () {
       return false; // Handle gracefully
     }
   };
-
-  // useEffect(() => { 
-  //   // Check if the collected donations have reached the target donation 
-  //   if (campaign && campaign.collected_donation >= campaign.target_donation && campaign.stage === 'Fundraising') { 
-  //     updateCampaignStageToBuying(); 
-  //   } 
-
-  //   if (campaign && new Date(campaign.end_date).getTime() === new Date().setHours(0, 0, 0, 0) && campaign.stage === 'Buying Plants') {
-  //     updateCampaignStageToPlantation();
-  //   }
-  
-  //   // Show the complete modal if the stage is "Buying Plants"
-  //   if (campaign && campaign.stage === 'Buying Plants') {
-  //     setShowCompleteModal(true);
-  //   }
-
-  //   // Show the complete modal if the stage is "Plantation"
-  //   if (campaign && campaign.stage === 'Plantation') {
-  //     setShowPostingModal(true);
-  //   }
-  // }, [campaign]); 
   useEffect(() => {
     const handleCampaignStage = async () => {
       if (!campaign) return;
