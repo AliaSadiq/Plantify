@@ -81,6 +81,76 @@ const TeamSchema = new Schema(
   }
 );
 
+// const SocialGroupSchema = new Schema(
+//   {
+//     user: {
+//       type: Schema.Types.ObjectId,
+//       ref: 'User',
+//     },
+//     name: {
+//       type: String,
+//       required: [true, "Please enter group name"],
+//     },
+//     initiative: {
+//       type: String,
+//       required: true,
+//     },
+//     image: {
+//       type: String,
+//       required: true,
+//     },
+//     banner: {
+//       type: String,
+//       required: true,
+//     },
+//     location: {
+//       type: String,
+//       required: true,
+//     },
+//     cnic: {
+//       type: String,
+//       required: true,
+//     },
+//     faceImage: {
+//       type: String,
+//       required: true,
+//     },
+//     contact: {
+//       type: String,
+//       required: true,
+//     },
+//     address: {
+//       type: String,
+//       required: true,
+//     },
+//     followers: [
+//       {
+//         type: Schema.Types.ObjectId, // Reference to user IDs
+//         ref: 'User', // Assuming followers are users
+//       }
+//     ],
+//     status: {
+//       type: String,
+//       enum: ['on wait', 'accepted', 'rejected'],
+//       default: 'on wait',
+//     },
+//     teamMembers: [TeamSchema],
+//     reviews: [{
+//       type: Schema.Types.ObjectId,
+//       ref: 'Review',
+//     }],
+//     questions: [{
+//       type: Schema.Types.ObjectId,
+//       ref: 'Question',
+//     }],
+//     socialMediaIds: [{
+//       type: String,
+//     }],
+//   },
+//   {
+//     timestamps: true,
+//   }
+// );
 const SocialGroupSchema = new Schema(
   {
     user: {
@@ -126,7 +196,7 @@ const SocialGroupSchema = new Schema(
     followers: [
       {
         type: Schema.Types.ObjectId, // Reference to user IDs
-        ref: 'User', // Assuming followers are users
+        ref: 'User',
       }
     ],
     status: {
@@ -135,17 +205,33 @@ const SocialGroupSchema = new Schema(
       default: 'on wait',
     },
     teamMembers: [TeamSchema],
-    reviews: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Review',
-    }],
-    questions: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Question',
-    }],
-    socialMediaIds: [{
-      type: String,
-    }],
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Review',
+      }
+    ],
+    questions: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Question',
+      }
+    ],
+    socialMediaIds: [
+      {
+        type: String,
+      }
+    ],
+    // Social media links
+    instagram: {
+      type: String, // Optional field
+    },
+    twitter: {
+      type: String, // Optional field
+    },
+    facebook: {
+      type: String, // Optional field
+    },
   },
   {
     timestamps: true,
