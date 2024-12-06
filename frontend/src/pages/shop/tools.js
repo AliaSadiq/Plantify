@@ -39,7 +39,7 @@ function Tools() {
 
         // Check and transform the fetched data as per your logic
         const transformedData = data
-          .filter((tool) => tool.type === "tools") // Only fetch data with type "tool"
+          .filter((tool) => tool.type === "Tools") // Only fetch data with type "tool"
           .map((tool) => ({
             ...tool,
             availability: tool.quantity === 0 ? "out of stock" : "in stock",
@@ -97,10 +97,10 @@ function Tools() {
     <div className="max-w-screen mx-auto mb-20">
       {/* Header Section */}
       <div
-        className="relative h-48 sm:h-64 md:h-80 bg-cover bg-black opacity-80 bg-center flex items-center justify-center"
-        style={{ backgroundImage: `url(/assets/tools.jpg)` }}
+        className="relative h-48 sm:h-64 md:h-80 bg-cover bg-black opacity-60 bg-center flex items-center justify-center"
+        style={{ backgroundImage: `url(/assets/tt.jpg)` }}
       >
-        <h2 className="text-3xl md:text-5xl font-bold font-josefin-sans text-white px-4 py-2 rounded">
+        <h2 className="text-3xl md:text-5xl font-bold font-josefin-sans text-black px-4 py-2 rounded">
           TOOLS
         </h2>
       </div>
@@ -141,7 +141,7 @@ function Tools() {
           </div>
 
           {/* Size Filter */}
-          <div className="bg-white rounded-lg p-4 mt-4 shadow-md">
+          {/* <div className="bg-white rounded-lg p-4 mt-4 shadow-md">
             <h3 className="font-bold text-lg mt-4 mb-4">Sizes</h3>
             <ul className="flex flex-col text-sm text-gray-600 space-y-2">
               {sizes.map((size) => (
@@ -158,7 +158,7 @@ function Tools() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Price Range Filter */}
           <div className="bg-white rounded-lg p-4 mt-4 shadow-md">
@@ -190,8 +190,8 @@ function Tools() {
         </div>
 
         {/* Tools Grid */}
-        <div className="w-full mr-20 mb-20 mt-10 lg:w-3/4">
-          <div className="grid grid-cols-1 h-80 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* <div className="w-full mr-20 mb-20 mt-10 lg:w-3/4">
+          <div className="grid grid-cols-1 h-80 h-full md:grid-cols-2 lg:grid-cols-4 gap-8">
             {filteredTools.map((tool) => (
               <Link
                 to={`/products/${tool._id}`} // Dynamically linking to the product details page using the product ID
@@ -204,9 +204,32 @@ function Tools() {
                   className="w-full h-80 object-cover mb-4 rounded-md"
                 />
                 <h3 className="text-md text-balance font-semibold font-josefin-sans mb-2">{tool.name}</h3>
-                {/* <p className="font-semibold text-sm text-black text-start mt-2">Rs.{tool.price}</p> */}
               </Link>
             ))}
+          </div>
+        </div> */}
+        <div className="w-full mr-20 mb-20 mt-10 lg:w-3/4">
+          <div className="grid grid-cols-1 h-80 w-full h-full  md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {filteredTools.map((tool) => (
+              <Link
+                to={`/products/${tool._id}`} // Dynamically linking to the product details page using the product ID
+                key={tool.id || `${tool.name}-${tool.price}`}
+                className=" text-center   transition-shadow duration-300"
+              >
+                <img
+                  src={`/assets/${tool.images[0]}`}
+                  alt={tool.name}
+                  className="w-full h-80 object-cover mb-4 rounded-md"
+                />
+                <h3 className="text-lg font-semibold font-josefin-sans mb-2">{tool.name}</h3>
+                
+
+                {/* <p className="font-semibold text-start text-sm text-black mt-2">Rs.{soil.price}</p> */}
+              </Link>
+              
+))}
+
+
           </div>
         </div>
       </div>

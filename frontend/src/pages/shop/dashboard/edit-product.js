@@ -175,7 +175,7 @@ const EditProduct = () => {
                   name="name"
                   value={product.name}
                   placeholder="Enter product name"
-                  maxLength="20"
+                  maxLength="100"
                   className={`w-full border ${
                     errors.name ? "border-red-500" : "border-gray-300"
                   } border-gray-300 rounded-md p-2 mt-1 focus:ring focus:ring-navygreen-300`}
@@ -367,8 +367,7 @@ const EditProduct = () => {
                       <div key={index} className="relative w-20 h-20">
                         <img
                           src={`/assets/${image}`}
-                          // src={typeof image === "string" ? image : URL.createObjectURL(image)}
-                        //  src={URL.createObjectURL(image)}
+                         
                           alt={`Product ${index + 1}`}
                           className="w-full h-full object-cover rounded"
                         />

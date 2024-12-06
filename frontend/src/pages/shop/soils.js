@@ -135,10 +135,10 @@ function Soil() {
     <div className="max-w-screen mx-auto mb-20">
       {/* Header Section */}
       <div
-        className="relative h-48 sm:h-64 md:h-80 bg-cover bg-black opacity-80 bg-center flex items-center justify-center"
-        style={{ backgroundImage: `url(/assets/soil.jpg)` }}
+        className="relative h-48 sm:h-64 md:h-80 bg-cover bg-black opacity-60 bg-center flex items-center justify-center"
+        style={{ backgroundImage: `url(/assets/sso.jpg)` }}
       >
-        <h2 className="text-3xl md:text-5xl font-bold font-josefin-sans text-white px-4 py-2 rounded">
+        <h2 className="text-3xl md:text-5xl font-bold font-josefin-sans text-black px-4 py-2 rounded">
           SOILS
         </h2>
       </div>
@@ -178,7 +178,7 @@ function Soil() {
             </ul>
           </div>
 
-          {/* Size Filter */}
+          {/* Size Filter
           <div className="bg-white rounded-lg p-4 mt-4 shadow-md">
             <h3 className="font-bold text-lg mt-4 mb-4">Sizes</h3>
             <ul className="flex flex-col text-sm text-gray-600 space-y-2">
@@ -196,7 +196,7 @@ function Soil() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Availability Filter */}
           {/* <div className="bg-white rounded-lg p-4 mt-4 shadow-md">
@@ -255,7 +255,7 @@ function Soil() {
 
         {/* Plant Grid */}
         <div className="w-full mr-20 mb-20 mt-10 lg:w-3/4">
-          <div className="grid grid-cols-1 h-80 w-full md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 h-80 w-full h-full  md:grid-cols-2 lg:grid-cols-4 gap-8">
           {filteredSoils.map((soil) => (
               <Link
                 to={`/products/${soil._id}`} // Dynamically linking to the product details page using the product ID
@@ -267,7 +267,7 @@ function Soil() {
                   alt={soil.name}
                   className="w-full h-80 object-cover mb-4 rounded-md"
                 />
-                <h3 className="text-sm font-semibold font-josefin-sans mb-2">{soil.name}</h3>
+                <h3 className="text-lg font-semibold font-josefin-sans mb-2">{soil.name}</h3>
                 
 
                 {/* <p className="font-semibold text-start text-sm text-black mt-2">Rs.{soil.price}</p> */}

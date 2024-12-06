@@ -162,7 +162,7 @@ const CreateProduct = () => {
                 <input
                   type="text"
                   placeholder="Enter product name"
-                  maxLength="20"
+                  maxLength="100"
                   className="w-full border ${errors.productName ? 'border-red-500' : 'border-gray-300'} border-gray-300 rounded-md p-2 mt-1 focus:ring focus:ring-navygreen-300"
                   value={productName}
                   onChange={(e) => setProductName(e.target.value)}
