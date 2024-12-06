@@ -151,7 +151,7 @@ const LandingPage = () => {
                         toward a brighter, greener tomorrow.
                     </p>
                 </div>
-                <div className='flex  gap-6 w-full h-[400px]'>
+                <div className='hidden lg:flex  gap-6 w-full h-[400px]'>
                     <div className='flex flex-col-reverse basis-1/3 py-10 px-8 bg-navygreen-trial rounded-pl'>
                         <p className='text-green-900'>
                             Our mission is to make a green future a reality by empowering communities to take sustainable actions.
@@ -166,7 +166,7 @@ const LandingPage = () => {
                                 300,000+
                             </p>
                             <p className='text-sm text-gray-600'>
-                                trees planted in the last year alone.
+                                trees hoped to be planted in this year.
                             </p>
                         </div>
                     </div>
@@ -203,7 +203,7 @@ const LandingPage = () => {
                         </div>
                     </div>
                     <div className='basis-1/3 rounded-pl bg-navygreen-trial'>
-                        <img src="/assets/landing/landing.jpeg" className='object-cover w-full h-full rounded-pl'/>
+                        <img src="/assets/drive.jpeg" className='object-cover w-full h-full rounded-pl'/>
                     </div>
                 </div>
             </div>

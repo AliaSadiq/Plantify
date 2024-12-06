@@ -874,7 +874,7 @@ const handleInputChange = (e, setFormData) => {
             className="bg-inherit pl-2 w-full outline-none border-none"
             name="description"
             placeholder="Enter detail about your campaign"
-            maxLength="250"
+            maxLength="500"
             required
             value={formDataStep1.description || ""}
             onChange={(e) => handleInputChange(e, setFormDataStep1)}
