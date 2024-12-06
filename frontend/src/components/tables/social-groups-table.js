@@ -44,7 +44,7 @@ export default function SocialGroupTable({ socialGroups, setSocialGroups }) {
                             className="border-b-[0.5px] dark:border-gray-400 border-gray-100 hover:bg-navygreen-100 hover:bg-opacity-50 hover:text-gray-100"
                         >
                             <td className="px-4 py-2 cursor-pointer" onClick={() => handleNavigate(socialGroup._id)}>
-                                <img src={`assets/${socialGroup.image}`} alt="group image" className="w-14 h-14 object-cover rounded-full" />
+                                <img src={`assets/avatars/${socialGroup.image}`} alt="group image" className="w-14 h-14 object-cover rounded-full" />
                             </td>
                             <td className="cursor-pointer" onClick={() => handleNavigate(socialGroup._id)}>
                                 {socialGroup.name}

@@ -12,7 +12,7 @@ export default function Dashboard () {
     const [errorAdmin, setErrorAdmin] = useState(null);
 
     const {count, loading, error} = useFetchCampaignCount();
-    const {scount, sloading, serror} = useFetchSocialGroupCount();
+    const {scount, sloading, serraor} = useFetchSocialGroupCount();
     const adminsUrl = 'http://localhost:5000/api/admin';
     const {data: admins, loading:adminsLoading, error: adminsError} = useFetch(adminsUrl);
     const formatDate = (date) => { 

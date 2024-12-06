@@ -43,7 +43,7 @@ export default function VerificationTable({ socialGroups }) {
                         socialGroups.map((socialGroup) => (
                             <tr key={socialGroup.id}>
                                 <td className="px-4 py-2">
-                                    <img src={`assets/${socialGroup.image}`} alt="group image" className="w-14 h-14 object-cover rounded-full" />
+                                    <img src={`assets/avatars/${socialGroup.image}`} alt="group image" className="w-14 h-14 object-cover rounded-full" />
                                 </td>
                                 <td>
                                     <Link to={`social-profile/${socialGroup._id}`}>
