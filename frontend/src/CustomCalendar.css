@@ -1,0 +1,77 @@
+/* CustomCalendar.css */
+.calendar-container {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.react-calendar {
+    width: 100%;
+    border: none;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.react-calendar__tile {
+    position: relative;
+}
+
+.event-marker {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    color: black;
+}
+
+.react-calendar__tile--active {
+    background: #006edc;
+    color: white;
+}
+
+.react-calendar__tile--active:hover,
+.react-calendar__tile--active:focus {
+    background: #005bb5;
+}
+
+/* Reduce the font size for the calendar */
+.fc .fc-toolbar-title {
+    font-size: 14px; /* Adjust month title size */
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .fc .fc-button {
+    font-size: 0.85rem; /* Adjust button sizes */
+  }
+  
+  .fc .fc-header-toolbar {
+    font-size: 10px; /* Adjust toolbar font size */
+  }
+  
+  .fc .fc-daygrid-day-number {
+    font-size: 10px; /* Adjust day numbers size */
+  }
+  
+  .fc .fc-event-title {
+    font-size: 10px; /* Adjust event title size */
+  }
+  
+  /* Set the border color to #222222 */
+.fc .fc-col-header-cell, 
+.fc .fc-daygrid-day, 
+.fc .fc-daygrid-day-frame {
+  border-color: #222222;
+}
+
+/* Change the font size of the day numbers */
+.fc .fc-daygrid-day-number {
+    font-size: 10px; /* Adjust this value as needed */
+    color: #222222; /* Optional: change the color if needed */
+}
+/* Change the font size of the day numbers */
+.fc .fc-daygrid-day {
+    font-size: 10px; /* Adjust this value as needed */
+    color: #222222; /* Optional: change the color if needed */
+}
