@@ -66,7 +66,9 @@ app.use("/api/goals", goalRoute);
 app.use("/api/post", socialPost);
 app.use("/api/post-comment", postComments);
 // app.use("/api/socialteams", teamroute);
-
+app.get("/", (req, res) => {
+  res.send("Welcome to Plantify Backend!");
+});
 //connection
 mongoose
   .connect(process.env.MONGODB_URI)
