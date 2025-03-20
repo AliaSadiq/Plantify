@@ -1,17 +1,15 @@
 {
-  "name": "backend",
+  "name": "plantify-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Plantify Backend API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node index.js",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@fullcalendar/core": "^6.1.15",
     "bcrypt": "^5.1.1",
@@ -19,7 +17,6 @@
     "dotenv": "^16.4.7",
     "express": "^4.19.1",
     "express-rate-limit": "^7.2.0",
-    "install": "^0.13.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
     "mongoose": "^8.2.3"
