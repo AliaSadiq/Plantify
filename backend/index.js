@@ -60,7 +60,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 // Routes
-app.use("/campaigns", campaignRoute);
+app.use("/api/campaigns", campaignRoute);
 app.use("/api/socialgroup", socialgroupRouter);
 app.use("/api/user", userRoute);
 app.use("/api/testimonial", testimonialRoute);
