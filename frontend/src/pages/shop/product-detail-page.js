@@ -16,7 +16,7 @@ const ProductDetailsPage = () => {
     if (id) {
       const fetchProductDetails = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/api/products/${id}`);
+          const response = await fetch(`BACKEND_URL/api/products/${id}`);
           const data = await response.json();
           setProduct(data);
         } catch (error) {
@@ -161,7 +161,7 @@ export default ProductDetailsPage;
 //   if (id) {
 //     const fetchProductDetails = async () => {
 //       try {
-//         const response = await fetch(`http://localhost:5000/api/products/${id}`);
+//         const response = await fetch(`BACKEND_URL/api/products/${id}`);
 //         const data = await response.json();
 //         setProduct(data);
 //       } catch (error) {

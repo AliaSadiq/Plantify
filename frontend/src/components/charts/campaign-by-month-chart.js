@@ -16,7 +16,7 @@ const CampaignByMonthChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/campaigns/campaigns-by-month');
+        const response = await axios.get('BACKEND_URL/api/campaigns/campaigns-by-month');
         const data = response.data;
 
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

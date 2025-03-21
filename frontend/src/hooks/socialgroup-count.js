@@ -10,7 +10,7 @@ const useFetchSocialGroupCount = () => {
     const fetchCount = async () => {
       try {
         setsLoading(true);
-        const response = await axios.get('http://localhost:5000/api/socialgroup/count');
+        const response = await axios.get('BACKEND_URL/api/socialgroup/count');
         setsCount(response.data.count);
         setsLoading(false);
       } catch (err) {

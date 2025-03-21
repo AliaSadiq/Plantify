@@ -8,7 +8,7 @@ const usePostPlant = () => {
   const addPlant = async (formData) => {
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/my-plants', formData);
+      const response = await axios.post('BACKEND_URL/api/my-plants', formData);
       console.log('Plant added successfully');
       return response.data; // Return the response data for further use
     } catch (err) {

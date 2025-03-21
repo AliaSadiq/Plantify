@@ -23,7 +23,7 @@ const Table = ({ columns, data, fieldMappings, setData }) => {
     );
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:5000/api/campaigns/${campaignId}`);
+        await axios.delete(`BACKEND_URL/api/campaigns/${campaignId}`);
         setData((prevData) =>
           prevData.filter((campaign) => campaign._id !== campaignId)
         );

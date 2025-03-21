@@ -10,7 +10,7 @@ const useFollowUser = () => {
     console.log(currentUserId);
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/social-media/follow', {
+      const response = await axios.post('BACKEND_URL/api/social-media/follow', {
         userIdToFollow,
         currentUserId,
       });

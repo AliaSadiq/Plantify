@@ -447,7 +447,7 @@
 //     // Fetch campaign data from the API when the component mounts
 //     const fetchCampaigns = async () => {
 //       try {
-//         const response = await axios.get("http://localhost:5000/api/campaigns"); // Replace with your API URL
+//         const response = await axios.get("BACKEND_URL/api/campaigns"); // Replace with your API URL
 //         setCampaigns(response.data);
 //       } catch (error) {
 //         console.error("Error fetching campaigns:", error);
@@ -473,7 +473,7 @@
 //     if (selectedCampaign) {
 //       try {
 //         // Replace with your backend URL and campaign ID
-//         await axios.delete(`http://localhost:5000/api/campaigns/${selectedCampaign._id}`);
+//         await axios.delete(`BACKEND_URL/api/campaigns/${selectedCampaign._id}`);
         
 //         // Remove the rejected campaign from the local state
 //         setCampaigns(campaigns.filter(campaign => campaign._id !== selectedCampaign._id));
@@ -675,7 +675,7 @@
 //     // Fetch campaign data from the API when the component mounts
 //     const fetchCampaigns = async () => {
 //       try {
-//         const response = await axios.get("http://localhost:5000/api/campaigns"); // Replace with your API URL
+//         const response = await axios.get("BACKEND_URL/api/campaigns"); // Replace with your API URL
 //         setCampaigns(response.data);
 //       } catch (error) {
 //         console.error("Error fetching campaigns:", error);
@@ -701,7 +701,7 @@
 //     if (selectedCampaign) {
 //       try {
 //         // Replace with your backend URL and campaign ID
-//         await axios.delete(`http://localhost:5000/api/campaigns/${selectedCampaign._id}`);
+//         await axios.delete(`BACKEND_URL/api/campaigns/${selectedCampaign._id}`);
         
 //         // Remove the rejected campaign from the local state
 //         setCampaigns(campaigns.filter(campaign => campaign._id !== selectedCampaign._id));
@@ -716,7 +716,7 @@
 //     if (selectedCampaign) {
 //       try {
 //         // Optionally update the campaign status or other details before redirecting
-//         // await axios.put(`http://localhost:5000/api/campaigns/${selectedCampaign._id}`, { status: 'Accepted' });
+//         // await axios.put(`BACKEND_URL/api/campaigns/${selectedCampaign._id}`, { status: 'Accepted' });
 
 //         // Navigate to the Create Campaign page
 //         navigate("/createCampaign", { state: { campaign: selectedCampaign } });
@@ -915,7 +915,7 @@
 //   useEffect(() => {
 //     const fetchCampaigns = async () => {
 //       try {
-//         const response = await axios.get("http://localhost:5000/api/campaigns"); // Replace with your API URL
+//         const response = await axios.get("BACKEND_URL/api/campaigns"); // Replace with your API URL
 //         setCampaigns(response.data);
 //       } catch (error) {
 //         console.error("Error fetching campaigns:", error);
@@ -940,7 +940,7 @@
 //   const handleReject = async () => {
 //     if (selectedCampaign) {
 //       try {
-//         await axios.delete(`http://localhost:5000/api/campaigns/${selectedCampaign._id}`);
+//         await axios.delete(`BACKEND_URL/api/campaigns/${selectedCampaign._id}`);
 //         setCampaigns(campaigns.filter(campaign => campaign._id !== selectedCampaign._id));
 //         handleCloseDialog();
 //       } catch (error) {
@@ -1167,7 +1167,7 @@ const capitalizeFirstLetter = (string) => {
     // Fetch campaign data from the API when the component mounts
     const fetchCampaigns = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/request-campaign/get-request", {
+        const response = await axios.get("BACKEND_URL/api/request-campaign/get-request", {
           params: { socialGroup: id },
         });
         setCampaigns(response.data);
@@ -1195,7 +1195,7 @@ const capitalizeFirstLetter = (string) => {
   const handleReject = async () => {
     if (selectedCampaign) {
       try {
-        await axios.delete(`http://localhost:5000/api/request-campaign/${selectedCampaign._id}`);
+        await axios.delete(`BACKEND_URL/api/request-campaign/${selectedCampaign._id}`);
         setCampaigns(campaigns.filter(campaign => campaign._id !== selectedCampaign._id));
         handleCloseDialog();
       } catch (error) {

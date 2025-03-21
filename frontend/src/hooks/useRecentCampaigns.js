@@ -9,7 +9,7 @@ const useRecentCampaigns = () => {
   useEffect(() => {
     const fetchRecentCampaigns = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/campaigns/recent');
+        const response = await axios.get('BACKEND_URL/api/campaigns/recent');
         setRecentCampaigns(response.data);
         setLoading(false);
       } catch (err) {

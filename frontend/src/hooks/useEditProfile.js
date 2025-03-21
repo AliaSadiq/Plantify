@@ -19,7 +19,7 @@ const useEditProfile = () => {
       console.log("Sending data:", data); // Log data before request
 
       const response = await axios.put(
-        `http://localhost:5000/api/social-media/profile/${userId}`,
+        `BACKEND_URL/api/social-media/profile/${userId}`,
         data,
         {
           headers: {

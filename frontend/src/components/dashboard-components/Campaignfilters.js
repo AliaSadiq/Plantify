@@ -13,7 +13,7 @@
 //   useEffect(() => {
 //     const fetchCampaigns = async () => {
 //       try {
-//         const response = await axios.get('http://localhost:5000/api/campaigns');
+//         const response = await axios.get('BACKEND_URL/api/campaigns');
 //         setCampaigns(response.data.campaigns);
 //       } catch (error) {
 //         console.error('Error fetching campaigns:', error);
@@ -34,7 +34,7 @@
 
 //   const handleDelete = async (id) => {
 //     try {
-//       await axios.delete(`http://localhost:5000/api/campaigns/${id}`);
+//       await axios.delete(`BACKEND_URL/api/campaigns/${id}`);
 //       const updatedCampaigns = campaigns.filter(campaign => campaign._id !== id);
 //       setCampaigns(updatedCampaigns);
 //     } catch (error) {
@@ -117,7 +117,7 @@ const FilterableCampaigns = () => {
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/campaigns');
+        const response = await axios.get('BACKEND_URL/api/campaigns');
         setCampaigns(response.data.campaigns);
       } catch (error) {
         console.error('Error fetching campaigns:', error);
@@ -139,7 +139,7 @@ const FilterableCampaigns = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/campaigns/${id}`);
+      await axios.delete(`BACKEND_URL/api/campaigns/${id}`);
       const updatedCampaigns = campaigns.filter(campaign => campaign._id !== id);
       setCampaigns(updatedCampaigns);
     } catch (error) {

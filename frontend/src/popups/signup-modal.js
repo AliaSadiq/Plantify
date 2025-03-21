@@ -47,7 +47,7 @@ const SignUpModal = ({ showModal, closeModal }) => {
                 const { confirmPassword, ...requestData } = values;
                 // Add the selected avatar to the request data
                 requestData.avatar = selectedAvatar;
-                const response = await axios.post('http://localhost:5000/api/user', requestData);
+                const response = await axios.post('BACKEND_URL/api/user', requestData);
                 console.log(response.data); // Handle success or error
                 alert('Account created!');
                 // Navigate to login page on successful signup

@@ -14,8 +14,8 @@ import CreatePostForm from '../../components/social-media-components/create-post
 
 export default function Insights () {
   const { id } = useParams();
-  const {data: donations} = useFetch(`http://localhost:5000/api/donations/campaign/${id}`)
-  const {data: campaign, refetch} = useFetch(`http://localhost:5000/api/campaigns/${id}`)
+  const {data: donations} = useFetch(`BACKEND_URL/api/donations/campaign/${id}`)
+  const {data: campaign, refetch} = useFetch(`BACKEND_URL/api/campaigns/${id}`)
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
@@ -75,7 +75,7 @@ export default function Insights () {
   
   const updateCampaignStageToBuying = async () => { 
     try { 
-      await axios.put(`http://localhost:5000/api/campaigns/${id}`, { stage: 'Buying Plants' }); 
+      await axios.put(`BACKEND_URL/api/campaigns/${id}`, { stage: 'Buying Plants' }); 
       refetch(); // Refetch campaign data to update the stage 
       
     } catch (error) { 
@@ -85,7 +85,7 @@ export default function Insights () {
 
   const updateCampaignStageToPlantation = async () => { 
     try { 
-      await axios.put(`http://localhost:5000/api/campaigns/${id}`, { stage: 'Plantation' }); 
+      await axios.put(`BACKEND_URL/api/campaigns/${id}`, { stage: 'Plantation' }); 
       refetch(); // Refetch campaign data to update the stage 
       
     } catch (error) { 
@@ -102,7 +102,7 @@ export default function Insights () {
   
   //     if (campaign.status === 'active' && today > campaignEndDate) {
   //       try {
-  //         await axios.put(`http://localhost:5000/api/campaigns/${id}`, { status: 'closed' });
+  //         await axios.put(`BACKEND_URL/api/campaigns/${id}`, { status: 'closed' });
   //         refetch(); // Refetch the campaign data to get the updated status
   //       } catch (error) {
   //         console.error("Error updating campaign status:", error);

@@ -64,7 +64,7 @@ const PostFeed = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await axios.get('http://localhost:5000/api/post/filter', {
+        const response = await axios.get('BACKEND_URL/api/post/filter', {
           params: { filter, userId },
         });
         setPosts(response.data);
@@ -90,7 +90,7 @@ const PostFeed = () => {
     
     try {
       // Send a like request to the backend
-      const response = await axios.post('http://localhost:5000/api/post/like', {
+      const response = await axios.post('BACKEND_URL/api/post/like', {
         postId,
         userId,
       });
@@ -203,7 +203,7 @@ export default PostFeed;
 //       setLoading(true);
 //       setError(null);
 //       try {
-//         const response = await axios.get('http://localhost:5000/api/post/filter', {
+//         const response = await axios.get('BACKEND_URL/api/post/filter', {
 //           params: { filter, userId },
 //         });
 //         setPosts(response.data);

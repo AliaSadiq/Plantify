@@ -147,7 +147,7 @@ const ReviewComponent = ({ groupId }) => {
   }, []);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/socialgroup-review/${groupId}`)
+    axios.get(`BACKEND_URL/api/socialgroup-review/${groupId}`)
       .then(response => {
         setReviews(response.data);
       })
@@ -171,7 +171,7 @@ const ReviewComponent = ({ groupId }) => {
   
     console.log('Review Data:', reviewData);
   
-    axios.post(`http://localhost:5000/api/socialgroup-review/${groupId}/review`, reviewData)
+    axios.post(`BACKEND_URL/api/socialgroup-review/${groupId}/review`, reviewData)
       .then(response => {
         setReviews([...reviews, response.data]);
         setNewReview({ message: '', rating: 5 });

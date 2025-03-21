@@ -44,7 +44,7 @@ export default function PlantDiaryForm ({ plantId }) {
 
         // Submit data to the API
         axios
-            .post("http://localhost:5000/api/plant-diaries", formData)
+            .post("BACKEND_URL/api/plant-diaries", formData)
             .then((response) => {
                 console.log("Diary entry added:", response.data);
                 alert("Diary Entry Added!")

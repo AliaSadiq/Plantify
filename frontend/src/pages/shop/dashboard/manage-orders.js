@@ -11,7 +11,7 @@
 //   useEffect(() => {
 //     const fetchOrders = async () => {
 //       try {
-//         const response = await axios.get("http://localhost:5000/api/orders"); // Adjust to your API
+//         const response = await axios.get("BACKEND_URL/api/orders"); // Adjust to your API
 //         if (response.data.success) {
 //           setOrders(response.data.orders);
 //         }
@@ -124,7 +124,7 @@
 //   useEffect(() => {
 //     const fetchOrders = async () => {
 //       try {
-//         const response = await axios.get("http://localhost:5000/api/orders"); // Adjust to your API
+//         const response = await axios.get("BACKEND_URL/api/orders"); // Adjust to your API
 //         console.log(response.data); // Log the response to see the data structure
 
 //         if (response.data.success) {
@@ -157,7 +157,7 @@
 // const handleDelete = async () => {
 //   try {
 //     await axios.delete(
-//       `http://localhost:5000/api/orders/${orderToDelete}`
+//       `BACKEND_URL/api/orders/${orderToDelete}`
 //     );
 //     setOrders(
 //       orders.filter((order) => order._id !== orderToDelete)
@@ -316,7 +316,7 @@ const ManageOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/orders"); // Adjust to your API
+        const response = await axios.get("BACKEND_URL/api/orders"); // Adjust to your API
         console.log(response.data); // Log the response to see the data structure
 
         if (response.data.success) {
@@ -350,7 +350,7 @@ const ManageOrders = () => {
   const handleDelete = async () => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/orders/${orderToDelete}`
+        `BACKEND_URL/api/orders/${orderToDelete}`
       );
       setOrders(
         orders.filter((order) => order._id !== orderToDelete)

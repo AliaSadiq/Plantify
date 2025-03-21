@@ -23,7 +23,7 @@ export default function AddGoalModal({ showModal, closeModal, userId }) {
     const onSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
             // Make a POST request to add a new goal
-            const response = await axios.post('http://localhost:5000/api/goals', {
+            const response = await axios.post('BACKEND_URL/api/goals', {
                 ...values,
                 user: userId,
             });

@@ -10,7 +10,7 @@
 //     useEffect(() => {
 //       const fetchOrderDetails = async () => {
 //         try {
-//           const response = await axios.get(`http://localhost:5000/api/orders/${orderId}`);
+//           const response = await axios.get(`BACKEND_URL/api/orders/${orderId}`);
 //           if (response.data.success) {
 //             setOrder(response.data.order);
 //           } else {
@@ -81,7 +81,7 @@
 //     const fetchOrderDetails = async () => {
 //       try {
 //         console.log('Fetching order details for order ID:', orderId);
-//         const response = await axios.get(`http://localhost:5000/api/orders/${orderId}`);
+//         const response = await axios.get(`BACKEND_URL/api/orders/${orderId}`);
 //         console.log('API response:', response);
   
 //         if (response.data.success) {
@@ -156,7 +156,7 @@ const OrderDetail = () => {
   useEffect(() => {
     const fetchOrderDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/orders/${orderId}`);
+        const response = await axios.get(`BACKEND_URL/api/orders/${orderId}`);
         if (response.data.success) {
           setOrder(response.data.order);
         } else {

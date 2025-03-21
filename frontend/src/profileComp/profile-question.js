@@ -17,7 +17,7 @@ const QuestionSection = ({ groupId, showReplyOption }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/socialgroup-question/${groupId}/questions`)
+      .get(`BACKEND_URL/api/socialgroup-question/${groupId}/questions`)
       .then((response) => {
         setQuestions(response.data);
       })
@@ -41,7 +41,7 @@ const QuestionSection = ({ groupId, showReplyOption }) => {
     if (editingQuestion) {
       axios
         .put(
-          `http://localhost:5000/api/socialgroup-question/${groupId}/question/${editingQuestion._id}`,
+          `BACKEND_URL/api/socialgroup-question/${groupId}/question/${editingQuestion._id}`,
           { text: newQuestion }
         )
         .then((response) => {
@@ -59,7 +59,7 @@ const QuestionSection = ({ groupId, showReplyOption }) => {
         });
     } else {
       axios
-        .post(`http://localhost:5000/api/socialgroup-question/${groupId}/question`, {
+        .post(`BACKEND_URL/api/socialgroup-question/${groupId}/question`, {
           text: newQuestion,
           userId: user._id,
         })
@@ -86,7 +86,7 @@ const QuestionSection = ({ groupId, showReplyOption }) => {
     if (editingReply) {
       axios
         .put(
-          `http://localhost:5000/api/socialgroup-question/${groupId}/reply/${editingReply._id}`,
+          `BACKEND_URL/api/socialgroup-question/${groupId}/reply/${editingReply._id}`,
           { text: replyText }
         )
         .then((response) => {
@@ -107,7 +107,7 @@ const QuestionSection = ({ groupId, showReplyOption }) => {
         });
     } else {
       axios
-        .post(`http://localhost:5000/api/socialgroup-question/${groupId}/reply`, {
+        .post(`BACKEND_URL/api/socialgroup-question/${groupId}/reply`, {
           text: replyText,
           userId: user._id,
           questionId,
@@ -136,7 +136,7 @@ const QuestionSection = ({ groupId, showReplyOption }) => {
 
   // const handleDeleteQuestion = (questionId) => {
   //   axios
-  //     .delete(`http://localhost:5000/api/socialgroup-question/${groupId}/question/${questionId}`)
+  //     .delete(`BACKEND_URL/api/socialgroup-question/${groupId}/question/${questionId}`)
   //     .then(() => {
   //       setQuestions(questions.filter((q) => q._id !== questionId));
   //     })
@@ -159,7 +159,7 @@ const QuestionSection = ({ groupId, showReplyOption }) => {
       if (result.isConfirmed) {
         // Make an API call to delete the question
         axios
-        .delete(`http://localhost:5000/api/socialgroup-question/${groupId}/question/${questionId}`)
+        .delete(`BACKEND_URL/api/socialgroup-question/${groupId}/question/${questionId}`)
           .then(() => {
             // Update the state to remove the question from the list
             setQuestions(questions.filter((q) => q._id !== questionId));
@@ -190,7 +190,7 @@ const QuestionSection = ({ groupId, showReplyOption }) => {
   };
   const handleDeleteReply = (replyId, questionId) => {
     axios
-      .delete(`http://localhost:5000/api/socialgroup-question/${replyId}`) // Assuming this is the correct endpoint
+      .delete(`BACKEND_URL/api/socialgroup-question/${replyId}`) // Assuming this is the correct endpoint
       .then(() => {
         // Update the questions state by filtering out the deleted reply
         const updatedQuestions = questions.map((q) => {
@@ -549,7 +549,7 @@ export default QuestionSection;
 
 //   useEffect(() => {
 //     axios
-//       .get(`http://localhost:5000/api/socialgroup-question/${groupId}/questions`)
+//       .get(`BACKEND_URL/api/socialgroup-question/${groupId}/questions`)
 //       .then((response) => {
 //         setQuestions(response.data);
 //       })
@@ -574,7 +574,7 @@ export default QuestionSection;
 //     if (editingQuestion) {
 //       axios
 //         .put(
-//           `http://localhost:5000/api/socialgroup-question/${groupId}/question/${editingQuestion._id}`,
+//           `BACKEND_URL/api/socialgroup-question/${groupId}/question/${editingQuestion._id}`,
 //           { text: newQuestion }
 //         )
 //         .then((response) => {
@@ -592,7 +592,7 @@ export default QuestionSection;
 //         });
 //     } else {
 //       axios
-//         .post(`http://localhost:5000/api/socialgroup-question/${groupId}/question`, {
+//         .post(`BACKEND_URL/api/socialgroup-question/${groupId}/question`, {
 //           text: newQuestion,
 //           userId: user._id,
 //         })
@@ -621,7 +621,7 @@ export default QuestionSection;
 //     if (editingReply) {
 //       axios
 //         .put(
-//           `http://localhost:5000/api/socialgroup-question/${groupId}/reply/${editingReply._id}`,
+//           `BACKEND_URL/api/socialgroup-question/${groupId}/reply/${editingReply._id}`,
 //           { text: replyText }
 //         )
 //         .then((response) => {
@@ -642,7 +642,7 @@ export default QuestionSection;
 //         });
 //     } else {
 //       axios
-//         .post(`http://localhost:5000/api/socialgroup-question/${groupId}/reply`, {
+//         .post(`BACKEND_URL/api/socialgroup-question/${groupId}/reply`, {
 //           text: replyText,
 //           userId: user._id,
 //           questionId,
@@ -671,7 +671,7 @@ export default QuestionSection;
 
 //   const handleDeleteQuestion = (questionId) => {
 //     axios
-//       .delete(`http://localhost:5000/api/socialgroup-question/${groupId}/question/${questionId}`)
+//       .delete(`BACKEND_URL/api/socialgroup-question/${groupId}/question/${questionId}`)
 //       .then(() => {
 //         setQuestions(questions.filter((q) => q._id !== questionId));
 //       })
@@ -687,7 +687,7 @@ export default QuestionSection;
 
 //   const handleDeleteReply = (replyId, questionId) => {
 //     axios
-//       .delete(`http://localhost:5000/api/socialgroup-question/${groupId}/reply/${replyId}`)
+//       .delete(`BACKEND_URL/api/socialgroup-question/${groupId}/reply/${replyId}`)
 //       .then(() => {
 //         const updatedQuestions = questions.map((q) => {
 //           if (q._id === questionId) {
@@ -842,7 +842,7 @@ export default QuestionSection;
 
 //   useEffect(() => {
 //     axios
-//       .get(`http://localhost:5000/api/socialgroup-question/${groupId}/questions`)
+//       .get(`BACKEND_URL/api/socialgroup-question/${groupId}/questions`)
 //       .then((response) => {
 //         console.log(response.data); // Check what the API returns
 //         setQuestions(response.data);
@@ -873,7 +873,7 @@ export default QuestionSection;
 //     if (editingQuestion) {
 //       axios
 //         .put(
-//           `http://localhost:5000/api/socialgroup-question/${groupId}/question/${editingQuestion._id}`,
+//           `BACKEND_URL/api/socialgroup-question/${groupId}/question/${editingQuestion._id}`,
 //           { text: newQuestion }
 //         )
 //         .then((response) => {
@@ -891,7 +891,7 @@ export default QuestionSection;
 //         });
 //     } else {
 //       axios
-//         .post(`http://localhost:5000/api/socialgroup-question/${groupId}/question`, {
+//         .post(`BACKEND_URL/api/socialgroup-question/${groupId}/question`, {
 //           text: newQuestion,
 //           userId: user._id,
 //         })
@@ -920,7 +920,7 @@ export default QuestionSection;
 //     if (editingReply) {
 //       axios
 //         .put(
-//           `http://localhost:5000/api/socialgroup-question/${groupId}/reply/${editingReply._id}`,
+//           `BACKEND_URL/api/socialgroup-question/${groupId}/reply/${editingReply._id}`,
 //           { text: replyText }
 //         )
 //         .then((response) => {
@@ -941,7 +941,7 @@ export default QuestionSection;
 //         });
 //     } else {
 //       axios
-//         .post(`http://localhost:5000/api/socialgroup-question/${groupId}/reply`, {
+//         .post(`BACKEND_URL/api/socialgroup-question/${groupId}/reply`, {
 //           text: replyText,
 //           userId: user._id,
 //           questionId,
@@ -970,7 +970,7 @@ export default QuestionSection;
 
 //   const handleDeleteQuestion = (questionId) => {
 //     axios
-//       .delete(`http://localhost:5000/api/socialgroup-question/${groupId}/question/${questionId}`)
+//       .delete(`BACKEND_URL/api/socialgroup-question/${groupId}/question/${questionId}`)
 //       .then(() => {
 //         setQuestions(questions.filter((q) => q._id !== questionId));
 //       })
@@ -986,7 +986,7 @@ export default QuestionSection;
 
 //   const handleDeleteReply = (replyId, questionId) => {
 //     axios
-//       .delete(`http://localhost:5000/api/socialgroup-question/${groupId}/reply/${replyId}`)
+//       .delete(`BACKEND_URL/api/socialgroup-question/${groupId}/reply/${replyId}`)
 //       .then(() => {
 //         const updatedQuestions = questions.map((q) => {
 //           if (q._id === questionId) {

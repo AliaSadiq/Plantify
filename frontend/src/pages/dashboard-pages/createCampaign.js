@@ -121,7 +121,7 @@
 //       console.log("Submitting data:", formData);
 
 //       const response = await axios.post(
-//         "http://localhost:5000/api/campaigns",
+//         "BACKEND_URL/api/campaigns",
 //         formData
 //       );
 //       console.log("Data submitted:", response.data);
@@ -738,7 +738,7 @@ const handleInputChange = (e, setFormData) => {
 
 
       const response = await axios.post(
-        "http://localhost:5000/api/campaigns",
+        "BACKEND_URL/api/campaigns",
         formData
       );
       console.log("Data submitted:", response.data);

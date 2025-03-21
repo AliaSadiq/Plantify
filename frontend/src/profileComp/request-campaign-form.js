@@ -75,7 +75,7 @@
 //     formData.append('attachedImage', attachedImage);
 
 //     try {
-//       await axios.post('http://localhost:5000/api/request-campaign', formData);
+//       await axios.post('BACKEND_URL/api/request-campaign', formData);
 //       onClose();
 //     } catch (error) {
 //       console.error('Error submitting campaign request:', error);
@@ -253,7 +253,7 @@ const RequestCampaignForm = ({ onClose, socialGroupId }) => {
   
     try {
       console.log('Submitting payload:', payload);
-      const response = await axios.post('http://localhost:5000/api/request-campaign/', payload, {
+      const response = await axios.post('BACKEND_URL/api/request-campaign/', payload, {
         headers: {
           'Content-Type': 'application/json',
         },

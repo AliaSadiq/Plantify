@@ -44,15 +44,15 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 // app.use(
 //   cors({
-//     origin: process.env.FRONTEND_URL,
+//     origin: process.env.BACKEND_URL,
 //     methods: ["POST", "GET", "PUT", "DELETE"],
 //     allowedHeaders: ["Content-Type", "Authorization"],
 //   })
 // );
 const corsOptions = {
   origin: process.env.NODE_ENV === "production" 
-    ? process.env.FRONTEND_URL 
-    : ["http://localhost:3000", process.env.FRONTEND_URL,"https://plantify-backend.vercel.app"], 
+    // ? process.env.BACKEND_URL 
+    // : ["http://localhost:3000", process.env.BACKEND_URL,"https://plantify-backend.vercel.app"], 
   methods: ["POST", "GET", "PUT", "DELETE"], 
   allowedHeaders: ["Content-Type", "Authorization"], 
   credentials: true, 

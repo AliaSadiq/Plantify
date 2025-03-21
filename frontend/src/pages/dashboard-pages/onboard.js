@@ -11,8 +11,8 @@ const Onboard = () => {
   const { id: socialGroupId } = useParams();
   const [socialGroup, setSocialGroup] = useState(null);
   const [user, setUser] = useState("");
-  const {count: campaignCount} = useCount(`http://localhost:5000/api/campaigns/social-campaign-count/${socialGroupId}`);
-  const {count: activeCampaignCount} = useCount(`http://localhost:5000/api/campaigns/active-count/${socialGroupId}`);
+  const {count: campaignCount} = useCount(`BACKEND_URL/api/campaigns/social-campaign-count/${socialGroupId}`);
+  const {count: activeCampaignCount} = useCount(`BACKEND_URL/api/campaigns/active-count/${socialGroupId}`);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -32,7 +32,7 @@ const Onboard = () => {
   useEffect(() => {
     const fetchGroupData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/socialgroup/${socialGroupId}`);
+        const response = await axios.get(`BACKEND_URL/api/socialgroup/${socialGroupId}`);
         setSocialGroup(response.data);
       } catch (error) {
         console.error("Error fetching social group data:", error);

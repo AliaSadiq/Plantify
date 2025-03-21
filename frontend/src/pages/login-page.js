@@ -27,7 +27,7 @@ const LoginPage = () => {
     // Handle form submission
     const handleSubmit = async (values, { setSubmitting, setErrors }) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/user/login', values);
+            const response = await axios.post('BACKEND_URL/api/user/login', values);
             if (response.status === 200) {
                 // Store the user in local storage
                 localStorage.setItem('user', JSON.stringify(response.data));

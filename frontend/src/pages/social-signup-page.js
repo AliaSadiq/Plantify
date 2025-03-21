@@ -106,11 +106,11 @@ const SocialSignUpPage = () => {
             console.log('full: ' + formData.contact);
             console.log('full: ' + formData.faceImage);
 
-            const response = await axios.post("http://localhost:5000/api/socialgroup", formData);
+            const response = await axios.post("BACKEND_URL/api/socialgroup", formData);
             console.log("Data submitted:", response.data);
             // Redirect or show success message
 
-            const userUpdateResponse = await axios.put(`http://localhost:5000/api/user/${user._id}`, { isSocial: true });
+            const userUpdateResponse = await axios.put(`BACKEND_URL/api/user/${user._id}`, { isSocial: true });
             console.log("User updated:", userUpdateResponse.data);
 
             // Update user in local storage
@@ -864,7 +864,7 @@ export default SocialSignUpPage;
 //         formData.append("userId", user._id); // Include user ID
 
 //         // Submit the form data to the social group API
-//         const response = await axios.post("http://localhost:5000/api/socialgroup", formData, {
+//         const response = await axios.post("BACKEND_URL/api/socialgroup", formData, {
 //           headers: {
 //             "Content-Type": "multipart/form-data",
 //           },
@@ -872,7 +872,7 @@ export default SocialSignUpPage;
 //         console.log("Data submitted:", response.data);
 
 //         // Update user's isSocial attribute
-//         const userUpdateResponse = await axios.put(`http://localhost:5000/api/user/${user._id}`, { isSocial: true });
+//         const userUpdateResponse = await axios.put(`BACKEND_URL/api/user/${user._id}`, { isSocial: true });
 //         console.log("User updated:", userUpdateResponse.data);
 
 //         // Update user in local storage

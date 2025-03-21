@@ -8,7 +8,7 @@ import EditMyPlantModal from '../popups/edit-myplant.modal';
 export default function MyPlantsList ({ plants, fetchPlants}) {
 
     const { deleteItem, isLoading, error } = useDelete(
-        'http://localhost:5000/api/my-plants',
+        'BACKEND_URL/api/my-plants',
         fetchPlants
     );
 

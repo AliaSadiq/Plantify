@@ -7,7 +7,7 @@
 // export default function DiaryCard({ diary, onDeleteSuccess }) {
 //     // Initialize useDelete with the base URL for deleting a diary
 //     const { deleteItem, isLoading, error } = useDelete(
-//         'http://localhost:5000/api/plant-diaries', 
+//         'BACKEND_URL/api/plant-diaries', 
 //         onDeleteSuccess // Callback function to handle successful deletion
 //     );
 
@@ -77,7 +77,7 @@ import UpdateDiaryModal from '../popups/update-diary-modal';// Import the modal
 export default function DiaryCard({ diary, onDeleteSuccess }) {
     // Initialize useDelete with the base URL for deleting a diary
     const { deleteItem, isLoading, error } = useDelete(
-        'http://localhost:5000/api/plant-diaries',
+        'BACKEND_URL/api/plant-diaries',
         onDeleteSuccess // Callback function to handle successful deletion
     );
 

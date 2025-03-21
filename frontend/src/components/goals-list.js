@@ -10,7 +10,7 @@
 //     useEffect(() => {
 //         const fetchGoals = async () => {
 //             try {
-//                 const response = await axios.get(`http://localhost:5000/api/goals/user/${userId}`);
+//                 const response = await axios.get(`BACKEND_URL/api/goals/user/${userId}`);
 //                 setGoalsList(response.data);
 //             } catch (error) {
 //                 console.error("Error fetching goals:", error);
@@ -41,7 +41,7 @@
 //         setGoalsList(updatedGoals);
 
 //         try {
-//             await axios.patch(`http://localhost:5000/api/goals/${goalId}`, {
+//             await axios.patch(`BACKEND_URL/api/goals/${goalId}`, {
 //                 completed: updatedGoals.find(goal => goal._id === goalId).completed,
 //             });
 //         } catch (error) {
@@ -106,7 +106,7 @@ export default function GoalsList({ userId }) {
     useEffect(() => {
         const fetchGoals = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/goals/user/${userId}`);
+                const response = await axios.get(`BACKEND_URL/api/goals/user/${userId}`);
                 setGoalsList(response.data);
             } catch (error) {
                 console.error("Error fetching goals:", error);
@@ -137,7 +137,7 @@ export default function GoalsList({ userId }) {
         setGoalsList(updatedGoals);
 
         try {
-            await axios.patch(`http://localhost:5000/api/goals/${goalId}`, {
+            await axios.patch(`BACKEND_URL/api/goals/${goalId}`, {
                 completed: updatedGoals.find(goal => goal._id === goalId).completed,
             });
         } catch (error) {
@@ -148,7 +148,7 @@ export default function GoalsList({ userId }) {
     // Handle goal deletion
     const handleDeleteGoal = async (goalId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/goals/${goalId}`);
+            await axios.delete(`BACKEND_URL/api/goals/${goalId}`);
             setGoalsList(goalsList.filter(goal => goal._id !== goalId));
         } catch (error) {
             console.error("Error deleting goal:", error);

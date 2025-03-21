@@ -9,7 +9,7 @@ const SocialCampaigns = ({ socialGroupId }) => {
     useEffect(() => {
         const fetchCampaigns = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/campaigns/socialgroup/${socialGroupId}`);
+                const response = await axios.get(`BACKEND_URL/api/campaigns/socialgroup/${socialGroupId}`);
                 const campaigns = response.data;
 
                 // Process campaigns to get counts per month

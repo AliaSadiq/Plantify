@@ -10,7 +10,7 @@ const useFetchCampaignCount = () => {
     const fetchCount = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:5000/api/campaigns/count');
+        const response = await axios.get('BACKEND_URL/api/campaigns/count');
         setCount(response.data.count);
         setLoading(false);
       } catch (err) {

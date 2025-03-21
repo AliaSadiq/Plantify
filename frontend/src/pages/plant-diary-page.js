@@ -7,9 +7,9 @@ import formatDate from "../functions/format-date";
 
 export default function PlantDiaryPage () {
     const {id} = useParams();
-    const url = `http://localhost:5000/api/my-plants/${id}`;
+    const url = `BACKEND_URL/api/my-plants/${id}`;
     const {data: plant, loading: plantLoading, error: plantError} = useFetch(url);
-    const getDiariesUrl = `http://localhost:5000/api/plant-diaries/plant/${id}`;
+    const getDiariesUrl = `BACKEND_URL/api/plant-diaries/plant/${id}`;
     const {data: diaries, loading: diariesLoading, error: diariesError} = useFetch(getDiariesUrl);
     // Track water drops' state - true if watered, false if not
     const [wateredDays, setWateredDays] = useState(Array(7).fill(false));

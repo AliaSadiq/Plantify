@@ -40,10 +40,10 @@ const AddTeamForm = ({ onClose, onSubmit, teamData, editIndex }) => {
 
     try {
       if (editIndex !== null) {
-        await axios.put(`http://localhost:5000/api/teams/${teamData[editIndex]._id}`, formData);
+        await axios.put(`BACKEND_URL/api/teams/${teamData[editIndex]._id}`, formData);
         onSubmit({ ...formData, _id: teamData[editIndex]._id }, editIndex);
       } else {
-        const response = await axios.post('http://localhost:5000/api/teams', formData);
+        const response = await axios.post('BACKEND_URL/api/teams', formData);
         onSubmit(response.data);
       }
       onClose();

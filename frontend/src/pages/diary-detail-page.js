@@ -10,9 +10,9 @@
 // const PlantDiaryDetailPage = () => {
 //     const navigate = useNavigate();
 //     const { id } = useParams();
-//     const url = `http://localhost:5000/api/plant-diaries/${id}`;
+//     const url = `BACKEND_URL/api/plant-diaries/${id}`;
 //     const { data: diary, loading, error } = useFetch(url);
-//     const { deleteItem, isLoading, error: deleteError } = useDelete('http://localhost:5000/api/plant-diaries');
+//     const { deleteItem, isLoading, error: deleteError } = useDelete('BACKEND_URL/api/plant-diaries');
 //     const [showModal, setShowModal] = useState(false); // Track modal visibility
 
 //     const handleDelete = (diaryId) => {
@@ -131,9 +131,9 @@ const PlantDiaryDetailPage = () => {
     const [showModal, setShowModal] = useState(false);
     const [diaryUpdated, setDiaryUpdated] = useState(false); // Track if the diary has been updated
 
-    const url = `http://localhost:5000/api/plant-diaries/${id}`;
+    const url = `BACKEND_URL/api/plant-diaries/${id}`;
     const { data: diary, loading, error, refetch } = useFetch(url); // Destructure refetch from useFetch
-    const { deleteItem, isLoading, error: deleteError } = useDelete('http://localhost:5000/api/plant-diaries');
+    const { deleteItem, isLoading, error: deleteError } = useDelete('BACKEND_URL/api/plant-diaries');
 
     const handleDelete = (diaryId) => {
         deleteItem(diaryId);

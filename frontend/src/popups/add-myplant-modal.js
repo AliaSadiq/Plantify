@@ -155,7 +155,7 @@ export default function MyPlantModal({ showModal, closeModal }) {
         };
 
         try {
-            const response = await fetch('http://localhost:5000/api/my-plants/', {
+            const response = await fetch('BACKEND_URL/api/my-plants/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

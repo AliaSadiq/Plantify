@@ -16,7 +16,7 @@
 //     const fetchData = async () => {
 //       try {
 //         // Adjust API endpoint if needed for orders data
-//         const response = await axios.get('http://localhost:5000/api/campaigns/campaigns-by-month');
+//         const response = await axios.get('BACKEND_URL/api/campaigns/campaigns-by-month');
 //         const data = response.data;
 
 //         // Assuming your response data looks like [{_id: 1, count: 10}, {_id: 2, count: 20}, ...]

@@ -8,7 +8,7 @@ const useContactForm = () => {
   const sendMessage = async (formData) => {
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/user-message', formData);
+      const response = await axios.post('BACKEND_URL/api/user-message', formData);
       console.log('Message sent successfully');
       return response.data; // Return the response data for further use
     } catch (err) {

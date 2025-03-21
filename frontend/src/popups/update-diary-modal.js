@@ -17,7 +17,7 @@ export default function UpdateDiaryModal ({ diaryId, plantId, closeModal }) {
     // Fetch existing diary data on component mount
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/api/plant-diaries/${diaryId}`)
+            .get(`BACKEND_URL/api/plant-diaries/${diaryId}`)
             .then((response) => {
                 const data = response.data;
                 setPlantImages(data.plantImages || []);
@@ -65,7 +65,7 @@ export default function UpdateDiaryModal ({ diaryId, plantId, closeModal }) {
 
         // Update data via the API
         axios
-            .put(`http://localhost:5000/api/plant-diaries/${diaryId}`, formData)
+            .put(`BACKEND_URL/api/plant-diaries/${diaryId}`, formData)
             .then((response) => {
                 console.log("Diary entry updated:", response.data);
                 alert("Diary Entry Updated!");

@@ -12,7 +12,7 @@
 //       try {
 //         const user = JSON.parse(localStorage.getItem('user'));
 //         if (user) {
-//           const response = await axios.get(`http://localhost:5000/api/socialgroup/user/${user._id}`);
+//           const response = await axios.get(`BACKEND_URL/api/socialgroup/user/${user._id}`);
 //           const socialGroup = response.data;
 //           if (socialGroup) {
 //             setSocialGroupId(socialGroup._id);
@@ -135,7 +135,7 @@
 //       try {
 //         const user = JSON.parse(localStorage.getItem('user'));
 //         if (user) {
-//           const response = await axios.get(`http://localhost:5000/api/socialgroup/user/${user._id}`);
+//           const response = await axios.get(`BACKEND_URL/api/socialgroup/user/${user._id}`);
 //           const socialGroup = response.data;
 //           if (socialGroup) {
 //             setSocialGroupId(socialGroup._id);
@@ -263,7 +263,7 @@ const Sidebar = ( ) => {
       try {
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
-          const response = await axios.get(`http://localhost:5000/api/socialgroup/user/${user._id}`);
+          const response = await axios.get(`BACKEND_URL/api/socialgroup/user/${user._id}`);
           const socialGroup = response.data;
           if (socialGroup) {
             setSocialGroupId(socialGroup._id);

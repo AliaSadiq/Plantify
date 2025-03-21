@@ -15,7 +15,7 @@ const useSocialmediaProfile = (userId) => {
 
     const fetchProfile = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/social-media/profile/${userId}`);
+        const response = await axios.get(`BACKEND_URL/api/social-media/profile/${userId}`);
         console.log("Fetched profile data:", response.data);
         setProfile(response.data);
         setError(null); // Clear any previous errors

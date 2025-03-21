@@ -63,8 +63,8 @@
 //     };
   
 //     try {
-//       const response = await axios.post("http://localhost:5000/api/orders", orderData, {
-//       // const response = await fetch('http://localhost:5000/api/orders', {
+//       const response = await axios.post("BACKEND_URL/api/orders", orderData, {
+//       // const response = await fetch('BACKEND_URL/api/orders', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -356,7 +356,7 @@ const Checkout = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:5000/api/orders", orderData);
+      const response = await axios.post("BACKEND_URL/api/orders", orderData);
       const data = await response.data;
       if (data.success) {
         setIsSuccessModalOpen(true); // Show success modal

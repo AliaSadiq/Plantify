@@ -58,7 +58,7 @@ const [donors, setDonors] = useState([null]);
 useEffect(() => {
     const fetchLeaderboard = async () => {
         try {
-          const response = await axios.get(`http://localhost:5000/api/donations/leaderboard?campaignId=${campaign._id}`);
+          const response = await axios.get(`BACKEND_URL/api/donations/leaderboard?campaignId=${campaign._id}`);
         console.log(campaign._id)
             setDonors(response.data);
         } catch (error) {
@@ -119,7 +119,7 @@ useEffect(() => {
             console.log("comment: " + comment.campaign);
             console.log("comment: " + comment.comment);
             console.log("comment: " + comment.user);
-            const response = await axios.post("http://localhost:5000/api/campaign-comment", comment);
+            const response = await axios.post("BACKEND_URL/api/campaign-comment", comment);
             console.log("Data submitted:", response.data);
         } catch (error) {
             console.error("Error submitting data:", error);
@@ -129,7 +129,7 @@ useEffect(() => {
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/campaign-comment/campaign/${campaign._id}`);
+                const response = await axios.get(`BACKEND_URL/api/campaign-comment/campaign/${campaign._id}`);
                 setComments(response.data || []); // Ensure comments is always an array
             } catch (error) {
                 console.error("Error fetching comments:", error);

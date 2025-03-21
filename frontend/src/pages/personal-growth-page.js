@@ -12,9 +12,9 @@ export default function PersonalGrowth() {
     
     const user = useFetchUserLocalStorage();
     const userId = user?._id;
-    const url = `http://localhost:5000/api/my-plants/user/${user?._id}`;
+    const url = `BACKEND_URL/api/my-plants/user/${user?._id}`;
     const {data: plants, loading, error, refetch} = useFetch(url);
-    const {data: goals} = useFetch(`http://localhost:5000/api/goals/user/${userId}`);
+    const {data: goals} = useFetch(`BACKEND_URL/api/goals/user/${userId}`);
 
     return (
         <div className="min-h-screen bg-neutral pt-20 px-4 md:px-40">

@@ -126,7 +126,7 @@ const CreateProduct = () => {
     };
   
     try {
-      const response = await axios.post("http://localhost:5000/api/products", productData, {
+      const response = await axios.post("BACKEND_URL/api/products", productData, {
         headers: {
           "Content-Type": "application/json",
         },

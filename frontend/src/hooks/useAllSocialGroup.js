@@ -9,7 +9,7 @@ const useAllSocialGroups = () => {
   useEffect(() => {
     const fetchSocialGroups = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/socialgroup/');
+        const response = await axios.get('BACKEND_URL/api/socialgroup/');
         setAllSocialGroups(response.data);
         setLoading(false);
       } catch (err) {

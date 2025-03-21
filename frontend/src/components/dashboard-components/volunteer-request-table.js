@@ -33,7 +33,7 @@ export default function VolunteerRequestTable({ volunteers, campaignId }) {
     // Function to reject a volunteer
     const handleReject = async (volunteerId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/campaigns/${campaignId}/volunteers/${volunteerId}`);
+            await axios.delete(`BACKEND_URL/api/campaigns/${campaignId}/volunteers/${volunteerId}`);
             setSuccessMessage("Volunteer has been successfully rejected.");
             setIsSuccessModalOpen(true);
         } catch (error) {
@@ -44,7 +44,7 @@ export default function VolunteerRequestTable({ volunteers, campaignId }) {
     // Function to accept a volunteer
     const handleAccept = async (volunteerId) => {
         try {
-            await axios.put(`http://localhost:5000/api/campaigns/${campaignId}/volunteers/${volunteerId}`, { status: "accepted" });
+            await axios.put(`BACKEND_URL/api/campaigns/${campaignId}/volunteers/${volunteerId}`, { status: "accepted" });
             setSuccessMessage("Volunteer has been successfully accepted.");
             setIsSuccessModalOpen(true);
         } catch (error) {

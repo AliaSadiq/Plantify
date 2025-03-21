@@ -50,7 +50,7 @@
 //   useEffect(() => {
 //     const fetchCampaignData = async () => {
 //       try {
-//         const response = await axios.get('http://localhost:5000/api/campaigns/data/${socialId}'); // Adjust the endpoint as per your backend route
+//         const response = await axios.get('BACKEND_URL/api/campaigns/data/${socialId}'); // Adjust the endpoint as per your backend route
 //         const { campaignCountByYear } = response.data;
 
 //         if (campaignCountByYear && Array.isArray(campaignCountByYear)) {
@@ -115,7 +115,7 @@
 //   useEffect(() => {
 //     const fetchCampaignData = async () => {
 //       try {
-//         const response = await axios.get(`http://localhost:5000/api/campaigns/data/${socialId}`); // Use template literals here
+//         const response = await axios.get(`BACKEND_URL/api/campaigns/data/${socialId}`); // Use template literals here
 //         const { campaignCountByYear } = response.data;
 
 //         if (campaignCountByYear && Array.isArray(campaignCountByYear)) {
@@ -179,7 +179,7 @@
 
 //     const fetchCampaignData = async () => {
 //       try {
-//         const response = await axios.get(`http://localhost:5000/api/campaigns/data/${socialId}`);
+//         const response = await axios.get(`BACKEND_URL/api/campaigns/data/${socialId}`);
 //         const { campaignCountByYear } = response.data;
 
 //         if (campaignCountByYear && Array.isArray(campaignCountByYear)) {
@@ -245,7 +245,7 @@
 
 //     const fetchCampaignData = async () => {
 //       try {
-//         const response = await axios.get(`http://localhost:5000/api/campaigns/${id}`);
+//         const response = await axios.get(`BACKEND_URL/api/campaigns/${id}`);
 //         const { campaignCountByYear } = response.data;
 
 //         if (campaignCountByYear && Array.isArray(campaignCountByYear)) {
@@ -314,7 +314,7 @@
 
 //     const fetchCampaignData = async () => {
 //       try {
-//         const response = await axios.get(`http://localhost:5000/api/campaigns/${id}`);
+//         const response = await axios.get(`BACKEND_URL/api/campaigns/${id}`);
 //         const { campaignCountByYear } = response.data;
 
 //         if (campaignCountByYear && Array.isArray(campaignCountByYear)) {
@@ -380,7 +380,7 @@
 
 //     const fetchCampaignData = async () => {
 //       try {
-//         const response = await axios.get(`http://localhost:5000/api/campaigns/${socialGroupId}`);
+//         const response = await axios.get(`BACKEND_URL/api/campaigns/${socialGroupId}`);
 //         const { campaignCountByYear } = response.data;
 
 //         if (campaignCountByYear && Array.isArray(campaignCountByYear)) {
@@ -446,7 +446,7 @@
 
 //     const fetchCampaignData = async () => {
 //       try {
-//         const response = await axios.get(`http://localhost:5000/api/campaigns/${socialGroupId}`);
+//         const response = await axios.get(`BACKEND_URL/api/campaigns/${socialGroupId}`);
 //         console.log('API response data:', response.data); // Debug log
 
 //         const { campaignCountByYear } = response.data;
@@ -521,7 +521,7 @@
 
 //     const fetchCampaignData = async () => {
 //       try {
-//         const response = await axios.get(`http://localhost:5000/api/socialgroup/${id}`);
+//         const response = await axios.get(`BACKEND_URL/api/socialgroup/${id}`);
 //         console.log('API response data:', response.data); // Debug log
 
 //         const { campaignCountByYear } = response.data;
@@ -599,7 +599,7 @@ const CampaignGraph = () => {
     const fetchCampaignData = async () => {
       try {
         console.log('Fetching data for social group ID:', id); // Log the social group ID being used
-        const response = await axios.get(`http://localhost:5000/api/campaigns/socialg/${id}`);
+        const response = await axios.get(`BACKEND_URL/api/campaigns/socialg/${id}`);
         
         console.log('API response data:', response.data); // Debug log full API response
   

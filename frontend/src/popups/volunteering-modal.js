@@ -20,7 +20,7 @@
 //     const handleSubmit = async (e) => {
 //         e.preventDefault();
 //         try {
-//             await axios.post(`http://localhost:5000/api/campaigns/${campaignId}/volunteers`, {
+//             await axios.post(`BACKEND_URL/api/campaigns/${campaignId}/volunteers`, {
 //                 user: userId,
 //                 contact,
 //             });
@@ -120,7 +120,7 @@ const VolunteeringModal = ({ showModal, closeModal, campaignId, userId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`http://localhost:5000/api/campaigns/${campaignId}/volunteers`, {
+            await axios.post(`BACKEND_URL/api/campaigns/${campaignId}/volunteers`, {
                 user: userId,
                 contact,
             });

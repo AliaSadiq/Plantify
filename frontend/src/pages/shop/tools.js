@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import SearchBar from "../../components/search-bar";
 
 // Placeholder for API URL, you should replace this with your actual API endpoint
-const API_URL = "http://localhost:5000/api/products"; // Example API endpoint for fetching tools data
+const API_URL = "BACKEND_URL/api/products"; // Example API endpoint for fetching tools data
 
 function Tools() {
   const [tools, setTools] = useState([]); // State to store fetched tool data

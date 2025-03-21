@@ -57,7 +57,7 @@ const ProfilePage = ({ onClose }) => {
 
   const handleDeletePost = async (postId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/post/posts/${postId}`, {
+      const response = await fetch(`BACKEND_URL/api/post/posts/${postId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
