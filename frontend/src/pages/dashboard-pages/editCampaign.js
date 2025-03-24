@@ -54,7 +54,7 @@ const EditCampaignForm = () => {
 
   useEffect(() => {
     if (campaignId) {
-      axios.get(`BACKEND_URL/api/campaigns/${campaignId}`)
+      axios.get(`https://plantify-backend.vercel.app/api/campaigns/${campaignId}`)
         .then(response => {
           const campaign = response.data;
           console.log("Fetched campaign:", campaign); // Debugging log
@@ -172,11 +172,11 @@ const EditCampaignForm = () => {
       };
 
       if (campaignId) {
-        const response = await axios.put(`BACKEND_URL/api/campaigns/${campaignId}`, formData);
+        const response = await axios.put(`https://plantify-backend.vercel.app/api/campaigns/${campaignId}`, formData);
         console.log("Campaign updated:", response.data);
         alert("Campaign updated");
       } else {
-        const response = await axios.post("BACKEND_URL/api/campaigns", formData);
+        const response = await axios.post("https://plantify-backend.vercel.app/api/campaigns", formData);
         console.log("Campaign created:", response.data);
         alert("Campaign created");
       }

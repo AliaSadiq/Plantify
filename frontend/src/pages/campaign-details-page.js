@@ -22,7 +22,7 @@ export default function CampaignDetailsPage() {
     const [campaign, setCampaign] = useState(null);
     const { openModal, closeModal, isModalOpen } = useModal();
     const [comments, setComments] = useState([]);
-    const url = `BACKEND_URL/api/donations/campaign/${id}`;
+    const url = `https://plantify-backend.vercel.app/api/donations/campaign/${id}`;
     const {data: donations, loading, error, refetch} = useFetch(url);
     const [newComment, setNewComment] = useState("");
     const [activeStage, setActiveStage] = useState(0); // State for managing active stage
@@ -68,10 +68,10 @@ export default function CampaignDetailsPage() {
     useEffect(() => {
         const fetchCampaignDetails = async () => {
             try {
-                const campaignResponse = await axios.get(`BACKEND_URL/api/campaigns/${id}`);
+                const campaignResponse = await axios.get(`https://plantify-backend.vercel.app/api/campaigns/${id}`);
                 setCampaign(campaignResponse.data);
     
-                const commentsResponse = await axios.get(`BACKEND_URL/api/campaign-comment/campaign/${id}`);
+                const commentsResponse = await axios.get(`https://plantify-backend.vercel.app/api/campaign-comment/campaign/${id}`);
                 setComments(commentsResponse.data);
             } catch (error) {
                 console.error("Error fetching campaign details or comments:", error);
@@ -89,7 +89,7 @@ export default function CampaignDetailsPage() {
         e.preventDefault();
         if (user?._id) {
             try {
-                const response = await axios.post("BACKEND_URL/api/campaign-comment", {
+                const response = await axios.post("https://plantify-backend.vercel.app/api/campaign-comment", {
                     user: user._id,
                     campaign: id,
                     comment: newComment,
@@ -117,7 +117,7 @@ export default function CampaignDetailsPage() {
         }
     
         try {
-          const response = await axios.post(`BACKEND_URL/api/campaigns/${id}/follow`, {
+          const response = await axios.post(`https://plantify-backend.vercel.app/api/campaigns/${id}/follow`, {
             userId: user._id
           });
           setIsFollowing((prev) => !prev); // Toggle follow/unfollow state

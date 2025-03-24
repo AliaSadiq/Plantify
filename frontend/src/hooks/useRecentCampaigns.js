@@ -9,7 +9,7 @@ const useRecentCampaigns = () => {
   useEffect(() => {
     const fetchRecentCampaigns = async () => {
       try {
-        const response = await axios.get('BACKEND_URL/api/campaigns/recent');
+        const response = await axios.get('https://plantify-backend.vercel.app/api/campaigns/recent');
         setRecentCampaigns(response.data);
         setLoading(false);
       } catch (err) {

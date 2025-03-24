@@ -145,7 +145,7 @@
 //   const handleAddMember = async () => {
 //     try {
 //       // Replace with your API endpoint
-//       await axios.post('BACKEND_URL/api/team-members', newMember);
+//       await axios.post('https://plantify-backend.vercel.app/api/team-members', newMember);
 //       setTeamMembers([...teamMembers, { ...newMember, status: 'Invitation sent', joined: '' }]);
 //       handleCloseDialog();
 //     } catch (error) {
@@ -327,7 +327,7 @@
 //   const handleAddMember = async () => {
 //     try {
 //       // Replace with your API endpoint
-//       await axios.post('BACKEND_URL/api/team', newMember);
+//       await axios.post('https://plantify-backend.vercel.app/api/team', newMember);
 //       setTeamMembers([...teamMembers, { ...newMember, status: 'Invitation sent', joined: '' }]);
 //       handleCloseDialog();
 //     } catch (error) {
@@ -524,7 +524,7 @@
 //         const formData = new FormData();
 //         formData.append('file', imageFile);
         
-//         const response = await axios.post('BACKEND_URL/api/upload-image', formData, {
+//         const response = await axios.post('https://plantify-backend.vercel.app/api/upload-image', formData, {
 //           headers: {
 //             'Content-Type': 'multipart/form-data'
 //           }
@@ -535,7 +535,7 @@
 
 //       // Then add the team member with the image URL
 //       const teamMemberData = { ...newMember, imageUrl };
-//       await axios.post('BACKEND_URL/api/team', teamMemberData);
+//       await axios.post('https://plantify-backend.vercel.app/api/team', teamMemberData);
 
 //       setTeamMembers([...teamMembers, { ...teamMemberData, status: 'Invitation sent', joined: '' }]);
 //       handleCloseDialog();
@@ -732,7 +732,7 @@
 //         const formData = new FormData();
 //         formData.append('file', imageFile);
         
-//         const response = await axios.post('BACKEND_URL/api/upload-image', formData, {
+//         const response = await axios.post('https://plantify-backend.vercel.app/api/upload-image', formData, {
 //           headers: {
 //             'Content-Type': 'multipart/form-data'
 //           }
@@ -742,7 +742,7 @@
 //       }
 
 //       const teamMemberData = { ...newMember, profilePic };
-//       await axios.post('BACKEND_URL/api/team', teamMemberData);
+//       await axios.post('https://plantify-backend.vercel.app/api/team', teamMemberData);
 
 //       setTeamMembers([...teamMembers, { ...teamMemberData, status: 'Invitation sent', joined: '' }]);
 //       handleCloseDialog();
@@ -940,7 +940,7 @@
 //   //       const formData = new FormData();
 //   //       formData.append('file', imageFile);
         
-//   //       const response = await axios.post('BACKEND_URL/api/upload-image', formData, {
+//   //       const response = await axios.post('https://plantify-backend.vercel.app/api/upload-image', formData, {
 //   //         headers: {
 //   //           'Content-Type': 'multipart/form-data'
 //   //         }
@@ -950,7 +950,7 @@
 //   //     }
 
 //   //     const teamMemberData = { ...newMember, imageUrl: profilePic };
-//   //     await axios.post('BACKEND_URL/api/team', teamMemberData);
+//   //     await axios.post('https://plantify-backend.vercel.app/api/team', teamMemberData);
 
 //   //     setTeamMembers([...teamMembers, { ...teamMemberData, status: 'Invitation sent', joined: '' }]);
 //   //     handleCloseDialog();
@@ -968,7 +968,7 @@
 //         formData.append('file', imageFile);
         
 //         // Upload the image and retrieve the uploaded image URL
-//         const response = await axios.post('BACKEND_URL/api/upload-image', formData, {
+//         const response = await axios.post('https://plantify-backend.vercel.app/api/upload-image', formData, {
 //           headers: {
 //             'Content-Type': 'multipart/form-data'
 //           }
@@ -985,7 +985,7 @@
 //       };
   
 //       // Post the new team member data to the backend
-//       await axios.post('BACKEND_URL/api/team', teamMemberData);
+//       await axios.post('https://plantify-backend.vercel.app/api/team', teamMemberData);
   
 //       // Update the local state with the new member
 //       setTeamMembers([...teamMembers, { ...teamMemberData, status: 'Invitation sent', joined: '' }]);
@@ -1196,7 +1196,7 @@
 //         formData.append('file', imageFile);
 
 //         // Upload the image to the server
-//         const response = await axios.post('BACKEND_URL/api/teams', formData, {
+//         const response = await axios.post('https://plantify-backend.vercel.app/api/teams', formData, {
 //           headers: {
 //             'Content-Type': 'multipart/form-data'
 //           }
@@ -1213,7 +1213,7 @@
 //       };
 
 //       // Post the new team member to the backend API
-//       await axios.post('BACKEND_URL/api/teams', teamMemberData);
+//       await axios.post('https://plantify-backend.vercel.app/api/teams', teamMemberData);
 
 //       // Add the new member to the state and reset the form
 //       setTeamMembers([...teamMembers, { ...teamMemberData, status: 'Invitation sent', joined: '' }]);
@@ -1357,7 +1357,7 @@
 //   useEffect(() => {
 //     const fetchTeamData = async () => {
 //       try {
-//         const response = await axios.get('BACKEND_URL/api/teams');
+//         const response = await axios.get('https://plantify-backend.vercel.app/api/teams');
 //         setTeamMembers(response.data);
 //       } catch (error) {
 //         console.error('Error fetching team data:', error);
@@ -1386,7 +1386,7 @@
 //   const deleteMember = async (index) => {
 //     try {
 //       const memberToDelete = teamMembers[index];
-//       await axios.delete(`BACKEND_URL/api/teams/${memberToDelete._id}`);
+//       await axios.delete(`https://plantify-backend.vercel.app/api/teams/${memberToDelete._id}`);
 //       const updatedMembers = teamMembers.filter((_, i) => i !== index);
 //       setTeamMembers(updatedMembers);
 //     } catch (error) {
@@ -1436,7 +1436,7 @@
 //         formData.append('file', imageFile);
 
 //         // Upload the image to the server
-//         const response = await axios.post('BACKEND_URL/api/upload-image', formData, {
+//         const response = await axios.post('https://plantify-backend.vercel.app/api/upload-image', formData, {
 //           headers: {
 //             'Content-Type': 'multipart/form-data'
 //           }
@@ -1453,7 +1453,7 @@
 //       };
 
 //       // Post the new team member to the backend API
-//       await axios.post('BACKEND_URL/api/teams', teamMemberData);
+//       await axios.post('https://plantify-backend.vercel.app/api/teams', teamMemberData);
 
 //       // Add the new member to the state and reset the form
 //       setTeamMembers([...teamMembers, { ...teamMemberData, status: 'Invitation sent', joined: '' }]);
@@ -1608,7 +1608,7 @@ const TeamMember = () => {
   useEffect(() => {
     const fetchTeamData = async () => {
       try {
-        const response = await axios.get('BACKEND_URL/api/teams');
+        const response = await axios.get('https://plantify-backend.vercel.app/api/teams');
         setTeamMembers(response.data);
       } catch (error) {
         console.error('Error fetching team data:', error);
@@ -1637,7 +1637,7 @@ const TeamMember = () => {
   const deleteMember = async (index) => {
     try {
       const memberToDelete = teamMembers[index];
-      await axios.delete(`BACKEND_URL/api/teams/${memberToDelete._id}`);
+      await axios.delete(`https://plantify-backend.vercel.app/api/teams/${memberToDelete._id}`);
       const updatedMembers = teamMembers.filter((_, i) => i !== index);
       setTeamMembers(updatedMembers);
     } catch (error) {
@@ -1687,7 +1687,7 @@ const TeamMember = () => {
         formData.append('file', imageFile);
 
         // Upload the image to the server
-        const response = await axios.post('BACKEND_URL/api/teams', formData, {
+        const response = await axios.post('https://plantify-backend.vercel.app/api/teams', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -1704,7 +1704,7 @@ const TeamMember = () => {
       };
 
       // Post the new team member to the backend API
-      await axios.post('BACKEND_URL/api/teams', teamMemberData);
+      await axios.post('https://plantify-backend.vercel.app/api/teams', teamMemberData);
 
       // Add the new member to the state and reset the form
       setTeamMembers([...teamMembers, { ...teamMemberData }]);

@@ -57,7 +57,7 @@ const ProfilePage = ({ onClose }) => {
 
   const handleDeletePost = async (postId) => {
     try {
-      const response = await fetch(`BACKEND_URL/api/post/posts/${postId}`, {
+      const response = await fetch(`https://plantify-backend.vercel.app/api/post/posts/${postId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

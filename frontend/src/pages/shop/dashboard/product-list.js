@@ -26,7 +26,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("BACKEND_URL/api/products");
+        const response = await axios.get("https://plantify-backend.vercel.app/api/products");
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -54,7 +54,7 @@ const ProductList = () => {
   const handleDelete = async () => {
     try {
       await axios.delete(
-        `BACKEND_URL/api/products/${productToDelete}`
+        `https://plantify-backend.vercel.app/api/products/${productToDelete}`
       );
       setProducts(
         products.filter((product) => product._id !== productToDelete)

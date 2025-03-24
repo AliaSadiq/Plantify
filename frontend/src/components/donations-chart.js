@@ -17,7 +17,7 @@ const DonationsChart = ({ userId }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`BACKEND_URL/api/donations/user/${userId}`);
+                const response = await axios.get(`https://plantify-backend.vercel.app/api/donations/user/${userId}`);
                 const donations = response.data;
 
                 // Initialize array for all 12 months

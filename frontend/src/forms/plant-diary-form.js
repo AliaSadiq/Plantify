@@ -44,7 +44,7 @@ export default function PlantDiaryForm ({ plantId }) {
 
         // Submit data to the API
         axios
-            .post("BACKEND_URL/api/plant-diaries", formData)
+            .post("https://plantify-backend.vercel.app/api/plant-diaries", formData)
             .then((response) => {
                 console.log("Diary entry added:", response.data);
                 alert("Diary Entry Added!")

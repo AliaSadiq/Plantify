@@ -13,7 +13,7 @@ const NavBar = () => {
     // const [user, setUser] = useState(null);
     const user = useFetchUserLocalStorage();
     // const [isSocialAccepted, setIsSocialAccepted] = useState(false);
-    const {data: socialGroup} = useFetch(`BACKEND_URL/api/socialgroup/user/${user?._id}`);
+    const {data: socialGroup} = useFetch(`https://plantify-backend.vercel.app/api/socialgroup/user/${user?._id}`);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -30,7 +30,7 @@ const NavBar = () => {
     // useEffect(() => {
     //     const checkSocialGroupStatus = async (userId) => {
     //         try {
-    //             const response = await axios.get(`BACKEND_URL/api/socialgroup/${userId}`);
+    //             const response = await axios.get(`https://plantify-backend.vercel.app/api/socialgroup/${userId}`);
     //             console.log('Social group response:', response.data); // Debugging log
     //             const socialGroup = response.data;
     //             if (socialGroup && socialGroup.status === 'accepted') {

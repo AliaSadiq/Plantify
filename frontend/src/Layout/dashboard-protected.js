@@ -22,7 +22,7 @@ const DashboardProtected = ({ children }) => {
   
       // Send request to check if the user is authorized
       axios
-        .get(`BACKEND_URL/api/socialgroup/authorize/${id}`, {
+        .get(`https://plantify-backend.vercel.app/api/socialgroup/authorize/${id}`, {
           headers: { 'x-user-id': userId }, // Pass userId as a header
         })
         .then(() => {

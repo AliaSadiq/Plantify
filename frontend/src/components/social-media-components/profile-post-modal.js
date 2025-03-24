@@ -35,7 +35,7 @@ const PostModal = ({ post, onClose }) => {
     // Fetch comments for the post
     const fetchComments = async () => {
       try {
-        const response = await axios.get(`BACKEND_URL/api/post-comment/${post._id}`);
+        const response = await axios.get(`https://plantify-backend.vercel.app/api/post-comment/${post._id}`);
         setComments(response.data.comments);
       } catch (error) {
         console.error("Failed to fetch comments", error);
@@ -52,7 +52,7 @@ const PostModal = ({ post, onClose }) => {
     }
 
     try {
-      const response = await axios.post("BACKEND_URL/api/post-comment", {
+      const response = await axios.post("https://plantify-backend.vercel.app/api/post-comment", {
         postId: post?._id,
         comment: newComment,
         userId: currentUser._id, // Pass userId from localStorage

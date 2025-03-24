@@ -35,7 +35,7 @@ const EditProduct = () => {
   useEffect(() => {
     if (productId) {
       axios
-        .get(`BACKEND_URL/api/products/${productId}`)
+        .get(`https://plantify-backend.vercel.app/api/products/${productId}`)
         .then((response) => {
           const fetchedProduct = response.data;
           setProduct({
@@ -139,10 +139,10 @@ const EditProduct = () => {
     try {
       let response;
       if (productId) {
-        response = await axios.put(`BACKEND_URL/api/products/${productId}`, productData);
+        response = await axios.put(`https://plantify-backend.vercel.app/api/products/${productId}`, productData);
         console.log("Product updated:", response.data);
       } else {
-        response = await axios.post("BACKEND_URL/api/products", productData);
+        response = await axios.post("https://plantify-backend.vercel.app/api/products", productData);
         console.log("Product created:", response.data);
       }
       setIsSuccessModalOpen(true);

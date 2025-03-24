@@ -9,7 +9,7 @@ const useFetchSocialGroupCampaigns = (id) => {
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        const response = await axios.get(`BACKEND_URL/api/campaigns/socialgroup/${id}`);
+        const response = await axios.get(`https://plantify-backend.vercel.app/api/campaigns/socialgroup/${id}`);
         console.log("Campaigns fetched for socialId:", id);
         setCampaigns(response.data);
       } catch (error) {

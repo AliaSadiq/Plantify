@@ -25,8 +25,8 @@ export default function Dashboard () {
     }
 
     const url = {
-        socialGroupsOnWait: "BACKEND_URL/api/socialgroup/count-on-wait",
-        sellersOnWait: "BACKEND_URL/api/sellers/count-on-wait",
+        socialGroupsOnWait: "https://plantify-backend.vercel.app/api/socialgroup/count-on-wait",
+        sellersOnWait: "https://plantify-backend.vercel.app/api/sellers/count-on-wait",
       };
     const {count: onWaitSocialGroupsCount, loading: soloading , error: soerror} = useCount(url.socialGroupsOnWait);
     const {count: onWaitSellersCount, loading: slloading, error: slerror} = useCount(url.sellersOnWait);

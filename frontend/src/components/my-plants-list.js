@@ -8,7 +8,7 @@ import EditMyPlantModal from '../popups/edit-myplant.modal';
 export default function MyPlantsList ({ plants, fetchPlants}) {
 
     const { deleteItem, isLoading, error } = useDelete(
-        'BACKEND_URL/api/my-plants',
+        'https://plantify-backend.vercel.app/api/my-plants',
         fetchPlants
     );
 

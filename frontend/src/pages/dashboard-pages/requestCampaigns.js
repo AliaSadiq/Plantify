@@ -34,7 +34,7 @@ console.log("Captured ID from URL:", id);
     // Fetch campaign data from the API when the component mounts
     const fetchCampaigns = async () => {
       try {
-        const response = await axios.get("BACKEND_URL/api/request-campaign/get-request", {
+        const response = await axios.get("https://plantify-backend.vercel.app/api/request-campaign/get-request", {
           params: { socialGroup: id },
         });
         setCampaigns(response.data);
@@ -63,7 +63,7 @@ const handleSearch = (query) => {
   const handleReject = async () => {
     if (selectedCampaign) {
       try {
-        await axios.delete(`BACKEND_URL/api/request-campaign/${selectedCampaign._id}`);
+        await axios.delete(`https://plantify-backend.vercel.app/api/request-campaign/${selectedCampaign._id}`);
         setCampaigns(campaigns.filter(campaign => campaign._id !== selectedCampaign._id));
         handleCloseDialog();
       } catch (error) {

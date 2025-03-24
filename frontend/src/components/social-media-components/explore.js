@@ -9,7 +9,7 @@ const ExplorePage = () => {
 
   useEffect(() => {
     // Fetch posts from the backend API using axios
-    axios.get('BACKEND_URL/api/post/getAll') // Replace with your actual endpoint
+    axios.get('https://plantify-backend.vercel.app/api/post/getAll') // Replace with your actual endpoint
       .then((response) => {
         setPosts(response.data); 
         console.log(response.data);// Assuming response.data contains the posts array

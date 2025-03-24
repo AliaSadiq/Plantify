@@ -12,7 +12,7 @@ export default function VerificationCheck() {
             try {
                 const user = JSON.parse(localStorage.getItem('user'));
                 if (user) {
-                    const response = await axios.get(`BACKEND_URL/api/socialgroup/user/${user._id}`);
+                    const response = await axios.get(`https://plantify-backend.vercel.app/api/socialgroup/user/${user._id}`);
                     const socialGroup = response.data;
                     
                     if (socialGroup) {

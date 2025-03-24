@@ -62,7 +62,7 @@ const CreatePostForm = ({ onClose, isSocialGroupPost, customName }) => {
     };
 
     try {
-      const response = await axios.post('BACKEND_URL/api/post/add', formData);
+      const response = await axios.post('https://plantify-backend.vercel.app/api/post/add', formData);
       if (response.status === 201) {
         alert("Post created successfully!");
         onClose();

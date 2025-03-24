@@ -23,7 +23,7 @@ const Table = ({ columns, data, fieldMappings, setData }) => {
     );
     if (confirmDelete) {
       try {
-        await axios.delete(`BACKEND_URL/api/campaigns/${campaignId}`);
+        await axios.delete(`https://plantify-backend.vercel.app/api/campaigns/${campaignId}`);
         setData((prevData) =>
           prevData.filter((campaign) => campaign._id !== campaignId)
         );

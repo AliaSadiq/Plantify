@@ -60,7 +60,7 @@ export default function EditMyPlantModal({ showModal, closeModal, plant }) {
         };
     
         try {
-            const response = await fetch(`BACKEND_URL/api/my-plants/${plant._id}`, {
+            const response = await fetch(`https://plantify-backend.vercel.app/api/my-plants/${plant._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

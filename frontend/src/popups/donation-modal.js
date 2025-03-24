@@ -11,7 +11,7 @@ const DonationModal = ({ showModal, closeModal, campaignId, userId }) => {
     const handleSubmit = async (e) => { 
         e.preventDefault(); 
         try { 
-            const response = await axios.post('BACKEND_URL/api/donations', { amount: parseInt(amount), user: userId, campaign: campaignId }); 
+            const response = await axios.post('https://plantify-backend.vercel.app/api/donations', { amount: parseInt(amount), user: userId, campaign: campaignId }); 
             if (response.status === 201) { 
                 alert('Thank you for your donation!'); 
                 closeModal(); 

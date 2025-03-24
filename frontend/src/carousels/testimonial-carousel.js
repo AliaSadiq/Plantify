@@ -43,7 +43,7 @@ export default function TestimonialCarousel() {
 
   const [testimonials, setTestimonials] = useState([]);
   useEffect(()=>{
-    axios.get('BACKEND_URL/api/testimonial')
+    axios.get('https://plantify-backend.vercel.app/api/testimonial')
     .then((response) => {
       setTestimonials(response.data);
       console.log('testimonials: ' + testimonials);

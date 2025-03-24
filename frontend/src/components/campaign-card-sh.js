@@ -7,7 +7,7 @@ import useFetch from "../hooks/useFetch";
 
 const CampaignCardSh = ({ campaign }) => {
 
-  const url = `BACKEND_URL/api/donations/campaign/${campaign._id}`;
+  const url = `https://plantify-backend.vercel.app/api/donations/campaign/${campaign._id}`;
   const {data: donations, loading, error, refetch} = useFetch(url);
 
   const navigate = useNavigate();

@@ -11,7 +11,7 @@ const SocialProfilePage = () => {
   useEffect(() => {
     const fetchSocialGroup = async () => {
       try {
-        const response = await axios.get(`BACKEND_URL/api/socialgroup/${id}`);
+        const response = await axios.get(`https://plantify-backend.vercel.app/api/socialgroup/${id}`);
         setSocialGroup(response.data);
         setLoading(false);
       } catch (error) {

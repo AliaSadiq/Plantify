@@ -121,7 +121,7 @@
 //       console.log("Submitting data:", formData);
 
 //       const response = await axios.post(
-//         "BACKEND_URL/api/campaigns",
+//         "https://plantify-backend.vercel.app/api/campaigns",
 //         formData
 //       );
 //       console.log("Data submitted:", response.data);
@@ -738,7 +738,7 @@ const handleInputChange = (e, setFormData) => {
 
 
       const response = await axios.post(
-        "BACKEND_URL/api/campaigns",
+        "https://plantify-backend.vercel.app/api/campaigns",
         formData
       );
       console.log("Data submitted:", response.data);

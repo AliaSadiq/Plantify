@@ -9,7 +9,7 @@ const useAllSocialGroups = () => {
   useEffect(() => {
     const fetchSocialGroups = async () => {
       try {
-        const response = await axios.get('BACKEND_URL/api/socialgroup/');
+        const response = await axios.get('https://plantify-backend.vercel.app/api/socialgroup/');
         setAllSocialGroups(response.data);
         setLoading(false);
       } catch (err) {

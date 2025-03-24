@@ -19,7 +19,7 @@ const useEditProfile = () => {
       console.log("Sending data:", data); // Log data before request
 
       const response = await axios.put(
-        `BACKEND_URL/api/social-media/profile/${userId}`,
+        `https://plantify-backend.vercel.app/api/social-media/profile/${userId}`,
         data,
         {
           headers: {

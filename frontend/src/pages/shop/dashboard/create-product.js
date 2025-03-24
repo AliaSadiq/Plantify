@@ -126,7 +126,7 @@ const CreateProduct = () => {
     };
   
     try {
-      const response = await axios.post("BACKEND_URL/api/products", productData, {
+      const response = await axios.post("https://plantify-backend.vercel.app/api/products", productData, {
         headers: {
           "Content-Type": "application/json",
         },

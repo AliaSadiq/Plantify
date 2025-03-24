@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import SearchBar from "../../components/search-bar";
 Modal.setAppElement("#root");
 // Placeholder for API URL, you should replace this with your actual API endpoint
-const API_URL = "BACKEND_URL/api/products"; // Example API endpoint for fetching soil data
+const API_URL = "https://plantify-backend.vercel.app/api/products"; // Example API endpoint for fetching soil data
 
 function Soil() {
   const navigate = useNavigate();

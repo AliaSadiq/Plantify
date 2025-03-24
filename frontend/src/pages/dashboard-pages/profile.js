@@ -29,7 +29,7 @@ const MainPage = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await axios.get(`BACKEND_URL/api/socialgroup/${id}`);
+        const response = await axios.get(`https://plantify-backend.vercel.app/api/socialgroup/${id}`);
         const data = response.data;
 
         setProfileData({
@@ -96,7 +96,7 @@ const MainPage = () => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.put(`BACKEND_URL/api/socialgroup/${id}/edit`, profileData);
+      const response = await axios.put(`https://plantify-backend.vercel.app/api/socialgroup/${id}/edit`, profileData);
       alert(response.data.message);
     } catch (error) {
       console.error('Error updating profile:', error);

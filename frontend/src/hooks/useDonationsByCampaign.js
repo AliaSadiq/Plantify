@@ -9,7 +9,7 @@ const useDonationsByCampaign = (campaignId) => {
     // Define the async function to fetch donations
     const fetchDonations = async () => {
       try {
-        const response = await fetch(`BACKEND_URL/api/donations/campaign/${campaignId}`);
+        const response = await fetch(`https://plantify-backend.vercel.app/api/donations/campaign/${campaignId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch donations.');
         }

@@ -9,7 +9,7 @@ const SocialCampaigns = ({ socialGroupId }) => {
     useEffect(() => {
         const fetchCampaigns = async () => {
             try {
-                const response = await axios.get(`BACKEND_URL/api/campaigns/socialgroup/${socialGroupId}`);
+                const response = await axios.get(`https://plantify-backend.vercel.app/api/campaigns/socialgroup/${socialGroupId}`);
                 const campaigns = response.data;
 
                 // Process campaigns to get counts per month

@@ -25,7 +25,7 @@
 //   useEffect(() => {
 //     const fetchProfileData = async () => {
 //       try {
-//         const response = await axios.get(`BACKEND_URL/api/socialgroup/${id}`);
+//         const response = await axios.get(`https://plantify-backend.vercel.app/api/socialgroup/${id}`);
 //         setProfileData(response.data);
 //         setTeamMembers(response.data.teamMembers);
 //         const followers = data.followers || [];
@@ -45,7 +45,7 @@
 
 //     const fetchCampaigns = async () => {
 //       try {
-//         const response = await axios.get(`BACKEND_URL/api/campaigns/socialgroup/${id}`);
+//         const response = await axios.get(`https://plantify-backend.vercel.app/api/campaigns/socialgroup/${id}`);
 //         console.log("Campaigns fetched for socialId:", id);
 //         setCampaigns(response.data);
 //       } catch (error) {
@@ -54,7 +54,7 @@
 //     };
 //     // const fetchTeamMembers = async () => {
 //     //   try {
-//     //     const response = await axios.get(`BACKEND_URL/api/socialteams/${id}/team`);
+//     //     const response = await axios.get(`https://plantify-backend.vercel.app/api/socialteams/${id}/team`);
 //     //     console.log("Campaigns fetched for socialId:", id);
 //     //     setTeamMembers(response.data);
 //     //   } catch (error) {
@@ -75,7 +75,7 @@
 //     }
 
 //     try {
-//       const response = await axios.post(`BACKEND_URL/api/socialgroup/${id}/follow`);
+//       const response = await axios.post(`https://plantify-backend.vercel.app/api/socialgroup/${id}/follow`);
 //       setIsFollowing(!isFollowing);
 //       alert(response.data.message);
 //     } catch (error) {
@@ -181,7 +181,7 @@ const MainPage = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const response = await axios.get(`BACKEND_URL/api/socialgroup/${id}`);
+        const response = await axios.get(`https://plantify-backend.vercel.app/api/socialgroup/${id}`);
         const data = response.data;
 
         // Ensure followers array exists
@@ -205,7 +205,7 @@ const MainPage = () => {
 
     const fetchCampaigns = async () => {
       try {
-        const response = await axios.get(`BACKEND_URL/api/campaigns/socialgroup/${id}`);
+        const response = await axios.get(`https://plantify-backend.vercel.app/api/campaigns/socialgroup/${id}`);
         setCampaigns(response.data);
       } catch (error) {
         console.error('Error fetching campaigns:', error);
@@ -223,7 +223,7 @@ const MainPage = () => {
     }
 
     try {
-      const response = await axios.post(`BACKEND_URL/api/socialgroup/${id}/follow`, { userId });
+      const response = await axios.post(`https://plantify-backend.vercel.app/api/socialgroup/${id}/follow`, { userId });
       setIsFollowing(!isFollowing);
       alert(response.data.message);
     } catch (error) {

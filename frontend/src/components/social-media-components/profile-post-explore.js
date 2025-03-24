@@ -17,7 +17,7 @@ const ExplorePage = ({profileId}) => {
 
     // Fetch posts from the backend API using axios
     axios
-      .get('BACKEND_URL/api/post/social-group', {
+      .get('https://plantify-backend.vercel.app/api/post/social-group', {
         headers: { 'x-user-id': userId }, // Include userId in custom headers
       })
       .then((response) => {

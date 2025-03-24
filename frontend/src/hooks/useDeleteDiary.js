@@ -6,7 +6,7 @@ const useDeleteDiary = (initialDiaries) => {
 
     const deleteDiary = async (id) => {
         try {
-            await axios.delete(`BACKEND_URL/api/plant-diaries/${id}`);
+            await axios.delete(`https://plantify-backend.vercel.app/api/plant-diaries/${id}`);
             setDiaries(diaries.filter(diary => diary._id !== id));
         } catch (err) {
             console.error('Error deleting diary:', err);

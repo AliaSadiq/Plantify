@@ -10,7 +10,7 @@ const useCampaigns = (page, limit) => {
     const fetchCampaigns = async () => {
       try {
        
-        const response = await axios.get(`BACKEND_URL/api/campaigns?page=${page}&limit=${limit}`);
+        const response = await axios.get(`https://plantify-backend.vercel.app/api/campaigns?page=${page}&limit=${limit}`);
         setCampaigns(response.data.campaigns);
         setTotalPages(response.data.totalPages);
       } catch (err) {

@@ -17,7 +17,7 @@
 //     };
 
 //     try {
-//       const response = await axios.post('BACKEND_URL/api/campaign-report', reportData);
+//       const response = await axios.post('https://plantify-backend.vercel.app/api/campaign-report', reportData);
 //       console.log('Report submitted successfully', response.data);
 //       alert('Report Submitted succesfully');
 //       // Optionally, close the modal and reset the form
@@ -83,7 +83,7 @@ const ReportModal = ({ campaign, showModal, closeModal }) => {
     };
 
     try {
-      const response = await axios.post('BACKEND_URL/api/campaign-report', reportData);
+      const response = await axios.post('https://plantify-backend.vercel.app/api/campaign-report', reportData);
       console.log('Report submitted successfully', response.data);
       alert('Report Submitted succesfully');
       closeModal();

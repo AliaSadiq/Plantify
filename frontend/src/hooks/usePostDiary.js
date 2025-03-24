@@ -8,7 +8,7 @@ const usePostDiary = () => {
   const addDiary = async (formData) => {
     setLoading(true);
     try {
-      const response = await axios.post('BACKEND_URL/api/plant-diaries', formData);
+      const response = await axios.post('https://plantify-backend.vercel.app/api/plant-diaries', formData);
       console.log('Diary added successfully');
       return response.data; // Return the response data for further use
     } catch (err) {
