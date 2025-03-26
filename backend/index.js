@@ -54,7 +54,7 @@ const corsOptions = {
      ? process.env.FRONTEND_URL 
      : ["http://localhost:3000", process.env.FRONTEND_URL,"https://plantify-backend.vercel.app"], 
   methods: ["POST", "GET", "PUT", "DELETE"], 
-  allowedHeaders: ["Content-Type", "Authorization"], 
+  allowedHeaders: ["Content-Type", "Authorization","x-user-id"], 
   credentials: true, 
 };
 
